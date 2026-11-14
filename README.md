@@ -132,9 +132,11 @@ PentAGI 由總部位於杜拜的安全工程公司 [VXControl](https://vxcontrol
 - 目前的流程報告介面支援網頁檢視、複製到剪貼簿、下載 Markdown 與下載 PDF；JSON 格式的流程報告匯出目前並未列為支援的輸出格式。
 - 供應商彈性目前可透過內建供應商與自訂／OpenAI 相容端點達成。請見[自訂 LLM 供應商設定](#custom-llm-provider-configuration)與 [vLLM + Qwen3.5-27B-FP8 指南](examples/guides/vllm-qwen35-27b-fp8.md)。
 
-## Architecture
+<a id="architecture"></a>
+## 架構
 
-### System Context
+<a id="system-context"></a>
+### 系統全景
 
 ```mermaid
 flowchart TB
@@ -451,7 +453,8 @@ flowchart TD
 
 The algorithm operates on a structured representation of conversation chains (ChainAST) that preserves message types including tool calls and their responses. All summarization operations maintain critical conversation flow while reducing context size.
 
-### Global Summarizer Configuration Options
+<a id="global-summarizer-configuration-options"></a>
+### 全域摘要設定選項
 
 | Parameter             | Environment Variable             | Default | Description                                                |
 | --------------------- | -------------------------------- | ------- | ---------------------------------------------------------- |
@@ -464,7 +467,8 @@ The algorithm operates on a structured representation of conversation chains (Ch
 | Max QA Size           | `SUMMARIZER_MAX_QA_BYTES`        | `65536` | Maximum byte size for QA pair sections (64KB)              |
 | Keep QA Sections      | `SUMMARIZER_KEEP_QA_SECTIONS`    | `1`     | Number of recent QA sections to keep without summarization |
 
-### Assistant Summarizer Configuration Options
+<a id="assistant-summarizer-configuration-options"></a>
+### 助理摘要設定選項
 
 Assistant instances can use customized summarization settings to fine-tune context management behavior:
 
@@ -479,7 +483,8 @@ Assistant instances can use customized summarization settings to fine-tune conte
 
 The assistant summarizer configuration provides more memory for context retention compared to the global settings, preserving more recent conversation history while still ensuring efficient token usage.
 
-### Summarizer Environment Configuration
+<a id="summarizer-environment-configuration"></a>
+### 摘要環境變數設定
 
 ```bash
 # Default values for global summarizer logic
@@ -509,7 +514,8 @@ ASSISTANT_SUMMARIZER_KEEP_QA_SECTIONS=3
 
 PentAGI includes sophisticated multi-layered agent supervision mechanisms to ensure efficient task execution, prevent infinite loops, and provide intelligent recovery from stuck states:
 
-### Execution Monitoring (Beta)
+<a id="execution-monitoring-beta"></a>
+### 執行監控（Beta）
 - **Automatic Mentor Intervention**: Adviser agent (mentor) is automatically invoked when execution patterns indicate potential issues
 - **Pattern Detection**: Monitors identical tool calls (threshold: 5, configurable) and total tool calls (threshold: 10, configurable)
 - **Progress Analysis**: Evaluates whether agent advances toward subtask objective, detects loops and inefficiencies
@@ -522,7 +528,8 @@ PentAGI includes sophisticated multi-layered agent supervision mechanisms to ens
 
 **Performance Impact**: 2-3x increase in execution time and token usage, but delivers **2x improvement in result quality** based on testing with Qwen3.5-27B-FP8
 
-### Intelligent Task Planning (Beta)
+<a id="intelligent-task-planning-beta"></a>
+### 智慧任務規劃（Beta）
 - **Automated Decomposition**: Planner (adviser in planning mode) generates 3-7 specific, actionable steps before specialist agents begin work
 - **Context-Aware Plans**: Analyzes full execution context via enricher agent to create informed plans
 - **Structured Assignment**: Original request wrapped in `<task_assignment>` structure with execution plan and instructions
@@ -536,7 +543,8 @@ PentAGI includes sophisticated multi-layered agent supervision mechanisms to ens
 
 **Performance Impact**: Adds planning overhead but significantly improves completion rates and reduces redundant work
 
-### Tool Call Limits (Always Active)
+<a id="tool-call-limits-always-active"></a>
+### 工具呼叫上限（一律啟用）
 - **Hard Limits**: Prevent runaway executions regardless of supervision mode status
 - **Differentiated by Agent Type**:
   - General agents (Assistant, Primary Agent, Pentester, Coder, Installer): `MAX_GENERAL_AGENT_TOOL_CALLS` (default: 100)
@@ -544,13 +552,15 @@ PentAGI includes sophisticated multi-layered agent supervision mechanisms to ens
 - **Graceful Termination**: Reflector guides agents to proper completion when approaching limits
 - **Resource Protection**: Ensures system stability and prevents resource exhaustion
 
-### Reflector Integration (Always Active)
+<a id="reflector-integration-always-active"></a>
+### 反思器整合（一律啟用）
 - **Automatic Correction**: Invoked when LLM fails to generate tool calls after 3 attempts
 - **Strategic Guidance**: Analyzes failures and guides agents toward proper tool usage or barrier tools (`done`, `ask`)
 - **Recovery Mechanism**: Provides contextual guidance based on specific failure patterns
 - **Limit Enforcement**: Coordinates graceful termination when tool call limits are reached
 
-### Recommendations for Open Source Models
+<a id="recommendations-for-open-source-models"></a>
+### 開源模型使用建議
 
 **Must-Have for Models < 32B Parameters**:
 Testing with Qwen3.5-27B-FP8 demonstrates that enabling both Execution Monitoring and Task Planning is **essential** for smaller open source models:
@@ -768,7 +778,8 @@ The installer provisions one instance per server. Running several on one server 
 
 **See**: [Multi-Instance Deployment](backend/docs/config.md#multi-instance-deployment-tenant_id) for validation rules, upgrade notes and the full list of operator responsibilities.
 
-### Manual Installation
+<a id="manual-installation"></a>
+### 手動安裝
 
 1. Create a working directory or clone the repository:
 
@@ -856,7 +867,8 @@ WEB_SEARCH_INTERNAL_ENABLED=false
 WEB_SEARCH_INTERNAL_MAX_SITES=5
 WEB_SEARCH_INTERNAL_MAX_SITE_BYTES=10240
 
-## Graphiti knowledge graph settings
+<a id="graphiti-knowledge-graph-settings"></a>
+## Graphiti 知識圖譜設定
 GRAPHITI_ENABLED=false
 GRAPHITI_TIMEOUT=30
 GRAPHITI_URL=
@@ -876,17 +888,20 @@ ASSISTANT_USE_AGENTS=false         # Default value for agent usage when creating
 <details>
     <summary>Security related environment variables</summary>
 
-### Main Security Settings
+<a id="main-security-settings"></a>
+### 主要安全性設定
 - `COOKIE_SIGNING_SALT` - Salt for cookie signing, change to random value
 - `PUBLIC_URL` - Public URL of your server (eg. `https://pentagi.example.com`)
 - `SERVER_SSL_CRT` and `SERVER_SSL_KEY` - Custom paths to your existing SSL certificate and key for HTTPS (these paths should be used in the docker-compose.yml file to mount as volumes)
 - `TENANT_ID` - Leave empty unless this instance shares external resources with another PentAGI installation. When set, it is mixed into the cookie and API token signing keys and renames the session cookie, so a session minted by one instance is rejected by the others even though they share the same `COOKIE_SIGNING_SALT`. See [Running Several Instances](#running-several-instances-tenant_id)
 
-### Scraper Access
+<a id="scraper-access"></a>
+### 擷取器存取
 - `SCRAPER_PUBLIC_URL` - Public URL for scraper if you want to use different scraper server for public URLs
 - `SCRAPER_PRIVATE_URL` - Private URL for scraper (local scraper server in docker-compose.yml file to access it to local URLs)
 
-### Access Credentials
+<a id="access-credentials"></a>
+### 存取憑證
 - `PENTAGI_POSTGRES_USER` and `PENTAGI_POSTGRES_PASSWORD` - PostgreSQL credentials
 - `NEO4J_USER` and `NEO4J_PASSWORD` - Neo4j credentials (for Graphiti knowledge graph)
 
@@ -931,7 +946,8 @@ For multi-user setups, an authenticated administrator can manage local users thr
 >
 > The `docker-compose.yml` file runs the PentAGI service as root user because it needs access to docker.sock for container management. If you're using TCP/IP network connection to Docker instead of socket file, you can remove root privileges and use the default `pentagi` user for better security.
 
-### Accessing PentAGI from External Networks
+<a id="accessing-pentagi-from-external-networks"></a>
+### 從外部網路存取 PentAGI
 
 By default, the PentAGI web interface and the other compose services bind to `127.0.0.1` (localhost only) for security. To access PentAGI from other machines on your network, you need to configure external access.
 
@@ -1007,7 +1023,8 @@ sudo firewall-cmd --reload
 
 ---
 
-### Running PentAGI with Podman
+<a id="running-pentagi-with-podman"></a>
+### 以 Podman 執行 PentAGI
 
 PentAGI fully supports Podman as a Docker alternative. However, when using **Podman in rootless mode**, the scraper service requires special configuration because rootless containers cannot bind privileged ports (ports below 1024).
 
@@ -1082,7 +1099,8 @@ If you're running Podman in rootful mode (with sudo), you can use the default co
 
 All Podman configurations remain fully compatible with Docker. The non-privileged port approach works identically on both container runtimes.
 
-### Assistant Configuration
+<a id="assistant-configuration"></a>
+### 助理設定
 
 PentAGI allows you to configure default behavior for assistants:
 
@@ -1096,11 +1114,13 @@ The `ASSISTANT_USE_AGENTS` setting affects the initial state of the "Use Agents"
 
 Note that users can always override this setting by toggling the "Use Agents" button in the UI when creating or editing an assistant. This environment variable only controls the initial default state.
 
-## How to Use PentAGI After Login
+<a id="how-to-use-pentagi-after-login"></a>
+## 登入後如何使用 PentAGI
 
 Once the stack is running and you can sign in to the web UI, the fastest way to start is through the Flows workflow.
 
-### 1. Create your first flow
+<a id="1-create-your-first-flow"></a>
+### 1. 建立第一個流程
 
 1. Open **Flows** in the sidebar.
 2. Click **New Flow**.
@@ -1125,7 +1145,8 @@ Assess https://target.example for common web application vulnerabilities. Focus 
 
 Only test systems you own or are explicitly authorized to assess. See [EULA.md](EULA.md) for the acceptable use requirements.
 
-### 2. Use templates for repeatable workflows
+<a id="2-use-templates-for-repeatable-workflows"></a>
+### 2. 用範本處理可重複的流程
 
 The new flow form includes a template picker, which can prefill the message box with a saved flow template. This is useful when you run similar assessments repeatedly.
 
@@ -1135,7 +1156,8 @@ The new flow form includes a template picker, which can prefill the message box 
 
 Templates are starting points. You do not need special syntax to use PentAGI: plain natural-language instructions work well as long as the target and goal are clear.
 
-### 3. Monitor execution and review output
+<a id="3-monitor-execution-and-review-output"></a>
+### 3. 監控執行並檢視輸出
 
 After submitting the flow, PentAGI opens the flow page automatically.
 
@@ -1150,7 +1172,8 @@ Once the flow has enough results, use the **Report** menu on the flow page to:
 - download the report as Markdown
 - download the report as PDF
 
-### 4. Use the Assistant view to steer an active flow
+<a id="4-use-the-assistant-view-to-steer-an-active-flow"></a>
+### 4. 用助理檢視引導進行中的流程
 
 Each flow also includes an **Assistant** view for interactive guidance. This is useful when the autonomous run uncovers something that needs human direction instead of a hard restart.
 
@@ -1159,7 +1182,8 @@ Each flow also includes an **Assistant** view for interactive guidance. This is 
 - Treat this as an explicit control path for the current flow, not as an invisible background queue. If you want to change direction, say so clearly and keep the new instruction tied to the current engagement scope.
 - This works best for clarifying scope, redirecting priorities after intermediate findings, or answering an automation checkpoint without losing the rest of the flow context.
 
-### 5. Manage flow-scoped files
+<a id="5-manage-flow-scoped-files"></a>
+### 5. 管理流程範圍內的檔案
 
 Each flow has its own **Files** tab in the flow page. Files are scoped to the parent flow: they live in `{dataDir}/flow-{id}-data/` on the host and never leak into other flows.
 
@@ -1182,11 +1206,13 @@ Current limits and limitations to be aware of:
 
 For early testing, start with a narrow target and a single clear objective. This makes the output easier to review and helps you refine your prompts before running larger assessments.
 
-## API Access
+<a id="api-access"></a>
+## API 存取
 
 PentAGI provides comprehensive programmatic access through both REST and GraphQL APIs, allowing you to integrate penetration testing workflows into your automation pipelines, CI/CD processes, and custom applications.
 
-### Generating API Tokens
+<a id="generating-api-tokens"></a>
+### 產生 API Token
 
 API tokens are managed through the PentAGI web interface:
 
@@ -1200,7 +1226,8 @@ API tokens are managed through the PentAGI web interface:
 
 Each token is associated with your user account and inherits your role's permissions.
 
-### Using API Tokens
+<a id="using-api-tokens"></a>
+### 使用 API Token
 
 Include the API token in the `Authorization` header of your HTTP requests:
 
@@ -1216,7 +1243,8 @@ curl https://your-pentagi-instance:8443/api/v1/flows \
   -H "Authorization: Bearer YOUR_API_TOKEN"
 ```
 
-### API Exploration and Testing
+<a id="api-exploration-and-testing"></a>
+### API 探索與測試
 
 PentAGI provides interactive documentation for exploring and testing API endpoints:
 
@@ -1242,7 +1270,8 @@ Access the REST API documentation at `https://your-pentagi-instance:8443/api/v1/
 3. Click **Authorize** to apply
 4. Test endpoints directly from the Swagger UI
 
-### Generating API Clients
+<a id="generating-api-clients"></a>
+### 產生 API 用戶端
 
 You can generate type-safe API clients for your preferred programming language using the schema files included with PentAGI:
 
@@ -1288,7 +1317,8 @@ Generate clients using:
     -n pentagi-api.ts
   ```
 
-### API Usage Examples
+<a id="api-usage-examples"></a>
+### API 使用範例
 
 <details>
 <summary><b>Creating a New Flow (GraphQL)</b></summary>
@@ -1458,7 +1488,8 @@ console.log(`Total flows: ${flows.length}`);
 
 </details>
 
-### Security Best Practices
+<a id="security-best-practices"></a>
+### 安全性最佳實務
 
 When working with API tokens:
 
@@ -1469,7 +1500,8 @@ When working with API tokens:
 - **Revoke unused tokens** - disable or delete tokens that are no longer needed
 - **Use HTTPS only** - never send API tokens over unencrypted connections
 
-### Token Management
+<a id="token-management"></a>
+### Token 管理
 
 - **View tokens**: See all your active tokens in Settings → API Tokens
 - **Edit tokens**: Update token names or revoke tokens
@@ -1483,7 +1515,8 @@ The token list shows:
 - Creation date
 - Expiration date
 
-### Custom LLM Provider Configuration
+<a id="custom-llm-provider-configuration"></a>
+### 自訂 LLM 供應商設定
 
 When using custom LLM providers with the `LLM_SERVER_*` variables, you can fine-tune the reasoning format used in requests.
 
@@ -1561,7 +1594,8 @@ How to investigate:
 3. Confirm the backend's tool-call parser and chat template are the ones recommended for the model you are serving, and that the model itself supports tool calling.
 4. Update PentAGI to the latest build. Recent versions sanitize malformed function-call arguments returned by the model so a single bad response no longer stalls the whole flow; older builds forwarded the corrupted arguments and could get stuck.
 
-### Ollama Provider Configuration
+<a id="ollama-provider-configuration"></a>
+### Ollama 供應商設定
 
 PentAGI supports Ollama for both local LLM inference (zero-cost, enhanced privacy) and Ollama Cloud (managed service with free tier).
 
@@ -1719,7 +1753,8 @@ ollama create qwq:32b-fp16-tc -f Modelfile_qwq_32b_fp16_tc
 
 These custom models are referenced in the pre-built provider configuration files (`ollama-qwen332b-fp16-tc.provider.yml` and `ollama-qwq32b-fp16-tc.provider.yml`) that are included in the Docker image at `/opt/pentagi/conf/`.
 
-### OpenAI Provider Configuration
+<a id="openai-provider-configuration"></a>
+### OpenAI 供應商設定
 
 PentAGI integrates with OpenAI's comprehensive model lineup, featuring advanced reasoning capabilities with extended chain-of-thought, agentic models with enhanced tool integration, and specialized code models for security engineering.
 
@@ -1857,7 +1892,8 @@ These models were marked deprecated by OpenAI. PentAGI keeps them defined only s
 - **Streaming**: Real-time response streaming for interactive workflows
 - **Proven Track Record**: Industry-leading models with CVE discoveries and real-world security applications
 
-### Anthropic Provider Configuration
+<a id="anthropic-provider-configuration"></a>
+### Anthropic 供應商設定
 
 PentAGI integrates with Anthropic's Claude models, featuring advanced extended thinking capabilities, exceptional safety mechanisms, and sophisticated understanding of complex security contexts with prompt caching.
 
@@ -1946,7 +1982,8 @@ PentAGI supports 9 Claude models with tool calling, streaming, extended thinking
 - **Multimodal Support**: Vision capabilities in latest models for screenshot analysis and UI security assessment
 - **Constitutional AI**: Advanced safety training providing reliable and ethical security guidance
 
-### Google AI (Gemini) Provider Configuration
+<a id="google-ai-gemini-provider-configuration"></a>
+### Google AI（Gemini）供應商設定
 
 PentAGI integrates with Google's Gemini models through the Google AI API, offering state-of-the-art multimodal reasoning capabilities with extended thinking and context caching.
 
@@ -2003,7 +2040,8 @@ Both default models passed a basic API/configuration smoke for every role. [Goog
 - **Medium**: Balanced reasoning for execution roles (`assistant`, `coder`, `installer`, `pentester`)
 - **Not set**: No thinking setting is sent and the model's own default applies (`simple`, `simple_json`, `reflector`, `searcher`, `enricher`)
 
-### AWS Bedrock Provider Configuration
+<a id="aws-bedrock-provider-configuration"></a>
+### AWS Bedrock 供應商設定
 
 PentAGI integrates with Amazon Bedrock, offering access to 20+ foundation models from leading AI companies including Anthropic, Amazon, Cohere, DeepSeek, OpenAI, Qwen, Mistral, and Moonshot.
 
@@ -2139,7 +2177,8 @@ Some AWS Bedrock models were tested but are **not supported** due to technical l
 - **Tool Calling**: Seamless integration with 20+ pentesting tools via function calling
 - **Streaming**: Real-time response streaming for interactive security assessment workflows
 
-### DeepSeek Provider Configuration
+<a id="deepseek-provider-configuration"></a>
+### DeepSeek 供應商設定
 
 PentAGI integrates with DeepSeek, providing access to advanced AI models with strong reasoning, coding capabilities, and context caching at competitive prices.
 
@@ -2214,7 +2253,8 @@ Strategy: prefer `deepseek-v4-flash` (12x cheaper input, 12x cheaper output) as 
 
 **LiteLLM Integration**: Set `DEEPSEEK_PROVIDER=deepseek` to enable model name prefixing when using default PentAGI configurations with LiteLLM proxy. Leave empty for direct API usage.
 
-### GLM Provider Configuration
+<a id="glm-provider-configuration"></a>
+### GLM 供應商設定
 
 PentAGI integrates with GLM from Zhipu AI (Z.AI), providing advanced language models with MoE architecture, strong reasoning, and agentic capabilities developed by Tsinghua University.
 
@@ -2326,7 +2366,8 @@ All default roles use Z.AI's recommended `temperature: 1.0` and `top_p: 0.95`. T
 
 **LiteLLM Integration**: Set `GLM_PROVIDER=zai` to enable model name prefixing when using default PentAGI configurations with LiteLLM proxy. Leave empty for direct API usage.
 
-### Kimi Provider Configuration
+<a id="kimi-provider-configuration"></a>
+### Kimi 供應商設定
 
 PentAGI integrates with Kimi from Moonshot AI, providing ultra-long context models with multimodal capabilities perfect for analyzing extensive codebases and documentation.
 
@@ -2416,7 +2457,8 @@ Strategy: `kimi-k2.6` handles utility and installer work, `kimi-k2.7-code-highsp
 
 **LiteLLM Integration**: Set `KIMI_PROVIDER=moonshot` to enable model name prefixing when using default PentAGI configurations with LiteLLM proxy. Leave empty for direct API usage.
 
-### Qwen Provider Configuration
+<a id="qwen-provider-configuration"></a>
+### Qwen 供應商設定
 
 PentAGI uses one OpenAI-compatible door for both Qwen Cloud and Alibaba Cloud Model Studio (DashScope). The bundled catalogue is the union of their agent-capable Chat Completions models, while the default role configuration uses only model IDs available on both platforms.
 
@@ -2618,7 +2660,8 @@ EMBEDDING_STRIP_NEW_LINES=    # optional, default applies
 
 **As OpenAI-typed custom LLM provider**: instead of the dedicated `QWEN_*` variables, you can wire any Qwen chat model through PentAGI's custom OpenAI-compatible provider by pointing `OPENAI_SERVER_URL` (or a custom provider entry) to the DashScope `/compatible-mode/v1` endpoint and selecting the desired Qwen model name. Useful when you already manage all model traffic through a single OpenAI-shaped client (e.g. shared with LiteLLM/OneAPI proxies).
 
-### MiniMax Provider Configuration
+<a id="minimax-provider-configuration"></a>
+### MiniMax 供應商設定
 
 PentAGI integrates with MiniMax's M-series through the OpenAI-compatible `https://api.minimax.io/v1` endpoint: large-context agentic models with tool calling, JSON output, and streaming.
 
@@ -2655,7 +2698,8 @@ PentAGI ships 3 MiniMax models with tool calling, JSON output, and streaming. `M
 
 **LiteLLM Integration**: Set `MINIMAX_PROVIDER=minimax` to enable model name prefixing when using default PentAGI configurations with LiteLLM proxy. Leave empty for direct API usage.
 
-### Mistral Provider Configuration
+<a id="mistral-provider-configuration"></a>
+### Mistral 供應商設定
 
 PentAGI talks to Mistral through the OpenAI-compatible `https://api.mistral.ai/v1` endpoint: the
 Medium/Large/Small line, the Ministral small models, Codestral for code, and one Z.ai model Mistral
@@ -2697,7 +2741,8 @@ PentAGI ships 6 Mistral models. The default configuration uses `mistral-small-la
 
 **LiteLLM Integration**: Set `MISTRAL_PROVIDER=mistral` to enable model name prefixing when using default PentAGI configurations with LiteLLM proxy. Leave empty for direct API usage.
 
-### xAI (Grok) Provider Configuration
+<a id="xai-grok-provider-configuration"></a>
+### xAI（Grok）供應商設定
 
 PentAGI talks to xAI through the OpenAI-compatible `https://api.x.ai/v1` endpoint: the Grok 4.x line with large context windows, plus a coding model.
 
@@ -2741,9 +2786,11 @@ PentAGI lists seven xAI Chat Completions model IDs that responded through the te
 **LiteLLM Integration**: Set `XAI_PROVIDER=xai` to enable model name prefixing when using default PentAGI configurations with LiteLLM proxy. Leave empty for direct API usage.
 
 
-## Advanced Setup
+<a id="advanced-setup"></a>
+## 進階設定
 
-### Langfuse Integration
+<a id="langfuse-integration"></a>
+### Langfuse 整合
 
 Langfuse provides advanced capabilities for monitoring and analyzing AI agent operations.
 
@@ -2752,26 +2799,31 @@ Langfuse provides advanced capabilities for monitoring and analyzing AI agent op
 <details>
     <summary>Langfuse valuable environment variables</summary>
 
-### Database Credentials
+<a id="database-credentials"></a>
+### 資料庫憑證
 - `LANGFUSE_POSTGRES_USER` and `LANGFUSE_POSTGRES_PASSWORD` - Langfuse PostgreSQL credentials
 - `LANGFUSE_CLICKHOUSE_USER` and `LANGFUSE_CLICKHOUSE_PASSWORD` - ClickHouse credentials
 - `LANGFUSE_REDIS_AUTH` - Redis password
 
-### Encryption and Security Keys
+<a id="encryption-and-security-keys"></a>
+### 加密與安全性金鑰
 - `LANGFUSE_SALT` - Salt for hashing in Langfuse Web UI
 - `LANGFUSE_ENCRYPTION_KEY` - Encryption key (32 bytes in hex)
 - `LANGFUSE_NEXTAUTH_SECRET` - Secret key for NextAuth
 
-### Admin Credentials
+<a id="admin-credentials"></a>
+### 管理員憑證
 - `LANGFUSE_INIT_USER_EMAIL` - Admin email
 - `LANGFUSE_INIT_USER_PASSWORD` - Admin password
 - `LANGFUSE_INIT_USER_NAME` - Admin username
 
-### API Keys and Tokens
+<a id="api-keys-and-tokens"></a>
+### API 金鑰與 Token
 - `LANGFUSE_INIT_PROJECT_PUBLIC_KEY` - Project public key (used from PentAGI side too)
 - `LANGFUSE_INIT_PROJECT_SECRET_KEY` - Project secret key (used from PentAGI side too)
 
-### S3 Storage
+<a id="s3-storage"></a>
+### S3 儲存
 - `LANGFUSE_S3_ACCESS_KEY_ID` - S3 access key ID
 - `LANGFUSE_S3_SECRET_ACCESS_KEY` - S3 secret access key
 
@@ -2798,7 +2850,8 @@ Visit [localhost:4000](http://localhost:4000) to access Langfuse Web UI with cre
 - `LANGFUSE_INIT_USER_EMAIL` - Admin email
 - `LANGFUSE_INIT_USER_PASSWORD` - Admin password
 
-### Monitoring and Observability
+<a id="monitoring-and-observability"></a>
+### 監控與可觀測性
 
 For detailed system operation tracking, integration with monitoring tools is available.
 
@@ -2834,7 +2887,8 @@ Visit [localhost:3000](http://localhost:3000) to access Grafana Web UI.
 > alias pentagi-down="docker compose -f docker-compose.yml -f docker-compose-langfuse.yml -f docker-compose-graphiti.yml -f docker-compose-observability.yml down"
 > ```
 
-### Knowledge Graph Integration (Graphiti)
+<a id="knowledge-graph-integration-graphiti"></a>
+### 知識圖譜整合（Graphiti）
 
 > [!IMPORTANT]
 > Graphiti is an optional **beta** integration and is disabled by default. Review [Limitations and Security](#limitations-and-security) before enabling it in production.
@@ -3042,7 +3096,8 @@ Update `.env`, `docker-compose-graphiti.yml`, the Graphiti image, and the `graph
 - Agent and tool output may contain credentials and exploitation evidence. Protect Neo4j data, logs, dead letters, diagnostics, and backups accordingly.
 - If Graphiti is unavailable, PentAGI continues with its primary memory and vector store after logging the failed startup health check. Set `GRAPHITI_ENABLED=false` to disable the integration explicitly.
 
-### GitHub and Google OAuth Integration
+<a id="github-and-google-oauth-integration"></a>
+### GitHub 與 Google OAuth 整合
 
 OAuth integration with GitHub and Google allows users to authenticate using their existing accounts on these platforms. This provides several benefits:
 
@@ -3084,7 +3139,8 @@ OAUTH_GOOGLE_CLIENT_SECRET=your_google_client_secret
 
 Make sure `PUBLIC_URL` matches the externally accessible HTTPS address of your PentAGI instance and does not include the callback path itself. If the URL configured in the OAuth provider does not exactly match the callback generated by PentAGI, the provider will reject the login attempt with a redirect URI mismatch error.
 
-### Docker Image Configuration
+<a id="docker-image-configuration"></a>
+### Docker 映像設定
 
 PentAGI allows you to configure Docker image selection for executing various tasks. The system automatically chooses the most appropriate image based on the task type, but you can constrain this selection by specifying your preferred images:
 
@@ -3167,16 +3223,19 @@ To diagnose:
 3. Verify that the base URL, API key, and model name in [Custom LLM Provider Configuration](#custom-llm-provider-configuration) are correct and reachable from the container. If you assign different models per agent type, check the model used by the `simple` agent type, since image selection runs through it.
 4. For custom, OpenAI-compatible, vLLM, or SGLang backends, confirm that the model supports tool calling (function calling) and that the matching tool-call parser is enabled. A missing or mismatched tool-call parser is a known cause of this failure.
 
-## Development
+<a id="development"></a>
+## 開發
 
-### Development Requirements
+<a id="development-requirements"></a>
+### 開發環境需求
 
 - golang
 - nodejs
 - docker
 - postgres
 
-### Environment Setup
+<a id="environment-setup"></a>
+### 環境設定
 
 #### Backend Setup
 
@@ -3333,7 +3392,8 @@ Edit the configuration for `frontend` in `.vscode/launch.json` file:
 - `VITE_PORT` - Port to run the server (default: `8000`)
 - `VITE_HOST` - Host to run the server (default: `0.0.0.0`)
 
-### Running the Application
+<a id="running-the-application"></a>
+### 執行應用程式
 
 #### Backend
 
@@ -3353,13 +3413,15 @@ Run the command(s) in `frontend` folder:
 
 Open your browser and visit the web app URL.
 
-## Testing LLM Agents
+<a id="testing-llm-agents"></a>
+## 測試 LLM 代理
 
 PentAGI includes a powerful utility called `ctester` for testing and validating LLM agent capabilities. This tool helps ensure your LLM provider configurations work correctly with different agent types, allowing you to optimize model selection for each specific agent role.
 
 The utility features parallel testing of multiple agents, detailed reporting, and flexible configuration options.
 
-### Key Features
+<a id="key-features"></a>
+### 主要功能
 
 - **Parallel Testing**: Tests multiple agents simultaneously for faster results
 - **Comprehensive Test Suite**: Evaluates basic completion, JSON responses, function calling, and penetration testing knowledge
@@ -3367,7 +3429,8 @@ The utility features parallel testing of multiple agents, detailed reporting, an
 - **Flexible Configuration**: Test specific agents or test groups as needed
 - **Specialized Test Groups**: Includes domain-specific tests for cybersecurity and penetration testing scenarios
 
-### Usage Scenarios
+<a id="usage-scenarios"></a>
+### 使用情境
 
 #### For Developers (with local Go environment)
 
@@ -3643,7 +3706,8 @@ docker exec -it pentagi /opt/pentagi/bin/ctester -report /opt/pentagi/data/agent
 docker cp pentagi:/opt/pentagi/data/agent-test-report.md ./
 ```
 
-### Command-line Options
+<a id="command-line-options"></a>
+### 命令列選項
 
 The utility accepts several options:
 
@@ -3656,7 +3720,8 @@ The utility accepts several options:
 - `-groups <list>` - Comma-separated list of test groups to run (default: `all`)
 - `-verbose` - Enable verbose output with detailed test results for each agent
 
-### Available Agent Types
+<a id="available-agent-types"></a>
+### 可用的代理類型
 
 Agents are tested in the following deterministic order:
 
@@ -3674,7 +3739,8 @@ Agents are tested in the following deterministic order:
 12. **installer** - Installation and setup tasks
 13. **pentester** - Penetration testing and security assessment
 
-### Available Test Groups
+<a id="available-test-groups"></a>
+### 可用的測試群組
 
 - **basic** - Fundamental completion and prompt response tests
 - **advanced** - Complex reasoning and function calling tests
@@ -3683,7 +3749,8 @@ Agents are tested in the following deterministic order:
 
 > **Note**: The `json` test group is specifically designed for the `simple_json` agent type, while all other agents are tested with `basic`, `advanced`, and `knowledge` groups. This specialization ensures optimal testing coverage for each agent's intended purpose.
 
-### Example Provider Configuration
+<a id="example-provider-configuration"></a>
+### 供應商設定範例
 
 Provider configuration defines which models to use for different agent types:
 
@@ -3706,7 +3773,8 @@ simple_json:
 # ... other agent types ...
 ```
 
-### Optimization Workflow
+<a id="optimization-workflow"></a>
+### 最佳化流程
 
 1. **Create a baseline**: Run tests with default configuration to establish benchmark performance
 2. **Analyze agent-specific performance**: Review the deterministic agent ordering to identify underperforming agents
@@ -3718,11 +3786,13 @@ simple_json:
 
 This tool helps ensure your AI agents are using the most effective models for their specific tasks, improving reliability while optimizing costs.
 
-## Embedding Configuration and Testing
+<a id="embedding-configuration-and-testing"></a>
+## 嵌入模型設定與測試
 
 PentAGI uses vector embeddings for semantic search, knowledge storage, and memory management. The system supports multiple embedding providers that can be configured according to your needs and preferences.
 
-### Supported Embedding Providers
+<a id="supported-embedding-providers"></a>
+### 支援的嵌入供應商
 
 PentAGI supports the following embedding providers:
 
@@ -3739,7 +3809,8 @@ PentAGI supports the following embedding providers:
 <details>
 <summary><b>Embedding Provider Configuration</b> (click to expand)</summary>
 
-### Environment Variables
+<a id="environment-variables"></a>
+### 環境變數
 
 To configure the embedding provider, set the following environment variables in your `.env` file:
 
@@ -3800,7 +3871,8 @@ docker compose restart pentagi
 
 </details>
 
-### Provider-Specific Limitations
+<a id="provider-specific-limitations"></a>
+### 各供應商限制
 
 Each provider has specific limitations and supported features:
 
@@ -3814,7 +3886,8 @@ Each provider has specific limitations and supported features:
 
 If `EMBEDDING_URL` and `EMBEDDING_KEY` are both left empty, the system uses the corresponding LLM provider's server and key together (e.g., `OPEN_AI_SERVER_URL` and `OPEN_AI_KEY` when `EMBEDDING_PROVIDER=openai`). A key set in `EMBEDDING_KEY` without `EMBEDDING_URL` goes to the provider's public endpoint, and an `EMBEDDING_URL` set without a key receives the LLM provider's key only when it is that provider's own server. So an OpenAI-compatible endpoint of another vendor needs its key in `EMBEDDING_KEY`, and a keyless local server (LocalAI, vLLM, TEI) takes any non-empty value there. Whenever the Mistral embedder uses `MISTRAL_SERVER_URL`, it also names the model the way that server expects: `MISTRAL_PROVIDER=mistral` turns `mistral-embed` into `mistral/mistral-embed`, and a model that already starts with `mistral/` is sent as is.
 
-### Why Consistent Embedding Providers Matter
+<a id="why-consistent-embedding-providers-matter"></a>
+### 為何嵌入供應商必須一致
 
 It's crucial to use the same embedding provider consistently because:
 
@@ -3826,7 +3899,8 @@ If you change your embedding provider, you should flush and reindex your entire 
 
 </details>
 
-### Embedding Tester Utility (etester)
+<a id="embedding-tester-utility-etester"></a>
+### 嵌入測試工具（etester）
 
 PentAGI includes a specialized `etester` utility for testing, managing, and debugging embedding functionality. This tool is essential for diagnosing and resolving issues related to vector embeddings and knowledge storage.
 
@@ -3851,7 +3925,8 @@ go run cmd/etester/main.go reindex
 go run cmd/etester/main.go search -query "How to install PostgreSQL" -limit 5
 ```
 
-### Using Docker
+<a id="using-docker"></a>
+### 使用 Docker
 
 If you're running PentAGI in Docker, you can use etester from within the container:
 
@@ -3863,7 +3938,8 @@ docker exec -it pentagi /opt/pentagi/bin/etester test
 docker exec -it pentagi /opt/pentagi/bin/etester info -verbose
 ```
 
-### Advanced Search Options
+<a id="advanced-search-options"></a>
+### 進階搜尋選項
 
 The `search` command supports various filters to narrow down results:
 
@@ -3887,7 +3963,8 @@ Available search parameters:
 - `-limit NUMBER`: Maximum number of results (default: 3)
 - `-threshold NUMBER`: Similarity threshold (0.0-1.0, default: 0.7)
 
-### Memory Lifecycle Across Flows
+<a id="memory-lifecycle-across-flows"></a>
+### 跨流程的記憶生命週期
 
 PentAGI stores several kinds of vector documents, and they serve different purposes:
 
@@ -3900,7 +3977,8 @@ For example, if a target has recurring setup notes, authentication quirks, or ta
 
 Flow deletion removes the flow from normal queries through PentAGI's soft-delete mechanism, so reusable knowledge should be treated as a separate concern from per-flow execution history. If you enable the optional Graphiti knowledge graph described earlier in this README, treat its current search context as scoped to the active flow or engagement unless you explicitly build a separate cross-flow reuse workflow.
 
-### Common Troubleshooting Scenarios
+<a id="common-troubleshooting-scenarios"></a>
+### 常見疑難排解情境
 
 1. **After changing embedding provider**: Always run `flush` or `reindex` to ensure consistency
 2. **Poor search results**: Try adjusting the similarity threshold or check if embeddings are correctly generated
@@ -3909,7 +3987,8 @@ Flow deletion removes the flow from normal queries through PentAGI's soft-delete
 
 </details>
 
-### Troubleshooting: Flow Stalls or Hangs Without Progress
+<a id="troubleshooting-flow-stalls-or-hangs-without-progress"></a>
+### 疑難排解：流程停滯或卡住
 
 If a flow starts but then appears to wait indefinitely with no subtasks progressing, a common cause is an embedding provider that is misconfigured or unreachable. PentAGI uses the embedding provider to store and search vector memory while a flow runs, so embedding calls that fail or hang can leave a flow waiting instead of advancing.
 
@@ -3938,11 +4017,13 @@ A failing `test` confirms the problem is in the embedding configuration rather t
 
 > **Changing provider?** If you switch embedding providers after data has already been indexed, run `flush` or `reindex` with etester so old and new vectors are not mixed. See [Why Consistent Embedding Providers Matter](#why-consistent-embedding-providers-matter) above.
 
-## Function Testing with ftester
+<a id="function-testing-with-ftester"></a>
+## 使用 ftester 進行功能測試
 
 PentAGI includes a versatile utility called `ftester` for debugging, testing, and developing specific functions and AI agent behaviors. While `ctester` focuses on testing LLM model capabilities, `ftester` allows you to directly invoke individual system functions and AI agent components with precise control over execution context.
 
-### Key Features
+<a id="key-features"></a>
+### 主要功能
 
 - **Direct Function Access**: Test individual functions without running the entire system
 - **Mock Mode**: Test functions without a live PentAGI deployment using built-in mocks
@@ -3951,7 +4032,8 @@ PentAGI includes a versatile utility called `ftester` for debugging, testing, an
 - **Context-Aware Testing**: Debug AI agents within the context of specific flows, tasks, and subtasks
 - **Observability Integration**: All function calls are logged to Langfuse and Observability stack
 
-### Usage Modes
+<a id="usage-modes"></a>
+### 使用模式
 
 #### Command Line Arguments
 
@@ -3987,11 +4069,13 @@ go run cmd/ftester/main.go browser
 <details>
 <summary><b>Available Functions</b> (click to expand)</summary>
 
-### Environment Functions
+<a id="environment-functions"></a>
+### 環境相關功能
 - **terminal**: Execute commands in a container and return the output
 - **file**: Perform file operations (read, write, list) in a container
 
-### Search Functions
+<a id="search-functions"></a>
+### 搜尋相關功能
 - **browser**: Access websites and capture screenshots
 - **web_search**: Unified search orchestrator that agents actually call — pass a `query` and a `mode` (`links`, `answer`, `research`, `exploit`) and it auto-selects, retries, and falls back across the engines below, so you never name an engine explicitly
 - **google**: Search the web using Google Custom Search
@@ -4004,13 +4088,15 @@ go run cmd/ftester/main.go browser
 - **searxng**: Search using SearXNG meta search engine (aggregates results from multiple engines)
 - **internal** *(ftester-only debug function, not an agent tool)*: Opt-in browser-analytics fallback engine that discovers links, scrapes each page, and summarizes the result; requires `WEB_SEARCH_INTERNAL_ENABLED=true`, a configured scraper, and at least one available link engine
 
-### Vector Database Functions
+<a id="vector-database-functions"></a>
+### 向量資料庫功能
 - **search_in_memory**: Search for information in vector database
 - **search_guide**: Find guidance documents in vector database
 - **search_answer**: Find answers to questions in vector database
 - **search_code**: Find code examples in vector database
 
-### AI Agent Functions
+<a id="ai-agent-functions"></a>
+### AI 代理功能
 - **advice**: Get expert advice from an AI agent
 - **coder**: Request code generation or modification
 - **maintenance**: Run system maintenance tasks
@@ -4018,7 +4104,8 @@ go run cmd/ftester/main.go browser
 - **pentester**: Perform security tests and vulnerability analysis
 - **search**: Complex search across multiple sources
 
-### Utility Functions
+<a id="utility-functions"></a>
+### 工具函式
 - **describe**: Show information about flows, tasks, and subtasks
 
 </details>
@@ -4092,7 +4179,8 @@ JSON and Markdown responses are automatically formatted for readability.
 <details>
 <summary><b>Advanced Usage Scenarios</b> (click to expand)</summary>
 
-### Debugging Stuck AI Flows
+<a id="debugging-stuck-ai-flows"></a>
+### 除錯卡住的 AI 流程
 
 When PentAGI gets stuck in a flow:
 
@@ -4102,7 +4190,8 @@ When PentAGI gets stuck in a flow:
 4. Examine the detailed output to identify the issue
 5. Resume the flow or manually intervene as needed
 
-### Testing Environment Variables
+<a id="testing-environment-variables"></a>
+### 測試用環境變數
 
 Verify that API keys and external services are configured correctly:
 
@@ -4114,7 +4203,8 @@ go run cmd/ftester/main.go google -query "pentesting tools"
 go run cmd/ftester/main.go browser -url "https://example.com"
 ```
 
-### Developing New AI Agent Behaviors
+<a id="developing-new-ai-agent-behaviors"></a>
+### 開發新的 AI 代理行為
 
 When developing new prompt templates or agent behaviors:
 
@@ -4123,7 +4213,8 @@ When developing new prompt templates or agent behaviors:
 3. Observe responses and adjust prompts accordingly
 4. Check Langfuse for detailed traces of all function calls
 
-### Verifying Docker Container Setup
+<a id="verifying-docker-container-setup"></a>
+### 驗證 Docker 容器設定
 
 Ensure containers are properly configured:
 
@@ -4168,7 +4259,8 @@ To access detailed logs:
 
 </details>
 
-### Command-line Options
+<a id="command-line-options"></a>
+### 命令列選項
 
 The main utility accepts several options:
 
@@ -4181,7 +4273,8 @@ The main utility accepts several options:
 
 Function-specific arguments are passed after the function name using `-name value` format.
 
-### Pentesting Prompt Methodology
+<a id="pentesting-prompt-methodology"></a>
+### 滲透測試提示詞方法論
 
 When refining prompts for offensive security work, give the agent a clear methodology instead of a flat list of payloads:
 
@@ -4193,9 +4286,11 @@ When refining prompts for offensive security work, give the agent a clear method
 
 For PentAGI-specific prompt guidance, see [`backend/docs/prompt_engineering_pentagi.md`](backend/docs/prompt_engineering_pentagi.md). For a practical starting point, reuse and adapt [`examples/prompts/base_web_pentest.md`](examples/prompts/base_web_pentest.md) to match the target application, technology stack, and engagement scope.
 
-## Building
+<a id="building"></a>
+## 建置
 
-### Building Docker Image
+<a id="building-docker-image"></a>
+### 建置 Docker 映像
 
 The Docker build process automatically embeds version information from git tags. To properly version your build, use the provided scripts:
 
@@ -4261,24 +4356,28 @@ docker build -t pentagi:dev .
 > - Development builds (after tag) include commit hash as revision (e.g., `1.1.0-ce.hbc6e800`); the edition is `ce` for Community and `ee` for Enterprise, and a release build is `1.1.0-ce`
 > - To use the built image locally, update the image name in `docker-compose.yml` or use the `build` option
 
-## Credits
+<a id="credits"></a>
+## 致謝
 
 This project is made possible thanks to the following research and developments:
 - [Emerging Architectures for LLM Applications](https://lilianweng.github.io/posts/2023-06-23-agent)
 - [A Survey of Autonomous LLM Agents](https://arxiv.org/abs/2403.08299)
 - [Codel](https://github.com/semanser/codel) by Andriy Semenets - initial architectural inspiration for agent-based automation
 
-## License
+<a id="license"></a>
+## 授權
 
 **PentAGI** is licensed under the [MIT License](LICENSE).
 
 Copyright (c) 2025 PentAGI Development Team
 
-### Third-Party Dependencies
+<a id="third-party-dependencies"></a>
+### 第三方相依套件
 
 All third-party dependencies use MIT-compatible licenses. See [licenses/](licenses/) directory for detailed license reports.
 
-### VXControl Cloud Services
+<a id="vxcontrol-cloud-services"></a>
+### VXControl 雲端服務
 
 ⚠️ **Note:** While the VXControl Cloud SDK code is MIT licensed, accessing **VXControl Cloud Services** (threat intelligence, AI support, premium features) requires a separate License Key and compliance with [Terms of Service](https://github.com/vxcontrol/cloud#license-and-terms).
 
