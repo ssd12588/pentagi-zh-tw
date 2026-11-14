@@ -16,6 +16,23 @@ PentAGI 的 **Web 介面已完成繁體中文化並通過建置**；安裝程式
 
 ## 已完成
 
+### 0. GitHub 發布
+
+- Repo：<https://github.com/ssd12588/pentagi-zh-tw>（fork 自 vxcontrol/pentagi）
+- 已設定中文描述與 12 個 topics
+
+### 0.1 README（GitHub 首頁）
+
+- 已漢化：目錄、總覽、功能特色、目前的能力邊界、快速開始（系統需求／安裝程式／前置權限／Web 設定範圍／仍需伺服器端設定）
+- 做法：標題改中文並在標題前插入 `<a id="原英文錨點"></a>`，確保既有連結與目錄不失效
+- 未漢化：架構章節、供應商設定細節、進階設定、開發／建置等（約 2,500 行說明文）
+
+### 0.2 安裝程式（TUI）
+
+- 已完成 **313 / 997** 條字串（歡迎畫面、系統檢查、疑難排解、導覽提示、狀態訊息、主要欄位標籤與說明）
+- 工具：`tools/i18n/go-extract.mjs`、`go-apply.mjs`、`dict-go/*.json`
+- 驗證：`go build ./cmd/installer/...` 通過
+
 ### 1. Web 介面（frontend）
 
 - 161 個檔案變更（其中 160 個在 `frontend/src`、43 個是測試檔）

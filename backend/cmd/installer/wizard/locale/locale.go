@@ -256,9 +256,9 @@ To fix:
 	TroubleshootFixHint = "\nResolve the issues above and run the installer again."
 
 	// Network failure messages (used in checker/helpers.go)
-	NetworkFailureDNS        = "• DNS resolution failed for docker.io"
-	NetworkFailureHTTPS      = "• Cannot reach external services via HTTPS"
-	NetworkFailureDockerPull = "• Cannot pull Docker images from registry"
+	NetworkFailureDNS        = "• docker.io 的 DNS 解析失敗"
+	NetworkFailureHTTPS      = "• 無法透過 HTTPS 連線到外部服務"
+	NetworkFailureDockerPull = "• 無法從登錄檔拉取 Docker 映像"
 )
 
 // System Checks constants
@@ -307,7 +307,7 @@ Use arrow keys, page up/down, or home/end keys to navigate through the document.
 
 // Update Overview Screen constants
 const (
-	UpdateOverviewFormName        = "Update PentAGI"
+	UpdateOverviewFormName        = "更新 PentAGI"
 	UpdateOverviewFormDescription = "What this update changes, and the release notes behind it"
 	UpdateOverviewFormOverview    = `Review what the update will change before applying it.
 
@@ -325,24 +325,24 @@ Use arrow keys, page up/down, or home/end keys to navigate through the document.
 	UpdateOverviewConfigurationNo = "✓ 所有元件皆為最新"
 
 	// Document
-	UpdateOverviewHeading         = "# Update overview"
+	UpdateOverviewHeading         = "# 更新概覽"
 	UpdateOverviewNothingToDo     = "Everything is up to date. There is nothing to apply."
 	UpdateOverviewCheckFailed     = "The last update check did not complete, so there is nothing to show here.\n\nApplying the update will pull whatever the compose files currently point at."
 	UpdateOverviewStackHeading    = "## %s"
 	UpdateOverviewVersionMove     = "**%s → %s**"
 	UpdateOverviewVersionTarget   = "**→ %s**"
-	UpdateOverviewVersionUnknown  = "*Version unknown — this installation could not be matched to a release.*"
-	UpdateOverviewVersionMixed    = "*Components come from different releases, so the version above is the oldest of them.*"
+	UpdateOverviewVersionUnknown  = "*版本未知 —— 此安裝無法對應到任何發行版本。*"
+	UpdateOverviewVersionMixed    = "*各元件來自不同版本，因此上方顯示的是其中最舊的版本。*"
 	UpdateOverviewComponentsTitle = "元件："
 	UpdateOverviewComponentChange = "- **%s** (%s/%s) — %s"
 	UpdateOverviewWillChange      = "will be updated"
 	UpdateOverviewNoChange        = "unchanged"
-	UpdateOverviewCannotVerify    = "cannot verify — nothing to compare against"
+	UpdateOverviewCannotVerify    = "無法驗證 —— 沒有可比較的對象"
 	UpdateOverviewReleaseHeading  = "### %s"
-	UpdateOverviewReleasePreview  = "### %s (preview)"
-	UpdateOverviewReleaseDate     = "*Released %s*"
-	UpdateOverviewReleasesCut     = "*Older releases omitted — showing the most recent %d.*"
-	UpdateOverviewUpToDateTitle   = "## Already up to date"
+	UpdateOverviewReleasePreview  = "### %s（預覽）"
+	UpdateOverviewReleaseDate     = "*發行於 %s*"
+	UpdateOverviewReleasesCut     = "*已省略較舊版本 —— 僅顯示最近 %d 個。*"
+	UpdateOverviewUpToDateTitle   = "## 已是最新版本"
 	UpdateOverviewRenderFallback  = "%s\n\n---\n\n*Note: Markdown rendering failed: %v*"
 )
 
@@ -358,18 +358,18 @@ The file is written next to your installation under its own versioned name, so t
 
 Replacing the installer you use is your decision to make afterwards — run the downloaded file when you are ready.`
 
-	InstallerUpdateHelpTitle       = "Update Installer"
+	InstallerUpdateHelpTitle       = "更新安裝程式"
 	InstallerUpdateConfigurationOK = "✓ 有較新的版本可用"
 	InstallerUpdateConfigurationNo = "✓ 安裝程式已是最新"
 
 	// Left panel: what is on offer, before anything is fetched.
-	InstallerUpdateAsking         = "Asking the update server about the build on offer..."
+	InstallerUpdateAsking         = "正在向更新伺服器查詢可用的版本…"
 	InstallerUpdateLoadFailed     = "Could not get the package description: %v"
-	InstallerUpdateCurrentVersion = "• Running version: %s"
-	InstallerUpdateOfferedVersion = "• Offered version: %s"
-	InstallerUpdatePlatform       = "• Platform: %s/%s"
-	InstallerUpdateSize           = "• Download size: %s"
-	InstallerUpdateTarget         = "• Will be saved as: %s"
+	InstallerUpdateCurrentVersion = "• 目前執行版本：%s"
+	InstallerUpdateOfferedVersion = "• 可更新版本：%s"
+	InstallerUpdatePlatform       = "• 平台：%s/%s"
+	InstallerUpdateSize           = "• 下載大小：%s"
+	InstallerUpdateTarget         = "• 將儲存為：%s"
 	InstallerUpdateManualNote     = "The installer you are running is not replaced. You move the downloaded file into place yourself, with the command shown when the download finishes."
 	InstallerUpdateSameVersion    = "The offered build is the one already running. Downloading it changes nothing."
 	InstallerUpdatePressEnter     = "Press Enter to download"
@@ -377,7 +377,7 @@ Replacing the installer you use is your decision to make afterwards — run the 
 	// The only thing worth a confirmation: a file under that exact name is already here,
 	// and it may be one somebody put there on purpose. Downloading over nothing needs no
 	// permission and is not asked about.
-	InstallerUpdateAlreadyHere     = "A file of this name is already here — a previous download, or one interrupted partway."
+	InstallerUpdateAlreadyHere     = "此名稱的檔案已存在 —— 可能是先前的下載，或下載中斷留下的檔案。"
 	InstallerUpdateOverwritePrompt = "Download again and replace %s?"
 	InstallerUpdatePressYN         = "Press y to download and replace it, n to keep the file already on disk"
 	InstallerUpdateKeptExisting    = "Kept the file already on disk. Nothing was downloaded."
@@ -466,10 +466,10 @@ const (
 	LLMProviderGeminiDesc    = "Google's advanced multimodal models with broad knowledge"
 	LLMProviderBedrockDesc   = "Enterprise AWS access to multiple foundation model providers"
 	LLMProviderOllamaDesc    = "Local and cloud open-source models for privacy and flexibility"
-	LLMProviderDeepSeekDesc  = "Advanced Chinese AI models with strong reasoning and multilingual capabilities"
+	LLMProviderDeepSeekDesc  = "具備強大推理與多語言能力的中文 AI 模型"
 	LLMProviderGLMDesc       = "Zhipu AI's GLM models for Chinese and English tasks"
 	LLMProviderKimiDesc      = "Moonshot AI's long-context models for document analysis"
-	LLMProviderQwenDesc      = "Alibaba Cloud's Qwen models for multilingual tasks"
+	LLMProviderQwenDesc      = "阿里雲 Qwen 系列模型，適合多語言任務"
 	LLMProviderMiniMaxDesc   = "MiniMax's M-series models for agentic reasoning and long-context tasks"
 	LLMProviderMistralDesc   = "Mistral AI's Medium, Small and Ministral models through the Mistral chat API"
 	LLMProviderXAIDesc       = "xAI's Grok models through the xAI chat API"
@@ -520,7 +520,7 @@ PentAGI presents a short-lived identity token (inline via the Identity Token fie
 
 Use this when your organization issues federated credentials (for example from a cloud workload identity provider) rather than a long-lived API key. All four IDs plus one of the two token fields are required for federated auth to be considered configured.
 
-Switch back to "API Key" for the standard console API key.`
+Switch back to "API 金鑰" for the standard console API key.`
 
 	LLMFormGeminiHelp = `Google Gemini combines multimodal capabilities with advanced reasoning, perfect for comprehensive security assessments.
 
@@ -791,7 +791,7 @@ Examples available: Pre-configured setups for major providers in /opt/pentagi/co
 // LLM Provider Form field labels and descriptions
 const (
 	LLMFormFieldBaseURL           = "基底 URL"
-	LLMFormFieldAPIKey            = "API Key"
+	LLMFormFieldAPIKey            = "API 金鑰"
 	LLMFormFieldDefaultAuth       = "Use Default AWS Auth"
 	LLMFormFieldBearerToken       = "Bearer 權杖"
 	LLMFormFieldAccessKey         = "存取金鑰 ID"
@@ -807,34 +807,34 @@ const (
 	LLMFormFieldPullTimeout       = "Model Pull Timeout"
 	LLMFormFieldPullEnabled       = "自動拉取模型"
 	LLMFormFieldLoadModelsEnabled = "Load Models from Server"
-	LLMFormBaseURLDesc            = "API endpoint URL for the provider"
+	LLMFormBaseURLDesc            = "此供應商的 API 端點 URL"
 	LLMFormAPIKeyDesc             = "Your API key for authentication"
 	LLMFormDefaultAuthDesc        = "Use AWS SDK default credential chain (environment, EC2 role, ~/.aws/credentials) - highest priority"
 	LLMFormBearerTokenDesc        = "用於驗證的 Bearer 權杖 —— 優先於靜態憑證"
-	LLMFormAccessKeyDesc          = "AWS Access Key ID for static credentials authentication"
+	LLMFormAccessKeyDesc          = "以靜態憑證驗證時使用的 AWS 存取金鑰 ID"
 	LLMFormSecretKeyDesc          = "以靜態憑證驗證時使用的 AWS 私密存取金鑰"
 	LLMFormSessionTokenDesc       = "臨時憑證的 AWS 工作階段權杖（選填，需搭配靜態憑證使用）"
 	LLMFormRegionDesc             = "Bedrock 服務使用的 AWS 區域"
 	LLMFormModelDesc              = "此供應商使用的預設模型"
 	LLMFormConfigPathDesc         = "此主機上的設定檔，或從建議清單中選擇容器內的設定檔（選填）"
 	LLMFormAPITypeDesc            = "Address convention: azure or azure_ad for an Azure OpenAI deployment, empty for a plain OpenAI-compatible endpoint"
-	LLMFormAPIVersionDesc         = "api-version an Azure deployment requires; ignored by a plain endpoint"
+	LLMFormAPIVersionDesc         = "Azure 部署所需的 api-version；一般端點會忽略此值"
 	LLMFormPreserveReasoningDesc  = "Preserve reasoning content in multi-turn conversations (required by some providers)"
 	LLMFormProviderNameDesc       = "Provider name prefix for model names (useful for LiteLLM proxy)"
 	LLMFormPullTimeoutDesc        = "Timeout in seconds for downloading models (default: 600)"
-	LLMFormPullEnabledDesc        = "Automatically download required models on startup"
+	LLMFormPullEnabledDesc        = "啟動時自動下載所需模型"
 	LLMFormLoadModelsEnabledDesc  = "Load available models list from Ollama server"
 	LLMFormOllamaAPIKeyDesc       = "Ollama Cloud API key (optional, leave empty for local Ollama server)"
 
 	// Anthropic authentication mode (API key vs federated / enterprise)
 	LLMAnthropicAuthModeTitle       = "驗證方式"
 	LLMAnthropicAuthModeDesc        = "選擇 PentAGI 對 Anthropic 的驗證方式"
-	LLMAnthropicAuthModeAPIKey      = "API Key"
+	LLMAnthropicAuthModeAPIKey      = "API 金鑰"
 	LLMAnthropicAuthModeFederated   = "Federated (Enterprise)"
 	LLMFormFieldAnthropicOrgID      = "Organization ID"
-	LLMFormAnthropicOrgIDDesc       = "Anthropic organization the requests belong to"
+	LLMFormAnthropicOrgIDDesc       = "請求所屬的 Anthropic 組織"
 	LLMFormFieldAnthropicWorkspace  = "Workspace ID"
-	LLMFormAnthropicWorkspaceDesc   = "Anthropic workspace to scope usage and limits to"
+	LLMFormAnthropicWorkspaceDesc   = "用量與限額所屬的 Anthropic 工作區"
 	LLMFormFieldAnthropicServiceAcc = "Service Account ID"
 	LLMFormAnthropicServiceAccDesc  = "Service account the federated identity authenticates as"
 	LLMFormFieldAnthropicIDToken    = "Identity Token"
@@ -908,19 +908,19 @@ Choose between embedded instance or external connection.`
 	MonitoringLangfuseDisabled = "已停用"
 
 	// Form fields
-	MonitoringLangfuseDeploymentType     = "Deployment Type"
+	MonitoringLangfuseDeploymentType     = "部署類型"
 	MonitoringLangfuseDeploymentTypeDesc = "Select the deployment type for Langfuse"
 	MonitoringLangfuseBaseURL            = "Server URL"
-	MonitoringLangfuseBaseURLDesc        = "Address of the Langfuse server (e.g., https://cloud.langfuse.com)"
+	MonitoringLangfuseBaseURLDesc        = "Langfuse 伺服器位址（例如 https://cloud.langfuse.com）"
 	MonitoringLangfuseProjectID          = "Project ID"
 	MonitoringLangfuseProjectIDDesc      = "Project identifier in Langfuse"
 	MonitoringLangfusePublicKey          = "Public Key"
 	MonitoringLangfusePublicKeyDesc      = "Public API key for project access"
 	MonitoringLangfuseSecretKey          = "Secret Key"
 	MonitoringLangfuseSecretKeyDesc      = "Secret API key for project access"
-	MonitoringLangfuseListenIP           = "Listen IP"
+	MonitoringLangfuseListenIP           = "監聽 IP"
 	MonitoringLangfuseListenIPDesc       = "Docker 連接埠對應使用的綁定位址（例如 0.0.0.0 表示對所有網路介面開放）"
-	MonitoringLangfuseListenPort         = "Listen Port"
+	MonitoringLangfuseListenPort         = "監聽連接埠"
 	MonitoringLangfuseListenPortDesc     = "External TCP port exposed by Docker for Langfuse web UI"
 
 	// Admin settings for embedded
@@ -929,7 +929,7 @@ Choose between embedded instance or external connection.`
 	MonitoringLangfuseAdminPassword     = "管理員密碼"
 	MonitoringLangfuseAdminPasswordDesc = "Password for accessing the Langfuse admin panel"
 	MonitoringLangfuseAdminName         = "管理員使用者名稱"
-	MonitoringLangfuseAdminNameDesc     = "Administrator username in Langfuse"
+	MonitoringLangfuseAdminNameDesc     = "Langfuse 中的管理員使用者名稱"
 	MonitoringLangfuseLicenseKey        = "Enterprise License Key"
 	MonitoringLangfuseLicenseKeyDesc    = "Langfuse Enterprise license key (optional)"
 
@@ -1000,15 +1000,15 @@ Supports openai, gemini, litellm, custom.
 Choose between embedded instance or external connection.`
 
 	// Deployment types
-	MonitoringGraphitiEmbedded = "Embedded Stack"
-	MonitoringGraphitiExternal = "External Service"
+	MonitoringGraphitiEmbedded = "內嵌堆疊"
+	MonitoringGraphitiExternal = "外部服務"
 	MonitoringGraphitiDisabled = "已停用"
 
 	// Form fields
-	MonitoringGraphitiDeploymentType           = "Deployment Type"
+	MonitoringGraphitiDeploymentType           = "部署類型"
 	MonitoringGraphitiDeploymentTypeDesc       = "Select the deployment type for Graphiti"
-	MonitoringGraphitiURL                      = "Graphiti Server URL"
-	MonitoringGraphitiURLDesc                  = "Address of the Graphiti API server"
+	MonitoringGraphitiURL                      = "Graphiti 伺服器 URL"
+	MonitoringGraphitiURLDesc                  = "Graphiti API 伺服器的位址"
 	MonitoringGraphitiTimeout                  = "Request Timeout"
 	MonitoringGraphitiTimeoutDesc              = "Timeout in seconds for Graphiti operations"
 	MonitoringGraphitiLLMClientType            = "LLM Provider Preset"
@@ -1033,21 +1033,21 @@ Choose between embedded instance or external connection.`
 	MonitoringGraphitiIngestQueueMaxSizeDesc   = "Maximum queued messages; 0 keeps the queue unlimited"
 	MonitoringGraphitiTaxonomyLayerProfile     = "Taxonomy Layer Profile"
 	MonitoringGraphitiTaxonomyLayerProfileDesc = "Enabled relationship classes or the full/minimal alias"
-	MonitoringGraphitiCPUs                     = "Graphiti CPU Limit"
+	MonitoringGraphitiCPUs                     = "Graphiti CPU 上限"
 	MonitoringGraphitiCPUsDesc                 = "Graphiti 容器的 CPU 上限"
-	MonitoringGraphitiMemory                   = "Graphiti Memory Limit"
+	MonitoringGraphitiMemory                   = "Graphiti 記憶體上限"
 	MonitoringGraphitiMemoryDesc               = "Memory limit for the Graphiti container"
-	MonitoringGraphitiNeo4jUser                = "Neo4j Username"
+	MonitoringGraphitiNeo4jUser                = "Neo4j 使用者名稱"
 	MonitoringGraphitiNeo4jUserDesc            = "Username for Neo4j database access"
 	MonitoringGraphitiNeo4jPassword            = "Neo4j Password"
 	MonitoringGraphitiNeo4jPasswordDesc        = "Password for Neo4j database access"
 	MonitoringGraphitiNeo4jDatabase            = "Neo4j Database"
 	MonitoringGraphitiNeo4jDatabaseDesc        = "Neo4j database name"
-	MonitoringGraphitiNeo4jCPUs                = "Neo4j CPU Limit"
+	MonitoringGraphitiNeo4jCPUs                = "Neo4j CPU 上限"
 	MonitoringGraphitiNeo4jCPUsDesc            = "Neo4j 容器的 CPU 上限"
-	MonitoringGraphitiNeo4jMemory              = "Neo4j Memory Limit"
+	MonitoringGraphitiNeo4jMemory              = "Neo4j 記憶體上限"
 	MonitoringGraphitiNeo4jMemoryDesc          = "Memory limit for the Neo4j container"
-	MonitoringGraphitiNeo4jShmSize             = "Neo4j Shared Memory Limit"
+	MonitoringGraphitiNeo4jShmSize             = "Neo4j 共享記憶體上限"
 	MonitoringGraphitiNeo4jShmSizeDesc         = "/dev/shm limit; actual usage counts toward Neo4j memory"
 
 	// Help text
@@ -1107,7 +1107,7 @@ PentAGI continues using its primary vector memory when Graphiti is disabled.`
 const (
 	MonitoringObservabilityFormTitle       = "Observability Configuration"
 	MonitoringObservabilityFormDescription = "監控與可觀測性堆疊設定"
-	MonitoringObservabilityFormName        = "Observability"
+	MonitoringObservabilityFormName        = "可觀測性"
 	MonitoringObservabilityFormOverview    = `Observability stack includes:
 • Grafana dashboards for visualization
 • VictoriaMetrics for time-series data
@@ -1118,28 +1118,28 @@ const (
 Monitor PentAGI performance and system health.`
 
 	// Deployment types
-	MonitoringObservabilityEmbedded = "Embedded Stack"
+	MonitoringObservabilityEmbedded = "內嵌堆疊"
 	MonitoringObservabilityExternal = "External Collector"
 	MonitoringObservabilityDisabled = "已停用"
 
 	// Form fields
-	MonitoringObservabilityDeploymentType     = "Deployment Type"
+	MonitoringObservabilityDeploymentType     = "部署類型"
 	MonitoringObservabilityDeploymentTypeDesc = "Select the deployment type for monitoring"
-	MonitoringObservabilityOTelHost           = "OpenTelemetry Host"
-	MonitoringObservabilityOTelHostDesc       = "Address of the external OpenTelemetry collector"
+	MonitoringObservabilityOTelHost           = "OpenTelemetry 主機"
+	MonitoringObservabilityOTelHostDesc       = "外部 OpenTelemetry 收集器的位址"
 
 	// embedded listen fields
-	MonitoringObservabilityGrafanaListenIP        = "Grafana Listen IP"
+	MonitoringObservabilityGrafanaListenIP        = "Grafana 監聽 IP"
 	MonitoringObservabilityGrafanaListenIPDesc    = "Docker 連接埠對應使用的綁定位址（例如 0.0.0.0 表示對所有網路介面開放）"
-	MonitoringObservabilityGrafanaListenPort      = "Grafana Listen Port"
+	MonitoringObservabilityGrafanaListenPort      = "Grafana 監聽連接埠"
 	MonitoringObservabilityGrafanaListenPortDesc  = "External TCP port exposed by Docker for Grafana web UI"
-	MonitoringObservabilityOTelGrpcListenIP       = "OTel gRPC Listen IP"
+	MonitoringObservabilityOTelGrpcListenIP       = "OTel gRPC 監聽 IP"
 	MonitoringObservabilityOTelGrpcListenIPDesc   = "Docker 連接埠對應使用的綁定位址（例如 0.0.0.0 表示對所有網路介面開放）"
-	MonitoringObservabilityOTelGrpcListenPort     = "OTel gRPC Listen Port"
+	MonitoringObservabilityOTelGrpcListenPort     = "OTel gRPC 監聽連接埠"
 	MonitoringObservabilityOTelGrpcListenPortDesc = "External TCP port exposed by Docker for OTel gRPC receiver"
-	MonitoringObservabilityOTelHttpListenIP       = "OTel HTTP Listen IP"
+	MonitoringObservabilityOTelHttpListenIP       = "OTel HTTP 監聽 IP"
 	MonitoringObservabilityOTelHttpListenIPDesc   = "Docker 連接埠對應使用的綁定位址（例如 0.0.0.0 表示對所有網路介面開放）"
-	MonitoringObservabilityOTelHttpListenPort     = "OTel HTTP Listen Port"
+	MonitoringObservabilityOTelHttpListenPort     = "OTel HTTP 監聽連接埠"
 	MonitoringObservabilityOTelHttpListenPortDesc = "External TCP port exposed by Docker for OTel HTTP receiver"
 
 	// Help text
@@ -1351,8 +1351,8 @@ Monitor actual token usage and adjust Recent Sections first, then limits.`
 
 	// Context size estimation
 	SummarizerContextEstimatedSize    = "Estimated context size: %s\n%s"
-	SummarizerContextTokenRange       = "~%s tokens"
-	SummarizerContextTokenRangeMinMax = "~%s-%s tokens"
+	SummarizerContextTokenRange       = "約 %s 個 Token"
+	SummarizerContextTokenRangeMinMax = "約 %s-%s 個 Token"
 	SummarizerContextRequires256K     = "Requires 256K+ context model"
 	SummarizerContextRequires128K     = "Requires 128K+ context model"
 	SummarizerContextRequires64K      = "Requires 64K+ context model"
@@ -1380,9 +1380,9 @@ Available settings:
 
 // Server Settings screen strings
 const (
-	ServerSettingsFormTitle       = "Server Settings"
+	ServerSettingsFormTitle       = "伺服器設定"
 	ServerSettingsFormDescription = "設定 PentAGI 伺服器的網路存取與對外路由"
-	ServerSettingsFormName        = "Server Settings"
+	ServerSettingsFormName        = "伺服器設定"
 	ServerSettingsFormOverview    = `• Network binding - control which interface and port PentAGI listens on
 • Public URL - external address and optional base path used in redirects
 • CORS - allowed origins for browser access
@@ -1391,7 +1391,7 @@ const (
 • Data directory - persistent storage for agent artifacts and flow workspaces`
 
 	// Field labels and descriptions
-	ServerSettingsLicenseKey     = "License Key"
+	ServerSettingsLicenseKey     = "授權金鑰"
 	ServerSettingsLicenseKeyDesc = "PentAGI License Key in format of XXXX-XXXX-XXXX-XXXX"
 
 	ServerSettingsUpdateStrategy = "Update Strategy"
@@ -1408,13 +1408,13 @@ const (
 	ServerSettingsSupportServerHost     = "Support Server Host"
 	ServerSettingsSupportServerHostDesc = "PentAGI Support API endpoint as host[:port]; leave empty for support.pentagi.com"
 
-	ToolsDockerInsideHost     = "Worker Docker Daemon Host"
+	ToolsDockerInsideHost     = "Worker Docker Daemon 主機"
 	ToolsDockerInsideHostDesc = "提供給 worker 容器的 Docker daemon 端點（例如 tcp://dind:2376）；留空則維持 socket 掛載"
 
-	ToolsDockerInsideTLSVerify     = "Worker Docker TLS Verify"
+	ToolsDockerInsideTLSVerify     = "Worker Docker TLS 驗證"
 	ToolsDockerInsideTLSVerifyDesc = "Enable TLS verification for the worker container's Docker connection"
 
-	ToolsDockerInsideCertPath     = "Worker Docker Certificate Path"
+	ToolsDockerInsideCertPath     = "Worker Docker 憑證路徑"
 	ToolsDockerInsideCertPathDesc = "TLS certificate directory on the WORKER NODE, mounted read-only into worker containers"
 
 	ToolsDockerInsideHostHelp = `Docker daemon endpoint handed to worker containers when Docker Access is enabled.
@@ -1446,7 +1446,7 @@ Examples:
 • /etc/docker/certs
 • /opt/pentagi/docker/ssl`
 
-	ServerSettingsTenantID     = "Tenant ID"
+	ServerSettingsTenantID     = "租戶 ID"
 	ServerSettingsTenantIDDesc = "Optional namespace for multi-instance deployment on one host (e.g., acme, team_alpha)"
 
 	ServerSettingsPprofAddr     = "pprof Listen Address"
@@ -1458,10 +1458,10 @@ Examples:
 	ServerSettingsPort     = "Server Port (Listen Port)"
 	ServerSettingsPortDesc = "External TCP port exposed by Docker for PentAGI web UI"
 
-	ServerSettingsPublicURL     = "Public URL"
+	ServerSettingsPublicURL     = "公開 URL"
 	ServerSettingsPublicURLDesc = "用於重新導向與連結的公開基底 URL（支援子路徑，例如 https://example.com/pentagi/）"
 
-	ServerSettingsCORSOrigins     = "CORS Origins"
+	ServerSettingsCORSOrigins     = "CORS 來源"
 	ServerSettingsCORSOriginsDesc = "以逗號分隔的允許來源清單（例如 https://localhost:8443,https://localhost）"
 
 	ServerSettingsTrustedProxies     = "Trusted Proxies"
@@ -1470,9 +1470,9 @@ Examples:
 	ServerSettingsProxyURL     = "HTTP/HTTPS Proxy"
 	ServerSettingsProxyURLDesc = "Proxy for backend LLM, embedding and search requests (not for sandboxes, scraper, Graphiti)"
 
-	ServerSettingsProxyUsername     = "Proxy Username"
+	ServerSettingsProxyUsername     = "代理使用者名稱"
 	ServerSettingsProxyUsernameDesc = "Username for proxy authentication (optional)"
-	ServerSettingsProxyPassword     = "Proxy Password"
+	ServerSettingsProxyPassword     = "代理密碼"
 	ServerSettingsProxyPasswordDesc = "Password for proxy authentication (optional)"
 
 	ServerSettingsHTTPClientTimeout       = "HTTP Client Timeout"
@@ -1480,16 +1480,16 @@ Examples:
 	ServerSettingsTerminalToolTimeout     = "Terminal Tool Timeout"
 	ServerSettingsTerminalToolTimeoutDesc = "終端機指令的預設逾時秒數（0 或負數表示最多 3 小時）"
 
-	ServerSettingsExternalSSLCAPath     = "Custom CA Certificate Path"
+	ServerSettingsExternalSSLCAPath     = "自訂 CA 憑證路徑"
 	ServerSettingsExternalSSLCAPathDesc = "Path inside container to custom root CA cert (e.g., /opt/pentagi/ssl/ca-bundle.pem)"
 
-	ServerSettingsExternalSSLInsecure     = "Skip SSL Verification"
+	ServerSettingsExternalSSLInsecure     = "略過 SSL 驗證"
 	ServerSettingsExternalSSLInsecureDesc = "停用 SSL/TLS 憑證驗證（僅建議在測試自簽憑證時使用）"
 
-	ServerSettingsSSLDir     = "SSL Directory"
+	ServerSettingsSSLDir     = "SSL 目錄"
 	ServerSettingsSSLDirDesc = "包含 PEM 格式 server.crt 與 server.key 的目錄（server.crt 可含完整憑證鏈）"
 
-	ServerSettingsDataDir     = "Data Directory"
+	ServerSettingsDataDir     = "資料目錄"
 	ServerSettingsDataDirDesc = "代理產生檔案存放的目錄；內含 flow-N 子目錄，會掛載為 worker 容器中的 /work"
 
 	ServerSettingsCookieSigningSalt     = "Cookie 簽章 Salt"
@@ -1498,28 +1498,28 @@ Examples:
 	ServerSettingsDatabaseExtensionsSchema     = "資料庫擴充結構"
 	ServerSettingsDatabaseExtensionsSchemaDesc = "Schema holding shared extensions when Tenant ID is set (e.g., public, extensions for Supabase)"
 
-	ServerSettingsDatabaseSearchPathViaOptions     = "Search Path via Options"
+	ServerSettingsDatabaseSearchPathViaOptions     = "以選項搜尋路徑"
 	ServerSettingsDatabaseSearchPathViaOptionsDesc = "Send the tenant search_path inside the options startup parameter (needed by some poolers)"
 
 	// Hints for fields overview
-	ServerSettingsLicenseKeyHint                   = "License Key"
-	ServerSettingsTenantIDHint                     = "Tenant ID"
+	ServerSettingsLicenseKeyHint                   = "授權金鑰"
+	ServerSettingsTenantIDHint                     = "租戶 ID"
 	ServerSettingsPprofAddrHint                    = "pprof Address"
-	ServerSettingsHostHint                         = "Listen IP"
-	ServerSettingsPortHint                         = "Listen Port"
-	ServerSettingsPublicURLHint                    = "Public URL"
-	ServerSettingsCORSOriginsHint                  = "CORS Origins"
+	ServerSettingsHostHint                         = "監聽 IP"
+	ServerSettingsPortHint                         = "監聽連接埠"
+	ServerSettingsPublicURLHint                    = "公開 URL"
+	ServerSettingsCORSOriginsHint                  = "CORS 來源"
 	ServerSettingsProxyURLHint                     = "Proxy URL"
-	ServerSettingsProxyUsernameHint                = "Proxy Username"
-	ServerSettingsProxyPasswordHint                = "Proxy Password"
+	ServerSettingsProxyUsernameHint                = "代理使用者名稱"
+	ServerSettingsProxyPasswordHint                = "代理密碼"
 	ServerSettingsHTTPClientTimeoutHint            = "HTTP Timeout"
 	ServerSettingsTerminalToolTimeoutHint          = "Terminal Timeout"
 	ServerSettingsExternalSSLCAPathHint            = "自訂 CA 路徑"
-	ServerSettingsExternalSSLInsecureHint          = "Skip SSL Verification"
-	ServerSettingsSSLDirHint                       = "SSL Directory"
-	ServerSettingsDataDirHint                      = "Data Directory"
+	ServerSettingsExternalSSLInsecureHint          = "略過 SSL 驗證"
+	ServerSettingsSSLDirHint                       = "SSL 目錄"
+	ServerSettingsDataDirHint                      = "資料目錄"
 	ServerSettingsDatabaseExtensionsSchemaHint     = "Extensions Schema"
-	ServerSettingsDatabaseSearchPathViaOptionsHint = "Search Path via Options"
+	ServerSettingsDatabaseSearchPathViaOptionsHint = "以選項搜尋路徑"
 
 	// Help texts per-field
 	ServerSettingsGeneralHelp = `PentAGI exposes its web UI via Docker with configurable host and port.
@@ -1632,9 +1632,9 @@ Values: true, false`
 // Human-in-the-loop screen strings
 const (
 	// AI Agents Settings screen strings
-	ToolsAIAgentsSettingsFormTitle       = "AI Agents Settings"
+	ToolsAIAgentsSettingsFormTitle       = "AI 代理設定"
 	ToolsAIAgentsSettingsFormDescription = "設定 AI 代理的全域行為"
-	ToolsAIAgentsSettingsFormName        = "AI Agents Settings"
+	ToolsAIAgentsSettingsFormName        = "AI 代理設定"
 	ToolsAIAgentsSettingsFormOverview    = `This section configures global behavior of AI agents across PentAGI.
 
 Basic Settings:
@@ -1657,22 +1657,22 @@ Task Planning (⚠️  BETA):
 
 	// field labels and descriptions
 	ToolsAIAgentsSettingHumanInTheLoop          = "Enable User Interaction"
-	ToolsAIAgentsSettingHumanInTheLoopDesc      = "Allow agents to ask for user input when needed"
+	ToolsAIAgentsSettingHumanInTheLoopDesc      = "允許代理在需要時向使用者提問"
 	ToolsAIAgentsSettingUseAgents               = "Use Multi-Agent Mode"
 	ToolsAIAgentsSettingUseAgentsDesc           = "Enable assistant to orchestrate multiple specialized agents"
-	ToolsAIAgentsSettingExecutionMonitor        = "Enable Execution Monitoring (beta)"
-	ToolsAIAgentsSettingExecutionMonitorDesc    = "Automatically invoke mentor for execution pattern analysis"
-	ToolsAIAgentsSettingSameToolLimit           = "Same Tool Call Threshold"
+	ToolsAIAgentsSettingExecutionMonitor        = "啟用執行監控（beta）"
+	ToolsAIAgentsSettingExecutionMonitorDesc    = "自動請導師進行執行模式分析"
+	ToolsAIAgentsSettingSameToolLimit           = "相同工具呼叫門檻"
 	ToolsAIAgentsSettingSameToolLimitDesc       = "連續相同工具呼叫達到幾次後交由導師審查"
-	ToolsAIAgentsSettingTotalToolLimit          = "Total Tool Call Threshold"
+	ToolsAIAgentsSettingTotalToolLimit          = "工具呼叫總數門檻"
 	ToolsAIAgentsSettingTotalToolLimitDesc      = "Total tool calls before mentor review"
 	ToolsAIAgentsSettingMaxGeneralToolCalls     = "Max Tool Calls (General Agents)"
 	ToolsAIAgentsSettingMaxGeneralToolCallsDesc = "Maximum tool calls for Assistant, Primary Agent, Pentester, Coder, Installer"
 	ToolsAIAgentsSettingMaxLimitedToolCalls     = "Max Tool Calls (Limited Agents)"
 	ToolsAIAgentsSettingMaxLimitedToolCallsDesc = "Maximum tool calls for Searcher, Enricher, Memorist, etc."
-	ToolsAIAgentsSettingTaskPlanning            = "Enable Task Planning (beta)"
+	ToolsAIAgentsSettingTaskPlanning            = "啟用任務規劃（beta）"
 	ToolsAIAgentsSettingTaskPlanningDesc        = "Generate structured execution plans for specialist agents"
-	ToolsAIAgentsSettingLLMFallbackProvider     = "LLM Fallback Provider"
+	ToolsAIAgentsSettingLLMFallbackProvider     = "LLM 備援供應商"
 	ToolsAIAgentsSettingLLMFallbackProviderDesc = "Provider to retry an agent call on when the primary fails (empty: none)"
 
 	// help content
@@ -1727,45 +1727,45 @@ Get API keys from:
 • Traversaal: https://traversaal.ai/
 • Google: https://developers.google.com/custom-search/v1/introduction`
 
-	ToolsSearchEnginesDuckDuckGo               = "DuckDuckGo Search"
+	ToolsSearchEnginesDuckDuckGo               = "DuckDuckGo 搜尋"
 	ToolsSearchEnginesDuckDuckGoDesc           = "Enable DuckDuckGo search (no API key required)"
-	ToolsSearchEnginesDuckDuckGoRegion         = "DuckDuckGo Region"
+	ToolsSearchEnginesDuckDuckGoRegion         = "DuckDuckGo 區域"
 	ToolsSearchEnginesDuckDuckGoRegionDesc     = "DuckDuckGo region code (e.g., us-en, uk-en, cn-zh)"
-	ToolsSearchEnginesDuckDuckGoSafeSearch     = "DuckDuckGo Safe Search"
+	ToolsSearchEnginesDuckDuckGoSafeSearch     = "DuckDuckGo 安全搜尋"
 	ToolsSearchEnginesDuckDuckGoSafeSearchDesc = "DuckDuckGo safe search (strict, moderate, off)"
-	ToolsSearchEnginesDuckDuckGoTimeRange      = "DuckDuckGo Time Range"
+	ToolsSearchEnginesDuckDuckGoTimeRange      = "DuckDuckGo 時間範圍"
 	ToolsSearchEnginesDuckDuckGoTimeRangeDesc  = "DuckDuckGo time range (d: day, w: week, m: month, y: year)"
-	ToolsSearchEnginesSploitus                 = "Sploitus Search"
+	ToolsSearchEnginesSploitus                 = "Sploitus 搜尋"
 	ToolsSearchEnginesSploitusDesc             = "Enable Sploitus search for exploits and vulnerabilities (no API key required)"
-	ToolsSearchEnginesPerplexityKey            = "Perplexity API Key"
-	ToolsSearchEnginesPerplexityKeyDesc        = "API key for Perplexity AI search"
-	ToolsSearchEnginesPerplexityTimeout        = "Perplexity Timeout"
+	ToolsSearchEnginesPerplexityKey            = "Perplexity API 金鑰"
+	ToolsSearchEnginesPerplexityKeyDesc        = "Perplexity AI 搜尋的 API 金鑰"
+	ToolsSearchEnginesPerplexityTimeout        = "Perplexity 逾時"
 	ToolsSearchEnginesPerplexityTimeoutDesc    = "Perplexity request timeout in seconds (empty: 120)"
-	ToolsSearchEnginesTavilyKey                = "Tavily API Key"
-	ToolsSearchEnginesTavilyKeyDesc            = "API key for Tavily search service"
-	ToolsSearchEnginesFirecrawlKey             = "Firecrawl API Key"
-	ToolsSearchEnginesFirecrawlKeyDesc         = "API key for Firecrawl search service"
+	ToolsSearchEnginesTavilyKey                = "Tavily API 金鑰"
+	ToolsSearchEnginesTavilyKeyDesc            = "Tavily 搜尋服務的 API 金鑰"
+	ToolsSearchEnginesFirecrawlKey             = "Firecrawl API 金鑰"
+	ToolsSearchEnginesFirecrawlKeyDesc         = "Firecrawl 搜尋服務的 API 金鑰"
 	ToolsSearchEnginesFirecrawlURL             = "Firecrawl API URL"
 	ToolsSearchEnginesFirecrawlURLDesc         = "Firecrawl API base URL (leave empty for cloud; set for self-hosted)"
-	ToolsSearchEnginesTraversaalKey            = "Traversaal API Key"
-	ToolsSearchEnginesTraversaalKeyDesc        = "API key for Traversaal web scraping"
-	ToolsSearchEnginesGoogleKey                = "Google Search API Key"
+	ToolsSearchEnginesTraversaalKey            = "Traversaal API 金鑰"
+	ToolsSearchEnginesTraversaalKeyDesc        = "Traversaal 網頁擷取的 API 金鑰"
+	ToolsSearchEnginesGoogleKey                = "Google 搜尋 API 金鑰"
 	ToolsSearchEnginesGoogleKeyDesc            = "Google Custom Search API key"
 	ToolsSearchEnginesGoogleCX                 = "Google Search Engine ID"
 	ToolsSearchEnginesGoogleCXDesc             = "Google Custom Search Engine ID"
 	ToolsSearchEnginesGoogleLR                 = "Google Language Restriction"
 	ToolsSearchEnginesGoogleLRDesc             = "Google Search Engine language restriction (e.g., lang_en, lang_cn, etc.)"
-	ToolsSearchEnginesSearxngURL               = "Searxng Search URL"
+	ToolsSearchEnginesSearxngURL               = "Searxng 搜尋 URL"
 	ToolsSearchEnginesSearxngURLDesc           = "Searxng search engine URL"
-	ToolsSearchEnginesSearxngCategories        = "Searxng Search Categories"
+	ToolsSearchEnginesSearxngCategories        = "Searxng 搜尋分類"
 	ToolsSearchEnginesSearxngCategoriesDesc    = "Searxng search engine categories (e.g., general, it, web, news, technology, science, health, other)"
-	ToolsSearchEnginesSearxngLanguage          = "Searxng Search Language"
+	ToolsSearchEnginesSearxngLanguage          = "Searxng 搜尋語言"
 	ToolsSearchEnginesSearxngLanguageDesc      = "Searxng search engine language (en, ch, fr, de, it, es, pt, ru, zh, empty for all languages)"
-	ToolsSearchEnginesSearxngSafeSearch        = "Searxng Safe Search"
+	ToolsSearchEnginesSearxngSafeSearch        = "Searxng 安全搜尋"
 	ToolsSearchEnginesSearxngSafeSearchDesc    = "Searxng search engine safe search (0: off, 1: moderate, 2: strict)"
-	ToolsSearchEnginesSearxngTimeRange         = "Searxng Time Range"
+	ToolsSearchEnginesSearxngTimeRange         = "Searxng 時間範圍"
 	ToolsSearchEnginesSearxngTimeRangeDesc     = "Searxng search engine time range (day, month, year)"
-	ToolsSearchEnginesSearxngTimeout           = "Searxng Timeout"
+	ToolsSearchEnginesSearxngTimeout           = "Searxng 逾時"
 	ToolsSearchEnginesSearxngTimeoutDesc       = "Searxng request timeout in seconds"
 	ToolsSearchEnginesInternalEnabled          = "Internal Analytics Engine"
 	ToolsSearchEnginesInternalEnabledDesc      = "Enable the built-in browser-analytics fallback for answer/research queries (no API key required; scrapes and summarizes pages, so it requires a configured scraper and at least one available link engine, e.g. DuckDuckGo or Google)"
@@ -1798,7 +1798,7 @@ The scraper supports:
 	ToolsScraperModeTitle                 = "Scraper Mode"
 	ToolsScraperModeDesc                  = "Select how the scraper service should operate"
 	ToolsScraperEmbedded                  = "Embedded Container"
-	ToolsScraperExternal                  = "External Service"
+	ToolsScraperExternal                  = "外部服務"
 	ToolsScraperDisabled                  = "已停用"
 	ToolsScraperPublicURL                 = "Public Scraper URL"
 	ToolsScraperPublicURLDesc             = "URL for scraping public/external websites. If empty, the same value as private URL will be used."
@@ -1850,14 +1850,14 @@ Configuration combines based on scenario: enable both capabilities for full pent
 
 	// Container capabilities
 	ToolsDockerInside       = "Docker Access"
-	ToolsDockerInsideDesc   = "Allow workers to manage Docker containers"
+	ToolsDockerInsideDesc   = "允許 worker 管理 Docker 容器"
 	ToolsDockerNetAdmin     = "Network Admin"
 	ToolsDockerNetAdminDesc = "Grant NET_ADMIN capability for network scanning tools like nmap"
 
 	// Connection settings
 	ToolsDockerSocket       = "Docker Socket"
 	ToolsDockerSocketDesc   = "Path to Docker socket on host filesystem"
-	ToolsDockerNetwork      = "Docker Network"
+	ToolsDockerNetwork      = "Docker 網路"
 	ToolsDockerNetworkDesc  = "worker 容器使用的自訂網路名稱，或填 'host' 直接使用主機網路"
 	ToolsDockerPublicIP     = "Public IP Address"
 	ToolsDockerPublicIPDesc = "Public IP for reverse connections in OOB attacks"
@@ -1881,7 +1881,7 @@ Configuration combines based on scenario: enable both capabilities for full pent
 	ToolsDockerInsidePolicyTestsDesc      = "Verify at startup that the sandbox daemon is separate and refuses host escapes"
 
 	// TLS connection settings (optional)
-	ToolsDockerHost          = "Docker Host"
+	ToolsDockerHost          = "Docker 主機"
 	ToolsDockerHostDesc      = "Docker daemon connection (unix:// or tcp://)"
 	ToolsDockerTLSVerify     = "TLS Verification"
 	ToolsDockerTLSVerifyDesc = "Enable TLS verification for Docker connection"
@@ -2009,14 +2009,14 @@ Different providers offer various models with different capabilities and pricing
 
 Choose carefully as changing providers requires reindexing all stored data.`
 
-	EmbedderFormProvider     = "Embedding Provider"
+	EmbedderFormProvider     = "嵌入供應商"
 	EmbedderFormProviderDesc = "Select the provider for text vectorization. Embeddings are used for semantic search and knowledge storage."
 
 	EmbedderFormURL     = "API 端點 URL"
 	EmbedderFormURLDesc = "自訂 API 端點（留空則使用預設值）"
 
-	EmbedderFormAPIKey     = "API Key"
-	EmbedderFormAPIKeyDesc = "Authentication key for the provider (not required for Ollama)"
+	EmbedderFormAPIKey     = "API 金鑰"
+	EmbedderFormAPIKeyDesc = "此供應商的驗證金鑰（Ollama 不需要）"
 
 	EmbedderFormModel     = "Model Name"
 	EmbedderFormModelDesc = "Specific embedding model to use (leave empty for provider default)"
@@ -2065,7 +2065,7 @@ Choose carefully as changing providers requires reindexing all stored data.`
 	EmbedderAPIKeyPlaceholderHuggingFace = "HuggingFace API key"
 	EmbedderAPIKeyPlaceholderGoogleAI    = "Google AI API key"
 	EmbedderAPIKeyPlaceholderVoyageAI    = "VoyageAI API key"
-	EmbedderAPIKeyPlaceholderDefault     = "API key for the provider"
+	EmbedderAPIKeyPlaceholderDefault     = "此供應商的 API 金鑰"
 
 	EmbedderModelPlaceholderOpenAI      = "text-embedding-3-small"
 	EmbedderModelPlaceholderOllama      = "nomic-embed-text"
@@ -2253,10 +2253,10 @@ The following actions will be performed:
 • Apply new configuration to running services`
 
 	// Apply Changes warnings and notes
-	ApplyChangesWarningCritical = "⚠️  Critical changes detected - services will be restarted"
-	ApplyChangesWarningSecrets  = "🔒 Secret values detected - they will be securely stored"
-	ApplyChangesNoteBackup      = "💾 Current configuration will be backed up before changes"
-	ApplyChangesNoteTime        = "⏱️  This process may take less than a minute depending on selected components"
+	ApplyChangesWarningCritical = "⚠️ 偵測到重大變更 —— 服務將會重新啟動"
+	ApplyChangesWarningSecrets  = "🔒 偵測到機密值 —— 將以安全方式儲存"
+	ApplyChangesNoteBackup      = "💾 變更前會先備份目前設定"
+	ApplyChangesNoteTime        = "⏱️ 此流程所需的時間依所選元件而定，通常不到一分鐘"
 
 	// Apply Changes progress messages
 	ApplyChangesStageValidation = "Validating environment and dependencies..."
@@ -2270,7 +2270,7 @@ The following actions will be performed:
 	// Apply Changes change list headers
 	ApplyChangesChangesTitle  = "Pending Configuration Changes"
 	ApplyChangesChangesCount  = "Total changes: %d"
-	ApplyChangesChangesMasked = "(hidden for security)"
+	ApplyChangesChangesMasked = "（基於安全考量已隱藏）"
 	ApplyChangesChangesEmpty  = "No changes to apply"
 
 	// Apply Changes help content
@@ -2315,9 +2315,9 @@ Each operation will provide real-time status updates and confirmation when requi
 	MaintenanceDownloadWorkerImageDesc = "Download pentesting container image for worker tasks"
 	MaintenanceUpdateWorkerImage       = "Update Worker Image"
 	MaintenanceUpdateWorkerImageDesc   = "Update pentesting container image to latest version"
-	MaintenanceUpdatePentagi           = "Update PentAGI"
+	MaintenanceUpdatePentagi           = "更新 PentAGI"
 	MaintenanceUpdatePentagiDesc       = "Update PentAGI to the latest version"
-	MaintenanceUpdateInstaller         = "Update Installer"
+	MaintenanceUpdateInstaller         = "更新安裝程式"
 	MaintenanceUpdateInstallerDesc     = "Download and verify the latest installer build"
 	MaintenanceFactoryReset            = "Factory Reset"
 	MaintenanceFactoryResetDesc        = "Reset PentAGI to factory defaults"
@@ -2325,13 +2325,13 @@ Each operation will provide real-time status updates and confirmation when requi
 	MaintenanceRemovePentagiDesc       = "Remove PentAGI containers but keep data"
 	MaintenancePurgePentagi            = "Purge PentAGI"
 	MaintenancePurgePentagiDesc        = "完全移除 PentAGI，包含所有資料"
-	MaintenanceResetPassword           = "Reset Admin Password"
+	MaintenanceResetPassword           = "重設管理員密碼"
 	MaintenanceResetPasswordDesc       = "重設 PentAGI 的管理員密碼"
 )
 
 // Reset Password Screen constants
 const (
-	ResetPasswordFormTitle       = "Reset Admin Password"
+	ResetPasswordFormTitle       = "重設管理員密碼"
 	ResetPasswordFormDescription = "重設 PentAGI 的管理員密碼"
 	ResetPasswordFormName        = "Reset Password"
 	ResetPasswordFormOverview    = `Reset the password for the default administrator account (admin@pentagi.com).
@@ -2391,7 +2391,7 @@ const (
 	ProcessorOperationFailed     = "Failed to execute %s operation"
 
 	// Confirmation messages
-	ProcessorOperationConfirmation = "Are you sure you want to %s?"
+	ProcessorOperationConfirmation = "確定要%s嗎？"
 	ProcessorOperationPressEnter   = "Press Enter to %s"
 	ProcessorOperationPressYN      = "Press Y to confirm, N to cancel"
 	// Short notice without hotkeys (for static help panel)
@@ -2566,7 +2566,7 @@ const (
 	EnvDesc_LLM_SERVER_API_TYPE               = "自訂 LLM 位址慣例"
 	EnvDesc_LLM_SERVER_API_VERSION            = "自訂 LLM Azure API 版本"
 	EnvDesc_LLM_SERVER_PROVIDER               = "自訂 LLM 供應商名稱"
-	EnvDesc_LLM_FALLBACK_PROVIDER             = "LLM Fallback Provider"
+	EnvDesc_LLM_FALLBACK_PROVIDER             = "LLM 備援供應商"
 
 	EnvDesc_LANGFUSE_LISTEN_IP   = "Langfuse Listen IP"
 	EnvDesc_LANGFUSE_LISTEN_PORT = "Langfuse Listen Port"
@@ -2585,13 +2585,13 @@ const (
 
 	EnvDesc_LANGFUSE_OTEL_EXPORTER_OTLP_ENDPOINT = "Langfuse OTLP endpoint for OpenTelemetry exporter"
 
-	EnvDesc_GRAFANA_LISTEN_IP     = "Grafana Listen IP"
-	EnvDesc_GRAFANA_LISTEN_PORT   = "Grafana Listen Port"
-	EnvDesc_OTEL_GRPC_LISTEN_IP   = "OTel gRPC Listen IP"
-	EnvDesc_OTEL_GRPC_LISTEN_PORT = "OTel gRPC Listen Port"
-	EnvDesc_OTEL_HTTP_LISTEN_IP   = "OTel HTTP Listen IP"
-	EnvDesc_OTEL_HTTP_LISTEN_PORT = "OTel HTTP Listen Port"
-	EnvDesc_OTEL_HOST             = "OpenTelemetry Host"
+	EnvDesc_GRAFANA_LISTEN_IP     = "Grafana 監聽 IP"
+	EnvDesc_GRAFANA_LISTEN_PORT   = "Grafana 監聽連接埠"
+	EnvDesc_OTEL_GRPC_LISTEN_IP   = "OTel gRPC 監聽 IP"
+	EnvDesc_OTEL_GRPC_LISTEN_PORT = "OTel gRPC 監聽連接埠"
+	EnvDesc_OTEL_HTTP_LISTEN_IP   = "OTel HTTP 監聽 IP"
+	EnvDesc_OTEL_HTTP_LISTEN_PORT = "OTel HTTP 監聽連接埠"
+	EnvDesc_OTEL_HOST             = "OpenTelemetry 主機"
 
 	EnvDesc_SUMMARIZER_PRESERVE_LAST       = "Summarizer Preserve Last"
 	EnvDesc_SUMMARIZER_USE_QA              = "Summarizer Use QA"
@@ -2609,7 +2609,7 @@ const (
 	EnvDesc_ASSISTANT_SUMMARIZER_MAX_QA_SECTIONS  = "助理摘要問答區段上限"
 	EnvDesc_ASSISTANT_SUMMARIZER_KEEP_QA_SECTIONS = "助理摘要保留問答區段"
 
-	EnvDesc_EMBEDDING_PROVIDER        = "Embedding Provider"
+	EnvDesc_EMBEDDING_PROVIDER        = "嵌入供應商"
 	EnvDesc_EMBEDDING_URL             = "Embedding URL"
 	EnvDesc_EMBEDDING_KEY             = "Embedding API Key"
 	EnvDesc_EMBEDDING_MODEL           = "Embedding Model"
@@ -2621,12 +2621,12 @@ const (
 
 	EnvDesc_ASSISTANT_USE_AGENTS = "Enable multi-agent mode for assistant"
 
-	EnvDesc_EXECUTION_MONITOR_ENABLED          = "Enable Execution Monitoring (beta)"
-	EnvDesc_EXECUTION_MONITOR_SAME_TOOL_LIMIT  = "Same Tool Call Threshold"
-	EnvDesc_EXECUTION_MONITOR_TOTAL_TOOL_LIMIT = "Total Tool Call Threshold"
+	EnvDesc_EXECUTION_MONITOR_ENABLED          = "啟用執行監控（beta）"
+	EnvDesc_EXECUTION_MONITOR_SAME_TOOL_LIMIT  = "相同工具呼叫門檻"
+	EnvDesc_EXECUTION_MONITOR_TOTAL_TOOL_LIMIT = "工具呼叫總數門檻"
 	EnvDesc_MAX_GENERAL_AGENT_TOOL_CALLS       = "Max Tool Calls for General Agents"
 	EnvDesc_MAX_LIMITED_AGENT_TOOL_CALLS       = "Max Tool Calls for Limited Agents"
-	EnvDesc_AGENT_PLANNING_STEP_ENABLED        = "Enable Task Planning (beta)"
+	EnvDesc_AGENT_PLANNING_STEP_ENABLED        = "啟用任務規劃（beta）"
 
 	EnvDesc_SCRAPER_PUBLIC_URL                    = "Scraper Public URL"
 	EnvDesc_SCRAPER_PRIVATE_URL                   = "Scraper Private URL"
@@ -2634,24 +2634,24 @@ const (
 	EnvDesc_LOCAL_SCRAPER_PASSWORD                = "Local Scraper Password"
 	EnvDesc_LOCAL_SCRAPER_MAX_CONCURRENT_SESSIONS = "Scraper Max Concurrent Sessions"
 
-	EnvDesc_DUCKDUCKGO_ENABLED    = "DuckDuckGo Search"
-	EnvDesc_DUCKDUCKGO_REGION     = "DuckDuckGo Region"
-	EnvDesc_DUCKDUCKGO_SAFESEARCH = "DuckDuckGo Safe Search"
-	EnvDesc_DUCKDUCKGO_TIME_RANGE = "DuckDuckGo Time Range"
-	EnvDesc_SPLOITUS_ENABLED      = "Sploitus Search"
-	EnvDesc_PERPLEXITY_API_KEY    = "Perplexity API Key"
-	EnvDesc_TAVILY_API_KEY        = "Tavily API Key"
-	EnvDesc_FIRECRAWL_API_KEY     = "Firecrawl API Key"
+	EnvDesc_DUCKDUCKGO_ENABLED    = "DuckDuckGo 搜尋"
+	EnvDesc_DUCKDUCKGO_REGION     = "DuckDuckGo 區域"
+	EnvDesc_DUCKDUCKGO_SAFESEARCH = "DuckDuckGo 安全搜尋"
+	EnvDesc_DUCKDUCKGO_TIME_RANGE = "DuckDuckGo 時間範圍"
+	EnvDesc_SPLOITUS_ENABLED      = "Sploitus 搜尋"
+	EnvDesc_PERPLEXITY_API_KEY    = "Perplexity API 金鑰"
+	EnvDesc_TAVILY_API_KEY        = "Tavily API 金鑰"
+	EnvDesc_FIRECRAWL_API_KEY     = "Firecrawl API 金鑰"
 	EnvDesc_FIRECRAWL_API_URL     = "Firecrawl API URL"
-	EnvDesc_TRAVERSAAL_API_KEY    = "Traversaal API Key"
-	EnvDesc_GOOGLE_API_KEY        = "Google Search API Key"
+	EnvDesc_TRAVERSAAL_API_KEY    = "Traversaal API 金鑰"
+	EnvDesc_GOOGLE_API_KEY        = "Google 搜尋 API 金鑰"
 	EnvDesc_GOOGLE_CX_KEY         = "Google Search CX Key"
 	EnvDesc_GOOGLE_LR_KEY         = "Google Search LR Key"
 
 	EnvDesc_DOCKER_INSIDE                    = "Docker Inside Container"
 	EnvDesc_DOCKER_NET_ADMIN                 = "Docker Network Admin"
 	EnvDesc_DOCKER_SOCKET                    = "Docker Socket Path"
-	EnvDesc_DOCKER_NETWORK                   = "Docker Network"
+	EnvDesc_DOCKER_NETWORK                   = "Docker 網路"
 	EnvDesc_DOCKER_PUBLIC_IP                 = "Docker Public IP"
 	EnvDesc_DOCKER_WORK_DIR                  = "Docker Work Directory"
 	EnvDesc_DOCKER_DEFAULT_IMAGE             = "Docker Default Image"
@@ -2660,12 +2660,12 @@ const (
 	EnvDesc_DOCKER_IMAGE_SELECTION_MODE      = "Docker Image Selection Mode"
 	EnvDesc_DOCKER_ALLOWED_IMAGES            = "Docker Allowed Images"
 	EnvDesc_DOCKER_INSIDE_POLICY_TESTS       = "Docker Sandbox Isolation Self-Test"
-	EnvDesc_DOCKER_HOST                      = "Docker Host"
+	EnvDesc_DOCKER_HOST                      = "Docker 主機"
 	EnvDesc_DOCKER_TLS_VERIFY                = "Docker TLS Verify"
 	EnvDesc_DOCKER_CERT_PATH                 = "Docker Certificate Path"
-	EnvDesc_DOCKER_INSIDE_HOST               = "Worker Docker Daemon Host"
-	EnvDesc_DOCKER_INSIDE_TLS_VERIFY         = "Worker Docker TLS Verify"
-	EnvDesc_DOCKER_INSIDE_CERT_PATH          = "Worker Docker Certificate Path"
+	EnvDesc_DOCKER_INSIDE_HOST               = "Worker Docker Daemon 主機"
+	EnvDesc_DOCKER_INSIDE_TLS_VERIFY         = "Worker Docker TLS 驗證"
+	EnvDesc_DOCKER_INSIDE_CERT_PATH          = "Worker Docker 憑證路徑"
 
 	EnvDesc_TENANT_ID                         = "PentAGI Tenant ID"
 	EnvDesc_LICENSE_KEY                       = "PentAGI License Key"
@@ -2681,8 +2681,8 @@ const (
 	EnvDesc_PROXY_URL                         = "HTTP/HTTPS Proxy URL"
 	EnvDesc_HTTP_CLIENT_TIMEOUT               = "HTTP Client Timeout (seconds)"
 	EnvDesc_TERMINAL_TOOL_TIMEOUT             = "Terminal Tool Timeout (seconds)"
-	EnvDesc_EXTERNAL_SSL_CA_PATH              = "Custom CA Certificate Path"
-	EnvDesc_EXTERNAL_SSL_INSECURE             = "Skip SSL Verification"
+	EnvDesc_EXTERNAL_SSL_CA_PATH              = "自訂 CA 憑證路徑"
+	EnvDesc_EXTERNAL_SSL_INSECURE             = "略過 SSL 驗證"
 	EnvDesc_PENTAGI_SSL_DIR                   = "PentAGI SSL Directory"
 	EnvDesc_PENTAGI_DATA_DIR                  = "PentAGI Data Directory"
 	EnvDesc_PENTAGI_DOCKER_SOCKET             = "Mount Docker Socket Path"
@@ -2701,14 +2701,14 @@ const (
 
 	EnvDesc_PERPLEXITY_MODEL        = "Perplexity Model"
 	EnvDesc_PERPLEXITY_CONTEXT_SIZE = "Perplexity Context Size"
-	EnvDesc_PERPLEXITY_TIMEOUT      = "Perplexity Timeout"
+	EnvDesc_PERPLEXITY_TIMEOUT      = "Perplexity 逾時"
 
-	EnvDesc_SEARXNG_URL        = "Searxng Search URL"
-	EnvDesc_SEARXNG_CATEGORIES = "Searxng Search Categories"
-	EnvDesc_SEARXNG_LANGUAGE   = "Searxng Search Language"
-	EnvDesc_SEARXNG_SAFESEARCH = "Searxng Safe Search"
-	EnvDesc_SEARXNG_TIME_RANGE = "Searxng Time Range"
-	EnvDesc_SEARXNG_TIMEOUT    = "Searxng Timeout"
+	EnvDesc_SEARXNG_URL        = "Searxng 搜尋 URL"
+	EnvDesc_SEARXNG_CATEGORIES = "Searxng 搜尋分類"
+	EnvDesc_SEARXNG_LANGUAGE   = "Searxng 搜尋語言"
+	EnvDesc_SEARXNG_SAFESEARCH = "Searxng 安全搜尋"
+	EnvDesc_SEARXNG_TIME_RANGE = "Searxng 時間範圍"
+	EnvDesc_SEARXNG_TIMEOUT    = "Searxng 逾時"
 
 	EnvDesc_OAUTH_GOOGLE_CLIENT_ID     = "OAuth Google Client ID"
 	EnvDesc_OAUTH_GOOGLE_CLIENT_SECRET = "OAuth Google Client Secret"
@@ -2719,7 +2719,7 @@ const (
 	EnvDesc_PENTAGI_POSTGRES_PASSWORD = "PentAGI PostgreSQL Password"
 
 	EnvDesc_GRAPHITI_ENABLED                      = "Enable Graphiti Integration"
-	EnvDesc_GRAPHITI_URL                          = "Graphiti Server URL"
+	EnvDesc_GRAPHITI_URL                          = "Graphiti 伺服器 URL"
 	EnvDesc_GRAPHITI_TIMEOUT                      = "Graphiti Request Timeout"
 	EnvDesc_GRAPHITI_LLM_CLIENT_TYPE              = "Graphiti LLM Provider Preset"
 	EnvDesc_GRAPHITI_SEPARATE_EMBEDDING           = "Graphiti Separate Embedding Endpoint"
@@ -2732,14 +2732,14 @@ const (
 	EnvDesc_GRAPHITI_INGEST_WORKER_COUNT          = "Graphiti Ingest Worker Count"
 	EnvDesc_GRAPHITI_INGEST_QUEUE_MAX_SIZE        = "Graphiti Ingest Queue Limit"
 	EnvDesc_GRAPHITI_TAXONOMY_LAYER_PROFILE       = "Graphiti Taxonomy Layer Profile"
-	EnvDesc_GRAPHITI_CPUS                         = "Graphiti CPU Limit"
-	EnvDesc_GRAPHITI_MEMORY                       = "Graphiti Memory Limit"
-	EnvDesc_NEO4J_USER                            = "Neo4j Username"
+	EnvDesc_GRAPHITI_CPUS                         = "Graphiti CPU 上限"
+	EnvDesc_GRAPHITI_MEMORY                       = "Graphiti 記憶體上限"
+	EnvDesc_NEO4J_USER                            = "Neo4j 使用者名稱"
 	EnvDesc_NEO4J_DATABASE                        = "Neo4j Database Name"
 	EnvDesc_NEO4J_PASSWORD                        = "Neo4j Database Password"
-	EnvDesc_NEO4J_CPUS                            = "Neo4j CPU Limit"
-	EnvDesc_NEO4J_MEMORY                          = "Neo4j Memory Limit"
-	EnvDesc_NEO4J_SHM_SIZE                        = "Neo4j Shared Memory Limit"
+	EnvDesc_NEO4J_CPUS                            = "Neo4j CPU 上限"
+	EnvDesc_NEO4J_MEMORY                          = "Neo4j 記憶體上限"
+	EnvDesc_NEO4J_SHM_SIZE                        = "Neo4j 共享記憶體上限"
 )
 
 // dynamic, contextual sections used in processor operation forms
@@ -2752,13 +2752,13 @@ const (
 	// component labels
 	ProcessorComponentPentagi       = "PentAGI"
 	ProcessorComponentLangfuse      = "Langfuse"
-	ProcessorComponentObservability = "Observability"
+	ProcessorComponentObservability = "可觀測性"
 
 	ProcessorComponentWorkerImage           = "worker image"
-	ProcessorComponentComposeStacks         = "compose stacks"
+	ProcessorComponentComposeStacks         = "compose 堆疊"
 	ProcessorComponentDefaultFiles          = "default files"
-	ProcessorItemComposeFiles               = "compose files"
-	ProcessorItemComposeStacksImagesVolumes = "compose stacks, images, volumes"
+	ProcessorItemComposeFiles               = "compose 檔案"
+	ProcessorItemComposeStacksImagesVolumes = "compose 堆疊、映像、資料卷"
 
 	// common states
 	ProcessorStateInstalled = "installed"

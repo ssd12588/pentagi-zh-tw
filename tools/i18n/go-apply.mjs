@@ -47,7 +47,7 @@ function main() {
         const counts = new Map();
         for (const file of files) {
             for (const item of extractGoStrings(file.abs)) {
-                if (dict[item.text] || isSkippable(item.text)) {
+                if (dict[item.text] || isSkippable(item.text) || /[\u3400-\u9fff]/.test(item.text)) {
                     continue;
                 }
                 counts.set(item.text, (counts.get(item.text) ?? 0) + 1);
