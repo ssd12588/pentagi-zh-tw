@@ -9,6 +9,14 @@
 | [glossary.md](glossary.md) | 術語對照表（英文 → 繁體中文） |
 | [PROJECT-STATUS.md](PROJECT-STATUS.md) | 漢化進度、驗證狀態、待辦與交接說明 |
 
+## Windows 一鍵啟動
+
+```powershell
+pwsh -File .\start-pentagi.ps1          # 檢查環境 → 啟動 → 開啟瀏覽器
+pwsh -File .\start-pentagi.ps1 -Logs    # 追蹤日誌
+pwsh -File .\start-pentagi.ps1 -Down    # 停止服務
+```
+
 ## 這個版本做了什麼
 
 - **Web 介面**：全站文案改為繁體中文（約 1,100 處、140 個檔案），並把 `<html lang>` 改為 `zh-TW`、移除「禁止瀏覽器翻譯」的設定。
