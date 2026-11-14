@@ -1,0 +1,26 @@
+2	Langfuse
+2	Ollama
+2	OpenAI
+1	  %s：%d%%（%s / %s）
+1	- **%s** (%s/%s) — %s
+1	# EULA Content\n\n%s\n\n---\n\n*Note: Markdown rendering failed: %v*
+1	## %s
+1	### %s
+1	%s\n\n---\n\n*Note: Markdown rendering failed: %v*
+1	Anthropic
+1	DeepSeek
+1	docker compose
+1	Graphiti（beta）
+1	Kimi（Moonshot AI）
+1	LLM Provider %s
+1	LLM Provider %s Configuration
+1	MiniMax
+1	PentAGI
+1	pprof Address
+1	sentence-transformers/all-MiniLM-L6-v2
+1	Update %s
+1	Update %s to latest version
+1	Update pentesting container image to latest version
+1	Update Worker Image
+1	Which builds updates come from: preview (default, follows 
+1	worker image

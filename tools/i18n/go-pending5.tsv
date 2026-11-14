@@ -1,0 +1,355 @@
+2	Langfuse
+2	Ollama
+2	OpenAI
+1	  %s：%d%%（%s / %s）
+1	- **%s** (%s/%s) — %s
+1	# EULA Content\n\n%s\n\n---\n\n*Note: Markdown rendering failed: %v*
+1	## %s
+1	### %s
+1	%s\n\n---\n\n*Note: Markdown rendering failed: %v*
+1	Anthropic
+1	DeepSeek
+1	docker compose
+1	Embedded mode runs a local scraper container that can access both public and private resources. The default configuration uses https://someuser:somepass@scraper/.
+1	Enable the built-in browser-analytics fallback for answer/research queries (no API key required; scrapes and summarizes pages, so it requires a configured scraper and at least one available link engine, e.g. DuckDuckGo or Google)
+1	Enabled relationship classes or the full/minimal alias
+1	Enables question-answer pair compression when total QA content exceeds MaxQABytes or MaxQASections limits
+1	Estimated context size: %s\n%s
+1	External mode uses separate scraper services. Configure different URLs for public and private access as needed.
+1	External TCP port exposed by Docker for Grafana web UI
+1	External TCP port exposed by Docker for Langfuse web UI
+1	External TCP port exposed by Docker for OTel gRPC receiver
+1	External TCP port exposed by Docker for OTel HTTP receiver
+1	External TCP port exposed by Docker for PentAGI web UI
+1	Graphiti（beta）
+1	Include user messages in QA compression. Disabled: preserves original user text (recommended for most cases)
+1	JSON mapping of message patterns to REJECT, SKIP_LLM, or PROCESS
+1	Kimi（Moonshot AI）
+1	LLM Provider %s
+1	LLM Provider %s Configuration
+1	LLM Provider Preset
+1	MiniMax
+1	Number of documents to process in a single batch (1-1000)
+1	Number of most recent conversation sections preserved without compression. PRIMARY parameter affecting context size
+1	OAuth GitHub Client ID
+1	OAuth GitHub Client Secret
+1	OAuth Google Client ID
+1	OAuth Google Client Secret
+1	Observability Configuration
+1	Ollama Auto-pull Models
+1	Ollama Cloud API key (optional, leave empty for local Ollama server)
+1	Ollama Container Config Path
+1	Ollama Default Model
+1	Ollama Host Config Path
+1	Ollama Load Models List
+1	Ollama Model Pull Timeout
+1	Ollama Server API Key (Cloud)
+1	Ollama Server URL
+1	OpenAI API Key
+1	OpenAI Server URL
+1	OpenAI text embeddings API (text-embedding-3-small, ada-002)
+1	Operation cancelled
+1	Optional Go pprof bind address; leave empty to disable (e.g., :7777, 127.0.0.1:7778)
+1	Optional namespace for multi-instance deployment on one host (e.g., acme, team_alpha)
+1	Organization ID
+1	Out-of-date files were detected.\nDo you want to update them to the latest version?
+1	Out-of-date files:\n%s\nConfirm update? (y/n)
+1	Password cannot be empty
+1	Password for accessing the Langfuse admin panel
+1	Password for embedded scraper service
+1	Password for Neo4j database access
+1	Password for private scraper access
+1	Password for proxy authentication (optional)
+1	Password for public scraper access
+1	Password has been successfully reset
+1	Password must be 16+ characters, or 8-15 with a lowercase letter, an uppercase letter, a digit and one of !@#$&*
+1	Password must not exceed 72 bytes
+1	Password reset is available
+1	Passwords do not match
+1	Patching docker-compose file: %s
+1	Path inside container to custom root CA cert (e.g., /opt/pentagi/ssl/ca-bundle.pem)
+1	Path to a file holding the federated identity token, read at runtime
+1	Path to Docker socket on host filesystem
+1	Pending Configuration Changes
+1	PentAGI
+1	PentAGI Cloud API endpoint as host[:port]; leave empty for update.pentagi.com
+1	PentAGI Configuration
+1	PentAGI Cookie Signing Salt
+1	PentAGI CORS Origins
+1	PentAGI Data Directory
+1	PentAGI is already running
+1	PentAGI is up to date
+1	PentAGI License Key
+1	PentAGI License Key in format of XXXX-XXXX-XXXX-XXXX
+1	PentAGI must be running to reset password
+1	PentAGI PostgreSQL Password
+1	PentAGI pprof Listen Address
+1	PentAGI Public URL
+1	PentAGI requires at least 2 CPU cores for proper operation.
+1	PentAGI Server Host
+1	PentAGI Server Port
+1	PentAGI SSL Directory
+1	PentAGI Support API endpoint as host[:port]; leave empty for support.pentagi.com
+1	PentAGI Tenant ID
+1	PentAGI Trusted Proxies
+1	PentAGI web UI becomes available. Background services are brought online in the required order.
+1	Pentesting Image
+1	Perplexity Context Size
+1	Perplexity Model
+1	Perplexity request timeout in seconds (empty: 120)
+1	Planned actions
+1	PostgreSQL Extensions Schema
+1	PostgreSQL Search Path via Options
+1	pprof Address
+1	pprof Listen Address
+1	Preparing update overview...
+1	Preserve Reasoning
+1	Preserve reasoning content in multi-turn conversations (required by some providers)
+1	Press Enter to %s
+1	Press Enter to download
+1	Press Y to confirm, N to cancel
+1	Press y to download and replace it, n to keep the file already on disk
+1	Private Scraper URL
+1	Private URL Password
+1	Private URL Username
+1	Progress: %d%%
+1	Project ID
+1	Project identifier in Langfuse
+1	Provider Name
+1	Provider name prefix for model names (useful for LiteLLM proxy)
+1	Provider preset; credentials come from LLM Providers (openai, gemini, litellm, custom) and models from ./graphiti/<provider>.yaml
+1	Provider to retry an agent call on when the primary fails (empty: none)
+1	Proxy for backend LLM, embedding and search requests (not for sandboxes, scraper, Graphiti)
+1	Proxy URL
+1	Public API key for project access
+1	Public IP Address
+1	Public IP for reverse connections in OOB attacks
+1	Public Key
+1	Public Scraper URL
+1	Public URL Password
+1	Public URL Username
+1	Pulling image: %s
+1	Pulls latest worker image. Running worker containers keep using the old image; new containers will use the updated one.
+1	Purge PentAGI
+1	Purging %s compose stack
+1	Purging all data...
+1	Purging stack: %s
+1	QA Section Limit
+1	QA Summarization
+1	Qwen Alibaba Cloud
+1	Qwen API Key
+1	Qwen Provider Name Prefix (for LiteLLM, e.g., 'dashscope')
+1	Qwen Server URL
+1	Re-enter the new password to confirm
+1	Ready to execute %s operation
+1	Ready to start
+1	Ready to start PentAGI services
+1	Recent Sections
+1	Recreating docker network with compose labels: %s
+1	Region
+1	Remove line breaks from text before embedding (true/false)
+1	Remove PentAGI
+1	Remove PentAGI containers but keep data
+1	Removed %d worker containers
+1	Removed container %s
+1	Removed leftover from an interrupted download: %s
+1	Removes containers, volumes and networks, restores default .env and embedded files. Produces a clean baseline. This action cannot be undone.
+1	Removing %s compose stack
+1	Removing container %s
+1	Removing containers...
+1	Removing image: %s
+1	Removing installer
+1	Removing stack: %s
+1	Removing worker containers
+1	Request Timeout
+1	Required files are created and services are started. External components are detected and skipped.
+1	Requires 128K+ context model
+1	Requires 16K+ context model
+1	Requires 256K+ context model
+1	Requires 32K+ context model
+1	Requires 64K+ context model
+1	Reset Password
+1	Reset PentAGI to factory defaults
+1	Resetting password...
+1	Resetting to factory defaults...
+1	Response Size Limit
+1	Restart all PentAGI services
+1	Restart PentAGI
+1	Restarting %s compose stack
+1	Restarting Jaeger so it loads the new storage plugin
+1	Restarting services...
+1	Restoring default .env from embedded
+1	Review and apply your configuration changes
+1	Running worker containers are not touched. New flows will use the downloaded image. To switch an existing flow to the new image, finish the flow and start a new task or create a new assistant.
+1	Sandbox Isolation Self-Test
+1	Sandbox Self-Test Image
+1	Schema holding shared extensions when Tenant ID is set (e.g., public, extensions for Supabase)
+1	Scraper
+1	Scraper Configuration
+1	Scraper is disabled. Web content extraction and analysis capabilities will not be available.
+1	Scraper Max Concurrent Sessions
+1	Scraper Mode
+1	Scraper Private URL
+1	Scraper Public URL
+1	Search Engines
+1	Search Engines Configuration
+1	Search Scope
+1	Searxng request timeout in seconds
+1	Searxng search engine categories (e.g., general, it, web, news, technology, science, health, other)
+1	Searxng search engine language (en, ch, fr, de, it, es, pt, ru, zh, empty for all languages)
+1	Searxng search engine safe search (0: off, 1: moderate, 2: strict)
+1	Searxng search engine time range (day, month, year)
+1	Searxng search engine URL
+1	Secret Access Key
+1	Secret API key for project access
+1	Secret Key
+1	Secret used to sign cookies (keep private)
+1	Section Size Limit
+1	Select how the scraper service should operate
+1	Select the deployment type for Graphiti
+1	Select the deployment type for Langfuse
+1	Select the deployment type for monitoring
+1	Select the provider for text vectorization. Embeddings are used for semantic search and knowledge storage.
+1	Send the tenant search_path inside the options startup parameter (needed by some poolers)
+1	sentence-transformers/all-MiniLM-L6-v2
+1	Server Host (Listen IP)
+1	Server Port (Listen Port)
+1	Server URL
+1	Service Account ID
+1	Service account the federated identity authenticates as
+1	Services stop and start again with a clean state. Brief downtime is expected. Flows resume automatically afterwards.
+1	Session Token
+1	Size Management
+1	Skipping external Langfuse deployment
+1	Skipping external Observability deployment
+1	Skipping modified files: %s
+1	Small image the startup sandbox isolation check runs in
+1	Specialized summarization settings for AI assistant contexts
+1	Specific embedding model to use (leave empty for provider default)
+1	Stack %s integrity verified
+1	Stack files cleanup completed
+1	Stack purge completed for %s
+1	Stack removal completed for %s
+1	Start all configured PentAGI services
+1	Start PentAGI
+1	Starting %s compose stack
+1	Starting factory reset
+1	Stop all running PentAGI services
+1	Stop PentAGI
+1	Stopping %s compose stack
+1	Stopping container %s
+1	Stopping services...
+1	Stops and removes containers but keeps volumes and images. Data is preserved. Web UI becomes unavailable until you start again.
+1	Strip New Lines
+1	Successfully removed image %s
+1	Summarizer
+1	Summarizer Configuration
+1	Summarizer Human in QA
+1	Summarizer Keep QA Sections
+1	Summarizer Last Section Bytes
+1	Summarizer Max BP Bytes
+1	Summarizer Max QA Bytes
+1	Summarizer Max QA Sections
+1	Summarizer Preserve Last
+1	Summarizer Use QA
+1	Support Server Host
+1	System Checks
+1	System Maintenance
+1	System resources
+1	System Status
+1	Taxonomy Layer Profile
+1	Terminal Timeout
+1	Terminal Tool Timeout
+1	Terminal Tool Timeout (seconds)
+1	The build is at %s
+1	The Docker Compose v2 plugin is required, but `docker compose` is not available.
+1	The installer itself is left in place — delete it yourself when you no longer need it
+1	The installer itself is left in place at %s — delete it yourself when you no longer need it
+1	The installer you are running is not replaced. You move the downloaded file into place yourself, with the command shown when the download finishes.
+1	The last update check did not complete, so there is nothing to show here.\n\nApplying the update will pull whatever the compose files currently point at.
+1	The offered build is the one already running. Downloading it changes nothing.
+1	This operation requires confirmation
+1	This operation will %s.
+1	This operation will download %s components.
+1	This operation will update %s components.
+1	This screen is under development
+1	Timeout in seconds for downloading models (default: 600)
+1	Timeout in seconds for external API calls (LLM providers, search engines, etc.)
+1	Timeout in seconds for Graphiti operations
+1	TLS certificate directory on the WORKER NODE, mounted read-only into worker containers
+1	TLS Certificates
+1	TLS Verification
+1	To start using it, run:
+1	Tools
+1	Tools Configuration
+1	Total changes: %d
+1	Total QA Memory
+1	Total tool calls before mentor review
+1	Trusted Proxies
+1	Unknown operation: %s
+1	Update %s
+1	Update %s to latest version
+1	Update PentAGI to the latest version
+1	Update pentesting container image to latest version
+1	Update Server Host
+1	Update Strategy
+1	Update Worker Image
+1	Updates are available
+1	Updating %s compose stack
+1	Updating components...
+1	Updating environment file...
+1	Updating existing file: %s
+1	Updating installer
+1	URL for embedded scraper (optional override). If empty, the same value as private URL will be used.
+1	URL for scraping private/internal websites
+1	URL for scraping public/external websites. If empty, the same value as private URL will be used.
+1	Use AWS SDK default credential chain (environment, EC2 role, ~/.aws/credentials) - highest priority
+1	Use Default AWS Auth
+1	Use flowid for isolation or all for trusted global-search testing
+1	Use Multi-Agent Mode
+1	Use OpenAI embeddings with API key from LLM Providers configuration
+1	Use Separate Embedding Endpoint
+1	Use the shared Embeddings configuration instead of the selected LLM credentials
+1	Username for embedded scraper service
+1	Username for Neo4j database access
+1	Username for private scraper access
+1	Username for proxy authentication (optional)
+1	Username for public scraper access
+1	Validating environment and dependencies...
+1	Verify at startup that the sandbox daemon is separate and refuses host escapes
+1	Verifying %s stack integrity
+1	Verifying updated %s components
+1	VoyageAI
+1	VoyageAI API key
+1	VoyageAI embedding API
+1	Web UI becomes unavailable. In-progress flows pause safely. When you start PentAGI again, flows resume automatically. A small portion of the current agent step may be lost.
+1	What this update changes, and the release notes behind it
+1	Which builds updates come from: preview (default, follows 
+1	will be updated
+1	will download:
+1	will purge:
+1	will remove:
+1	will restart:
+1	will restore:
+1	will skip:
+1	will start:
+1	will stop:
+1	will update:
+1	Windows will not replace a program that is running: close this installer before running the command.
+1	Work Directory
+1	Worker Docker Environment Not Accessible
+1	Worker environment
+1	worker image
+1	Worker images removal completed
+1	Workspace ID
+1	Write permissions
+1	xAI API Key
+1	xAI Grok
+1	xAI Provider Name Prefix (for LiteLLM, e.g., 'xai')
+1	xAI Server URL
+1	xAI's Grok models through the xAI chat API
+1	Your `docker compose` version is incompatible. PentAGI requires Docker Compose 1.25.0 or newer.
+1	Your API key for authentication
+1	Your Docker version is incompatible. PentAGI requires Docker 20.0.0 or newer.
+1	Your user account lacks permission to access Docker. This is common on Linux systems.
+1	Zhipu AI's GLM models for Chinese and English tasks

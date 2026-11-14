@@ -1,0 +1,13 @@
+{
+    "pprof Address": "pprof 位址",
+    "Update %s": "更新 %s",
+    "Update %s to latest version": "將 %s 更新到最新版本",
+    "Update pentesting container image to latest version": "將滲透測試容器映像更新到最新版本",
+    "Update Worker Image": "更新 worker 映像",
+    "worker image": "worker 映像",
+    "LLM Provider %s": "LLM 供應商 %s",
+    "LLM Provider %s Configuration": "LLM 供應商 %s 設定",
+    "# EULA Content\\n\\n%s\\n\\n---\\n\\n*Note: Markdown rendering failed: %v*": "# 授權條款內容\\n\\n%s\\n\\n---\\n\\n*註：Markdown 渲染失敗：%v*",
+    "%s\\n\\n---\\n\\n*Note: Markdown rendering failed: %v*": "%s\\n\\n---\\n\\n*註：Markdown 渲染失敗：%v*",
+    "Which builds updates come from: preview (default, follows ": "更新來源通道：preview（預設，跟隨 "
+}
