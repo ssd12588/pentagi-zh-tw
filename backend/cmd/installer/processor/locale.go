@@ -3,7 +3,7 @@ package processor
 // Docker operations messages
 const (
 	MsgPullingImage                = "Pulling image: %s"
-	MsgImagePullCompleted          = "Completed pulling %s"
+	MsgImagePullCompleted          = "已完成拉取 %s"
 	MsgImagePullFailed             = "Failed to pull image %s: %v"
 	MsgRemovingWorkerContainers    = "Removing worker containers"
 	MsgStoppingContainer           = "Stopping container %s"
@@ -51,7 +51,7 @@ const (
 
 // Update operations messages
 const (
-	MsgCheckingUpdates            = "Checking for updates"
+	MsgCheckingUpdates            = "正在檢查更新"
 	MsgDownloadingInstaller       = "Downloading installer update"
 	MsgInstallerDownloadCompleted = "Installer download completed"
 	MsgUpdatingInstaller          = "Updating installer"
@@ -59,7 +59,7 @@ const (
 	MsgInstallerUpdateCompleted   = "Installer update completed"
 	// Past tense: the length, the sha256 and the Ed25519 signature are all checked as the
 	// stream arrives, so by the time this is printed the verdict is already in.
-	MsgVerifyingBinaryChecksum   = "Checksum and signature verified"
+	MsgVerifyingBinaryChecksum   = "檢查碼與簽章驗證通過"
 	MsgInstallerSavedTo          = "Installer saved to %s"
 	MsgInstallerDownloadProgress = "Downloaded %d%% (%s of %s)"
 	// The installer binary outlives the removal on purpose: a process cannot delete the
