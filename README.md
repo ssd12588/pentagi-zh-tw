@@ -39,23 +39,23 @@ git fetch upstream && git merge upstream/main   # 解衝突後重跑 tools/i18n 
 
 </div>
 
-## Table of Contents
+## 目錄
 
-- [Overview](#overview)
-- [Features](#features)
-- [Architecture](#architecture)
-  - [Agent Supervision](#advanced-agent-supervision)
-- [Quick Start](#quick-start)
-  - [Agent Docker Access](#giving-agents-docker-without-giving-away-the-host)
-  - [Running Several Instances](#running-several-instances-tenant_id)
-- [How to Use PentAGI After Login](#how-to-use-pentagi-after-login)
-- [API Access](#api-access)
-  - [LLM Provider Configuration](#custom-llm-provider-configuration)
+- [總覽](#overview)
+- [功能特色](#features)
+- [架構](#architecture)
+  - [代理監督](#advanced-agent-supervision)
+- [快速開始](#quick-start)
+  - [讓代理使用 Docker](#giving-agents-docker-without-giving-away-the-host)
+  - [同時執行多個實例](#running-several-instances-tenant_id)
+- [登入後如何使用 PentAGI](#how-to-use-pentagi-after-login)
+- [API 存取](#api-access)
+  - [LLM 供應商設定](#custom-llm-provider-configuration)
     - [Azure OpenAI](#using-azure-openai)
     - [Ollama](#ollama-provider-configuration)
     - [OpenAI](#openai-provider-configuration)
     - [Anthropic](#anthropic-provider-configuration)
-    - [Google AI (Gemini)](#google-ai-gemini-provider-configuration)
+    - [Google AI（Gemini）](#google-ai-gemini-provider-configuration)
     - [AWS Bedrock](#aws-bedrock-provider-configuration)
     - [DeepSeek](#deepseek-provider-configuration)
     - [GLM](#glm-provider-configuration)
@@ -63,62 +63,65 @@ git fetch upstream && git merge upstream/main   # 解衝突後重跑 tools/i18n 
     - [Qwen](#qwen-provider-configuration)
     - [MiniMax](#minimax-provider-configuration)
     - [Mistral](#mistral-provider-configuration)
-    - [xAI (Grok)](#xai-grok-provider-configuration)
-- [Advanced Setup](#advanced-setup)
-  - [Langfuse Integration](#langfuse-integration)
-  - [Monitoring and Observability](#monitoring-and-observability)
-  - [Knowledge Graph (Graphiti)](#knowledge-graph-integration-graphiti)
-  - [OAuth Integration](#github-and-google-oauth-integration)
-  - [Docker Image Configuration](#docker-image-configuration)
-- [Development](#development)
-- [Testing LLM Agents](#testing-llm-agents)
-- [Embedding Configuration and Testing](#embedding-configuration-and-testing)
-- [Function Testing with ftester](#function-testing-with-ftester)
-- [Building](#building)
-- [Credits](#credits)
-- [License](#license)
+    - [xAI（Grok）](#xai-grok-provider-configuration)
+- [進階設定](#advanced-setup)
+  - [Langfuse 整合](#langfuse-integration)
+  - [監控與可觀測性](#monitoring-and-observability)
+  - [知識圖譜（Graphiti）](#knowledge-graph-integration-graphiti)
+  - [OAuth 整合](#github-and-google-oauth-integration)
+  - [Docker 映像設定](#docker-image-configuration)
+- [開發](#development)
+- [測試 LLM 代理](#testing-llm-agents)
+- [嵌入模型設定與測試](#embedding-configuration-and-testing)
+- [使用 ftester 進行功能測試](#function-testing-with-ftester)
+- [建置](#building)
+- [致謝](#credits)
+- [授權](#license)
 
-## Overview
+<a id="overview"></a>
+## 總覽
 
-PentAGI is an open-source, self-hosted multi-agent system for autonomous penetration testing. You describe a target and a goal in plain language; a team of specialized AI agents plans the work, runs 20+ professional tools such as nmap, Metasploit and sqlmap inside an isolated Docker sandbox, remembers what it learned and hands you a report.
+PentAGI 是一套開源、可自架的多代理系統，專門執行自動化滲透測試。你用自然語言描述目標與目的，一組專業分工的 AI 代理就會規劃工作、在隔離的 Docker 沙箱中執行 nmap、Metasploit、sqlmap 等 20 多種專業工具、記住學到的內容，最後交給你一份報告。
 
-- **Who it is for.** Security engineers, penetration testers, researchers and red teams who want an autonomous assistant on their own infrastructure, for authorized testing only.
-- **What sets it apart.** It runs on your own servers with the model of your choice: 10+ cloud LLM providers, your own OpenAI-compatible gateway, or local models through Ollama or vLLM. Results and successful approaches are kept in PostgreSQL with pgvector for later flows, an optional Neo4j knowledge graph tracks hosts, services and findings, execution monitoring and task planning help smaller open models, and REST and GraphQL APIs automate it. PentAGI Enterprise adds agent profiles, plugins and MCP servers, customer-ready reports and a real-time attack-chain view.
-- **How to install.** An interactive installer for Linux, macOS and Windows sets PentAGI up with Docker Compose — see [Quick Start](#quick-start).
+- **適合誰用。** 安全工程師、滲透測試人員、研究人員與紅隊，想在自己的基礎設施上擁有一個自動化助手（僅限授權測試使用）。
+- **差異化在哪。** 它跑在你自己的伺服器上，模型可自選：10 家以上雲端 LLM 供應商、你自己的 OpenAI 相容閘道，或透過 Ollama／vLLM 執行的本機模型。結果與成功的作法會存進 PostgreSQL（pgvector），供後續流程重用；可選的 Neo4j 知識圖譜會追蹤主機、服務與發現；執行監控與任務規劃能幫助較小的開源模型；並提供 REST 與 GraphQL API 以便自動化。PentAGI Enterprise 另外提供代理設定檔、外掛與 MCP 伺服器、可直接交付客戶的報告，以及即時攻擊鏈檢視。
+- **怎麼安裝。** Linux、macOS、Windows 都有互動式安裝程式，會用 Docker Compose 幫你架好 —— 見[快速開始](#quick-start)。
 
-PentAGI is developed by [VXControl](https://vxcontrol.com), a security engineering company based in Dubai.
+PentAGI 由總部位於杜拜的安全工程公司 [VXControl](https://vxcontrol.com) 開發。
 
-You can watch the video **PentAGI overview**:
+你也可以先看這段 **PentAGI 總覽**影片：
 [![PentAGI Overview Video](https://github.com/user-attachments/assets/0828dc3e-15f1-4a1d-858e-9696a146e478)](https://youtu.be/R70x5Ddzs1o)
 
-## Features
+<a id="features"></a>
+## 功能特色
 
-- Secure & Isolated. All operations are performed in a sandboxed Docker environment with complete isolation.
-- Fully Autonomous. AI-powered agent that automatically determines and executes penetration testing steps with optional execution monitoring and intelligent task planning for enhanced reliability.
-- Professional Pentesting Tools. Built-in suite of 20+ professional security tools including nmap, metasploit, sqlmap, and more.
-- Smart Memory System. Long-term storage of research results and successful approaches for future use.
-- Optional Knowledge Graph Integration. Graphiti-powered knowledge graph using Neo4j for semantic relationship tracking and advanced context understanding.
-- Web Intelligence. Built-in browser via [scraper](https://hub.docker.com/r/vxcontrol/scraper) for gathering latest information from web sources.
-- External Search Systems. Integration with advanced search APIs including [Tavily](https://tavily.com), [Firecrawl](https://www.firecrawl.dev), [Traversaal](https://traversaal.ai), [Perplexity](https://www.perplexity.ai), [DuckDuckGo](https://duckduckgo.com/), [Google Custom Search](https://programmablesearchengine.google.com/), [Sploitus Search](https://sploitus.com) and [SearXNG](https://searxng.org) for comprehensive information gathering.
-- Team of Specialists. Delegation system with specialized AI agents for research, development, and infrastructure tasks, enhanced with optional execution monitoring and intelligent task planning for optimal performance with smaller models.
-- Comprehensive Monitoring. Detailed logging and integration with Grafana/Prometheus for real-time system observation.
-- Detailed Reporting. Generation of thorough vulnerability reports with exploitation guides.
-- Smart Container Management. Automatic Docker image selection based on specific task requirements.
-- Modern Interface. Clean and intuitive web UI for system management and monitoring.
-- Comprehensive APIs. Full-featured REST and GraphQL APIs with Bearer token authentication for automation and integration.
-- Persistent Storage. All commands and outputs are stored in PostgreSQL with [pgvector](https://hub.docker.com/r/vxcontrol/pgvector) extension.
-- Scalable Architecture. Microservices-based design supporting horizontal scaling.
-- Self-Hosted Solution. Complete control over your deployment and data.
-- Flexible Authentication. Support for 10+ LLM providers ([OpenAI](https://platform.openai.com/), [Anthropic](https://www.anthropic.com/), [Google AI/Gemini](https://ai.google.dev/), [AWS Bedrock](https://aws.amazon.com/bedrock/), [Ollama](https://ollama.com/), [DeepSeek](https://www.deepseek.com/en/), [GLM](https://z.ai/), [Kimi](https://platform.moonshot.ai/), [Qwen](https://www.alibabacloud.com/en/), [MiniMax](https://www.minimax.io/), [Mistral](https://mistral.ai/), [xAI](https://x.ai/), Custom for any OpenAI-compatible endpoint including [Azure OpenAI](#using-azure-openai)) plus aggregators ([OpenRouter](https://openrouter.ai/), [DeepInfra](https://deepinfra.com/), [Atlas Cloud](https://www.atlascloud.ai/), [OpenCode Go plan](https://opencode.ai/en/go)). For production local deployments, see our [vLLM + Qwen3.5-27B-FP8 guide](examples/guides/vllm-qwen35-27b-fp8.md).
-- API Token Authentication. Secure Bearer token system for programmatic access to REST and GraphQL APIs.
-- Quick Deployment. Easy setup through [Docker Compose](https://docs.docker.com/compose/) with comprehensive environment configuration.
+- **安全且隔離。** 所有操作都在完全隔離的 Docker 沙箱環境中執行。
+- **全自主。** AI 代理會自動判斷並執行滲透測試步驟，可搭配執行監控與智慧任務規劃來提升可靠性。
+- **專業滲透測試工具。** 內建 20 多種專業安全工具，包含 nmap、metasploit、sqlmap 等。
+- **智慧記憶系統。** 長期保存研究結果與成功作法，供日後重用。
+- **可選的知識圖譜整合。** 以 Graphiti 搭配 Neo4j 建立知識圖譜，追蹤語意關聯並提供更進階的上下文理解。
+- **網頁情報。** 內建以 [scraper](https://hub.docker.com/r/vxcontrol/scraper) 為基礎的瀏覽器，可從網路來源蒐集最新資訊。
+- **外部搜尋系統。** 可整合 [Tavily](https://tavily.com)、[Firecrawl](https://www.firecrawl.dev)、[Traversaal](https://traversaal.ai)、[Perplexity](https://www.perplexity.ai)、[DuckDuckGo](https://duckduckgo.com/)、[Google Custom Search](https://programmablesearchengine.google.com/)、[Sploitus Search](https://sploitus.com) 與 [SearXNG](https://searxng.org) 等搜尋 API，進行全面情蒐。
+- **專家團隊。** 具備分工委派機制，由專門的 AI 代理負責研究、開發與基礎設施任務，並可搭配執行監控與智慧任務規劃，讓較小的模型也有好表現。
+- **完整監控。** 詳盡的日誌記錄，並可整合 Grafana／Prometheus 進行即時系統觀察。
+- **詳細報告。** 產出完整的漏洞報告，附上利用指引。
+- **智慧容器管理。** 依任務需求自動選擇合適的 Docker 映像。
+- **現代化介面。** 乾淨直覺的 Web 介面，方便管理與監控系統。
+- **完整 API。** 功能齊全的 REST 與 GraphQL API，支援 Bearer Token 驗證，便於自動化與整合。
+- **持久化儲存。** 所有指令與輸出都存進 PostgreSQL（含 [pgvector](https://hub.docker.com/r/vxcontrol/pgvector) 擴充）。
+- **可擴充架構。** 微服務設計，支援水平擴充。
+- **自架方案。** 部署方式與資料完全由你掌控。
+- **彈性的模型選擇。** 支援 10 家以上 LLM 供應商（[OpenAI](https://platform.openai.com/)、[Anthropic](https://www.anthropic.com/)、[Google AI/Gemini](https://ai.google.dev/)、[AWS Bedrock](https://aws.amazon.com/bedrock/)、[Ollama](https://ollama.com/)、[DeepSeek](https://www.deepseek.com/en/)、[GLM](https://z.ai/)、[Kimi](https://platform.moonshot.ai/)、[Qwen](https://www.alibabacloud.com/en/)、[MiniMax](https://www.minimax.io/)、[Mistral](https://mistral.ai/)、[xAI](https://x.ai/)，以及可接任何 OpenAI 相容端點的自訂選項（含 [Azure OpenAI](#using-azure-openai)）），也支援聚合服務（[OpenRouter](https://openrouter.ai/)、[DeepInfra](https://deepinfra.com/)、[Atlas Cloud](https://www.atlascloud.ai/)、[OpenCode Go 方案](https://opencode.ai/en/go)）。生產環境的本機部署請參考我們的 [vLLM + Qwen3.5-27B-FP8 指南](examples/guides/vllm-qwen35-27b-fp8.md)。
+- **API Token 驗證。** 安全的 Bearer Token 機制，供程式化存取 REST 與 GraphQL API。
+- **快速部署。** 透過 [Docker Compose](https://docs.docker.com/compose/) 與完整的環境變數設定即可輕鬆完成。
 
-### Current Capability Boundaries
+<a id="current-capability-boundaries"></a>
+### 目前的能力邊界
 
-- PentAGI today is an autonomous and assistant-guided penetration testing platform, not a CALDERA-style Breach and Attack Simulation (BAS) or adversary emulation product with predefined campaigns or attack plans.
-- BAS-like agent-authored attack scripts should be treated as conceptual or future work, not as a feature that is implemented today.
-- The current flow report UI supports web view, copy to clipboard, Markdown download, and PDF download. JSON flow-report export is not documented as a supported output format today.
-- Provider flexibility is available today through built-in providers and custom/OpenAI-compatible endpoints. See [Custom LLM Provider Configuration](#custom-llm-provider-configuration) and the [vLLM + Qwen3.5-27B-FP8 guide](examples/guides/vllm-qwen35-27b-fp8.md).
+- PentAGI 目前是一套自主執行、並可由助理引導的滲透測試平台，**不是** CALDERA 那類具備預先定義戰役或攻擊計畫的入侵與攻擊模擬（BAS）或對手模擬產品。
+- 類似 BAS 的「由代理自行撰寫攻擊腳本」屬於概念或未來工作，不是目前已實作的功能。
+- 目前的流程報告介面支援網頁檢視、複製到剪貼簿、下載 Markdown 與下載 PDF；JSON 格式的流程報告匯出目前並未列為支援的輸出格式。
+- 供應商彈性目前可透過內建供應商與自訂／OpenAI 相容端點達成。請見[自訂 LLM 供應商設定](#custom-llm-provider-configuration)與 [vLLM + Qwen3.5-27B-FP8 指南](examples/guides/vllm-qwen35-27b-fp8.md)。
 
 ## Architecture
 
@@ -604,30 +607,33 @@ The architecture of PentAGI is designed to be modular, scalable, and secure. Her
 
 The system uses Docker containers for isolation and easy deployment, with separate networks for core services, monitoring, and analytics to ensure proper security boundaries. Each component is designed to scale horizontally and can be configured for high availability in production environments.
 
-## Quick Start
+<a id="quick-start"></a>
+## 快速開始
 
-For a step-by-step walkthrough that connects installation, configuration, LLM and embedding provider testing, and your first login, see the [Installing and Configuring PentAGI](examples/guides/installation_configuration.md) guide. The sections below remain the detailed reference for each step.
+若想要一份從安裝、設定、LLM 與嵌入模型測試一路到第一次登入的逐步教學，請見 [PentAGI 安裝與設定](examples/guides/installation_configuration.md) 指南；下面的段落則是每一步的詳細參考。
 
-### System Requirements
+<a id="system-requirements"></a>
+### 系統需求
 
-- Docker and Docker Compose (or Podman - see [Podman configuration](#running-pentagi-with-podman))
-- Minimum 2 vCPU
-- Minimum 4GB RAM
-- 20GB free disk space
-- Internet access for downloading images and updates
+- Docker 與 Docker Compose（或 Podman —— 見 [Podman 設定](#running-pentagi-with-podman)）
+- 最少 2 vCPU
+- 最少 4 GB 記憶體
+- 20 GB 可用磁碟空間
+- 可連網以下載映像與更新
 
-### Using Installer (Recommended)
+<a id="using-installer-recommended"></a>
+### 使用安裝程式（推薦）
 
-PentAGI provides an interactive installer with a terminal-based UI for streamlined configuration and deployment. The installer guides you through system checks, LLM provider setup, search engine configuration, and security hardening.
+PentAGI 提供具備終端機介面的互動式安裝程式，讓設定與部署更順暢。安裝程式會引導你完成系統檢查、LLM 供應商設定、搜尋引擎設定與安全強化。
 
-**Supported Platforms:**
-- **Linux**: amd64 [download](https://pentagi.com/downloads/linux/amd64/installer-latest.zip) | arm64 [download](https://pentagi.com/downloads/linux/arm64/installer-latest.zip)
-- **Windows**: amd64 [download](https://pentagi.com/downloads/windows/amd64/installer-latest.zip)
-- **macOS**: amd64 (Intel) [download](https://pentagi.com/downloads/darwin/amd64/installer-latest.zip) | arm64 (M-series) [download](https://pentagi.com/downloads/darwin/arm64/installer-latest.zip)
+**支援平台：**
+- **Linux**：amd64 [下載](https://pentagi.com/downloads/linux/amd64/installer-latest.zip) ｜ arm64 [下載](https://pentagi.com/downloads/linux/arm64/installer-latest.zip)
+- **Windows**：amd64 [下載](https://pentagi.com/downloads/windows/amd64/installer-latest.zip)
+- **macOS**：amd64（Intel）[下載](https://pentagi.com/downloads/darwin/amd64/installer-latest.zip) ｜ arm64（M 系列）[下載](https://pentagi.com/downloads/darwin/arm64/installer-latest.zip)
 
-> **macOS security warning:** If macOS flags a downloaded installer, use only the official PentAGI links above, choose the archive that matches your CPU architecture, verify the source before continuing, and follow the [installer troubleshooting guide](backend/docs/installer/installer-troubleshooting.md#macos-reports-the-installer-as-malware) before allowing the app to run.
+> **macOS 安全性警告：** 若 macOS 標記下載的安裝程式有風險，請只使用上方 PentAGI 官方連結、選擇符合你 CPU 架構的壓縮檔、繼續前先確認來源，並依[安裝程式疑難排解指南](backend/docs/installer/installer-troubleshooting.md#macos-reports-the-installer-as-malware)處理後再允許執行。
 
-**Quick Installation (Linux amd64):**
+**快速安裝（Linux amd64）：**
 
 ```bash
 # Create installation directory
@@ -643,57 +649,59 @@ unzip installer.zip
 ./installer
 ```
 
-**Prerequisites & Permissions:**
+**前置條件與權限：**
 
-The installer requires appropriate privileges to interact with the Docker API for proper operation. By default, it uses the Docker socket (`/var/run/docker.sock`) which requires either:
+安裝程式需要適當權限才能與 Docker API 互動。預設使用 Docker socket（`/var/run/docker.sock`），因此需要以下其中一種方式：
 
-- **Option 1 (Recommended for production):** Run the installer as root:
+- **方式 1（生產環境推薦）：** 以 root 執行安裝程式：
   ```bash
   sudo ./installer
   ```
 
-- **Option 2 (Development environments):** Grant your user access to the Docker socket by adding them to the `docker` group:
+- **方式 2（開發環境）：** 把你的使用者加入 `docker` 群組，以取得 Docker socket 存取權：
   ```bash
   # Add your user to the docker group
   sudo usermod -aG docker $USER
-  
+
   # Log out and log back in, or activate the group immediately
   newgrp docker
-  
+
   # Verify Docker access (should run without sudo)
   docker ps
   ```
 
-  ⚠️ **Security Note:** Adding a user to the `docker` group grants root-equivalent privileges. Only do this for trusted users in controlled environments. For production deployments, consider using rootless Docker mode or running the installer with sudo.
+  ⚠️ **安全性提醒：** 把使用者加入 `docker` 群組等同賦予 root 等級權限。僅在受控環境中對可信任的使用者這麼做。生產部署建議改用 rootless Docker，或以 sudo 執行安裝程式。
 
-The installer will:
-1. **System Checks**: Verify Docker, network connectivity, and system requirements
-2. **Environment Setup**: Create and configure `.env` file with optimal defaults
-3. **Provider Configuration**: Set up LLM providers (OpenAI, Anthropic, Gemini, Bedrock, Ollama, DeepSeek, GLM, Kimi, Qwen, MiniMax, Mistral, xAI, Custom)
-4. **Search Engines**: Configure DuckDuckGo, Google, Tavily, Firecrawl, Traversaal, Perplexity, Sploitus, SearXNG, and the optional internal browser-analytics fallback engine
-5. **Security Hardening**: Generate secure credentials and configure SSL certificates
-6. **Deployment**: Start PentAGI with docker-compose
+安裝程式會依序進行：
+1. **系統檢查**：驗證 Docker、網路連線與系統需求
+2. **環境設定**：建立並設定 `.env`，填入最佳預設值
+3. **供應商設定**：設定 LLM 供應商（OpenAI、Anthropic、Gemini、Bedrock、Ollama、DeepSeek、GLM、Kimi、Qwen、MiniMax、Mistral、xAI、自訂）
+4. **搜尋引擎**：設定 DuckDuckGo、Google、Tavily、Firecrawl、Traversaal、Perplexity、Sploitus、SearXNG，以及可選的內部瀏覽器分析備援引擎
+5. **安全強化**：產生安全憑證並設定 SSL 憑證
+6. **部署**：以 docker-compose 啟動 PentAGI
 
-### Current Web Settings Coverage
+<a id="current-web-settings-coverage"></a>
+### 目前 Web 介面可設定的範圍
 
-The PentAGI web console already manages several settings areas after the server is up and running:
+伺服器啟動後，PentAGI 主控台已經可以管理以下設定：
 
-- **Settings -> Providers**: Create, edit, delete, and test user-defined provider profiles for supported provider types. These profiles control per-agent model selection, runtime parameters, reasoning options, and pricing metadata.
-- **Settings -> Prompts**: Manage system, human, and tool prompt templates.
-- **Settings -> PentAGI API**: Create and manage PentAGI Bearer tokens for REST and GraphQL access.
-- **Other UI-managed preferences**: Favorite flows are stored as user preferences, and theme selection is handled from the main sidebar/profile controls rather than the Settings pages.
+- **設定 → 供應商**：針對支援的供應商類型，建立、編輯、刪除與測試使用者自訂的供應商設定檔。這些設定檔控制各代理的模型選擇、執行參數、推理選項與計價資訊。
+- **設定 → 提示詞**：管理系統、使用者與工具提示詞範本。
+- **設定 → PentAGI API**：建立與管理 PentAGI Bearer Token，供 REST 與 GraphQL 存取使用。
+- **其他介面偏好設定**：最愛流程會存成使用者偏好；主題切換位於主側邊欄／個人設定控制項，而不是在設定頁面。
 
-### Still Server-Managed
+<a id="still-server-managed"></a>
+### 仍需在伺服器端設定
 
-The following configuration areas still need to be set on the server through environment variables, compose files, or mounted config files:
+以下設定仍需透過環境變數、compose 檔或掛載的設定檔在伺服器端完成：
 
-- **LLM credentials and connection details**: API keys, endpoints, auth modes, and provider-specific connection settings for OpenAI, Anthropic, Bedrock, Ollama, custom providers, and similar backends; config-path settings apply only where supported, such as `OLLAMA_SERVER_CONFIG_PATH`, `LLM_SERVER_CONFIG_PATH`, and `BEDROCK_CONFIG_PATH`.
-- **Search provider credentials and options**: Settings such as `DUCKDUCKGO_*`, `GOOGLE_*`, `TAVILY_API_KEY`, `FIRECRAWL_API_*`, `TRAVERSAAL_API_KEY`, `PERPLEXITY_*`, `SEARXNG_*`, `SPLOITUS_ENABLED`, and the optional `WEB_SEARCH_INTERNAL_*` browser-analytics fallback settings.
-- **Third-party integrations**: Langfuse, Graphiti, and similar external services remain server-side configuration.
+- **LLM 憑證與連線資訊**：OpenAI、Anthropic、Bedrock、Ollama、自訂供應商等後端的 API Key、端點、驗證模式與連線設定；設定檔路徑類設定僅在支援處生效，例如 `OLLAMA_SERVER_CONFIG_PATH`、`LLM_SERVER_CONFIG_PATH`、`BEDROCK_CONFIG_PATH`。
+- **搜尋供應商憑證與選項**：例如 `DUCKDUCKGO_*`、`GOOGLE_*`、`TAVILY_API_KEY`、`FIRECRAWL_API_*`、`TRAVERSAAL_API_KEY`、`PERPLEXITY_*`、`SEARXNG_*`、`SPLOITUS_ENABLED`，以及可選的 `WEB_SEARCH_INTERNAL_*` 瀏覽器分析備援設定。
+- **第三方整合**：Langfuse、Graphiti 等外部服務仍屬伺服器端設定。
 
-**For Production & Enhanced Security:**
+**生產環境與更高安全性：**
 
-For production deployments or security-sensitive environments, we **strongly recommend** using a distributed two-node architecture where worker operations are isolated on a separate server. This prevents untrusted code execution and network access issues on your main system.
+若用於生產環境或安全敏感場域，我們**強烈建議**採用雙節點分散式架構，把 worker 的操作隔離在另一台伺服器上，避免在主機上執行不受信任的程式碼，也避免網路存取上的問題。
 
 **See detailed guide**: [Worker Node Setup](examples/guides/worker_node.md)
 
