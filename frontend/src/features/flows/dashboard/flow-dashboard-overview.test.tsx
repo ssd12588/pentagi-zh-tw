@@ -46,7 +46,7 @@ describe('FlowDashboardOverview', () => {
 
         render(<FlowDashboardOverview flowId="5" />);
 
-        expect(screen.queryByText("Couldn't load")).not.toBeInTheDocument();
+        expect(screen.queryByText("無法載入")).not.toBeInTheDocument();
         expect(screen.getByText('42')).toBeInTheDocument();
     });
 });

@@ -127,7 +127,7 @@ function FlowVectorStore({ log, searchValue = '' }: FlowVectorStoreProps) {
                             className="cursor-pointer"
                             onClick={() => setIsDetailsVisible(!isDetailsVisible)}
                         >
-                            {isDetailsVisible ? 'Hide details' : 'Show details'}
+                            {isDetailsVisible ? '隱藏詳細資料' : '顯示詳細資料'}
                         </div>
                         {isDetailsVisible && (
                             <>
@@ -162,19 +162,19 @@ function FlowVectorStore({ log, searchValue = '' }: FlowVectorStoreProps) {
                             onClick={handleCopy}
                         />
                     </TooltipTrigger>
-                    <TooltipContent>Copy</TooltipContent>
+                    <TooltipContent>複製</TooltipContent>
                 </Tooltip>
                 <span className="text-muted-foreground/50">{formatDate(new Date(createdAt))}</span>
                 {taskId && (
                     <>
                         <span className="text-muted-foreground/50">|</span>
-                        <span className="text-muted-foreground/50">Task ID: {taskId}</span>
+                        <span className="text-muted-foreground/50">任務 ID： {taskId}</span>
                     </>
                 )}
                 {subtaskId && (
                     <>
                         <span className="text-muted-foreground/50">|</span>
-                        <span className="text-muted-foreground/50">Subtask ID: {subtaskId}</span>
+                        <span className="text-muted-foreground/50">子任務 ID： {subtaskId}</span>
                     </>
                 )}
             </div>

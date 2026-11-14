@@ -112,14 +112,14 @@ export function InlineEditInput({
                 className="gap-0 pr-2"
             >
                 <InputGroupButton
-                    aria-label="Save"
+                    aria-label="儲存"
                     disabled={busy || isBlank}
                     onClick={onSave}
                 >
                     {busy ? <Spinner variant="circle" /> : <Check />}
                 </InputGroupButton>
                 <InputGroupButton
-                    aria-label="Cancel"
+                    aria-label="取消"
                     disabled={busy}
                     onClick={onCancel}
                 >

@@ -62,7 +62,7 @@ function FlowScreenshot({ screenshot }: FlowScreenshotProps) {
                                     <span className="truncate font-semibold">{screenshot.url}</span>
                                 </Link>
                             </TooltipTrigger>
-                            <TooltipContent>Source URL</TooltipContent>
+                            <TooltipContent>來源 URL</TooltipContent>
                         </Tooltip>
                     </div>
 

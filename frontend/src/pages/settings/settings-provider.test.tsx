@@ -165,7 +165,7 @@ describe('SettingsProvider create-form type guards', () => {
         queryResult.error = new Error('e2e induced refetch failure');
         render(<SettingsProvider />);
 
-        expect(screen.queryByText('Error loading provider data')).not.toBeInTheDocument();
+        expect(screen.queryByText('載入供應商資料失敗')).not.toBeInTheDocument();
         expect(navigate).not.toHaveBeenCalled();
     });
 
@@ -176,17 +176,17 @@ describe('SettingsProvider create-form type guards', () => {
         queryResult.loading = true;
         render(<SettingsProvider />);
 
-        expect(screen.queryByText('Loading provider data...')).not.toBeInTheDocument();
+        expect(screen.queryByText('載入供應商資料…')).not.toBeInTheDocument();
         expect(navigate).not.toHaveBeenCalled();
     });
 
     const expandAgent = () => {
-        if (!screen.queryByLabelText('Temperature')) {
+        if (!screen.queryByLabelText('溫度')) {
             fireEvent.click(screen.getByRole('button', { name: /Simple/ }));
         }
     };
 
-    const temperatureInput = () => screen.getByLabelText('Temperature') as HTMLInputElement;
+    const temperatureInput = () => screen.getByLabelText('溫度') as HTMLInputElement;
 
     it('preserves an in-flight agent edit on the create form across a background refetch', () => {
         setSearch('type=openai');
@@ -225,7 +225,7 @@ describe('SettingsProvider create-form type guards', () => {
         state.providerId = 'edit-1';
         const { rerender } = render(<SettingsProvider />);
 
-        const nameInput = screen.getByPlaceholderText('Enter provider name') as HTMLInputElement;
+        const nameInput = screen.getByPlaceholderText('輸入供應商名稱') as HTMLInputElement;
 
         expect(nameInput.value).toBe('Persisted Name');
 
@@ -234,24 +234,24 @@ describe('SettingsProvider create-form type guards', () => {
         queryResult.data = { settingsProviders };
         rerender(<SettingsProvider />);
 
-        expect((screen.getByPlaceholderText('Enter provider name') as HTMLInputElement).value).toBe('My Unsaved Edit');
+        expect((screen.getByPlaceholderText('輸入供應商名稱') as HTMLInputElement).value).toBe('My Unsaved Edit');
     });
 });
 
 describe('SettingsProvider save feedback', () => {
     const toggleAgent = () => fireEvent.click(screen.getByRole('button', { name: /Simple/ }));
 
-    const saveButton = () => screen.getByRole('button', { name: 'Create' });
+    const saveButton = () => screen.getByRole('button', { name: '建立' });
 
     const renderCreateForm = () => {
         setSearch('type=openai');
         render(<SettingsProvider />);
-        fireEvent.change(screen.getByPlaceholderText('Enter provider name'), { target: { value: 'My Provider' } });
+        fireEvent.change(screen.getByPlaceholderText('輸入供應商名稱'), { target: { value: 'My Provider' } });
     };
 
     const typeInvalidExtraBody = () => {
         toggleAgent();
-        fireEvent.change(screen.getByLabelText('Extra Body (JSON)'), { target: { value: '{ nope' } });
+        fireEvent.change(screen.getByLabelText('額外 Body（JSON）'), { target: { value: '{ nope' } });
         toggleAgent();
     };
 
@@ -259,12 +259,12 @@ describe('SettingsProvider save feedback', () => {
         renderCreateForm();
         typeInvalidExtraBody();
 
-        expect(screen.queryByLabelText('Extra Body (JSON)')).not.toBeInTheDocument();
+        expect(screen.queryByLabelText('額外 Body（JSON）')).not.toBeInTheDocument();
 
         fireEvent.click(saveButton());
 
         await waitFor(() => expect(toast.error).toHaveBeenCalledTimes(1));
-        expect(toast.error).toHaveBeenCalledWith(expect.stringContaining('Must be a valid JSON object'));
+        expect(toast.error).toHaveBeenCalledWith(expect.stringContaining('必須是有效的 JSON 物件'));
         expect(mutate).not.toHaveBeenCalled();
     });
 
@@ -296,7 +296,7 @@ describe('SettingsProvider test feedback', () => {
     };
 
     const testControls = () => {
-        const controls = screen.getAllByRole('button', { name: 'Test' });
+        const controls = screen.getAllByRole('button', { name: '測試' });
 
         expect(controls).toHaveLength(2);
 
@@ -354,7 +354,7 @@ describe('SettingsProvider test feedback', () => {
         const fromTest = vi.mocked(toast.error).mock.calls[0]?.[0];
 
         vi.mocked(toast.error).mockClear();
-        fireEvent.click(screen.getByRole('button', { name: 'Create' }));
+        fireEvent.click(screen.getByRole('button', { name: '建立' }));
         await waitFor(() => expect(toast.error).toHaveBeenCalledTimes(1));
 
         expect(vi.mocked(toast.error).mock.calls[0]?.[0]).toBe(fromTest);
@@ -362,7 +362,7 @@ describe('SettingsProvider test feedback', () => {
 
     it("sends the form's Simple agent with an agent's own Test", async () => {
         renderCreateForm();
-        fireEvent.change(screen.getByPlaceholderText('Enter provider name'), { target: { value: 'My Provider' } });
+        fireEvent.change(screen.getByPlaceholderText('輸入供應商名稱'), { target: { value: 'My Provider' } });
 
         const [, agentTest] = testControls();
 
@@ -381,8 +381,8 @@ describe('SettingsProvider name validation', () => {
     const submitWithName = (name: string) => {
         setSearch('type=openai');
         render(<SettingsProvider />);
-        fireEvent.change(screen.getByPlaceholderText('Enter provider name'), { target: { value: name } });
-        fireEvent.click(screen.getByRole('button', { name: 'Create' }));
+        fireEvent.change(screen.getByPlaceholderText('輸入供應商名稱'), { target: { value: name } });
+        fireEvent.click(screen.getByRole('button', { name: '建立' }));
     };
 
     const expectRefused = async (message: string) => {
@@ -499,11 +499,11 @@ describe('SettingsProvider model catalogue', () => {
     };
 
     const openModelList = () => {
-        if (!screen.queryByLabelText('Temperature')) {
+        if (!screen.queryByLabelText('溫度')) {
             fireEvent.click(screen.getByRole('button', { name: /Simple/ }));
         }
 
-        fireEvent.click(screen.getByRole('button', { name: /open model list/i }));
+        fireEvent.click(screen.getByRole('button', { name: /開啟模型清單/ }));
     };
 
     beforeEach(() => {
@@ -537,22 +537,22 @@ describe('SettingsProvider model catalogue', () => {
     const searchModels = (value: string) => {
         render(<SettingsProvider />);
         openModelList();
-        fireEvent.change(screen.getByPlaceholderText('Search model...'), { target: { value } });
+        fireEvent.change(screen.getByPlaceholderText('搜尋模型…'), { target: { value } });
     };
 
     it('offers no custom model for a search made of whitespace', async () => {
         searchModels('   ');
 
         await waitFor(() => expect(screen.getByText(/no model found/i)).toBeInTheDocument());
-        expect(screen.queryByRole('button', { name: /as custom model/i })).not.toBeInTheDocument();
+        expect(screen.queryByRole('button', { name: /as 自訂 模型/i })).not.toBeInTheDocument();
     });
 
     it('carries a padded custom model to the payload trimmed', async () => {
         searchModels('  openai/gpt-new  ');
 
-        fireEvent.click(await screen.findByRole('button', { name: /as custom model/i }));
-        fireEvent.change(screen.getByPlaceholderText('Enter provider name'), { target: { value: 'My Provider' } });
-        fireEvent.click(screen.getByRole('button', { name: 'Create' }));
+        fireEvent.click(await screen.findByRole('button', { name: /as 自訂 模型/i }));
+        fireEvent.change(screen.getByPlaceholderText('輸入供應商名稱'), { target: { value: 'My Provider' } });
+        fireEvent.click(screen.getByRole('button', { name: '建立' }));
 
         await waitFor(() => expect(mutate).toHaveBeenCalledTimes(1));
 
@@ -574,8 +574,8 @@ describe('SettingsProvider reasoning effort levels', () => {
         render(<SettingsProvider />);
         openSimpleAgent();
 
-        expect(screen.getByText('Reasoning Configuration')).toBeInTheDocument();
-        expect(screen.queryByText('Reasoning Effort')).toBeNull();
+        expect(screen.getByText('推理設定')).toBeInTheDocument();
+        expect(screen.queryByText('推理強度')).toBeNull();
     });
 
     it('offers the control when the catalogue declares levels', () => {
@@ -583,7 +583,7 @@ describe('SettingsProvider reasoning effort levels', () => {
         render(<SettingsProvider />);
         openSimpleAgent();
 
-        expect(screen.getByText('Reasoning Effort')).toBeInTheDocument();
+        expect(screen.getByText('推理強度')).toBeInTheDocument();
     });
 });
 
@@ -608,11 +608,11 @@ describe('SettingsProvider minimal effort', () => {
         setSearch(`?type=${ProviderType.Openai}`);
         queryResult.data = { settingsProviders: catalogue };
         render(<SettingsProvider />);
-        fireEvent.change(screen.getByPlaceholderText('Enter provider name'), { target: { value: 'My Provider' } });
+        fireEvent.change(screen.getByPlaceholderText('輸入供應商名稱'), { target: { value: 'My Provider' } });
     });
 
     it('carries the level the vendor documents through to the payload', async () => {
-        fireEvent.click(screen.getByRole('button', { name: 'Create' }));
+        fireEvent.click(screen.getByRole('button', { name: '建立' }));
 
         await waitFor(() => expect(mutate).toHaveBeenCalledTimes(1));
 
@@ -624,7 +624,7 @@ describe('SettingsProvider minimal effort', () => {
 
 describe('SettingsProvider reasoning mode against extra body', () => {
     const typeExtraBody = (value: string) =>
-        fireEvent.change(screen.getByLabelText('Extra Body (JSON)'), { target: { value } });
+        fireEvent.change(screen.getByLabelText('額外 Body（JSON）'), { target: { value } });
 
     beforeEach(() => {
         setSearch(`?type=${ProviderType.Openai}`);
@@ -686,7 +686,7 @@ describe('SettingsProvider effort across a model change', () => {
 
     const pickModel = async (name: string) => {
         fireEvent.click(screen.getByRole('button', { name: /Simple/ }));
-        fireEvent.click(screen.getByRole('button', { name: /open model list/i }));
+        fireEvent.click(screen.getByRole('button', { name: /開啟模型清單/ }));
 
         await waitFor(() => expect(screen.getAllByRole('option').length).toBeGreaterThan(0));
 
@@ -694,7 +694,7 @@ describe('SettingsProvider effort across a model change', () => {
     };
 
     const savedEffort = async () => {
-        fireEvent.click(screen.getByRole('button', { name: 'Create' }));
+        fireEvent.click(screen.getByRole('button', { name: '建立' }));
 
         await waitFor(() => expect(mutate).toHaveBeenCalledTimes(1));
 
@@ -707,7 +707,7 @@ describe('SettingsProvider effort across a model change', () => {
         setSearch('type=openai');
         queryResult.data = { settingsProviders: catalogue };
         render(<SettingsProvider />);
-        fireEvent.change(screen.getByPlaceholderText('Enter provider name'), { target: { value: 'My Provider' } });
+        fireEvent.change(screen.getByPlaceholderText('輸入供應商名稱'), { target: { value: 'My Provider' } });
     });
 
     it('keeps the level when the new model declares it', async () => {
@@ -747,7 +747,7 @@ describe('SettingsProvider output ceiling across a model change', () => {
 
     const pickModel = async (name: string) => {
         fireEvent.click(screen.getByRole('button', { name: /Simple/ }));
-        fireEvent.click(screen.getByRole('button', { name: /open model list/i }));
+        fireEvent.click(screen.getByRole('button', { name: /開啟模型清單/ }));
 
         await waitFor(() => expect(screen.getAllByRole('option').length).toBeGreaterThan(0));
 
@@ -755,7 +755,7 @@ describe('SettingsProvider output ceiling across a model change', () => {
     };
 
     const savedMaxTokens = async () => {
-        fireEvent.click(screen.getByRole('button', { name: 'Create' }));
+        fireEvent.click(screen.getByRole('button', { name: '建立' }));
 
         await waitFor(() => expect(mutate).toHaveBeenCalledTimes(1));
 
@@ -768,7 +768,7 @@ describe('SettingsProvider output ceiling across a model change', () => {
         setSearch('type=openai');
         queryResult.data = { settingsProviders: catalogue };
         render(<SettingsProvider />);
-        fireEvent.change(screen.getByPlaceholderText('Enter provider name'), { target: { value: 'My Provider' } });
+        fireEvent.change(screen.getByPlaceholderText('輸入供應商名稱'), { target: { value: 'My Provider' } });
     });
 
     it('lowers a value the new model cannot accept', async () => {
@@ -814,12 +814,12 @@ describe('SettingsProvider reasoning on the ollama catalogue', () => {
         setSearch(`?type=${ProviderType.Ollama}`);
         queryResult.data = { settingsProviders: ollamaCatalogue(model, mode) };
         render(<SettingsProvider />);
-        fireEvent.change(screen.getByPlaceholderText('Enter provider name'), { target: { value: 'My Ollama' } });
+        fireEvent.change(screen.getByPlaceholderText('輸入供應商名稱'), { target: { value: 'My Ollama' } });
         fireEvent.click(screen.getByRole('button', { name: /Simple/ }));
     };
 
     const savedMode = async () => {
-        fireEvent.click(screen.getByRole('button', { name: 'Create' }));
+        fireEvent.click(screen.getByRole('button', { name: '建立' }));
 
         await waitFor(() => expect(mutate).toHaveBeenCalledTimes(1));
 
@@ -831,16 +831,16 @@ describe('SettingsProvider reasoning on the ollama catalogue', () => {
     it('offers a reasoning mode for a model whose door can switch thinking off', () => {
         renderWith('deepseek-r1:8b');
 
-        expect(screen.getByText('Reasoning Mode')).toBeInTheDocument();
+        expect(screen.getByText('推理模式')).toBeInTheDocument();
     });
 
     it('offers no Off for a model that always thinks', async () => {
         renderWith('gpt-oss:120b');
-        fireEvent.keyDown(screen.getByRole('combobox', { name: 'Reasoning Mode' }), { key: 'Enter' });
+        fireEvent.keyDown(screen.getByRole('combobox', { name: '推理模式' }), { key: 'Enter' });
 
         const options = (await screen.findAllByRole('option')).map((option) => option.textContent);
 
-        expect(options).not.toContain('Off (no thinking)');
+        expect(options).not.toContain('關閉（不進行思考）');
     });
 
     it('keeps a saved Off the model can honour', async () => {
@@ -858,14 +858,14 @@ describe('SettingsProvider reasoning on the ollama catalogue', () => {
     });
 
     it.each([
-        ['Create', () => screen.getByRole('button', { name: 'Create' })],
-        ['Test', () => screen.getAllByRole('button', { name: 'Test' })[0]],
-        ['the agent Test', () => screen.getAllByRole('button', { name: 'Test' })[1]],
+        ['建立', () => screen.getByRole('button', { name: '建立' })],
+        ['測試', () => screen.getAllByRole('button', { name: '測試' })[0]],
+        ['the agent Test', () => screen.getAllByRole('button', { name: '測試' })[1]],
     ])('%s sends no Off the model cannot honour for an agent left collapsed', async (_, button) => {
         setSearch(`?type=${ProviderType.Ollama}`);
         queryResult.data = { settingsProviders: ollamaCatalogue('gpt-oss:120b', 'off') };
         render(<SettingsProvider />);
-        fireEvent.change(screen.getByPlaceholderText('Enter provider name'), { target: { value: 'My Ollama' } });
+        fireEvent.change(screen.getByPlaceholderText('輸入供應商名稱'), { target: { value: 'My Ollama' } });
         fireEvent.click(button() as HTMLElement);
 
         await waitFor(() => expect(mutate).toHaveBeenCalledTimes(1));
@@ -880,14 +880,14 @@ describe('SettingsProvider reasoning on the ollama catalogue', () => {
         setSearch(`?type=${ProviderType.Ollama}`);
         queryResult.data = { settingsProviders: ollamaCatalogue('deepseek-r1:8b', 'off') };
         render(<SettingsProvider />);
-        fireEvent.change(screen.getByPlaceholderText('Enter provider name'), { target: { value: 'My Ollama' } });
+        fireEvent.change(screen.getByPlaceholderText('輸入供應商名稱'), { target: { value: 'My Ollama' } });
 
         expect(await savedMode()).toBe('off');
     });
 
     it('stops saying so once the model picked again can honour Off', async () => {
         const pick = async (model: string) => {
-            fireEvent.click(screen.getByRole('button', { name: /open model list/i }));
+            fireEvent.click(screen.getByRole('button', { name: /開啟模型清單/ }));
             fireEvent.click(await screen.findByRole('option', { name: new RegExp(model) }));
         };
 
@@ -942,7 +942,7 @@ describe('SettingsProvider level refused alongside tools', () => {
         setSearch(`?type=${ProviderType.Openai}`);
         queryResult.data = { settingsProviders: catalogue(agents) };
         render(<SettingsProvider />);
-        fireEvent.change(screen.getByPlaceholderText('Enter provider name'), { target: { value: 'My OpenAI' } });
+        fireEvent.change(screen.getByPlaceholderText('輸入供應商名稱'), { target: { value: 'My OpenAI' } });
 
         if (agentButton) {
             fireEvent.click(screen.getByRole('button', { name: agentButton }));
@@ -950,7 +950,7 @@ describe('SettingsProvider level refused alongside tools', () => {
     };
 
     const savedReasoning = async (agent: string) => {
-        fireEvent.click(screen.getByRole('button', { name: 'Create' }));
+        fireEvent.click(screen.getByRole('button', { name: '建立' }));
 
         await waitFor(() => expect(mutate).toHaveBeenCalledTimes(1));
 
@@ -960,7 +960,7 @@ describe('SettingsProvider level refused alongside tools', () => {
     };
 
     const modeOptions = async () => {
-        fireEvent.keyDown(screen.getByRole('combobox', { name: 'Reasoning Mode' }), { key: 'Enter' });
+        fireEvent.keyDown(screen.getByRole('combobox', { name: '推理模式' }), { key: 'Enter' });
 
         return (await screen.findAllByRole('option')).map((option) => option.textContent);
     };
@@ -968,10 +968,10 @@ describe('SettingsProvider level refused alongside tools', () => {
     it('offers neither an effort nor a budget to an agent that calls with tools', async () => {
         renderWith({ simple: agent('gpt-5.6-sol') }, /Simple/);
 
-        expect(screen.queryByText('Reasoning Effort')).toBeNull();
-        expect(screen.queryByLabelText('Reasoning Max Tokens')).toBeNull();
+        expect(screen.queryByText('推理強度')).toBeNull();
+        expect(screen.queryByLabelText('推理 Token 上限')).toBeNull();
         expect(screen.getByText(/gpt-5.6-sol refuses a reasoning effort or budget/)).toBeInTheDocument();
-        expect(await modeOptions()).toEqual(['Not selected', 'Off (no thinking)']);
+        expect(await modeOptions()).toEqual(['未選擇', '關閉（不進行思考）']);
     });
 
     it('resets a saved effort the model refuses and says so', async () => {
@@ -993,12 +993,12 @@ describe('SettingsProvider level refused alongside tools', () => {
         },
     );
 
-    const testButtons = () => screen.getAllByRole('button', { name: 'Test' });
+    const testButtons = () => screen.getAllByRole('button', { name: '測試' });
 
     it.each([
-        ['Create', { effort: 'medium' }, () => screen.getByRole('button', { name: 'Create' })],
-        ['Create', { maxTokens: 2048, mode: 'budget' }, () => screen.getByRole('button', { name: 'Create' })],
-        ['Test', { effort: 'medium' }, () => testButtons()[0]],
+        ['建立', { effort: 'medium' }, () => screen.getByRole('button', { name: '建立' })],
+        ['建立', { maxTokens: 2048, mode: 'budget' }, () => screen.getByRole('button', { name: '建立' })],
+        ['測試', { effort: 'medium' }, () => testButtons()[0]],
         ['the agent Test', { effort: 'medium' }, () => testButtons()[1]],
     ])('%s sends no refused level %o for an agent left collapsed', async (_, reasoning, button) => {
         renderWith({ simple: agent('gpt-5.6-sol', reasoning) });
@@ -1015,12 +1015,12 @@ describe('SettingsProvider level refused alongside tools', () => {
     it('shows a saved effort on a model the catalogue does not list, so it can be cleared', async () => {
         renderWith({ simple: agent('gpt-5.5-2026-04-23', { effort: 'high' }) }, /Simple/);
 
-        const effort = screen.getByRole('combobox', { name: 'Reasoning Effort' });
+        const effort = screen.getByRole('combobox', { name: '推理強度' });
 
         expect(effort).toHaveTextContent('High');
 
         fireEvent.keyDown(effort, { key: 'Enter' });
-        fireEvent.click(await screen.findByRole('option', { name: 'Not selected' }));
+        fireEvent.click(await screen.findByRole('option', { name: '未選擇' }));
 
         expect((await savedReasoning('simple')).effort).toBeNull();
     });
@@ -1034,7 +1034,7 @@ describe('SettingsProvider level refused alongside tools', () => {
 
     it('drops the level when the model picked refuses it', async () => {
         renderWith({ simple: agent('gpt-e2e', { effort: 'high' }) }, /Simple/);
-        fireEvent.click(screen.getByRole('button', { name: /open model list/i }));
+        fireEvent.click(screen.getByRole('button', { name: /開啟模型清單/ }));
         fireEvent.click(await screen.findByRole('option', { name: /gpt-5.6-sol/ }));
 
         expect((await savedReasoning('simple')).effort).toBeNull();
@@ -1053,7 +1053,7 @@ describe('SettingsProvider level refused alongside tools', () => {
     ])('refuses the effort to %s, whose calls carry tools', async (key, button) => {
         renderWith({ [key]: agent('gpt-5.6-sol', { effort: 'medium' }), simple: agent('gpt-e2e') }, button);
 
-        expect(screen.queryByText('Reasoning Effort')).toBeNull();
+        expect(screen.queryByText('推理強度')).toBeNull();
         expect(await screen.findByRole('status')).toHaveTextContent(
             'Reasoning Effort was Medium, which gpt-5.6-sol refuses on requests with function tools',
         );
@@ -1067,7 +1067,7 @@ describe('SettingsProvider level refused alongside tools', () => {
     ])('leaves the effort to %s, whose calls carry no tools', async (key, button) => {
         renderWith({ [key]: agent('gpt-5.6-sol', { effort: 'medium' }), simple: agent('gpt-e2e') }, button);
 
-        expect(screen.getByText('Reasoning Effort')).toBeInTheDocument();
+        expect(screen.getByText('推理強度')).toBeInTheDocument();
         expect(screen.queryByRole('status')).toBeNull();
         expect((await savedReasoning(key)).effort).toBe('medium');
     });
@@ -1094,15 +1094,15 @@ describe('SettingsProvider reasoning on a model that does not reason', () => {
     });
 
     it('offers no reasoning budget and says why', () => {
-        expect(screen.queryByLabelText('Reasoning Max Tokens')).toBeNull();
+        expect(screen.queryByLabelText('推理 Token 上限')).toBeNull();
         expect(screen.getByText('llama3.1:8b does not reason, so it has no reasoning settings.')).toBeInTheDocument();
     });
 
     it('keeps the budget for a model whose catalogue entry says nothing about reasoning', async () => {
-        fireEvent.click(screen.getByRole('button', { name: /open model list/i }));
+        fireEvent.click(screen.getByRole('button', { name: /開啟模型清單/ }));
         fireEvent.click(await screen.findByRole('option', { name: /qwen3:8b/ }));
 
-        expect(await screen.findByLabelText('Reasoning Max Tokens')).toBeInTheDocument();
+        expect(await screen.findByLabelText('推理 Token 上限')).toBeInTheDocument();
         expect(screen.queryByText(/does not reason/)).toBeNull();
     });
 });
@@ -1128,7 +1128,7 @@ describe('SettingsProvider saved effort on a model that does not reason', () => 
         fireEvent.click(screen.getByRole('button', { name: /Simple/ }));
 
         expect(screen.getByText('llama3.1:8b does not reason, so it has no reasoning settings.')).toBeInTheDocument();
-        expect(screen.queryByText('Reasoning Effort')).toBeNull();
+        expect(screen.queryByText('推理強度')).toBeNull();
     });
 });
 
@@ -1167,8 +1167,8 @@ describe('SettingsProvider saved level on a listed model that does not reason', 
         setSearch(`?type=${ProviderType.Deepseek}`);
         queryResult.data = { settingsProviders: catalogue };
         render(<SettingsProvider />);
-        fireEvent.change(screen.getByPlaceholderText('Enter provider name'), { target: { value: 'My DeepSeek' } });
-        fireEvent.click(screen.getByRole('button', { name: 'Create' }));
+        fireEvent.change(screen.getByPlaceholderText('輸入供應商名稱'), { target: { value: 'My DeepSeek' } });
+        fireEvent.click(screen.getByRole('button', { name: '建立' }));
 
         await waitFor(() => expect(mutate).toHaveBeenCalledTimes(1));
 
@@ -1224,7 +1224,7 @@ describe('SettingsProvider Off reset on a model that does not reason', () => {
     });
 
     it('keeps saying the model cannot disable where it thinks', async () => {
-        fireEvent.click(screen.getByRole('button', { name: /open model list/i }));
+        fireEvent.click(screen.getByRole('button', { name: /開啟模型清單/ }));
         fireEvent.click(await screen.findByRole('option', { name: /gpt-oss:120b/ }));
 
         expect(await screen.findByRole('status')).toHaveTextContent('gpt-oss:120b cannot disable, so it was reset');
@@ -1264,12 +1264,12 @@ describe('SettingsProvider reasoning budget follows the mode', () => {
         setSearch(`?type=${ProviderType.Ollama}`);
         queryResult.data = { settingsProviders: catalogue(reasoning) };
         render(<SettingsProvider />);
-        fireEvent.change(screen.getByPlaceholderText('Enter provider name'), { target: { value: 'My Ollama' } });
+        fireEvent.change(screen.getByPlaceholderText('輸入供應商名稱'), { target: { value: 'My Ollama' } });
         fireEvent.click(screen.getByRole('button', { name: /Simple/ }));
     };
 
     const openModes = async () => {
-        fireEvent.keyDown(screen.getByRole('combobox', { name: 'Reasoning Mode' }), { key: 'Enter' });
+        fireEvent.keyDown(screen.getByRole('combobox', { name: '推理模式' }), { key: 'Enter' });
 
         return screen.findAllByRole('option');
     };
@@ -1280,7 +1280,7 @@ describe('SettingsProvider reasoning budget follows the mode', () => {
     };
 
     const savedReasoning = async () => {
-        fireEvent.click(screen.getByRole('button', { name: 'Create' }));
+        fireEvent.click(screen.getByRole('button', { name: '建立' }));
 
         await waitFor(() => expect(mutate).toHaveBeenCalledTimes(1));
 
@@ -1291,9 +1291,9 @@ describe('SettingsProvider reasoning budget follows the mode', () => {
 
     it('drops the budget when the mode goes back to Not selected', async () => {
         renderWith({ maxTokens: 2048, mode: 'budget' });
-        await pickMode('Not selected');
+        await pickMode('未選擇');
 
-        expect(screen.getByLabelText('Reasoning Max Tokens')).toHaveValue(null);
+        expect(screen.getByLabelText('推理 Token 上限')).toHaveValue(null);
         expect(await savedReasoning()).toEqual({ effort: null, maxTokens: null, mode: null });
     });
 
@@ -1307,19 +1307,19 @@ describe('SettingsProvider reasoning budget follows the mode', () => {
     it('takes a budget only in Budget mode', async () => {
         renderWith();
 
-        expect(screen.getByLabelText('Reasoning Max Tokens')).toBeDisabled();
+        expect(screen.getByLabelText('推理 Token 上限')).toBeDisabled();
 
         await pickMode('Budget');
 
-        expect(screen.getByLabelText('Reasoning Max Tokens')).toBeEnabled();
+        expect(screen.getByLabelText('推理 Token 上限')).toBeEnabled();
     });
 
     it('offers Budget where the model thinks but cannot be switched off', async () => {
         renderWith();
-        fireEvent.click(screen.getByRole('button', { name: /open model list/i }));
+        fireEvent.click(screen.getByRole('button', { name: /開啟模型清單/ }));
         fireEvent.click(await screen.findByRole('option', { name: /gpt-oss:120b/ }));
 
-        expect((await openModes()).map((option) => option.textContent)).toEqual(['Not selected', 'Budget']);
+        expect((await openModes()).map((option) => option.textContent)).toEqual(['未選擇', '預算']);
     });
 });
 
@@ -1350,32 +1350,32 @@ describe('SettingsProvider budget saved without a mode', () => {
         setSearch(`?type=${ProviderType.Bedrock}`);
         queryResult.data = { settingsProviders: catalogue(reasoning) };
         render(<SettingsProvider />);
-        fireEvent.change(screen.getByPlaceholderText('Enter provider name'), { target: { value: 'My Bedrock' } });
+        fireEvent.change(screen.getByPlaceholderText('輸入供應商名稱'), { target: { value: 'My Bedrock' } });
         fireEvent.click(screen.getByRole('button', { name: /Simple/ }));
     };
 
-    const modeSelect = () => screen.getByRole('combobox', { name: 'Reasoning Mode' });
+    const modeSelect = () => screen.getByRole('combobox', { name: '推理模式' });
 
     it('opens as Budget, the mode the server runs it in', () => {
         renderWith({ maxTokens: 2048 });
 
-        expect(modeSelect()).toHaveTextContent('Budget');
-        expect(screen.getByLabelText('Reasoning Max Tokens')).toBeEnabled();
-        expect(screen.getByLabelText('Reasoning Max Tokens')).toHaveValue(2048);
+        expect(modeSelect()).toHaveTextContent('預算');
+        expect(screen.getByLabelText('推理 Token 上限')).toBeEnabled();
+        expect(screen.getByLabelText('推理 Token 上限')).toHaveValue(2048);
     });
 
     it('keeps the budget field open while its value is replaced', async () => {
         renderWith({ maxTokens: 2048 });
 
-        const field = () => screen.getByLabelText('Reasoning Max Tokens');
+        const field = () => screen.getByLabelText('推理 Token 上限');
 
         fireEvent.change(field(), { target: { value: '' } });
 
         expect(field()).toBeEnabled();
-        expect(modeSelect()).toHaveTextContent('Budget');
+        expect(modeSelect()).toHaveTextContent('預算');
 
         fireEvent.change(field(), { target: { value: '4096' } });
-        fireEvent.click(screen.getByRole('button', { name: 'Create' }));
+        fireEvent.click(screen.getByRole('button', { name: '建立' }));
 
         await waitFor(() => expect(mutate).toHaveBeenCalledTimes(1));
 
@@ -1387,7 +1387,7 @@ describe('SettingsProvider budget saved without a mode', () => {
     it('opens as Not selected when an effort rides along, since the effort wins', () => {
         renderWith({ effort: 'low', maxTokens: 2048 });
 
-        expect(modeSelect()).toHaveTextContent('Not selected');
+        expect(modeSelect()).toHaveTextContent('未選擇');
     });
 
     const pick = async (combobox: string, option: string) => {
@@ -1396,7 +1396,7 @@ describe('SettingsProvider budget saved without a mode', () => {
     };
 
     const created = async () => {
-        fireEvent.click(screen.getByRole('button', { name: 'Create' }));
+        fireEvent.click(screen.getByRole('button', { name: '建立' }));
 
         await waitFor(() => expect(mutate).toHaveBeenCalledTimes(1));
 
@@ -1409,33 +1409,33 @@ describe('SettingsProvider budget saved without a mode', () => {
         renderWith({ maxTokens: 2048 });
         await pick('Reasoning Effort', 'High');
 
-        expect(modeSelect()).toHaveTextContent('Not selected');
+        expect(modeSelect()).toHaveTextContent('未選擇');
         expect(await created()).toEqual({ effort: 'high', maxTokens: null, mode: null });
     });
 
     it('drops the effort when Budget is picked, since the server ignores it there', async () => {
         renderWith({ effort: 'low' });
         await pick('Reasoning Mode', 'Budget');
-        fireEvent.change(screen.getByLabelText('Reasoning Max Tokens'), { target: { value: '4096' } });
+        fireEvent.change(screen.getByLabelText('推理 Token 上限'), { target: { value: '4096' } });
 
-        expect(screen.getByRole('combobox', { name: 'Reasoning Effort' })).toHaveTextContent('Not selected');
+        expect(screen.getByRole('combobox', { name: '推理強度' })).toHaveTextContent('未選擇');
         expect(await created()).toEqual({ effort: null, maxTokens: 4096, mode: 'budget' });
     });
 
     it('shows no effort beside a saved Budget', async () => {
         renderWith({ effort: 'high', maxTokens: 2048, mode: 'budget' });
 
-        expect(modeSelect()).toHaveTextContent('Budget');
+        expect(modeSelect()).toHaveTextContent('預算');
         await waitFor(() =>
-            expect(screen.getByRole('combobox', { name: 'Reasoning Effort' })).toHaveTextContent('Not selected'),
+            expect(screen.getByRole('combobox', { name: '推理強度' })).toHaveTextContent('未選擇'),
         );
     });
 
     it('goes to the wire without a budget once switched to Not selected', async () => {
         renderWith({ maxTokens: 2048 });
         fireEvent.keyDown(modeSelect(), { key: 'Enter' });
-        fireEvent.click(await screen.findByRole('option', { name: 'Not selected' }));
-        fireEvent.click(screen.getByRole('button', { name: 'Create' }));
+        fireEvent.click(await screen.findByRole('option', { name: '未選擇' }));
+        fireEvent.click(screen.getByRole('button', { name: '建立' }));
 
         await waitFor(() => expect(mutate).toHaveBeenCalledTimes(1));
 
@@ -1477,37 +1477,37 @@ describe('SettingsProvider reasoning on an adaptive-only model', () => {
         setSearch(`?type=${ProviderType.Anthropic}`);
         queryResult.data = { settingsProviders: catalogue(cannotDisable, reasoning) };
         render(<SettingsProvider />);
-        fireEvent.change(screen.getByPlaceholderText('Enter provider name'), { target: { value: 'My Anthropic' } });
+        fireEvent.change(screen.getByPlaceholderText('輸入供應商名稱'), { target: { value: 'My Anthropic' } });
         fireEvent.click(screen.getByRole('button', { name: /Simple/ }));
     };
 
     it('offers no Budget and no budget field where Off works', async () => {
         renderWith(false);
 
-        expect(screen.queryByLabelText('Reasoning Max Tokens')).toBeNull();
+        expect(screen.queryByLabelText('推理 Token 上限')).toBeNull();
 
-        fireEvent.keyDown(screen.getByRole('combobox', { name: 'Reasoning Mode' }), { key: 'Enter' });
+        fireEvent.keyDown(screen.getByRole('combobox', { name: '推理模式' }), { key: 'Enter' });
 
         expect((await screen.findAllByRole('option')).map((option) => option.textContent)).toEqual([
-            'Adaptive',
-            'Off (no thinking)',
+            '自適應',
+            '關閉（不進行思考）',
         ]);
     });
 
     it('offers no budget field and locks the mode where thinking cannot be disabled', () => {
         renderWith(true);
 
-        expect(screen.queryByLabelText('Reasoning Max Tokens')).toBeNull();
-        expect(screen.getByRole('combobox', { name: 'Reasoning Mode' })).toBeDisabled();
-        expect(screen.getByRole('combobox', { name: 'Reasoning Mode' })).toHaveTextContent('Adaptive');
+        expect(screen.queryByLabelText('推理 Token 上限')).toBeNull();
+        expect(screen.getByRole('combobox', { name: '推理模式' })).toBeDisabled();
+        expect(screen.getByRole('combobox', { name: '推理模式' })).toHaveTextContent('自適應');
     });
 
     it('does not turn a saved budget into Budget mode', async () => {
         renderWith(false, { maxTokens: 2048 });
 
-        expect(screen.getByRole('combobox', { name: 'Reasoning Mode' })).toHaveTextContent('Adaptive');
+        expect(screen.getByRole('combobox', { name: '推理模式' })).toHaveTextContent('自適應');
 
-        fireEvent.click(screen.getByRole('button', { name: 'Create' }));
+        fireEvent.click(screen.getByRole('button', { name: '建立' }));
 
         await waitFor(() => expect(mutate).toHaveBeenCalledTimes(1));
 
@@ -1549,8 +1549,8 @@ describe('SettingsProvider effort beside a saved Budget left collapsed', () => {
         setSearch(`?type=${ProviderType.Bedrock}`);
         queryResult.data = { settingsProviders: catalogue };
         render(<SettingsProvider />);
-        fireEvent.change(screen.getByPlaceholderText('Enter provider name'), { target: { value: 'My Bedrock' } });
-        fireEvent.click(screen.getByRole('button', { name: 'Create' }));
+        fireEvent.change(screen.getByPlaceholderText('輸入供應商名稱'), { target: { value: 'My Bedrock' } });
+        fireEvent.click(screen.getByRole('button', { name: '建立' }));
 
         await waitFor(() => expect(mutate).toHaveBeenCalledTimes(1));
 
@@ -1592,7 +1592,7 @@ describe('SettingsProvider budget on a model that takes none', () => {
         setSearch(`?type=${ProviderType.Glm}`);
         queryResult.data = { settingsProviders: catalogue(reasoning) };
         render(<SettingsProvider />);
-        fireEvent.change(screen.getByPlaceholderText('Enter provider name'), { target: { value: 'My GLM' } });
+        fireEvent.change(screen.getByPlaceholderText('輸入供應商名稱'), { target: { value: 'My GLM' } });
 
         if (isOpened) {
             fireEvent.click(screen.getByRole('button', { name: /Simple/ }));
@@ -1600,7 +1600,7 @@ describe('SettingsProvider budget on a model that takes none', () => {
     };
 
     const created = async () => {
-        fireEvent.click(screen.getByRole('button', { name: 'Create' }));
+        fireEvent.click(screen.getByRole('button', { name: '建立' }));
 
         await waitFor(() => expect(mutate).toHaveBeenCalledTimes(1));
 
@@ -1612,13 +1612,13 @@ describe('SettingsProvider budget on a model that takes none', () => {
     it('offers neither Budget nor a budget field', async () => {
         renderWith();
 
-        expect(screen.queryByLabelText('Reasoning Max Tokens')).toBeNull();
+        expect(screen.queryByLabelText('推理 Token 上限')).toBeNull();
 
-        fireEvent.keyDown(screen.getByRole('combobox', { name: 'Reasoning Mode' }), { key: 'Enter' });
+        fireEvent.keyDown(screen.getByRole('combobox', { name: '推理模式' }), { key: 'Enter' });
 
         expect((await screen.findAllByRole('option')).map((option) => option.textContent)).toEqual([
-            'Not selected',
-            'Off (no thinking)',
+            '未選擇',
+            '關閉（不進行思考）',
         ]);
     });
 

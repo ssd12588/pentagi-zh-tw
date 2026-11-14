@@ -75,10 +75,10 @@ describe('SettingsProvidersHeader create menu', () => {
         const user = userEvent.setup();
         render(<SettingsProvidersHeader />);
 
-        await user.click(screen.getByRole('button', { name: /create provider/i }));
+        await user.click(screen.getByRole('button', { name: /建立供應商/i }));
 
         expect(screen.queryByRole('menuitem', { name: /MiniMax/ })).not.toBeInTheDocument();
-        expect(screen.queryByRole('menuitem', { name: /Custom/ })).not.toBeInTheDocument();
+        expect(screen.queryByRole('menuitem', { name: /自訂/ })).not.toBeInTheDocument();
         expect(screen.getByRole('menuitem', { name: /Anthropic/ })).toBeInTheDocument();
         expect(screen.getByRole('menuitem', { name: /OpenAI/ })).toBeInTheDocument();
     });
@@ -98,9 +98,9 @@ describe('SettingsProvidersHeader create menu', () => {
         const user = userEvent.setup();
         render(<SettingsProvidersHeader />);
 
-        await user.click(screen.getByRole('button', { name: /create provider/i }));
+        await user.click(screen.getByRole('button', { name: /建立供應商/i }));
 
-        expect(screen.getByRole('menuitem', { name: /no available provider types/i })).toBeInTheDocument();
+        expect(screen.getByRole('menuitem', { name: /沒有可用的供應商類型/i })).toBeInTheDocument();
         expect(screen.queryByRole('menuitem', { name: /OpenAI/ })).not.toBeInTheDocument();
     });
 });
@@ -129,7 +129,7 @@ describe('SettingsProviders list load states', () => {
         );
 
         expect(screen.getByText('Seeded Provider')).toBeInTheDocument();
-        expect(screen.queryByText('Loading providers...')).not.toBeInTheDocument();
+        expect(screen.queryByText('載入供應商…')).not.toBeInTheDocument();
     });
 
     it('dates a provider from an earlier year without the time', () => {

@@ -95,13 +95,13 @@ function FlowReport() {
                     <Logo className="animate-logo-spin mb-8 size-16 text-white" />
                     <div className="flex flex-col gap-4 text-center">
                         <h1 className="text-2xl font-semibold text-gray-900 dark:text-white">
-                            {state === 'loading' ? 'Loading Report...' : 'Generating PDF...'}
+                            {state === 'loading' ? '載入報告中…' : '產生 PDF 中…'}
                         </h1>
                         <div className="mx-auto size-8 animate-spin rounded-full border-b-2 border-blue-600" />
                         <p className="max-w-md text-gray-600 dark:text-gray-400">
                             {state === 'loading'
-                                ? 'Please wait while we prepare your penetration testing report.'
-                                : 'Creating your PDF document. This may take a few moments.'}
+                                ? '正在準備滲透測試報告，請稍候。'
+                                : '正在產生 PDF 文件，請稍候。'}
                         </p>
                     </div>
                 </div>
@@ -115,15 +115,15 @@ function FlowReport() {
                 <div className="flex min-h-screen flex-col items-center justify-center p-8">
                     <Logo className="mb-8 size-16" />
                     <div className="flex flex-col gap-4 text-center">
-                        <h1 className="text-2xl font-semibold text-red-600 dark:text-red-400">Error Loading Report</h1>
+                        <h1 className="text-2xl font-semibold text-red-600 dark:text-red-400">載入報告失敗</h1>
                         <p className="max-w-md text-gray-600 dark:text-gray-400">
-                            {errorMessage || 'An unexpected error occurred while loading the report.'}
+                            {errorMessage || '載入報告時發生未預期的錯誤。'}
                         </p>
                         <button
                             className="mt-4 rounded-md bg-red-600 px-4 py-2 text-white transition-colors hover:bg-red-700"
                             onClick={() => window.close()}
                         >
-                            Close
+                            關閉
                         </button>
                     </div>
                 </div>

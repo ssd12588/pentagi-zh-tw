@@ -75,7 +75,7 @@ export function TableHandles({ editor }: { editor: Editor }) {
             >
                 <DropdownMenuTrigger asChild>
                     <button
-                        aria-label="Column actions"
+                        aria-label="欄操作"
                         className={GRIP_CLASS}
                         data-table-grip=""
                         style={{
@@ -98,16 +98,16 @@ export function TableHandles({ editor }: { editor: Editor }) {
                 >
                     <DropdownMenuItem onSelect={() => focusTarget().addColumnBefore().run()}>
                         <ArrowLeft className="text-muted-foreground size-4 shrink-0" />
-                        Insert left
+                        在左側插入
                     </DropdownMenuItem>
                     <DropdownMenuItem onSelect={() => focusTarget().addColumnAfter().run()}>
                         <ArrowRight className="text-muted-foreground size-4 shrink-0" />
-                        Insert right
+                        在右側插入
                     </DropdownMenuItem>
                     <DropdownMenuSub>
                         <DropdownMenuSubTrigger>
                             <AlignLeft className="text-muted-foreground size-4 shrink-0" />
-                            Align column
+                            對齊欄位
                         </DropdownMenuSubTrigger>
                         <DropdownMenuSubContent>
                             {ALIGN_OPTIONS.map((option) => (
@@ -131,12 +131,12 @@ export function TableHandles({ editor }: { editor: Editor }) {
                         }}
                     >
                         <Eraser className="text-muted-foreground size-4 shrink-0" />
-                        Clear contents
+                        清除內容
                     </DropdownMenuItem>
                     <DropdownMenuSeparator />
                     <DropdownMenuItem onSelect={() => focusTarget().deleteColumn().run()}>
                         <Delete className="text-muted-foreground size-4 shrink-0" />
-                        Delete column
+                        刪除欄
                     </DropdownMenuItem>
                 </DropdownMenuContent>
             </DropdownMenu>
@@ -147,7 +147,7 @@ export function TableHandles({ editor }: { editor: Editor }) {
             >
                 <DropdownMenuTrigger asChild>
                     <button
-                        aria-label="Row actions"
+                        aria-label="列操作"
                         className={GRIP_CLASS}
                         data-table-grip=""
                         style={{
@@ -175,11 +175,11 @@ export function TableHandles({ editor }: { editor: Editor }) {
                     <DropdownMenuSeparator />
                     <DropdownMenuItem onSelect={() => focusTarget().addRowBefore().run()}>
                         <ArrowUp className="text-muted-foreground size-4 shrink-0" />
-                        Insert above
+                        在上方插入
                     </DropdownMenuItem>
                     <DropdownMenuItem onSelect={() => focusTarget().addRowAfter().run()}>
                         <ArrowDown className="text-muted-foreground size-4 shrink-0" />
-                        Insert below
+                        在下方插入
                     </DropdownMenuItem>
                     <DropdownMenuItem
                         onSelect={() => {
@@ -188,12 +188,12 @@ export function TableHandles({ editor }: { editor: Editor }) {
                         }}
                     >
                         <Eraser className="text-muted-foreground size-4 shrink-0" />
-                        Clear contents
+                        清除內容
                     </DropdownMenuItem>
                     <DropdownMenuSeparator />
                     <DropdownMenuItem onSelect={() => focusTarget().deleteRow().run()}>
                         <Delete className="text-muted-foreground size-4 shrink-0 -rotate-90" />
-                        Delete row
+                        刪除列
                     </DropdownMenuItem>
                 </DropdownMenuContent>
             </DropdownMenu>
@@ -223,7 +223,7 @@ function RowHeaderToggleItem({ cellPos, editor }: { cellPos: number; editor: Edi
             role="menuitemcheckbox"
         >
             <PanelTop className="text-muted-foreground size-4 shrink-0" />
-            <span>Header row</span>
+            <span>標題列</span>
             <Switch
                 checked={isHeaderRow}
                 className="pointer-events-none ml-auto"

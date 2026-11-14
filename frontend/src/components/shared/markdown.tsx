@@ -231,7 +231,7 @@ function Markdown({ children, className, searchValue }: MarkdownProps) {
         components.table = ({ children: nodeChildren, ...props }) => (
             <ScrollableRegion
                 className="overflow-x-auto"
-                label="Table"
+                label="表格"
             >
                 <table {...props}>{processedSearch ? processTextNode(nodeChildren) : nodeChildren}</table>
             </ScrollableRegion>

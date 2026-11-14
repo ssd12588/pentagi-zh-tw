@@ -496,7 +496,7 @@ describe('a line break is written only between two lines of text', () => {
             'a definition whose target is the row under it',
             'Columns\n[x]:\n|:--|--:|',
             'Columns\n[x]:\n|:--|--:|',
-            ['Columns', '[x]:', '|:--|--:|'],
+            ['欄位', '[x]:', '|:--|--:|'],
         ],
     ])('%s is read without an empty line', (_name, md, saved, texts) => {
         expect(linesOf(md).join('|/|')).toBe(texts.join('|/|'));

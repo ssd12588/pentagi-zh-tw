@@ -41,16 +41,16 @@ function FlowTabs({ activeTab, onTabChange }: FlowTabsProps) {
             <div className="max-w-full pr-4">
                 <ScrollArea className="w-full pb-3">
                     <TabsList className="flex w-fit">
-                        {!isDesktop && <TabsTrigger value="automation">Automation</TabsTrigger>}
-                        {!isDesktop && <TabsTrigger value="assistant">Assistant</TabsTrigger>}
-                        {!isDesktop && <TabsTrigger value="dashboard">Dashboard</TabsTrigger>}
-                        <TabsTrigger value="terminal">Terminal</TabsTrigger>
-                        <TabsTrigger value="tasks">Tasks</TabsTrigger>
-                        <TabsTrigger value="agents">Agents</TabsTrigger>
-                        <TabsTrigger value="tools">Searches</TabsTrigger>
-                        <TabsTrigger value="vectorStores">Vector Store</TabsTrigger>
-                        <TabsTrigger value="files">Files</TabsTrigger>
-                        <TabsTrigger value="screenshots">Screenshots</TabsTrigger>
+                        {!isDesktop && <TabsTrigger value="automation">自動化</TabsTrigger>}
+                        {!isDesktop && <TabsTrigger value="assistant">助理</TabsTrigger>}
+                        {!isDesktop && <TabsTrigger value="dashboard">儀表板</TabsTrigger>}
+                        <TabsTrigger value="terminal">終端機</TabsTrigger>
+                        <TabsTrigger value="tasks">任務</TabsTrigger>
+                        <TabsTrigger value="agents">代理</TabsTrigger>
+                        <TabsTrigger value="tools">搜尋</TabsTrigger>
+                        <TabsTrigger value="vectorStores">向量儲存</TabsTrigger>
+                        <TabsTrigger value="files">檔案</TabsTrigger>
+                        <TabsTrigger value="screenshots">截圖</TabsTrigger>
                     </TabsList>
                     <ScrollBar orientation="horizontal" />
                 </ScrollArea>

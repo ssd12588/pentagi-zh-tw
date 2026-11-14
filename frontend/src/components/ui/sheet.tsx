@@ -94,7 +94,7 @@ function SheetContent({ children, className, container, overlay = true, side = '
                     <X className="h-4 w-4" />
                     {/* Not "Close": a sheet with its own footer Close button would
                         produce two identically named controls. */}
-                    <span className="sr-only">Dismiss sheet</span>
+                    <span className="sr-only">關閉面板</span>
                 </SheetPrimitive.Close>
                 {children}
             </SheetPrimitive.Content>

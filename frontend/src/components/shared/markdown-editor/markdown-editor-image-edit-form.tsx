@@ -77,7 +77,7 @@ export function ImageEditForm({
     return (
         <div className="flex flex-col gap-3">
             <div className="flex flex-col gap-1.5">
-                <Label htmlFor={srcId}>Image URL</Label>
+                <Label htmlFor={srcId}>圖片 URL</Label>
                 <InputGroup>
                     <InputGroupInput
                         aria-describedby={isInvalid ? errorId : undefined}
@@ -95,7 +95,7 @@ export function ImageEditForm({
                         className="gap-0"
                     >
                         <InputGroupButton
-                            aria-label={isEditing ? 'Apply image' : 'Insert image'}
+                            aria-label={isEditing ? '套用圖片' : '插入圖片'}
                             disabled={src === '' || isInvalid}
                             onClick={apply}
                             size="icon-xs"
@@ -104,7 +104,7 @@ export function ImageEditForm({
                         </InputGroupButton>
                         {isEditing ? (
                             <InputGroupButton
-                                aria-label="Remove image"
+                                aria-label="移除圖片"
                                 onClick={remove}
                                 size="icon-xs"
                             >
@@ -115,12 +115,12 @@ export function ImageEditForm({
                 </InputGroup>
             </div>
             <div className="flex flex-col gap-1.5">
-                <Label htmlFor={altId}>Alt text (optional)</Label>
+                <Label htmlFor={altId}>替代文字（選填）</Label>
                 <Input
                     id={altId}
                     onChange={(event) => setAlt(event.target.value)}
                     onKeyDown={applyOnEnter}
-                    placeholder="Describe the image"
+                    placeholder="描述圖片"
                     value={alt}
                 />
             </div>
@@ -130,7 +130,7 @@ export function ImageEditForm({
                     id={errorId}
                     role="alert"
                 >
-                    Only http(s) or base64 raster image URLs are allowed.
+                    僅允許 http(s) 或 base64 點陣圖 URL。
                 </p>
             ) : null}
         </div>

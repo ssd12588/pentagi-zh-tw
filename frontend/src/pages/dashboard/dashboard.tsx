@@ -10,9 +10,9 @@ import { DashboardAnalytics } from '@/pages/dashboard/dashboard-analytics';
 import { DashboardOverview } from '@/pages/dashboard/dashboard-overview';
 
 const periodOptions: { label: string; value: UsageStatsPeriod }[] = [
-    { label: 'Week', value: UsageStatsPeriod.Week },
-    { label: 'Month', value: UsageStatsPeriod.Month },
-    { label: 'Quarter', value: UsageStatsPeriod.Quarter },
+    { label: '週', value: UsageStatsPeriod.Week },
+    { label: '月', value: UsageStatsPeriod.Month },
+    { label: '季', value: UsageStatsPeriod.Quarter },
 ];
 
 const VALID_PERIODS = new Set<string>(Object.values(UsageStatsPeriod));
@@ -74,7 +74,7 @@ function Dashboard() {
         <>
             <AppHeader>
                 <AppHeaderContent>
-                    <AppHeaderTitle icon={<LayoutDashboard className="size-4 shrink-0" />}>Dashboard</AppHeaderTitle>
+                    <AppHeaderTitle icon={<LayoutDashboard className="size-4 shrink-0" />}>儀表板</AppHeaderTitle>
                 </AppHeaderContent>
             </AppHeader>
 
@@ -86,8 +86,8 @@ function Dashboard() {
                 >
                     <div className="flex items-center justify-between">
                         <TabsList>
-                            <TabsTrigger value="analytics">Analytics</TabsTrigger>
-                            <TabsTrigger value="overview">Overview</TabsTrigger>
+                            <TabsTrigger value="analytics">分析</TabsTrigger>
+                            <TabsTrigger value="overview">總覽</TabsTrigger>
                         </TabsList>
 
                         {activeTab === 'analytics' && (

@@ -27,19 +27,19 @@ export function FlowProviderLabel({ isOwnFlow, provider, providers }: FlowProvid
                 className="truncate text-sm"
                 title={provider?.name}
             >
-                {provider?.name || 'N/A'}
+                {provider?.name || '不適用'}
             </span>
             {isMissing && (
                 <Tooltip>
                     <TooltipTrigger asChild>
                         <AlertCircle
-                            aria-label="Unavailable"
+                            aria-label="無法使用"
                             className="text-destructive size-4 shrink-0 cursor-pointer"
                             role="img"
                             tabIndex={0}
                         />
                     </TooltipTrigger>
-                    <TooltipContent>Unavailable</TooltipContent>
+                    <TooltipContent>無法使用</TooltipContent>
                 </Tooltip>
             )}
         </div>

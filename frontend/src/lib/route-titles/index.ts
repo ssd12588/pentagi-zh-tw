@@ -34,9 +34,9 @@ export type TitleResolver = ((params: RouteParams) => string) | ComponentType<{ 
  * from this registry onto the matching <Route>.
  */
 export const routeTitles = {
-    account: { title: 'Account' },
-    apiTokens: { title: 'API Tokens' },
-    dashboard: { title: 'Dashboard' },
+    account: { title: '帳號' },
+    apiTokens: { title: 'API Token' },
+    dashboard: { title: '儀表板' },
     flow: {
         title: apolloTitle({
             document: FlowDocument,
@@ -45,8 +45,8 @@ export const routeTitles = {
             variables: ({ flowId }) => (flowId ? { id: flowId } : null),
         }),
     },
-    flowReport: { title: 'Flow report' },
-    flows: { title: 'Flows' },
+    flowReport: { title: '流程報告' },
+    flows: { title: '流程' },
     knowledge: {
         title: apolloTitle({
             document: KnowledgeDocumentDocument,
@@ -55,14 +55,14 @@ export const routeTitles = {
             variables: ({ knowledgeId }) => (!knowledgeId || knowledgeId === 'new' ? null : { id: knowledgeId }),
         }),
     },
-    knowledges: { title: 'Knowledges' },
-    login: { title: 'Login' },
-    newFlow: { title: 'New flow' },
+    knowledges: { title: '知識庫' },
+    login: { title: '登入' },
+    newFlow: { title: '新增流程' },
     oauth: { title: 'OAuth' },
     prompt: {
         title: (params: RouteParams) => (params.promptId ? formatPromptId(params.promptId) : 'Prompt'),
     },
-    prompts: { title: 'Prompts' },
+    prompts: { title: '提示詞' },
 
     provider: {
         title: apolloTitle({
@@ -82,9 +82,9 @@ export const routeTitles = {
         }),
     },
 
-    providers: { title: 'Providers' },
+    providers: { title: '供應商' },
 
-    resources: { title: 'Resources' },
+    resources: { title: '資源' },
 
     template: {
         title: apolloTitle({
@@ -95,5 +95,5 @@ export const routeTitles = {
         }),
     },
 
-    templates: { title: 'Templates' },
+    templates: { title: '範本' },
 } as const satisfies Record<string, RouteTitleHandle>;

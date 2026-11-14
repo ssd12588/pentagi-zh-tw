@@ -71,7 +71,7 @@ const createTokenFormSchema = z.object({
     expiresAt: z
         .date()
         .nullable()
-        .refine((value) => value !== null, { message: 'Expiration date is required' }),
+        .refine((value) => value !== null, { message: '必須輸入到期日' }),
     name: tokenNameSchema,
 });
 
@@ -165,7 +165,7 @@ function CreateRowActions({
     return (
         <div className="flex justify-end">
             <Button
-                aria-label={isLoading ? 'Submitting…' : 'Submit'}
+                aria-label={isLoading ? '送出中…' : '送出'}
                 className="shrink-0"
                 disabled={isLoading || !isValid}
                 onClick={onSubmit}
@@ -175,7 +175,7 @@ function CreateRowActions({
                 {isLoading ? <Spinner variant="circle" /> : <Check />}
             </Button>
             <Button
-                aria-label="Cancel"
+                aria-label="取消"
                 className="shrink-0"
                 onClick={onCancel}
                 size="icon-sm"
@@ -203,7 +203,7 @@ function EditRowActions({
     return (
         <div className="flex justify-end">
             <Button
-                aria-label={isLoading ? 'Submitting…' : 'Submit'}
+                aria-label={isLoading ? '送出中…' : '送出'}
                 className="shrink-0"
                 disabled={isLoading || !isValid}
                 onClick={onSubmit}
@@ -213,7 +213,7 @@ function EditRowActions({
                 {isLoading ? <Spinner variant="circle" /> : <Check />}
             </Button>
             <Button
-                aria-label="Cancel"
+                aria-label="取消"
                 className="shrink-0"
                 onClick={onCancel}
                 size="icon-sm"
@@ -310,7 +310,7 @@ function SettingsAPITokens() {
                 setEditingTokenId(null);
                 editForm.reset(EDIT_TOKEN_DEFAULTS);
             } catch (error) {
-                toast.error('Failed to update token', {
+                toast.error('更新 Token 失敗', {
                     description: error instanceof Error ? error.message : undefined,
                 });
             }
@@ -364,7 +364,7 @@ function SettingsAPITokens() {
             setCreatingToken(false);
             createForm.reset(CREATE_TOKEN_DEFAULTS);
         } catch (error) {
-            toast.error('Failed to create token', {
+            toast.error('建立 Token 失敗', {
                 description: error instanceof Error ? error.message : undefined,
             });
         }
@@ -389,7 +389,7 @@ function SettingsAPITokens() {
 
                 setDeletingToken(null);
             } catch (error) {
-                toast.error('Failed to delete token', {
+                toast.error('刪除 Token 失敗', {
                     description: error instanceof Error ? error.message : undefined,
                 });
             }
@@ -401,12 +401,12 @@ function SettingsAPITokens() {
         const success = await copyToClipboard(tokenId);
 
         if (success) {
-            toast.success('Token ID copied to clipboard');
+            toast.success('Token ID 已複製到剪貼簿');
 
             return;
         }
 
-        toast.error('Failed to copy token ID to clipboard');
+        toast.error('複製 Token ID 到剪貼簿失敗');
     }, []);
 
     const columns: ColumnDef<APIToken>[] = useMemo(
@@ -430,7 +430,7 @@ function SettingsAPITokens() {
                                         autoFocus
                                         className="h-8"
                                         id={createNameFieldId}
-                                        placeholder="Token name (optional)"
+                                        placeholder="Token 名稱（選填）"
                                     />
                                 )}
                             />
@@ -449,7 +449,7 @@ function SettingsAPITokens() {
                                         autoFocus
                                         className="h-8"
                                         id={editNameFieldId}
-                                        placeholder="Token name (optional)"
+                                        placeholder="Token 名稱（選填）"
                                     />
                                 )}
                             />
@@ -461,7 +461,7 @@ function SettingsAPITokens() {
                             className="truncate font-medium"
                             title={token.name || undefined}
                         >
-                            {token.name || <span className="text-muted-foreground font-normal italic">(unnamed)</span>}
+                            {token.name || <span className="text-muted-foreground font-normal italic">（未命名）</span>}
                         </div>
                     );
                 },
@@ -469,7 +469,7 @@ function SettingsAPITokens() {
                 header: ({ column }) => (
                     <DataTableColumnHeader
                         column={column}
-                        title="Name"
+                        title="名稱"
                     />
                 ),
                 meta: { searchable: true },
@@ -482,7 +482,7 @@ function SettingsAPITokens() {
                     const isCreating = token.id === 'create-new';
 
                     if (isCreating) {
-                        return <div className="text-muted-foreground text-sm">N/A</div>;
+                        return <div className="text-muted-foreground text-sm">不適用</div>;
                     }
 
                     const tokenId = row.getValue('tokenId') as string;
@@ -491,7 +491,7 @@ function SettingsAPITokens() {
                         <div className="flex items-center gap-2">
                             <code className="text-sm">{tokenId}</code>
                             <Button
-                                aria-label="Copy token ID"
+                                aria-label="複製 Token ID"
                                 className="size-6 p-0"
                                 onClick={() => handleCopyTokenId(tokenId)}
                                 variant="ghost"
@@ -540,7 +540,7 @@ function SettingsAPITokens() {
                                         value={field.value}
                                     >
                                         <SelectTrigger
-                                            aria-label="Token status"
+                                            aria-label="Token 狀態"
                                             className="h-8 w-32"
                                         >
                                             <SelectValue />
@@ -562,7 +562,7 @@ function SettingsAPITokens() {
                 header: ({ column }) => (
                     <DataTableColumnHeader
                         column={column}
-                        title="Status"
+                        title="狀態"
                     />
                 ),
                 meta: { searchable: true },
@@ -596,7 +596,7 @@ function SettingsAPITokens() {
                                                 {field.value ? (
                                                     format(field.value, 'd MMM yyyy', { locale: enUS })
                                                 ) : (
-                                                    <span>Pick date</span>
+                                                    <span>選擇日期</span>
                                                 )}
                                             </Button>
                                         </PopoverTrigger>
@@ -626,7 +626,7 @@ function SettingsAPITokens() {
                 header: ({ column }) => (
                     <DataTableColumnHeader
                         column={column}
-                        title="Expires"
+                        title="到期"
                     />
                 ),
                 size: 150,
@@ -644,7 +644,7 @@ function SettingsAPITokens() {
                     const isCreating = token.id === 'create-new';
 
                     if (isCreating) {
-                        return <div className="text-muted-foreground text-sm">N/A</div>;
+                        return <div className="text-muted-foreground text-sm">不適用</div>;
                     }
 
                     const dateString = row.getValue('createdAt') as string;
@@ -654,7 +654,7 @@ function SettingsAPITokens() {
                 header: ({ column }) => (
                     <DataTableColumnHeader
                         column={column}
-                        title="Created"
+                        title="已建立"
                     />
                 ),
                 meta: { columnMenuLabel: 'Created' },
@@ -699,7 +699,7 @@ function SettingsAPITokens() {
                             <DropdownMenu>
                                 <DropdownMenuTrigger asChild>
                                     <Button
-                                        aria-label="Open menu"
+                                        aria-label="開啟選單"
                                         className="shrink-0"
                                         size="icon-sm"
                                         variant="ghost"
@@ -713,11 +713,11 @@ function SettingsAPITokens() {
                                 >
                                     <DropdownMenuItem onClick={() => handleEdit(token)}>
                                         <Pencil />
-                                        Edit
+                                        編輯
                                     </DropdownMenuItem>
                                     <DropdownMenuItem onClick={() => handleCopyTokenId(token.tokenId)}>
                                         <Copy />
-                                        Copy Token ID
+                                        複製 Token ID
                                     </DropdownMenuItem>
                                     <DropdownMenuSeparator />
                                     <DropdownMenuItem
@@ -727,12 +727,12 @@ function SettingsAPITokens() {
                                         {isDeleteLoading && deletingToken?.tokenId === token.tokenId ? (
                                             <>
                                                 <Spinner variant="circle" />
-                                                Deleting...
+                                                刪除中…
                                             </>
                                         ) : (
                                             <>
                                                 <Trash />
-                                                Delete
+                                                刪除
                                             </>
                                         )}
                                     </DropdownMenuItem>
@@ -778,11 +778,11 @@ function SettingsAPITokens() {
                 <>
                     <ContextMenuItem onClick={() => handleEdit(token)}>
                         <Pencil />
-                        Edit
+                        編輯
                     </ContextMenuItem>
                     <ContextMenuItem onClick={() => handleCopyTokenId(token.tokenId)}>
                         <Copy />
-                        Copy Token ID
+                        複製 Token ID
                     </ContextMenuItem>
                     <ContextMenuSeparator />
                     <ContextMenuItem
@@ -790,7 +790,7 @@ function SettingsAPITokens() {
                         onClick={() => handleDeleteDialogOpen(token)}
                     >
                         <Trash />
-                        {isDeleteLoading && deletingToken?.tokenId === token.tokenId ? 'Deleting...' : 'Delete'}
+                        {isDeleteLoading && deletingToken?.tokenId === token.tokenId ? '刪除中…' : '刪除'}
                     </ContextMenuItem>
                 </>
             );
@@ -801,19 +801,19 @@ function SettingsAPITokens() {
     const pageHeader = (
         <AppHeader>
             <AppHeaderContent>
-                <AppHeaderTitle icon={<Key className="size-4 shrink-0" />}>API Tokens</AppHeaderTitle>
+                <AppHeaderTitle icon={<Key className="size-4 shrink-0" />}>API Token</AppHeaderTitle>
             </AppHeaderContent>
             <AppHeaderActions>
                 <AppHeaderAction
                     icon={<Plus />}
-                    label="Create Token"
+                    label="建立 Token"
                     onClick={handleCreateNew}
                     variant="secondary"
                 />
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                         <Button
-                            aria-label="Developer tools"
+                            aria-label="開發人員工具"
                             className="size-8 p-0"
                             size="sm"
                             variant="ghost"
@@ -832,7 +832,7 @@ function SettingsAPITokens() {
                                 target="_blank"
                             >
                                 <ExternalLink />
-                                GraphQL Playground
+                                GraphQL 測試台
                             </a>
                         </DropdownMenuItem>
                         <DropdownMenuItem asChild>
@@ -856,8 +856,8 @@ function SettingsAPITokens() {
             return (
                 <div className="flex flex-1 flex-col gap-4 p-4">
                     <LoadingState
-                        description="Please wait while we fetch your API tokens"
-                        title="Loading tokens..."
+                        description="正在取得 API Token，請稍候"
+                        title="載入 Token 中…"
                     />
                 </div>
             );
@@ -870,7 +870,7 @@ function SettingsAPITokens() {
                     <ErrorState
                         message={error.message}
                         onRetry={refetch}
-                        title="Error loading tokens"
+                        title="載入 Token 失敗"
                     />
                 </div>
             );
@@ -886,9 +886,9 @@ function SettingsAPITokens() {
                             <EmptyMedia variant="icon">
                                 <Key />
                             </EmptyMedia>
-                            <EmptyTitle>No API tokens configured</EmptyTitle>
+                            <EmptyTitle>尚未設定 API Token</EmptyTitle>
                             <EmptyDescription>
-                                Create your first API token to access PentAGI programmatically
+                                建立第一個 API Token，以便透過程式方式存取 PentAGI
                             </EmptyDescription>
                         </EmptyHeader>
                         <EmptyContent>
@@ -897,7 +897,7 @@ function SettingsAPITokens() {
                                 variant="secondary"
                             >
                                 <Plus />
-                                Create Token
+                                建立 Token
                             </Button>
                         </EmptyContent>
                     </Empty>
@@ -913,7 +913,7 @@ function SettingsAPITokens() {
                     empty={{ entityName: 'API tokens' }}
                     filterPlaceholder="Filter tokens..."
                     filterValue={filter}
-                    label="API Tokens"
+                    label="API Token"
                     onFilterChange={setFilter}
                     onPageChange={handlePageChange}
                     pageIndex={currentPage}
@@ -933,9 +933,9 @@ function SettingsAPITokens() {
             >
                 <DialogContent>
                     <DialogHeader>
-                        <DialogTitle>API Token Created</DialogTitle>
+                        <DialogTitle>API Token 已建立</DialogTitle>
                         <DialogDescription>
-                            Copy this token now. You won't be able to see it again for security reasons.
+                            請立即複製此 Token。基於安全考量，之後將無法再次查看。
                         </DialogDescription>
                     </DialogHeader>
                     <div className="bg-muted rounded p-4">
@@ -949,16 +949,16 @@ function SettingsAPITokens() {
                                     const success = await copyToClipboard(tokenSecret);
 
                                     if (success) {
-                                        toast.success('Token copied to clipboard');
+                                        toast.success('Token 已複製到剪貼簿');
                                     } else {
-                                        toast.error('Failed to copy token to clipboard');
+                                        toast.error('複製 Token 到剪貼簿失敗');
                                     }
                                 }
                             }}
                             variant="secondary"
                         >
                             <Copy />
-                            Copy Token
+                            複製 Token
                         </Button>
                         <Button
                             className="flex-1"
@@ -968,15 +968,15 @@ function SettingsAPITokens() {
                             }}
                             variant="outline"
                         >
-                            Close
+                            關閉
                         </Button>
                     </div>
                 </DialogContent>
             </Dialog>
 
             <ConfirmationDialog
-                cancelText="Cancel"
-                confirmText="Delete"
+                cancelText="取消"
+                confirmText="刪除"
                 handleConfirm={() => handleDelete(deletingToken?.tokenId)}
                 handleOpenChange={setIsDeleteDialogOpen}
                 isOpen={isDeleteDialogOpen}

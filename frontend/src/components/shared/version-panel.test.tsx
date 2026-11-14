@@ -85,11 +85,11 @@ describe('VersionPanel', () => {
 
     it('carries the icon and the title the caller passed, with the running version under them', () => {
         provider.value = { isLoading: false, versionInfo: info() };
-        renderPanel({ title: 'Settings' });
+        renderPanel({ title: '設定' });
 
-        const button = screen.getByRole('button', { name: /Settings v2\.1\.0/ });
+        const button = screen.getByRole('button', { name: /設定 v2\.1\.0/ });
 
-        expect(button).toHaveTextContent('Settings');
+        expect(button).toHaveTextContent('設定');
         expect(button).toHaveTextContent('v2.1.0');
         expect(screen.getByTestId('probe-icon')).toBeInTheDocument();
     });
@@ -141,7 +141,7 @@ describe('VersionPanel', () => {
         await user.hover(trigger());
 
         expect(await screen.findByRole('tooltip')).toHaveTextContent(
-            'New version v2.4.0 is available. Run the installer tool to update.',
+            '有新版本 v2.4.0 可用。請執行安裝程式進行更新。',
         );
     });
 
@@ -165,17 +165,17 @@ describe('VersionPanel', () => {
         expect(dialog).toHaveTextContent('PentAGI v2.1.0');
         expect(dialog).toHaveTextContent('build b1d7c0de');
         expect(dialog).toHaveTextContent('stable');
-        expect(dialog).toHaveTextContent('New version v2.4.0 is available');
-        expect(dialog).toHaveTextContent('Run the installer tool on the host where PentAGI is deployed');
-        expect(dialog).toHaveTextContent('Installed');
-        expect(dialog).toHaveTextContent('Available');
-        expect(dialog).toHaveTextContent('Checked');
+        expect(dialog).toHaveTextContent('有新版本 v2.4.0 可用');
+        expect(dialog).toHaveTextContent('在部署 PentAGI 的主機上執行安裝程式');
+        expect(dialog).toHaveTextContent('已安裝');
+        expect(dialog).toHaveTextContent('可用');
+        expect(dialog).toHaveTextContent('已勾選');
         expect(dialog).toHaveTextContent('10 minutes ago');
-        expect(screen.getByRole('menuitem', { name: /Release notes for v2\.4\.0/ })).toHaveAttribute(
+        expect(screen.getByRole('menuitem', { name: /版本說明： v2\.4\.0/ })).toHaveAttribute(
             'href',
             'https://github.com/vxcontrol/pentagi/releases/tag/v2.4.0',
         );
-        expect(screen.getByRole('menuitem', { name: /All releases/ })).toHaveAttribute(
+        expect(screen.getByRole('menuitem', { name: /所有版本/ })).toHaveAttribute(
             'href',
             'https://github.com/vxcontrol/pentagi/releases',
         );
@@ -193,9 +193,9 @@ describe('VersionPanel', () => {
 
         const dialog = await screen.findByRole('menu');
 
-        expect(dialog).toHaveTextContent('Update status unknown');
-        expect(dialog).toHaveTextContent('The newest published version is v2.4.0.');
-        expect(dialog).not.toHaveTextContent('Available');
+        expect(dialog).toHaveTextContent('更新狀態未知');
+        expect(dialog).toHaveTextContent('最新發布的版本是 v2.4.0。');
+        expect(dialog).not.toHaveTextContent('可用');
         expect(screen.queryByRole('menuitem', { name: /Release notes/ })).not.toBeInTheDocument();
     });
 
@@ -206,11 +206,11 @@ describe('VersionPanel', () => {
 
         await user.click(trigger());
 
-        const badge = await screen.findByLabelText('Update channel: stable');
+        const badge = await screen.findByLabelText('更新通道：stable');
 
         await user.hover(badge);
 
-        expect(await screen.findByRole('tooltip')).toHaveTextContent('Updates are offered from the stable channel');
+        expect(await screen.findByRole('tooltip')).toHaveTextContent('更新來源為 stable 通道');
     });
 
     it('names the base version of a build cut from a branch beside its build', async () => {
@@ -245,7 +245,7 @@ describe('VersionPanel', () => {
 
         expect(await screen.findByRole('menu')).toHaveTextContent('Update status unknown');
         expect(screen.queryByRole('menuitem', { name: /Release notes/ })).not.toBeInTheDocument();
-        expect(screen.getByRole('menuitem', { name: /All releases/ })).toBeInTheDocument();
+        expect(screen.getByRole('menuitem', { name: /所有版本/ })).toBeInTheDocument();
     });
 });
 
@@ -320,8 +320,8 @@ describe('describeVersion', () => {
         expect(presentation.indicator).toBe('update');
         expect(presentation.label).toBe('v2.1.0');
         expect(presentation.latest).toBe('v2.4.0');
-        expect(presentation.headline).toBe('New version v2.4.0 is available');
-        expect(presentation.tooltip).toBe('New version v2.4.0 is available. Run the installer tool to update.');
+        expect(presentation.headline).toBe('有新版本 v2.4.0 可用');
+        expect(presentation.tooltip).toBe('有新版本 v2.4.0 可用。請執行安裝程式進行更新。');
         expect(presentation.action).toBe(UPDATE_INSTRUCTION);
     });
 
@@ -329,19 +329,19 @@ describe('describeVersion', () => {
         const presentation = describeVersion(info());
 
         expect(presentation.indicator).toBe('none');
-        expect(presentation.tooltip).toBe('PentAGI v2.1.0 is up to date.');
-        expect(presentation.detail).toContain('preview channel');
+        expect(presentation.tooltip).toBe('PentAGI v2.1.0 已是最新版本。');
+        expect(presentation.detail).toContain('preview 通道');
         expect(presentation.action).toBeNull();
     });
 
     it.each([
-        [UpdateState.Pending, 'Checking for updates…'],
-        [UpdateState.Unreachable, 'Update status unknown: the update service could not be reached.'],
+        [UpdateState.Pending, '正在檢查更新…'],
+        [UpdateState.Unreachable, '更新狀態未知：無法連線到更新服務。'],
         [
             UpdateState.Unknown,
-            'Update status unknown: the update service could not tell whether a newer version exists.',
+            '更新狀態未知：更新服務無法判斷是否有較新版本。',
         ],
-        [UpdateState.Disabled, 'Update checks are disabled in the server configuration.'],
+        [UpdateState.Disabled, '伺服器設定已停用更新檢查。'],
     ])('shows the yellow question mark for %s', (state, tooltip) => {
         const presentation = describeVersion(info({ state }));
 
@@ -353,7 +353,7 @@ describe('describeVersion', () => {
         const presentation = describeVersion(info({ latest: '2.4.0', state: UpdateState.Unknown }));
 
         expect(presentation.indicator).toBe('question');
-        expect(presentation.detail).toContain('The newest published version is v2.4.0.');
+        expect(presentation.detail).toContain('最新發布的版本是 v2.4.0。');
     });
 
     it('treats an update that names no version as unknown rather than pointing an arrow at nothing', () => {
@@ -395,8 +395,8 @@ describe('describeTiming', () => {
         expect(
             describeTiming(info({ checkedAt: '2026-09-02T09:00:00Z', failedAt: '2026-09-02T11:55:00Z' }), now),
         ).toEqual([
-            { label: 'Checked', value: 'about 3 hours ago' },
-            { label: 'Last check failed', value: '5 minutes ago' },
+            { label: '已勾選', value: 'about 3 hours ago' },
+            { label: '最近一次檢查失敗', value: '5 minutes ago' },
         ]);
     });
 });

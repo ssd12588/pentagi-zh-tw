@@ -8,7 +8,7 @@ function FlowDashboard() {
     if (!flowId) {
         return (
             <div className="text-muted-foreground flex items-center justify-center py-12">
-                Select a flow to view the dashboard
+                選擇流程以檢視儀表板
             </div>
         );
     }
@@ -16,7 +16,7 @@ function FlowDashboard() {
     return (
         <Tabs defaultValue="overview">
             <TabsList className="hidden">
-                <TabsTrigger value="overview">Overview</TabsTrigger>
+                <TabsTrigger value="overview">總覽</TabsTrigger>
             </TabsList>
 
             <TabsContent value="overview">

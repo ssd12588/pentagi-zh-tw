@@ -4,7 +4,7 @@ import { formatPromptId } from './format-prompt-id';
 
 describe('formatPromptId', () => {
     it.each([
-        ['assistant', 'Assistant'],
+        ['assistant', '助理'],
         ['primaryAgent', 'Primary Agent'],
         ['toolCallFixer', 'Tool Call Fixer'],
         ['getShortExecutionContext', 'Get Short Execution Context'],
@@ -13,7 +13,7 @@ describe('formatPromptId', () => {
         expect(formatPromptId(key)).toBe(expected);
     });
 
-    it.each(['99999', '__typename', 'Assistant', 'primary_agent', ''])(
+    it.each(['99999', '__typename', '助理', 'primary_agent', ''])(
         'falls back to a generic label for %j, which is not a prompt key',
         (key) => {
             expect(formatPromptId(key)).toBe('Prompt');

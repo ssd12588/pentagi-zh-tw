@@ -106,7 +106,7 @@ describe('RouteErrorBoundary', () => {
 
         renderWithRouteError(chunkError());
 
-        const reload = await screen.findByRole('button', { name: /reload/i });
+        const reload = await screen.findByRole('button', { name: /重新載入/i });
         expect(reload).toBeDisabled();
         await userEvent.click(reload);
         expect(reloadSpy).not.toHaveBeenCalled();
@@ -122,7 +122,7 @@ describe('RouteErrorBoundary', () => {
     it('reloads when the user clicks Reload', async () => {
         renderWithRouteError(renderError());
 
-        await userEvent.click(await screen.findByRole('button', { name: /reload/i }));
+        await userEvent.click(await screen.findByRole('button', { name: /重新載入/i }));
 
         expect(reloadSpy).toHaveBeenCalledTimes(1);
     });

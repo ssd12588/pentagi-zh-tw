@@ -186,12 +186,12 @@ function Resources() {
         const wasCopied = await copyToClipboard(file.path);
 
         if (wasCopied) {
-            toast.success('Path copied to clipboard');
+            toast.success('路徑已複製到剪貼簿');
 
             return;
         }
 
-        toast.error('Failed to copy path');
+        toast.error('複製路徑失敗');
     }, []);
 
     // Join the selected paths with `\n` so the result pastes as a clean
@@ -209,7 +209,7 @@ function Resources() {
             return;
         }
 
-        toast.error('Failed to copy paths');
+        toast.error('複製路徑失敗');
     }, []);
 
     /**
@@ -266,7 +266,7 @@ function Resources() {
                 appliesToFiles: false,
                 icon: FolderPlus,
                 id: 'resources-mkdir-here',
-                label: 'New folder',
+                label: '新增資料夾',
                 onSelect: handleMkdirHere,
                 separatorBefore: true,
             },
@@ -275,14 +275,14 @@ function Resources() {
                 appliesToFiles: false,
                 icon: Upload,
                 id: 'resources-upload-here',
-                label: 'Upload files',
+                label: '上傳檔案',
                 onSelect: handleUploadHere,
             },
             {
                 appliesToDirs: true,
                 icon: FileSymlink,
                 id: 'resources-rename',
-                label: 'Rename or move',
+                label: '重新命名或移動',
                 onSelect: (file) => setFilesToMove([file]),
                 separatorBefore: true,
             },
@@ -290,7 +290,7 @@ function Resources() {
                 appliesToDirs: true,
                 icon: Copy,
                 id: 'resources-copy',
-                label: 'Copy to…',
+                label: '複製到…',
                 onSelect: (file) => setFilesToCopy([file]),
             },
             deleteAction(deletion.requestDelete),
@@ -320,13 +320,13 @@ function Resources() {
             {
                 icon: FolderPlus,
                 id: 'resources-empty-mkdir',
-                label: 'New folder',
+                label: '新增資料夾',
                 onSelect: () => setIsMkdirOpen(true),
             },
             {
                 icon: Upload,
                 id: 'resources-empty-upload',
-                label: 'Upload files',
+                label: '上傳檔案',
                 onSelect: upload.openFilePicker,
             },
         ],
@@ -345,21 +345,21 @@ function Resources() {
     const pageHeader = (
         <AppHeader>
             <AppHeaderContent>
-                <AppHeaderTitle icon={<Folder className="size-4 shrink-0" />}>Resources</AppHeaderTitle>
+                <AppHeaderTitle icon={<Folder className="size-4 shrink-0" />}>資源</AppHeaderTitle>
             </AppHeaderContent>
             <AppHeaderActions>
                 <AppHeaderAction
                     disabled={upload.isUploading}
                     icon={<FolderPlus />}
-                    label="New folder"
+                    label="新增資料夾"
                     onClick={() => setIsMkdirOpen(true)}
                     variant="outline"
                 />
                 <AppHeaderAction
-                    aria-label={upload.isUploading ? 'Uploading...' : 'Upload files'}
+                    aria-label={upload.isUploading ? '上傳中…' : '上傳檔案'}
                     disabled={upload.isUploading}
                     icon={upload.isUploading ? <Spinner variant="circle" /> : <Upload />}
-                    label={upload.isUploading ? 'Uploading...' : 'Upload files'}
+                    label={upload.isUploading ? '上傳中…' : '上傳檔案'}
                     onClick={upload.openFilePicker}
                     variant="secondary"
                 />
@@ -372,12 +372,12 @@ function Resources() {
     const noResourcesState = (
         <FileDropZone
             actionLabel="Upload files"
-            description="Upload documents so PentAGI agents can reference them during your flows. You can also drag & drop files anywhere in this panel."
-            hint="Up to 300 MB per file · 2 GB per upload"
+            description="上傳文件，讓 PentAGI 代理在流程中參考。你也可以在此面板任意位置拖放檔案。"
+            hint="每個檔案上限 300 MB · 每次上傳上限 2 GB"
             isDragging={isDragging}
             isUploading={upload.isUploading}
             onBrowse={upload.openFilePicker}
-            title="No resources yet"
+            title="尚無資源"
         />
     );
 
@@ -387,9 +387,9 @@ function Resources() {
                 <EmptyMedia variant="icon">
                     <Search />
                 </EmptyMedia>
-                <EmptyTitle>No matches</EmptyTitle>
+                <EmptyTitle>無符合結果</EmptyTitle>
                 <EmptyDescription>
-                    No resources match <code>{search.debouncedQuery.trim()}</code>. Try a different query.
+                    沒有符合的資源 <code>{search.debouncedQuery.trim()}</code>。請嘗試其他搜尋關鍵字。
                 </EmptyDescription>
             </EmptyHeader>
         </Empty>
@@ -404,7 +404,7 @@ function Resources() {
                     <ErrorState
                         message={error.message}
                         onRetry={refetch}
-                        title="Error loading resources"
+                        title="載入資源失敗"
                     />
                 </div>
             </>
@@ -433,7 +433,7 @@ function Resources() {
                     <div className="bg-primary/10 border-primary pointer-events-none absolute inset-2 z-30 flex items-center justify-center rounded-lg border-2 border-dashed">
                         <div className="text-link flex flex-col items-center gap-2">
                             <FolderUp className="size-8" />
-                            <span className="text-sm font-medium">Drop files to upload</span>
+                            <span className="text-sm font-medium">拖放檔案以上傳</span>
                         </div>
                     </div>
                 )}
@@ -441,17 +441,17 @@ function Resources() {
                 <div className="flex items-center gap-2">
                     <InputGroup className="max-w-sm flex-1">
                         <InputGroupInput
-                            aria-label="Search resources"
+                            aria-label="搜尋資源"
                             autoComplete="off"
                             onChange={(event) => search.setQuery(event.target.value)}
-                            placeholder="Search resources..."
+                            placeholder="搜尋資源…"
                             type="text"
                             value={search.rawQuery}
                         />
                         {search.rawQuery ? (
                             <InputGroupAddon align="inline-end">
                                 <InputGroupButton
-                                    aria-label="Clear resource search"
+                                    aria-label="清除資源搜尋"
                                     onClick={search.resetSearch}
                                     type="button"
                                 >
@@ -463,7 +463,7 @@ function Resources() {
                     <DropdownMenu>
                         <DropdownMenuTrigger asChild>
                             <Button
-                                aria-label="Column settings"
+                                aria-label="欄設定"
                                 className="ml-auto"
                                 size="icon"
                                 variant="outline"
@@ -477,14 +477,14 @@ function Resources() {
                                 onCheckedChange={() => toggleViewOption('isSizeVisible')}
                                 onSelect={(event) => event.preventDefault()}
                             >
-                                Size
+                                大小
                             </DropdownMenuCheckboxItem>
                             <DropdownMenuCheckboxItem
                                 checked={viewOptions.isModifiedVisible}
                                 onCheckedChange={() => toggleViewOption('isModifiedVisible')}
                                 onSelect={(event) => event.preventDefault()}
                             >
-                                Modified
+                                已修改
                             </DropdownMenuCheckboxItem>
                             <DropdownMenuSeparator />
                             <DropdownMenuCheckboxItem
@@ -492,7 +492,7 @@ function Resources() {
                                 onCheckedChange={() => toggleViewOption('isFoldersFirst')}
                                 onSelect={(event) => event.preventDefault()}
                             >
-                                Folders first
+                                資料夾優先
                             </DropdownMenuCheckboxItem>
                             <DropdownMenuCheckboxItem
                                 checked={viewOptions.isModifiedRelative}
@@ -500,7 +500,7 @@ function Resources() {
                                 onCheckedChange={() => toggleViewOption('isModifiedRelative')}
                                 onSelect={(event) => event.preventDefault()}
                             >
-                                Relative dates
+                                相對日期
                             </DropdownMenuCheckboxItem>
                         </DropdownMenuContent>
                     </DropdownMenu>
@@ -549,13 +549,13 @@ function Resources() {
                 />
 
                 <ConfirmationDialog
-                    confirmText="Delete"
+                    confirmText="刪除"
                     handleConfirm={deletion.confirmDelete}
                     handleOpenChange={handleDeleteDialogOpenChange}
                     isOpen={!!deletion.fileToDelete}
                     itemName={deletion.fileToDelete?.name}
                     itemType={deletion.fileToDelete?.isDir ? 'directory' : 'resource'}
-                    title={deletion.fileToDelete?.isDir ? 'Delete directory' : 'Delete resource'}
+                    title={deletion.fileToDelete?.isDir ? '刪除目錄' : '刪除資源'}
                 />
             </div>
         </>

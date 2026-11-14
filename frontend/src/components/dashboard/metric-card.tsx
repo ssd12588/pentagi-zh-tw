@@ -48,7 +48,7 @@ export function MetricCard({
                     (loading ? (
                         <Skeleton className="mt-1 h-3 w-32" />
                     ) : (
-                        <p className="text-muted-foreground text-xs">{error ? "Couldn't load" : description}</p>
+                        <p className="text-muted-foreground text-xs">{error ? "無法載入" : description}</p>
                     ))}
             </CardContent>
         </Card>

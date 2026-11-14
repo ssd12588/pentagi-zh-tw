@@ -66,12 +66,12 @@ function FlowFiles() {
         const wasCopied = await copyToClipboard(file.path);
 
         if (wasCopied) {
-            toast.success('Path copied to clipboard');
+            toast.success('路徑已複製到剪貼簿');
 
             return;
         }
 
-        toast.error('Failed to copy path');
+        toast.error('複製路徑失敗');
     }, []);
 
     /**
@@ -91,7 +91,7 @@ function FlowFiles() {
             return;
         }
 
-        toast.error('Failed to copy paths');
+        toast.error('複製路徑失敗');
     }, []);
 
     // `flowId` may be missing (no flow selected yet) — return '' so FileManager
@@ -117,7 +117,7 @@ function FlowFiles() {
             appliesToDirs: true,
             icon: FolderOutput,
             id: 'flow-files-save-as-resource',
-            label: 'Save as resource',
+            label: '儲存為資源',
             onSelect: handleRequestPromote,
         }),
         [handleRequestPromote],
@@ -164,9 +164,9 @@ function FlowFiles() {
                 <EmptyMedia variant="icon">
                     <FolderUp />
                 </EmptyMedia>
-                <EmptyTitle>No files in cache</EmptyTitle>
+                <EmptyTitle>快取中沒有檔案</EmptyTitle>
                 <EmptyDescription>
-                    Upload files to make them available at <code>/work/uploads</code>, or use Pull to sync files from
+                    上傳檔案以提供於 <code>/work/uploads</code>, or use Pull to sync files from
                     the running container. You can also drag &amp; drop files here.
                 </EmptyDescription>
             </EmptyHeader>
@@ -179,9 +179,9 @@ function FlowFiles() {
                 <EmptyMedia variant="icon">
                     <Search />
                 </EmptyMedia>
-                <EmptyTitle>No matches</EmptyTitle>
+                <EmptyTitle>無符合結果</EmptyTitle>
                 <EmptyDescription>
-                    No files match <code>{search.debouncedQuery.trim()}</code>. Try a different query.
+                    沒有符合的檔案 <code>{search.debouncedQuery.trim()}</code>。請嘗試其他搜尋關鍵字。
                 </EmptyDescription>
             </EmptyHeader>
         </Empty>
@@ -207,7 +207,7 @@ function FlowFiles() {
                 <div className="bg-primary/10 border-primary pointer-events-none absolute inset-0 z-30 flex items-center justify-center rounded-lg border-2 border-dashed">
                     <div className="text-link flex flex-col items-center gap-2">
                         <FolderUp className="size-8" />
-                        <span className="text-sm font-medium">Drop files to upload</span>
+                        <span className="text-sm font-medium">拖放檔案以上傳</span>
                     </div>
                 </div>
             )}
@@ -228,13 +228,13 @@ function FlowFiles() {
                                             <InputGroupInput
                                                 {...field}
                                                 autoComplete="off"
-                                                placeholder="Search files..."
+                                                placeholder="搜尋檔案…"
                                                 type="text"
                                             />
                                             {field.value && (
                                                 <InputGroupAddon align="inline-end">
                                                     <InputGroupButton
-                                                        aria-label="Clear file search"
+                                                        aria-label="清除檔案搜尋"
                                                         onClick={search.resetSearch}
                                                         type="button"
                                                     >
@@ -252,7 +252,7 @@ function FlowFiles() {
                             <TooltipTrigger asChild>
                                 <span>
                                     <Button
-                                        aria-label="Upload files"
+                                        aria-label="上傳檔案"
                                         disabled={upload.isUploading || isLoading}
                                         onClick={upload.openFilePicker}
                                         size="icon-sm"
@@ -264,9 +264,9 @@ function FlowFiles() {
                                 </span>
                             </TooltipTrigger>
                             <TooltipContent className="max-w-64 text-center text-xs">
-                                <p className="font-medium">Upload files</p>
+                                <p className="font-medium">上傳檔案</p>
                                 <p className="mt-1">
-                                    Pushed to <code>/work/uploads</code> — immediately accessible inside the container.
+                                    已推送至 <code>/work/uploads</code> ——可直接在容器記憶取用。
                                 </p>
                             </TooltipContent>
                         </Tooltip>
@@ -275,7 +275,7 @@ function FlowFiles() {
                             <TooltipTrigger asChild>
                                 <span>
                                     <Button
-                                        aria-label="Attach resources"
+                                        aria-label="附加資源"
                                         disabled={isAttachResourcesDisabled}
                                         onClick={handleOpenAttachResourcesDialog}
                                         size="icon-sm"
@@ -287,9 +287,9 @@ function FlowFiles() {
                                 </span>
                             </TooltipTrigger>
                             <TooltipContent className="max-w-64 text-center text-xs">
-                                <p className="font-medium">Attach resources</p>
+                                <p className="font-medium">附加資源</p>
                                 <p className="mt-1">
-                                    Copied from the library to <code>/work/resources</code> — immediately accessible
+                                    已從資源庫複製到 <code>/work/resources</code> — immediately accessible
                                     inside the container.
                                 </p>
                             </TooltipContent>
@@ -299,7 +299,7 @@ function FlowFiles() {
                             <TooltipTrigger asChild>
                                 <span>
                                     <Button
-                                        aria-label="Pull from container"
+                                        aria-label="從容器拉取"
                                         disabled={isPullDisabled}
                                         onClick={handleOpenPullDialog}
                                         size="icon-sm"
@@ -313,13 +313,13 @@ function FlowFiles() {
                             <TooltipContent className="max-w-64 text-center text-xs">
                                 {isContainerRunning ? (
                                     <>
-                                        <p className="font-medium">Pull file or directory from container</p>
+                                        <p className="font-medium">從容器拉取檔案或目錄</p>
                                         <p className="mt-1">
-                                            Snapshots are stored separately under <strong>Container</strong>.
+                                            快照會另外儲存於 <strong>容器</strong>.
                                         </p>
                                     </>
                                 ) : (
-                                    <p className="font-medium">Container is not running</p>
+                                    <p className="font-medium">容器未執行</p>
                                 )}
                             </TooltipContent>
                         </Tooltip>
@@ -359,13 +359,13 @@ function FlowFiles() {
             />
 
             <ConfirmationDialog
-                confirmText="Delete"
+                confirmText="刪除"
                 handleConfirm={deletion.confirmDelete}
                 handleOpenChange={handleDeleteDialogOpenChange}
                 isOpen={!!deletion.fileToDelete}
                 itemName={deletion.fileToDelete?.name}
                 itemType={deletion.fileToDelete?.isDir ? 'directory' : 'file'}
-                title={deletion.fileToDelete?.isDir ? 'Delete Directory' : 'Delete File'}
+                title={deletion.fileToDelete?.isDir ? '刪除目錄' : '刪除檔案'}
             />
         </div>
     );

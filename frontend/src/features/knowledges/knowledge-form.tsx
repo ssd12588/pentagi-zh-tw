@@ -55,7 +55,7 @@ export const formSchema = z
         // limit counts all of it, as the endpoint does.
         content: z
             .string()
-            .refine((value) => value.trim() !== '', { message: 'Content is required' })
+            .refine((value) => value.trim() !== '', { message: '必須輸入內容' })
             .refine(withinLimit(KNOWLEDGE_LIMITS.content), {
                 message: `Content must be ${KNOWLEDGE_LIMITS.content} characters or fewer`,
             }),
@@ -65,7 +65,7 @@ export const formSchema = z
         question: z
             .string()
             .trim()
-            .min(1, { message: 'Question is required' })
+            .min(1, { message: '必須輸入問題' })
             .refine(withinLimit(KNOWLEDGE_LIMITS.question), {
                 message: `Question must be ${KNOWLEDGE_LIMITS.question} characters or fewer`,
             }),
@@ -73,9 +73,9 @@ export const formSchema = z
     .superRefine((value, ctx) => {
         const requiredByDocType: Partial<Record<KnowledgeDocType, { field: FieldPath<FormValues>; message: string }>> =
             {
-                [KnowledgeDocType.Answer]: { field: 'answerType', message: 'Answer type is required' },
-                [KnowledgeDocType.Code]: { field: 'codeLang', message: 'Code language is required' },
-                [KnowledgeDocType.Guide]: { field: 'guideType', message: 'Guide type is required' },
+                [KnowledgeDocType.Answer]: { field: 'answerType', message: '必須選擇回答類型' },
+                [KnowledgeDocType.Code]: { field: 'codeLang', message: '必須選擇程式語言' },
+                [KnowledgeDocType.Guide]: { field: 'guideType', message: '必須選擇指南類型' },
             };
 
         const rule = requiredByDocType[value.docType];
@@ -323,7 +323,7 @@ export function KnowledgeForm({ initialValues, isNew, knowledge, onSubmit }: Kno
         <AppHeaderAction
             disabled={!canSubmit}
             icon={<Save aria-hidden="true" />}
-            label={isNew ? 'Create' : 'Save'}
+            label={isNew ? '建立' : '儲存'}
             loading={isSaving}
             type="submit"
         />
@@ -343,19 +343,19 @@ export function KnowledgeForm({ initialValues, isNew, knowledge, onSubmit }: Kno
             const anonymizedContent = data?.anonymizeText;
 
             if (anonymizedContent == null) {
-                toast.error('Anonymizer returned no result');
+                toast.error('匿名化工具未回傳結果');
 
                 return;
             }
 
             if (anonymizedContent === currentContent) {
-                toast.info('No sensitive data detected');
+                toast.info('未偵測到敏感資料');
 
                 return;
             }
 
             form.setValue('content', anonymizedContent, { shouldDirty: true });
-            toast.success('Content anonymized');
+            toast.success('內容已匿名化');
         } catch (error) {
             Log.error('Failed to anonymize content', error);
             toast.error(error instanceof Error ? error.message : 'Failed to anonymize content');

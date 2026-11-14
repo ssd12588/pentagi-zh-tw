@@ -165,10 +165,10 @@ function ResourcesCopyDialogForm({ files, onClose }: ResourcesCopyDialogFormProp
                     </DialogTitle>
                     <DialogDescription>
                         {isMulti ? (
-                            <>Duplicate every selected item into the destination directory.</>
+                            <>將所有選取的項目複製到目的地目錄。</>
                         ) : (
                             <>
-                                Duplicate <code>{files[0].path}</code> to a new path.
+                                建立副本 <code>{files[0].path}</code> 至新路徑。
                             </>
                         )}
                     </DialogDescription>
@@ -185,7 +185,7 @@ function ResourcesCopyDialogForm({ files, onClose }: ResourcesCopyDialogFormProp
                             name="destination"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>{isMulti ? 'Destination directory' : 'Destination path'}</FormLabel>
+                                    <FormLabel>{isMulti ? '目的地目錄' : '目的路徑'}</FormLabel>
                                     <FormControl>
                                         <Input
                                             {...field}
@@ -193,7 +193,7 @@ function ResourcesCopyDialogForm({ files, onClose }: ResourcesCopyDialogFormProp
                                             autoFocus
                                             disabled={isCopying}
                                             placeholder={
-                                                isMulti ? 'Leave empty to copy into the library root' : undefined
+                                                isMulti ? '留空則複製到資源庫根目錄' : undefined
                                             }
                                         />
                                     </FormControl>
@@ -204,7 +204,7 @@ function ResourcesCopyDialogForm({ files, onClose }: ResourcesCopyDialogFormProp
                                                 item keeps its current filename.
                                             </>
                                         ) : (
-                                            <>Relative path inside your library.</>
+                                            <>資源庫內的相對路徑。</>
                                         )}
                                     </FormDescription>
                                     <FormMessage />
@@ -219,7 +219,7 @@ function ResourcesCopyDialogForm({ files, onClose }: ResourcesCopyDialogFormProp
                                 type="button"
                                 variant="outline"
                             >
-                                Cancel
+                                取消
                             </Button>
                             <OverwriteButtons
                                 isDisabled={isSubmitDisabled}

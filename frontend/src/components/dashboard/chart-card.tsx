@@ -55,7 +55,7 @@ export function ChartCard({
                         style={{ height }}
                     >
                         <BarChart2 className="text-muted-foreground/30 size-10" />
-                        <p className="text-muted-foreground text-sm">No data for this period</p>
+                        <p className="text-muted-foreground text-sm">此期間沒有資料</p>
                     </div>
                 ) : (
                     <ResponsiveContainer

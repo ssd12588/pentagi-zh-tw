@@ -529,7 +529,7 @@ function FileManagerRowImpl({
                         <DropdownMenu onOpenChange={setIsDropdownMenuOpen}>
                             <DropdownMenuTrigger asChild>
                                 <Button
-                                    aria-label="Row actions"
+                                    aria-label="列操作"
                                     className="opacity-0 group-hover:opacity-100 data-[state=open]:opacity-100"
                                     size="icon-xs"
                                     variant="ghost"

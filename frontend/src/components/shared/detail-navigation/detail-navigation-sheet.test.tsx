@@ -319,7 +319,7 @@ describe('DetailNavigationSheet — search input', () => {
         const user = userEvent.setup();
         renderSheet({ currentId: 'a', defaultSearchQuery: 'cha' });
 
-        const clearButton = await screen.findByRole('button', { name: 'Clear search' });
+        const clearButton = await screen.findByRole('button', { name: '清除搜尋' });
         await user.click(clearButton);
 
         const input = await screen.findByRole('textbox');

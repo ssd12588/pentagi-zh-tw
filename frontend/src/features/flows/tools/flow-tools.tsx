@@ -152,13 +152,13 @@ function FlowTools() {
                                         <InputGroupInput
                                             {...field}
                                             autoComplete="off"
-                                            placeholder="Search tool logs..."
+                                            placeholder="搜尋工具日誌…"
                                             type="text"
                                         />
                                         {field.value && (
                                             <InputGroupAddon align="inline-end">
                                                 <InputGroupButton
-                                                    aria-label="Clear tool search"
+                                                    aria-label="清除工具搜尋"
                                                     onClick={() => {
                                                         form.reset({ search: '' });
                                                         setDebouncedSearchValue('');
@@ -208,7 +208,7 @@ function FlowTools() {
 
                     {!isScrolledToBottom && (
                         <Button
-                            aria-label="Scroll to latest tool log"
+                            aria-label="捲動到最新工具日誌"
                             className="absolute right-4 bottom-4 z-10 shadow-md hover:shadow-lg"
                             onClick={() => scrollToEnd()}
                             size="icon-sm"
@@ -228,8 +228,8 @@ function FlowTools() {
                         <EmptyMedia variant="icon">
                             <ListFilter />
                         </EmptyMedia>
-                        <EmptyTitle>No search logs found</EmptyTitle>
-                        <EmptyDescription>Try adjusting your search or filter parameters</EmptyDescription>
+                        <EmptyTitle>找不到搜尋日誌</EmptyTitle>
+                        <EmptyDescription>請調整搜尋關鍵字或篩選條件</EmptyDescription>
                     </EmptyHeader>
                     <EmptyContent>
                         <Button
@@ -237,7 +237,7 @@ function FlowTools() {
                             variant="outline"
                         >
                             <X />
-                            Reset filters
+                            重設篩選條件
                         </Button>
                     </EmptyContent>
                 </Empty>
@@ -247,9 +247,9 @@ function FlowTools() {
                         <EmptyMedia variant="icon">
                             <Wrench />
                         </EmptyMedia>
-                        <EmptyTitle>No search logs available</EmptyTitle>
+                        <EmptyTitle>沒有可用的搜尋日誌</EmptyTitle>
                         <EmptyDescription>
-                            Search logs will appear here when the agent performs searches
+                            代理執行搜尋後，搜尋日誌會顯示在這裡
                         </EmptyDescription>
                     </EmptyHeader>
                 </Empty>

@@ -1,3 +1,9 @@
+# 漢化工具產生的中間檔（字典與腳本要提交，產物不用）
+tools/i18n/*.txt
+tools/i18n/strings.json
+tools/i18n/pending*.tsv
+tools/i18n/tmp-*
+
 .DS_Store
 .env
 .env.*

@@ -74,7 +74,7 @@ export function LinkEditForm({ autoFocus = true, editor, initialUrl, isActive, o
 
     return (
         <div className="flex flex-col gap-2">
-            <Label htmlFor={urlId}>Link URL</Label>
+            <Label htmlFor={urlId}>連結 URL</Label>
             <InputGroup>
                 <InputGroupInput
                     aria-describedby={isInvalid ? errorId : undefined}
@@ -97,7 +97,7 @@ export function LinkEditForm({ autoFocus = true, editor, initialUrl, isActive, o
                     className="gap-0"
                 >
                     <InputGroupButton
-                        aria-label="Apply link"
+                        aria-label="套用連結"
                         disabled={url === '' || isInvalid}
                         onClick={applyLink}
                         size="icon-xs"
@@ -105,7 +105,7 @@ export function LinkEditForm({ autoFocus = true, editor, initialUrl, isActive, o
                         <Check />
                     </InputGroupButton>
                     <InputGroupButton
-                        aria-label="Open link in new tab"
+                        aria-label="在新分頁開啟連結"
                         disabled={url === '' || isInvalid}
                         onClick={openInNewTab}
                         size="icon-xs"
@@ -114,7 +114,7 @@ export function LinkEditForm({ autoFocus = true, editor, initialUrl, isActive, o
                     </InputGroupButton>
                     {isActive ? (
                         <InputGroupButton
-                            aria-label="Remove link"
+                            aria-label="移除連結"
                             onClick={removeLink}
                             size="icon-xs"
                         >
@@ -129,7 +129,7 @@ export function LinkEditForm({ autoFocus = true, editor, initialUrl, isActive, o
                     id={errorId}
                     role="alert"
                 >
-                    Only http, https, mailto and tel links are allowed.
+                    僅允許 http、https、mailto 與 tel 連結。
                 </p>
             ) : null}
         </div>

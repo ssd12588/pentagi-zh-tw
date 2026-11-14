@@ -75,7 +75,7 @@ function FlowSubtask({ searchValue = '', subtask }: FlowSubtaskProps) {
                             className="cursor-pointer hover:underline"
                             onClick={() => setIsDetailsVisible(!isDetailsVisible)}
                         >
-                            {isDetailsVisible ? 'Hide details' : 'Show details'}
+                            {isDetailsVisible ? '隱藏詳細資料' : '顯示詳細資料'}
                         </div>
                         {isDetailsVisible && (
                             <div className="mt-4 flex flex-col gap-4">
@@ -83,7 +83,7 @@ function FlowSubtask({ searchValue = '', subtask }: FlowSubtaskProps) {
                                     <Card>
                                         <CardHeader className="p-3">
                                             <CardTitle className="flex items-center gap-2">
-                                                <ListTodo className="size-4 shrink-0" /> Description
+                                                <ListTodo className="size-4 shrink-0" /> 說明
                                             </CardTitle>
                                         </CardHeader>
                                         <CardContent className="p-3 pt-0">
@@ -101,7 +101,7 @@ function FlowSubtask({ searchValue = '', subtask }: FlowSubtaskProps) {
                                     <Card>
                                         <CardHeader className="p-3">
                                             <CardTitle className="flex items-center gap-2">
-                                                <ListCheck className="size-4 shrink-0" /> Result
+                                                <ListCheck className="size-4 shrink-0" /> 結果
                                             </CardTitle>
                                         </CardHeader>
                                         <CardContent className="p-3 pt-0">

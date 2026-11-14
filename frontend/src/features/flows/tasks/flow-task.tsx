@@ -110,7 +110,7 @@ function FlowTask({ searchValue = '', task }: FlowTaskProps) {
                                 value={progress}
                             />
                             <div className="text-muted-foreground shrink-0 text-xs text-nowrap">
-                                {progress}% completed ({completedSubtasksCount} of {subtasks?.length})
+                                {progress}% 已完成（{completedSubtasksCount} of {subtasks?.length})
                             </div>
                         </div>
                     )}
@@ -121,7 +121,7 @@ function FlowTask({ searchValue = '', task }: FlowTaskProps) {
                                 className="cursor-pointer"
                                 onClick={() => setIsDetailsVisible(!isDetailsVisible)}
                             >
-                                {isDetailsVisible ? 'Hide details' : 'Show details'}
+                                {isDetailsVisible ? '隱藏詳細資料' : '顯示詳細資料'}
                             </div>
                             {isDetailsVisible && (
                                 <Card className="mt-4">

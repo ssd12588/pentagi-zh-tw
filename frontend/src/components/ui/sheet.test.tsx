@@ -42,7 +42,7 @@ const SheetFromDropdown = () => {
     return (
         <>
             <DropdownMenu>
-                <DropdownMenuTrigger>Row actions</DropdownMenuTrigger>
+                <DropdownMenuTrigger>列操作</DropdownMenuTrigger>
                 <DropdownMenuContent>
                     <DropdownMenuItem onSelect={() => setIsOpen(true)}>Details</DropdownMenuItem>
                 </DropdownMenuContent>
@@ -81,7 +81,7 @@ describe('Sheet focus return', () => {
         const user = userEvent.setup();
         render(<SheetFromDropdown />);
 
-        const trigger = screen.getByRole('button', { name: 'Row actions' });
+        const trigger = screen.getByRole('button', { name: '列操作' });
         await user.click(trigger);
         await user.click(await screen.findByRole('menuitem', { name: 'Details' }));
         await screen.findByRole('dialog');

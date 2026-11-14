@@ -54,14 +54,14 @@ export const formSchema = z.object({
     // limit counts all of it, as the mutation does.
     text: z
         .string()
-        .refine((value) => value.trim() !== '', { message: 'Text is required' })
+        .refine((value) => value.trim() !== '', { message: '必須輸入文字' })
         .refine((value) => [...value].length <= MAX_TEMPLATE_TEXT_LENGTH, {
             message: `Text must not exceed ${MAX_TEMPLATE_TEXT_LENGTH} characters`,
         }),
     title: z
         .string()
         .trim()
-        .min(1, { message: 'Title is required' })
+        .min(1, { message: '必須輸入標題' })
         .refine((value) => [...value].length <= MAX_TEMPLATE_TITLE_LENGTH, {
             message: `Title must not exceed ${MAX_TEMPLATE_TITLE_LENGTH} characters`,
         }),
@@ -89,7 +89,7 @@ Action plan:
 3. Authentication & Session: test for broken authentication, session fixation, weak password policies
 4. Business Logic: identify privilege escalation, price manipulation, workflow bypass opportunities
 5. Report: document all findings with reproduction steps and proof-of-concept exploits`,
-        title: 'Web Application Security Assessment',
+        title: '網頁應用程式安全評估',
     },
     {
         text: `Perform network infrastructure reconnaissance of target: {{TARGET_NETWORK}}
@@ -103,7 +103,7 @@ Action plan:
 6. Banner Grabbing: collect detailed service information for exploit research
 7. Network Diagram: create visual map of discovered infrastructure
 8. Report: prioritized list of hosts, services, and potential attack vectors`,
-        title: 'Network Infrastructure Discovery & Mapping',
+        title: '網路基礎設施探索與測繪',
     },
     {
         text: `Conduct Active Directory security assessment for domain: {{DOMAIN_NAME}}
@@ -117,7 +117,7 @@ Action plan:
 6. Persistence: identify opportunities for golden ticket, silver ticket, DCSync rights
 7. Domain Admin Path: map attack path from current privileges to Domain Admin
 8. Report: document attack chain, compromised accounts, security gaps in AD configuration`,
-        title: 'Active Directory Penetration Test',
+        title: 'AD 網域服務滲透測試',
     },
     {
         text: `Perform comprehensive API security assessment: {{API_BASE_URL}}
@@ -132,7 +132,7 @@ Action plan:
 7. Security Misconfiguration: check CORS policy, security headers, verbose error messages
 8. GraphQL Specific (if applicable): test introspection, query depth limits, batching attacks
 9. Report: document API vulnerabilities with curl/Postman proof-of-concepts`,
-        title: 'API Security Testing',
+        title: 'API 安全測試',
     },
     {
         text: `Perform security audit of AWS infrastructure: {{AWS_ACCOUNT_ID or DOMAIN}}
@@ -147,7 +147,7 @@ Action plan:
 7. Lambda Functions: test for function URL exposure, environment variable leaks, IAM role permissions
 8. CloudTrail & Logging: verify logging is enabled, check for security monitoring gaps
 9. Report: prioritized cloud security findings with AWS-specific remediation steps`,
-        title: 'Cloud Infrastructure Security Audit (AWS)',
+        title: '雲端基礎設施安全稽核（AWS）',
     },
     {
         text: `Conduct WordPress security assessment: {{WORDPRESS_URL}}
@@ -164,7 +164,7 @@ Action plan:
 9. XSS Testing: test comments, search, contact forms, custom fields
 10. Configuration Issues: check wp-config.php exposure, directory listing, sensitive file access
 11. Report: document WordPress-specific vulnerabilities with exploit steps`,
-        title: 'WordPress Security Assessment',
+        title: 'WordPress 安全評估',
     },
     {
         text: `Perform external attack surface assessment for organization: {{ORGANIZATION_NAME or DOMAIN}}
@@ -180,7 +180,7 @@ Action plan:
 8. Third-Party Integrations: identify SaaS applications, API endpoints, partner integrations
 9. Vulnerability Prioritization: identify internet-facing critical vulnerabilities
 10. Report: comprehensive external attack surface map with risk-prioritized findings`,
-        title: 'External Attack Surface Assessment',
+        title: '外部攻擊面評估',
     },
     {
         text: `Conduct internal network penetration test from position: {{INITIAL_ACCESS_LEVEL}}
@@ -196,7 +196,7 @@ Action plan:
 8. Data Exfiltration: identify sensitive data locations, test data loss prevention controls
 9. Persistence: establish persistent access mechanisms
 10. Report: document internal security posture, attack path visualization, remediation priorities`,
-        title: 'Internal Network Penetration Test',
+        title: '內網滲透測試',
     },
     {
         text: `Perform security testing of mobile application backend API: {{API_URL}}
@@ -212,7 +212,7 @@ Action plan:
 8. Rate Limiting: test brute force protection on login, API rate limits, account lockout
 9. Deep Linking: test for deep link hijacking, intent redirection (Android), URL scheme abuse (iOS)
 10. Report: mobile-specific vulnerabilities with mitigation recommendations`,
-        title: 'Mobile Application Security Testing (API Backend)',
+        title: '行動應用程式安全測試（API 後端）',
     },
     {
         text: `Assess DevOps infrastructure and CI/CD pipeline security: {{ORGANIZATION}}
@@ -228,7 +228,7 @@ Action plan:
 8. Infrastructure as Code: review Terraform/Ansible for misconfigurations, overly permissive IAM roles
 9. Monitoring & Logging: verify security logging, test log tampering, check for security monitoring gaps
 10. Report: DevOps security findings with secure pipeline recommendations`,
-        title: 'DevOps & CI/CD Pipeline Security',
+        title: 'DevOps 與 CI/CD 流程安全',
     },
     {
         text: `Conduct database security assessment: {{DATABASE_TYPE}} at {{HOST:PORT}}
@@ -244,7 +244,7 @@ Action plan:
 8. Backup Security: test backup file access, check backup encryption, verify backup restoration procedures
 9. Audit Logging: verify audit logs enabled, test log tampering, check retention policies
 10. Report: database-specific security findings with hardening recommendations`,
-        title: 'Database Security Assessment',
+        title: '資料庫安全評估',
     },
 ];
 
@@ -350,7 +350,7 @@ function TemplateForm({ templateId }: { templateId?: string }) {
             // Send the server's current `text`, not the form's, so renaming the title never persists the
             // user's unsaved body edits — those stay dirty in the form (kept by `keepDirtyValues`) until they save.
             await updateTemplate(templateId, { text: template.text, title: newTitle });
-            toast.success('Template renamed successfully');
+            toast.success('範本重新命名成功');
             handleTemplateRenameCancel();
         } catch {
             // Error already handled in provider with toast
@@ -473,7 +473,7 @@ function TemplateForm({ templateId }: { templateId?: string }) {
                                         inputRef={editingInputRef}
                                         onCancel={handleTemplateRenameCancel}
                                         onSave={handleTemplateRenameSave}
-                                        placeholder="Template title"
+                                        placeholder="範本標題"
                                     />
                                 ) : hasTemplate ? (
                                     <Tooltip>
@@ -482,14 +482,14 @@ function TemplateForm({ templateId }: { templateId?: string }) {
                                                 className="max-w-64 min-w-0 cursor-text truncate select-none"
                                                 onDoubleClick={handleTemplateRenameStart}
                                             >
-                                                {templateName ?? 'Template'}
+                                                {templateName ?? '範本'}
                                             </BreadcrumbPage>
                                         </TooltipTrigger>
-                                        <TooltipContent>Double-click to rename</TooltipContent>
+                                        <TooltipContent>連按兩下可重新命名</TooltipContent>
                                     </Tooltip>
                                 ) : (
                                     <BreadcrumbPage className="min-w-0 truncate">
-                                        {isNew ? 'New template' : (templateName ?? 'Template')}
+                                        {isNew ? '新增範本' : (templateName ?? '範本')}
                                     </BreadcrumbPage>
                                 )}
                             </BreadcrumbItem>
@@ -503,21 +503,21 @@ function TemplateForm({ templateId }: { templateId?: string }) {
                                 controller={templateNav}
                                 renderItem={renderTemplateItem}
                                 sheetIcon={<FileText className="size-4" />}
-                                sheetTitle="Templates"
+                                sheetTitle="範本"
                             />
                         )}
                         <AppHeaderAction
                             disabled={isTemplatePending || (!isNew && !hasUnsavedChanges)}
                             form="template-form"
                             icon={<Save />}
-                            label={isNew ? 'Create' : 'Save'}
+                            label={isNew ? '建立' : '儲存'}
                             loading={isSaving}
                             type="submit"
                         />
                         <DropdownMenu>
                             <DropdownMenuTrigger asChild>
                                 <Button
-                                    aria-label="Template actions"
+                                    aria-label="範本操作"
                                     className="size-8 p-0"
                                     variant="ghost"
                                 >
@@ -538,11 +538,11 @@ function TemplateForm({ templateId }: { templateId?: string }) {
                                                     onSelect={(event) => event.preventDefault()}
                                                 >
                                                     <FileText />
-                                                    Templates
+                                                    範本
                                                     <div className="-my-1.5 -mr-2 ml-auto flex items-center">
                                                         <DetailNavigationButtons<Template>
                                                             controller={templateNav}
-                                                            sheetTitle="Templates"
+                                                            sheetTitle="範本"
                                                             size="sm"
                                                         />
                                                     </div>
@@ -555,7 +555,7 @@ function TemplateForm({ templateId }: { templateId?: string }) {
                                             onClick={handleTemplateRenameStart}
                                         >
                                             <Pencil />
-                                            Rename
+                                            重新命名
                                         </DropdownMenuItem>
                                         <DropdownMenuSeparator />
                                     </>
@@ -564,12 +564,12 @@ function TemplateForm({ templateId }: { templateId?: string }) {
                                     className="cursor-default gap-4 hover:bg-transparent focus:bg-transparent"
                                     onSelect={(event) => event.preventDefault()}
                                 >
-                                    View
+                                    檢視
                                     <EditorViewModeToggle
                                         className="-my-1.5 -mr-2 ml-auto"
                                         mode={viewMode}
                                         onModeChange={setViewMode}
-                                        rawTooltip="Edit the raw template"
+                                        rawTooltip="編輯原始範本"
                                     />
                                 </DropdownMenuItem>
                                 {!isNew && (
@@ -582,12 +582,12 @@ function TemplateForm({ templateId }: { templateId?: string }) {
                                             {isDeleting ? (
                                                 <>
                                                     <Spinner variant="circle" />
-                                                    Deleting...
+                                                    刪除中…
                                                 </>
                                             ) : (
                                                 <>
                                                     <Trash />
-                                                    Delete
+                                                    刪除
                                                 </>
                                             )}
                                         </DropdownMenuItem>
@@ -603,7 +603,7 @@ function TemplateForm({ templateId }: { templateId?: string }) {
                     controller={templateNav}
                     renderItem={renderTemplateItem}
                     sheetIcon={<FileText className="size-4" />}
-                    sheetTitle="Templates"
+                    sheetTitle="範本"
                 />
             )}
         </>
@@ -678,7 +678,7 @@ function TemplateForm({ templateId }: { templateId?: string }) {
                     </Badge>
                 </h4>
                 <p className="text-muted-foreground mt-1 text-xs">
-                    Click a preset to fill the form, or expand it to preview the content.
+                    點選預設項目即可填入表單，展開則可預覽內容。
                 </p>
             </div>
             {presetsList()}
@@ -715,8 +715,8 @@ function TemplateForm({ templateId }: { templateId?: string }) {
 
     const introBlock = (
         <div className="flex flex-col gap-2 text-center">
-            <h2 className="text-2xl font-semibold">{isNew ? 'Create a new template' : 'Edit template'}</h2>
-            <p className="text-muted-foreground">Add a title and content, or start from a preset.</p>
+            <h2 className="text-2xl font-semibold">{isNew ? '建立新的範本' : '編輯範本'}</h2>
+            <p className="text-muted-foreground">輸入標題與內容，或從預設範本開始。</p>
         </div>
     );
 
@@ -726,12 +726,12 @@ function TemplateForm({ templateId }: { templateId?: string }) {
             name="title"
             render={({ field }) => (
                 <FormItem>
-                    <FormLabel>Title</FormLabel>
+                    <FormLabel>標題</FormLabel>
                     <FormControl>
                         <Input
                             autoFocus={isNew}
                             disabled={isSaving}
-                            placeholder="A short name for this template"
+                            placeholder="此範本的簡短名稱"
                             {...field}
                         />
                     </FormControl>
@@ -749,12 +749,12 @@ function TemplateForm({ templateId }: { templateId?: string }) {
                 <FormItem className="flex min-h-0 flex-1 flex-col">
                     <FormControl>
                         <MarkdownEditorField
-                            aria-label="Template content"
+                            aria-label="範本內容"
                             disabled={isSaving}
                             mode={viewMode}
                             onBlur={field.onBlur}
                             onChange={field.onChange}
-                            placeholder="Describe the task, or start from a preset"
+                            placeholder="描述任務，或從預設項目開始"
                             ref={field.ref}
                             value={field.value}
                         />
@@ -786,7 +786,7 @@ function TemplateForm({ templateId }: { templateId?: string }) {
                     <ErrorState
                         message={templateLoadError.message}
                         onRetry={() => refetchTemplate()}
-                        title="Error loading template"
+                        title="載入範本失敗"
                     />
                 </div>
             </div>
@@ -800,9 +800,9 @@ function TemplateForm({ templateId }: { templateId?: string }) {
                 <div className="flex flex-1 items-center justify-center p-4">
                     <Card className="w-full max-w-2xl">
                         <CardContent className="flex flex-col items-center gap-4 pt-6 text-center">
-                            <h2 className="text-xl font-semibold">Template not found</h2>
-                            <p className="text-muted-foreground">The template you are looking for does not exist.</p>
-                            <Button onClick={() => navigate(routes.templates)}>Back to Templates</Button>
+                            <h2 className="text-xl font-semibold">找不到範本</h2>
+                            <p className="text-muted-foreground">找不到你要的範本。</p>
+                            <Button onClick={() => navigate(routes.templates)}>返回範本</Button>
                         </CardContent>
                     </Card>
                 </div>
@@ -843,9 +843,9 @@ function TemplateForm({ templateId }: { templateId?: string }) {
             </Form>
             <ConfirmationDialog
                 confirmIcon={<FileSymlink />}
-                confirmText="Replace"
+                confirmText="取代"
                 confirmVariant="default"
-                description="Current form has content. Replace with the selected preset?"
+                description="目前表單已有內容，要用選取的預設項目取代嗎？"
                 handleConfirm={handleConfirmReplacePreset}
                 handleOpenChange={(open) => {
                     if (!open) {
@@ -855,11 +855,11 @@ function TemplateForm({ templateId }: { templateId?: string }) {
                     setIsReplaceConfirmOpen(open);
                 }}
                 isOpen={isReplaceConfirmOpen}
-                title="Replace content?"
+                title="要取代內容嗎？"
             />
             <ConfirmationDialog
-                cancelText="Cancel"
-                confirmText="Delete"
+                cancelText="取消"
+                confirmText="刪除"
                 handleConfirm={handleTemplateDelete}
                 handleOpenChange={setIsDeleteDialogOpen}
                 isOpen={isDeleteDialogOpen}

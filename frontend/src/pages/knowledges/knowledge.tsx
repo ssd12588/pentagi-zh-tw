@@ -52,7 +52,7 @@ function Knowledge() {
         }
 
         if (!knowledge) {
-            toast.error('Knowledge document not found');
+            toast.error('找不到知識文件');
             navigate(routes.knowledges, { replace: true });
         }
     }, [isNew, isLoadingKnowledge, knowledge, loadError, navigate]);
@@ -99,7 +99,7 @@ function Knowledge() {
                     <ErrorState
                         message={loadError.message}
                         onRetry={() => refetch()}
-                        title="Error loading knowledge document"
+                        title="載入知識文件失敗"
                     />
                 </div>
             </KnowledgeLayout>

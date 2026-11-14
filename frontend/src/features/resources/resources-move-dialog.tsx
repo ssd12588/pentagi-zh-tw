@@ -165,10 +165,10 @@ function ResourcesMoveDialogForm({ files, onClose }: ResourcesMoveDialogFormProp
                     </DialogTitle>
                     <DialogDescription>
                         {isMulti ? (
-                            <>Move every selected item into the destination directory.</>
+                            <>將所有選取的項目移到目的地目錄。</>
                         ) : (
                             <>
-                                Update the path of <code>{files[0].path}</code>.
+                                更新以下項目的路徑： <code>{files[0].path}</code>.
                             </>
                         )}
                     </DialogDescription>
@@ -185,7 +185,7 @@ function ResourcesMoveDialogForm({ files, onClose }: ResourcesMoveDialogFormProp
                             name="destination"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>{isMulti ? 'Destination directory' : 'New path'}</FormLabel>
+                                    <FormLabel>{isMulti ? '目的地目錄' : '新路徑'}</FormLabel>
                                     <FormControl>
                                         <Input
                                             {...field}
@@ -193,7 +193,7 @@ function ResourcesMoveDialogForm({ files, onClose }: ResourcesMoveDialogFormProp
                                             autoFocus
                                             disabled={isMoving}
                                             placeholder={
-                                                isMulti ? 'Leave empty to move into the library root' : undefined
+                                                isMulti ? '留空則移動到資源庫根目錄' : undefined
                                             }
                                         />
                                     </FormControl>
@@ -205,7 +205,7 @@ function ResourcesMoveDialogForm({ files, onClose }: ResourcesMoveDialogFormProp
                                             </>
                                         ) : (
                                             <>
-                                                Relative path inside your library. End with <code>/</code> to drop the
+                                                資源庫內的相對路徑，結尾請用 <code>/</code> to drop the
                                                 entry into that directory.
                                             </>
                                         )}
@@ -222,7 +222,7 @@ function ResourcesMoveDialogForm({ files, onClose }: ResourcesMoveDialogFormProp
                                 type="button"
                                 variant="outline"
                             >
-                                Cancel
+                                取消
                             </Button>
                             <OverwriteButtons
                                 isDisabled={isSubmitDisabled}

@@ -21,16 +21,16 @@ const formSchema = z.object({
     mail: z
         .string()
         .min(1, {
-            message: 'Login is required',
+            message: '必須登入',
         })
         .refine(
             (value) => z.string().email().safeParse(value).success || ['admin', 'demo'].includes(value.toLowerCase()),
             {
-                message: 'Invalid login',
+                message: '登入失敗',
             },
         ),
     password: z.string().min(1, {
-        message: 'Password is required',
+        message: '必須輸入密碼',
     }),
 });
 
@@ -154,9 +154,9 @@ function LoginForm({ providers, returnUrl = routes.newFlow }: LoginFormProps) {
     if (shouldShowPasswordChange) {
         return (
             <div className="mx-auto flex w-[350px] flex-col gap-6">
-                <h1 className="text-center text-3xl font-bold">Update Password</h1>
+                <h1 className="text-center text-3xl font-bold">更新密碼</h1>
                 <p className="text-muted-foreground text-center text-sm">
-                    You need to change your password before continuing.
+                    繼續前需要先變更密碼。
                 </p>
                 <PasswordChangeForm
                     layout="vertical"
@@ -212,12 +212,12 @@ function LoginForm({ providers, returnUrl = routes.newFlow }: LoginFormProps) {
                         name="mail"
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel>Login</FormLabel>
+                                <FormLabel>登入</FormLabel>
                                 <FormControl>
                                     <Input
                                         {...field}
                                         autoFocus
-                                        placeholder="Enter your email"
+                                        placeholder="輸入電子郵件"
                                     />
                                 </FormControl>
                                 <FormMessage />
@@ -230,11 +230,11 @@ function LoginForm({ providers, returnUrl = routes.newFlow }: LoginFormProps) {
                         name="password"
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel>Password</FormLabel>
+                                <FormLabel>密碼</FormLabel>
                                 <FormControl>
                                     <InputPassword
                                         {...field}
-                                        placeholder="Enter your password"
+                                        placeholder="輸入密碼"
                                     />
                                 </FormControl>
                                 <FormMessage />
@@ -243,7 +243,7 @@ function LoginForm({ providers, returnUrl = routes.newFlow }: LoginFormProps) {
                     />
 
                     <FormSubmitButton className="w-full">
-                        <span>Sign in</span>
+                        <span>登入</span>
                     </FormSubmitButton>
 
                     {error && <FormMessage>{error}</FormMessage>}

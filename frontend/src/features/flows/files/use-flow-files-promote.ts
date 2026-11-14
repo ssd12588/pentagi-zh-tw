@@ -14,9 +14,9 @@ export const flowFilesPromoteFormSchema = z.object({
     destination: z
         .string()
         .trim()
-        .min(1, { message: 'Destination cannot be empty' })
-        .refine((value) => !value.startsWith('/'), { message: 'Destination must be a relative path' })
-        .refine((value) => !value.split('/').includes('..'), { message: 'Destination must not contain ".."' }),
+        .min(1, { message: '目的地不能為空' })
+        .refine((value) => !value.startsWith('/'), { message: '目的地必須是相對路徑' })
+        .refine((value) => !value.split('/').includes('..'), { message: '目的地不能包含「..」' }),
 });
 
 export type FlowFilesPromoteFormValues = z.infer<typeof flowFilesPromoteFormSchema>;
@@ -79,7 +79,7 @@ export function useFlowFilesPromote({ flowId }: UseFlowFilesPromoteParams): UseF
                         ? `Stored at ${destination.trim()} in your resource library`
                         : `Stored ${sources.length} ${pluralizeItems(sources.length)} under ${destination.trim()} in your resource library`;
 
-                toast.success('Saved to resources', { description });
+                toast.success('已儲存到資源庫', { description });
 
                 return { kind: 'ok' };
             } catch (error) {
@@ -89,7 +89,7 @@ export function useFlowFilesPromote({ flowId }: UseFlowFilesPromoteParams): UseF
 
                 const description = getApiErrorMessage(error, 'Failed to save resource');
 
-                toast.error('Save as resource failed', { description });
+                toast.error('儲存為資源失敗', { description });
 
                 return { kind: 'error' };
             } finally {

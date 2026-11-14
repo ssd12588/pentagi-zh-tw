@@ -50,15 +50,15 @@ function NewFlow() {
         <>
             <AppHeader>
                 <AppHeaderContent>
-                    <AppHeaderTitle>New flow</AppHeaderTitle>
+                    <AppHeaderTitle>新增流程</AppHeaderTitle>
                 </AppHeaderContent>
             </AppHeader>
             <div className="flex min-h-[calc(100dvh-3rem)] items-center justify-center p-4">
                 <Card className="w-full max-w-2xl">
                     <CardContent className="flex flex-col gap-4 pt-6">
                         <div className="flex flex-col gap-2 text-center">
-                            <h2 className="text-2xl font-semibold">Create a new flow</h2>
-                            <p className="text-muted-foreground">Describe what you would like PentAGI to test</p>
+                            <h2 className="text-2xl font-semibold">建立新流程</h2>
+                            <p className="text-muted-foreground">描述你想讓 PentAGI 測試的內容</p>
                         </div>
                         <Tabs
                             onValueChange={(value) => setFlowType(value as 'assistant' | 'automation')}
@@ -69,13 +69,13 @@ function NewFlow() {
                                     disabled={isLoading}
                                     value="automation"
                                 >
-                                    Automation
+                                    自動化
                                 </TabsTrigger>
                                 <TabsTrigger
                                     disabled={isLoading}
                                     value="assistant"
                                 >
-                                    Assistant
+                                    助理
                                 </TabsTrigger>
                             </TabsList>
                         </Tabs>
@@ -89,9 +89,9 @@ function NewFlow() {
                             placeholder={
                                 !isLoading
                                     ? flowType === 'automation'
-                                        ? 'Describe what you would like PentAGI to test...'
-                                        : 'What would you like me to help you with?'
-                                    : 'Creating a new flow...'
+                                        ? '描述你想讓 PentAGI 測試的內容…'
+                                        : '需要我協助你什麼？'
+                                    : '建立新流程中…'
                             }
                             type={flowType}
                         />

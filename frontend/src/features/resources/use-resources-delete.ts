@@ -73,7 +73,7 @@ export function useResourcesDelete({ onAfterDelete }: UseResourcesDeleteParams =
             } catch (error) {
                 const description = getApiErrorMessage(error, 'Failed to delete resource');
 
-                toast.error('Delete failed', { description });
+                toast.error('刪除失敗', { description });
             }
         },
         [onAfterDelete],

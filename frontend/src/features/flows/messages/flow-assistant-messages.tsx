@@ -122,7 +122,7 @@ function AssistantsDropdown({
 
                 <div className="flex flex-1 items-center gap-2 overflow-hidden">
                     <span className="truncate text-sm">{assistant.title}</span>
-                    {!isValid && <span className="text-destructive shrink-0 text-xs">(unavailable)</span>}
+                    {!isValid && <span className="text-destructive shrink-0 text-xs">（無法使用）</span>}
                 </div>
 
                 <Check
@@ -158,7 +158,7 @@ function AssistantsDropdown({
             >
                 <PopoverTrigger asChild>
                     <Button
-                        aria-label="Select assistant"
+                        aria-label="選擇助理"
                         className="px-2"
                         disabled={isAssistantCreating}
                         variant="outline"
@@ -176,7 +176,7 @@ function AssistantsDropdown({
                             </>
                         ) : (
                             <span className="bg-muted text-muted-foreground flex h-5 shrink-0 items-center justify-center rounded px-1 text-xs font-medium">
-                                New
+                                新增
                             </span>
                         )}
                         <ChevronDown className="opacity-50" />
@@ -187,9 +187,9 @@ function AssistantsDropdown({
                     className="w-[400px] p-0"
                 >
                     <Command>
-                        <CommandInput placeholder="Search assistants..." />
+                        <CommandInput placeholder="搜尋助理…" />
                         <CommandList>
-                            <CommandEmpty>No assistants found.</CommandEmpty>
+                            <CommandEmpty>找不到助理。</CommandEmpty>
 
                             {!isDisabled && (
                                 <CommandGroup>
@@ -202,7 +202,7 @@ function AssistantsDropdown({
                                         value="create-new-assistant"
                                     >
                                         <Plus />
-                                        Create new assistant
+                                        建立新助理
                                     </CommandItem>
                                 </CommandGroup>
                             )}
@@ -236,14 +236,14 @@ function AssistantsDropdown({
             </Popover>
 
             <ConfirmationDialog
-                cancelText="Cancel"
-                confirmText="Delete"
+                cancelText="取消"
+                confirmText="刪除"
                 handleConfirm={handleConfirmDelete}
                 handleOpenChange={setDeleteDialogOpen}
                 isOpen={deleteDialogOpen}
                 itemName={currentAssistant?.title}
                 itemType="assistant"
-                title="Delete Assistant"
+                title="刪除助理"
             />
         </>
     );
@@ -494,13 +494,13 @@ function FlowAssistantMessages({ className }: FlowAssistantMessagesProps) {
                                                 {...field}
                                                 autoComplete="off"
                                                 disabled={isAssistantCreating}
-                                                placeholder="Search messages..."
+                                                placeholder="搜尋訊息…"
                                                 type="text"
                                             />
                                             {field.value && (
                                                 <InputGroupAddon align="inline-end">
                                                     <InputGroupButton
-                                                        aria-label="Clear message search"
+                                                        aria-label="清除訊息搜尋"
                                                         disabled={isAssistantCreating}
                                                         onClick={() => {
                                                             form.reset({ search: '' });
@@ -528,8 +528,8 @@ function FlowAssistantMessages({ className }: FlowAssistantMessagesProps) {
                         <EmptyMedia variant="icon">
                             <Spinner variant="circle" />
                         </EmptyMedia>
-                        <EmptyTitle>Creating assistant...</EmptyTitle>
-                        <EmptyDescription>Please wait while we set up your new assistant</EmptyDescription>
+                        <EmptyTitle>建立助理中…</EmptyTitle>
+                        <EmptyDescription>正在設定新助理，請稍候</EmptyDescription>
                     </EmptyHeader>
                 </Empty>
             ) : selectedAssistantId ? (
@@ -551,7 +551,7 @@ function FlowAssistantMessages({ className }: FlowAssistantMessagesProps) {
 
                         {!isScrolledToBottom && (
                             <Button
-                                aria-label="Scroll to latest message"
+                                aria-label="捲動到最新訊息"
                                 className="absolute right-4 bottom-4 z-10 shadow-md hover:shadow-lg"
                                 onClick={() => scrollToEnd()}
                                 size="icon-sm"
@@ -571,8 +571,8 @@ function FlowAssistantMessages({ className }: FlowAssistantMessagesProps) {
                             <EmptyMedia variant="icon">
                                 <ListFilter />
                             </EmptyMedia>
-                            <EmptyTitle>No messages found</EmptyTitle>
-                            <EmptyDescription>Try adjusting your search or filter parameters</EmptyDescription>
+                            <EmptyTitle>找不到訊息</EmptyTitle>
+                            <EmptyDescription>請調整搜尋關鍵字或篩選條件</EmptyDescription>
                         </EmptyHeader>
                         <EmptyContent>
                             <Button
@@ -580,7 +580,7 @@ function FlowAssistantMessages({ className }: FlowAssistantMessagesProps) {
                                 variant="outline"
                             >
                                 <X />
-                                Reset filters
+                                重設篩選條件
                             </Button>
                         </EmptyContent>
                     </Empty>
@@ -590,8 +590,8 @@ function FlowAssistantMessages({ className }: FlowAssistantMessagesProps) {
                             <EmptyMedia variant="icon">
                                 <Plus />
                             </EmptyMedia>
-                            <EmptyTitle>No messages</EmptyTitle>
-                            <EmptyDescription>No messages found for this assistant</EmptyDescription>
+                            <EmptyTitle>沒有訊息</EmptyTitle>
+                            <EmptyDescription>此助理沒有訊息</EmptyDescription>
                         </EmptyHeader>
                     </Empty>
                 )
@@ -601,8 +601,8 @@ function FlowAssistantMessages({ className }: FlowAssistantMessagesProps) {
                         <EmptyMedia variant="icon">
                             <Plus />
                         </EmptyMedia>
-                        <EmptyTitle>New assistant</EmptyTitle>
-                        <EmptyDescription>Type a message below to create a new assistant...</EmptyDescription>
+                        <EmptyTitle>新增助理</EmptyTitle>
+                        <EmptyDescription>在下方輸入訊息以建立新助理…</EmptyDescription>
                     </EmptyHeader>
                 </Empty>
             )}

@@ -21,7 +21,7 @@ export const downloadAction = (
         getHrefDownloadAttr: (file) => (file.isDir ? `${file.name}.${archiveExtension}` : file.name),
         icon: Download,
         id: '__builtin_download',
-        label: 'Download',
+        label: '下載',
         onSelect: () => {},
     };
 };
@@ -30,7 +30,7 @@ export const copyPathAction = (onCopyPath: (file: FileNode) => void): FileManage
     appliesToDirs: true,
     icon: ClipboardCopy,
     id: '__builtin_copy_path',
-    label: 'Copy path',
+    label: '複製路徑',
     onSelect: onCopyPath,
 });
 
@@ -42,7 +42,7 @@ export const deleteAction = (onDelete: (file: FileNode) => void): FileManagerAct
     appliesToDirs: true,
     icon: Trash2,
     id: '__builtin_delete',
-    label: 'Delete',
+    label: '刪除',
     onSelect: onDelete,
     separatorBefore: true,
     variant: 'destructive',

@@ -17,7 +17,7 @@ const file = (path: string, overrides: Partial<FileNode> = {}): FileNode => ({
 const dir = (path: string): FileNode => file(path, { isDir: true, size: 0 });
 
 const renderTree = (onSelect: (files: FileNode[]) => void, onMoveItems?: (sources: FileNode[], to: string) => void) => {
-    const bulkActions: FileManagerBulkAction[] = [{ icon: undefined, id: 'delete', label: 'Delete', onSelect }];
+    const bulkActions: FileManagerBulkAction[] = [{ icon: undefined, id: 'delete', label: '刪除', onSelect }];
 
     render(
         <FileManager
@@ -27,7 +27,7 @@ const renderTree = (onSelect: (files: FileNode[]) => void, onMoveItems?: (source
         />,
     );
 
-    fireEvent.click(screen.getByRole('button', { name: 'Expand all' }));
+    fireEvent.click(screen.getByRole('button', { name: '全部展開' }));
 };
 
 const rowFor = (path: string): HTMLElement =>
@@ -62,7 +62,7 @@ describe('bulk actions on a partially selected directory', () => {
 
         expect(barText()).toMatch(/^1 selected/);
 
-        fireEvent.click(screen.getByRole('button', { name: 'Delete' }));
+        fireEvent.click(screen.getByRole('button', { name: '刪除' }));
 
         expect(onSelect).toHaveBeenCalledTimes(1);
         expect(onSelect.mock.calls[0]![0].map((entry: FileNode) => entry.path)).toEqual(['docs/b.txt']);
@@ -77,7 +77,7 @@ describe('bulk actions on a partially selected directory', () => {
 
         expect(barText()).toMatch(/^3 selected/);
 
-        fireEvent.click(screen.getByRole('button', { name: 'Delete' }));
+        fireEvent.click(screen.getByRole('button', { name: '刪除' }));
 
         expect(onSelect.mock.calls[0]![0].map((entry: FileNode) => entry.path)).toEqual(['docs']);
     });
@@ -92,8 +92,8 @@ describe('bulk actions on a partially selected directory', () => {
         fireEvent.click(screen.getByRole('checkbox', { name: 'Select b.txt' }));
 
         expect(barText()).toMatch(/^0 selected/);
-        expect(screen.getByRole('button', { name: 'Cancel' })).toBeEnabled();
-        expect(screen.getByRole('button', { name: 'Delete' })).toBeDisabled();
+        expect(screen.getByRole('button', { name: '取消' })).toBeEnabled();
+        expect(screen.getByRole('button', { name: '刪除' })).toBeDisabled();
     });
 });
 

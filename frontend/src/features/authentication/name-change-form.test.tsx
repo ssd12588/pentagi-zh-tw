@@ -35,7 +35,7 @@ describe('NameChangeForm', () => {
     it('seeds the field with the current name', () => {
         render(<NameChangeForm />);
 
-        expect((screen.getByLabelText('Display name') as HTMLInputElement).value).toBe('Old Name');
+        expect((screen.getByLabelText('顯示名稱') as HTMLInputElement).value).toBe('Old Name');
     });
 
     it('submits the trimmed name and refreshes auth before closing', async () => {
@@ -43,10 +43,10 @@ describe('NameChangeForm', () => {
         const onSuccess = vi.fn();
         render(<NameChangeForm onSuccess={onSuccess} />);
 
-        const input = screen.getByLabelText('Display name');
+        const input = screen.getByLabelText('顯示名稱');
         await user.clear(input);
         await user.type(input, '  New Name  ');
-        await user.click(screen.getByRole('button', { name: 'Update Name' }));
+        await user.click(screen.getByRole('button', { name: '更新名稱' }));
 
         await waitFor(() => expect(onSuccess).toHaveBeenCalledOnce());
         expect(put).toHaveBeenCalledWith('/user/name', { name: 'New Name' });
@@ -58,10 +58,10 @@ describe('NameChangeForm', () => {
         const user = userEvent.setup();
         render(<NameChangeForm />);
 
-        await user.clear(screen.getByLabelText('Display name'));
-        await user.click(screen.getByRole('button', { name: 'Update Name' }));
+        await user.clear(screen.getByLabelText('顯示名稱'));
+        await user.click(screen.getByRole('button', { name: '更新名稱' }));
 
-        expect(await screen.findByText('Name is required')).toBeInTheDocument();
+        expect(await screen.findByText('必須輸入名稱')).toBeInTheDocument();
         expect(put).not.toHaveBeenCalled();
     });
 
@@ -70,10 +70,10 @@ describe('NameChangeForm', () => {
         put.mockRejectedValueOnce(apiError('Users.NotFound', 'user not found'));
         render(<NameChangeForm />);
 
-        const input = screen.getByLabelText('Display name');
+        const input = screen.getByLabelText('顯示名稱');
         await user.clear(input);
         await user.type(input, 'Whoever');
-        await user.click(screen.getByRole('button', { name: 'Update Name' }));
+        await user.click(screen.getByRole('button', { name: '更新名稱' }));
 
         expect(await screen.findByText('User not found')).toBeInTheDocument();
     });

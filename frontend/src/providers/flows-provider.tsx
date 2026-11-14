@@ -89,7 +89,7 @@ export function FlowsProvider({ children }: FlowsProviderProps) {
                 return null;
             } catch (error) {
                 const description = error instanceof Error ? error.message : 'An error occurred while creating flow';
-                toast.error('Failed to create flow', {
+                toast.error('建立流程失敗', {
                     description,
                 });
                 Log.error('Error creating flow:', error);
@@ -130,7 +130,7 @@ export function FlowsProvider({ children }: FlowsProviderProps) {
             } catch (error) {
                 const description =
                     error instanceof Error ? error.message : 'An error occurred while creating assistant';
-                toast.error('Failed to create assistant', {
+                toast.error('建立助理失敗', {
                     description,
                 });
                 Log.error('Error creating assistant:', error);
@@ -151,7 +151,7 @@ export function FlowsProvider({ children }: FlowsProviderProps) {
 
             const flowDescription = `${title || 'Unknown'} (ID: ${flowId})`;
 
-            const loadingToastId = toast.loading('Deleting flow...', {
+            const loadingToastId = toast.loading('刪除流程中…', {
                 description: flowDescription,
             });
 
@@ -160,7 +160,7 @@ export function FlowsProvider({ children }: FlowsProviderProps) {
                     variables: { flowId },
                 });
 
-                toast.success('Flow deleted successfully', {
+                toast.success('流程刪除成功', {
                     description: flowDescription,
                     id: loadingToastId,
                 });
@@ -190,7 +190,7 @@ export function FlowsProvider({ children }: FlowsProviderProps) {
 
             const flowDescription = `${title || 'Unknown'} (ID: ${flowId})`;
 
-            const loadingToastId = toast.loading('Finishing flow...', {
+            const loadingToastId = toast.loading('完成流程中…', {
                 description: flowDescription,
             });
 
@@ -199,7 +199,7 @@ export function FlowsProvider({ children }: FlowsProviderProps) {
                     variables: { flowId },
                 });
 
-                toast.success('Flow finished successfully', {
+                toast.success('流程已順利完成', {
                     description: flowDescription,
                     id: loadingToastId,
                 });

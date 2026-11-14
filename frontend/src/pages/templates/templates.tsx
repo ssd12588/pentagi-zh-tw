@@ -89,7 +89,7 @@ function Templates() {
 
         try {
             await updateTemplate(editingTemplateId, { text: template.text, title: newTitle });
-            toast.success('Template renamed successfully');
+            toast.success('範本重新命名成功');
             setEditingTemplateId(null);
         } catch {
             // Error already handled in provider with toast
@@ -138,7 +138,7 @@ function Templates() {
                                 inputRef={editingInputRef}
                                 onCancel={handleTemplateRenameCancel}
                                 onSave={handleTemplateRenameSave}
-                                placeholder="Template title"
+                                placeholder="範本標題"
                             />
                         </div>
                     );
@@ -149,7 +149,7 @@ function Templates() {
             header: ({ column }) => (
                 <DataTableColumnHeader
                     column={column}
-                    title="Title"
+                    title="標題"
                 />
             ),
             meta: { searchable: true },
@@ -164,7 +164,7 @@ function Templates() {
             header: ({ column }) => (
                 <DataTableColumnHeader
                     column={column}
-                    title="Text"
+                    title="文字"
                 />
             ),
             meta: { searchable: true },
@@ -178,7 +178,7 @@ function Templates() {
                         <DropdownMenu>
                             <DropdownMenuTrigger asChild>
                                 <Button
-                                    aria-label="Open menu"
+                                    aria-label="開啟選單"
                                     className="size-8 p-0"
                                     onClick={(e) => e.stopPropagation()}
                                     variant="ghost"
@@ -193,11 +193,11 @@ function Templates() {
                             >
                                 <DropdownMenuItem onClick={() => handleTemplateOpen(template.id)}>
                                     <Pencil />
-                                    Edit
+                                    編輯
                                 </DropdownMenuItem>
                                 <DropdownMenuItem onClick={() => handleTemplateRenameStart(template)}>
                                     <Pencil className="size-3" />
-                                    Rename
+                                    重新命名
                                 </DropdownMenuItem>
                                 <DropdownMenuSeparator />
                                 <DropdownMenuItem
@@ -207,12 +207,12 @@ function Templates() {
                                     {deletingIds.has(template.id) ? (
                                         <>
                                             <Spinner variant="circle" />
-                                            Deleting...
+                                            刪除中…
                                         </>
                                     ) : (
                                         <>
                                             <Trash />
-                                            Delete
+                                            刪除
                                         </>
                                     )}
                                 </DropdownMenuItem>
@@ -233,11 +233,11 @@ function Templates() {
         <>
             <ContextMenuItem onClick={() => handleTemplateOpen(template.id)}>
                 <Pencil />
-                Edit
+                編輯
             </ContextMenuItem>
             <ContextMenuItem onClick={() => handleTemplateRenameStart(template)}>
                 <PencilLine />
-                Rename
+                重新命名
             </ContextMenuItem>
             <ContextMenuSeparator />
             <ContextMenuItem
@@ -245,7 +245,7 @@ function Templates() {
                 onClick={() => handleDeleteDialogOpen(template)}
             >
                 <Trash />
-                {deletingIds.has(template.id) ? 'Deleting...' : 'Delete'}
+                {deletingIds.has(template.id) ? '刪除中…' : '刪除'}
             </ContextMenuItem>
         </>
     );
@@ -253,12 +253,12 @@ function Templates() {
     const pageHeader = (
         <AppHeader>
             <AppHeaderContent>
-                <AppHeaderTitle icon={<FileText className="size-4 shrink-0" />}>Templates</AppHeaderTitle>
+                <AppHeaderTitle icon={<FileText className="size-4 shrink-0" />}>範本</AppHeaderTitle>
             </AppHeaderContent>
             <AppHeaderActions>
                 <AppHeaderAction
                     icon={<Plus />}
-                    label="New Template"
+                    label="新增範本"
                     onClick={() => navigate(routes.newTemplate)}
                     variant="secondary"
                 />
@@ -272,8 +272,8 @@ function Templates() {
                 {pageHeader}
                 <div className="flex flex-1 flex-col gap-4 p-4">
                     <LoadingState
-                        description="Please wait while we fetch your flow templates"
-                        title="Loading templates..."
+                        description="正在取得流程範本，請稍候"
+                        title="載入範本中…"
                     />
                 </div>
             </>
@@ -289,7 +289,7 @@ function Templates() {
                     <ErrorState
                         message={error.message}
                         onRetry={refetch}
-                        title="Error loading templates"
+                        title="載入範本清單失敗"
                     />
                 </div>
             </>
@@ -306,8 +306,8 @@ function Templates() {
                             <EmptyMedia variant="icon">
                                 <FileText />
                             </EmptyMedia>
-                            <EmptyTitle>No templates yet</EmptyTitle>
-                            <EmptyDescription>Create your first template to get started</EmptyDescription>
+                            <EmptyTitle>尚無範本</EmptyTitle>
+                            <EmptyDescription>建立第一個範本即可開始使用</EmptyDescription>
                         </EmptyHeader>
                         <EmptyContent>
                             <Button
@@ -315,7 +315,7 @@ function Templates() {
                                 variant="secondary"
                             >
                                 <Plus />
-                                New Template
+                                新增範本
                             </Button>
                         </EmptyContent>
                     </Empty>
@@ -334,7 +334,7 @@ function Templates() {
                     empty={{ entityName: 'templates' }}
                     filterPlaceholder="Filter templates..."
                     filterValue={filter}
-                    label="Templates"
+                    label="範本"
                     onFilterChange={setFilter}
                     onRowClick={(template) => {
                         if (editingTemplateId !== template.id) {
@@ -345,8 +345,8 @@ function Templates() {
                 />
 
                 <ConfirmationDialog
-                    cancelText="Cancel"
-                    confirmText="Delete"
+                    cancelText="取消"
+                    confirmText="刪除"
                     handleConfirm={handleDelete}
                     handleOpenChange={setIsDeleteDialogOpen}
                     isOpen={isDeleteDialogOpen}

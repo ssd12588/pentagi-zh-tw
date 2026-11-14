@@ -36,7 +36,7 @@ const flowPayload = (logs: string[]) => ({
         provider: { __typename: 'Provider', name: 'mock', type: 'custom' },
         status: 'running',
         terminals: [],
-        title: 'Flow',
+        title: '流程',
         updatedAt: '2026-01-01T00:00:00Z',
         userId: '1',
     },
@@ -57,7 +57,7 @@ const assistant = {
     id: '7',
     provider: { __typename: 'Provider', name: 'mock', type: ProviderType.Custom },
     status: StatusType.Waiting,
-    title: 'Assistant',
+    title: '助理',
     updatedAt: '2026-01-01T00:00:00Z',
     useAgents: false,
 };

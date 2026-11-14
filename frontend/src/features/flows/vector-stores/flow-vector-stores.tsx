@@ -153,13 +153,13 @@ function FlowVectorStores() {
                                         <InputGroupInput
                                             {...field}
                                             autoComplete="off"
-                                            placeholder="Search vector store logs..."
+                                            placeholder="搜尋向量儲存日誌…"
                                             type="text"
                                         />
                                         {field.value && (
                                             <InputGroupAddon align="inline-end">
                                                 <InputGroupButton
-                                                    aria-label="Clear vector store search"
+                                                    aria-label="清除向量儲存搜尋"
                                                     onClick={() => {
                                                         form.reset({ search: '' });
                                                         setDebouncedSearchValue('');
@@ -208,7 +208,7 @@ function FlowVectorStores() {
 
                     {!isScrolledToBottom && (
                         <Button
-                            aria-label="Scroll to latest vector store log"
+                            aria-label="捲動到最新向量儲存日誌"
                             className="absolute right-4 bottom-4 z-10 shadow-md hover:shadow-lg"
                             onClick={() => scrollToEnd()}
                             size="icon-sm"
@@ -228,8 +228,8 @@ function FlowVectorStores() {
                         <EmptyMedia variant="icon">
                             <ListFilter />
                         </EmptyMedia>
-                        <EmptyTitle>No vector store logs found</EmptyTitle>
-                        <EmptyDescription>Try adjusting your search or filter parameters</EmptyDescription>
+                        <EmptyTitle>找不到向量儲存日誌</EmptyTitle>
+                        <EmptyDescription>請調整搜尋關鍵字或篩選條件</EmptyDescription>
                     </EmptyHeader>
                     <EmptyContent>
                         <Button
@@ -237,7 +237,7 @@ function FlowVectorStores() {
                             variant="outline"
                         >
                             <X />
-                            Reset filters
+                            重設篩選條件
                         </Button>
                     </EmptyContent>
                 </Empty>
@@ -247,9 +247,9 @@ function FlowVectorStores() {
                         <EmptyMedia variant="icon">
                             <Database />
                         </EmptyMedia>
-                        <EmptyTitle>No vector store logs available</EmptyTitle>
+                        <EmptyTitle>沒有可用的向量儲存日誌</EmptyTitle>
                         <EmptyDescription>
-                            Vector store logs will appear here when the agent uses knowledge database
+                            代理使用知識庫後，向量儲存日誌會顯示在這裡
                         </EmptyDescription>
                     </EmptyHeader>
                 </Empty>

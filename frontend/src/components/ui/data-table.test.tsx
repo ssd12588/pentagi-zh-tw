@@ -579,7 +579,7 @@ describe('DataTable — sorting state persists to storage', () => {
                                 onClick={() => column.toggleSorting(false)}
                                 type="button"
                             >
-                                Name
+                                名稱
                             </button>
                         ),
                     },
@@ -590,7 +590,7 @@ describe('DataTable — sorting state persists to storage', () => {
             { wrapper: Wrapper },
         );
 
-        const sortButton = screen.getByRole('button', { name: 'Name' });
+        const sortButton = screen.getByRole('button', { name: '名稱' });
         fireEvent.click(sortButton);
 
         const stored = JSON.parse(localStorage.getItem('table_4_/flows') ?? '{}');
@@ -651,7 +651,7 @@ describe('DataTable — controlled pageIndex reconciliation', () => {
         // Open the rows-per-page select and pick "All".
         const trigger = screen.getByRole('combobox');
         await user.click(trigger);
-        const option = await screen.findByRole('option', { name: 'All' });
+        const option = await screen.findByRole('option', { name: '全部' });
         await user.click(option);
 
         // "All" collapses the dataset to a single page; the parent has to
@@ -732,8 +732,8 @@ describe('DataTable — empty results', () => {
             { wrapper: Wrapper },
         );
 
-        expect(screen.queryByText(/Page 1 of 0/)).not.toBeInTheDocument();
-        expect(screen.getByText('No results')).toBeInTheDocument();
+        expect(screen.queryByText(/頁 1 of 0/)).not.toBeInTheDocument();
+        expect(screen.getByText('沒有結果')).toBeInTheDocument();
     });
 
     it('renders the bare "No results." cell when `empty.entityName` is omitted (legacy fallback)', () => {
@@ -746,9 +746,9 @@ describe('DataTable — empty results', () => {
             { wrapper: Wrapper },
         );
 
-        expect(screen.getByText('No results.')).toBeInTheDocument();
+        expect(screen.getByText('沒有結果。')).toBeInTheDocument();
         // The shadcn Empty title is NOT rendered without `entityName`.
-        expect(screen.queryByText('No matches')).not.toBeInTheDocument();
+        expect(screen.queryByText('無符合結果')).not.toBeInTheDocument();
     });
 
     it('renders a data-empty Empty block ("No <entity> yet") when `entityName` is set and no filter is active', () => {
@@ -787,7 +787,7 @@ describe('DataTable — empty results', () => {
         // No row in ROWS has the substring "ZZZZZZ" — guarantees an empty subset.
         await user.type(input, 'ZZZZZZ');
 
-        expect(await screen.findByText('No matches')).toBeInTheDocument();
+        expect(await screen.findByText('無符合結果')).toBeInTheDocument();
         // Description cites the query and offers the next-step hint.
         const description = await screen.findByText(/Try a different query/);
         expect(description).toHaveTextContent('ZZZZZZ');
@@ -944,7 +944,7 @@ describe('DataTable — multi-column search', () => {
             { wrapper: Wrapper },
         );
 
-        await user.click(screen.getByRole('button', { name: /Search in/ }));
+        await user.click(screen.getByRole('button', { name: /搜尋範圍/ }));
         // Uncheck the `Role` column so "reader" can no longer match Charlie.
         await user.click(await screen.findByRole('menuitemcheckbox', { name: /role/i }));
 
@@ -955,7 +955,7 @@ describe('DataTable — multi-column search', () => {
         const input = screen.getByPlaceholderText('Filter...');
         await user.type(input, 'reader');
 
-        expect(await screen.findByText('No results.')).toBeInTheDocument();
+        expect(await screen.findByText('沒有結果。')).toBeInTheDocument();
     });
 
     it('persists the narrowed search column set to the unified storage slot', async () => {
@@ -969,7 +969,7 @@ describe('DataTable — multi-column search', () => {
             { wrapper: Wrapper },
         );
 
-        await user.click(screen.getByRole('button', { name: /Search in/ }));
+        await user.click(screen.getByRole('button', { name: /搜尋範圍/ }));
         await user.click(await screen.findByRole('menuitemcheckbox', { name: /role/i }));
 
         const stored = JSON.parse(localStorage.getItem('table_4_/flows') ?? '{}');
@@ -998,7 +998,7 @@ describe('DataTable — multi-column search', () => {
         // TanStack short-circuited the filter pipeline. The composite-value
         // implementation produces a new `globalFilter` object reference, so
         // the pipeline re-runs and Alpha must disappear without retyping.
-        await user.click(screen.getByRole('button', { name: /Search in/ }));
+        await user.click(screen.getByRole('button', { name: /搜尋範圍/ }));
         await user.click(await screen.findByRole('menuitemcheckbox', { name: /role/i }));
 
         await waitFor(() => {
@@ -1045,7 +1045,7 @@ describe('DataTable — multi-column search', () => {
         );
 
         // Picker is visible — confirms multi-mode activation via the array prop.
-        expect(screen.getByRole('button', { name: /Search in/ })).toBeInTheDocument();
+        expect(screen.getByRole('button', { name: /搜尋範圍/ })).toBeInTheDocument();
 
         const input = screen.getByPlaceholderText('Filter...');
         await user.type(input, 'user');
@@ -1077,7 +1077,7 @@ describe('DataTable — multi-column search', () => {
         );
 
         expect(screen.queryByRole('textbox')).not.toBeInTheDocument();
-        expect(screen.queryByRole('button', { name: /Search in/ })).not.toBeInTheDocument();
+        expect(screen.queryByRole('button', { name: /搜尋範圍/ })).not.toBeInTheDocument();
     });
 
     it('does not render the picker in legacy single-column mode', () => {
@@ -1092,9 +1092,9 @@ describe('DataTable — multi-column search', () => {
         );
 
         expect(screen.getByRole('textbox')).toBeInTheDocument();
-        expect(screen.queryByRole('button', { name: /Search in/ })).not.toBeInTheDocument();
+        expect(screen.queryByRole('button', { name: /搜尋範圍/ })).not.toBeInTheDocument();
         // The "Columns" trigger still renders.
-        expect(screen.getByRole('button', { name: /Columns/ })).toBeInTheDocument();
+        expect(screen.getByRole('button', { name: /欄位/ })).toBeInTheDocument();
     });
 });
 
@@ -1105,14 +1105,14 @@ describe('DataTable — sort state is exposed to assistive technology', () => {
             header: ({ column }) => (
                 <DataTableColumnHeader
                     column={column}
-                    title="Name"
+                    title="名稱"
                 />
             ),
         },
         { enableSorting: false, header: 'Actions', id: 'actions' },
     ];
 
-    const nameHeader = () => screen.getByRole('columnheader', { name: 'Name' });
+    const nameHeader = () => screen.getByRole('columnheader', { name: '名稱' });
 
     it('cycles `aria-sort` on the header cell as the column is sorted', () => {
         render(
@@ -1126,7 +1126,7 @@ describe('DataTable — sort state is exposed to assistive technology', () => {
 
         expect(nameHeader()).toHaveAttribute('aria-sort', 'none');
 
-        const sortButton = screen.getByRole('button', { name: 'Name' });
+        const sortButton = screen.getByRole('button', { name: '名稱' });
 
         fireEvent.click(sortButton);
         expect(nameHeader()).toHaveAttribute('aria-sort', 'ascending');

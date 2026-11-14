@@ -128,7 +128,7 @@ export function KnowledgeHeader({
             // The sibling edit form picks up the new `question` via
             // `useForm({ values })` once the cache updates — no manual sync here.
             await renameKnowledge(knowledge.id, newQuestion);
-            toast.success('Knowledge renamed successfully');
+            toast.success('知識庫重新命名成功');
             handleRenameCancel();
         } catch {
             // Error already handled in provider with toast
@@ -171,7 +171,7 @@ export function KnowledgeHeader({
                                         inputRef={editingInputRef}
                                         onCancel={handleRenameCancel}
                                         onSave={handleRenameSave}
-                                        placeholder="Knowledge question"
+                                        placeholder="知識提問"
                                     />
                                 ) : hasKnowledge ? (
                                     <Tooltip>
@@ -180,14 +180,14 @@ export function KnowledgeHeader({
                                                 className="max-w-64 min-w-0 cursor-text truncate select-none"
                                                 onDoubleClick={handleRenameStart}
                                             >
-                                                {knowledgeName ?? 'Knowledge'}
+                                                {knowledgeName ?? '知識庫'}
                                             </BreadcrumbPage>
                                         </TooltipTrigger>
-                                        <TooltipContent>Double-click to rename</TooltipContent>
+                                        <TooltipContent>連按兩下可重新命名</TooltipContent>
                                     </Tooltip>
                                 ) : (
                                     <BreadcrumbPage className="min-w-0 truncate">
-                                        {isNew ? 'New knowledge' : (knowledgeName ?? 'Knowledge')}
+                                        {isNew ? '新增知識庫' : (knowledgeName ?? '知識庫')}
                                     </BreadcrumbPage>
                                 )}
                             </BreadcrumbItem>
@@ -200,14 +200,14 @@ export function KnowledgeHeader({
                             controller={knowledgeNav}
                             renderItem={renderKnowledgeItem}
                             sheetIcon={<LibraryBig className="size-4" />}
-                            sheetTitle="Knowledges"
+                            sheetTitle="知識庫"
                         />
                     )}
                     {canAnonymize && !isMobile && (
                         <AppHeaderAction
                             disabled={isAnonymizeDisabled}
                             icon={isAnonymizing ? <Spinner variant="circle" /> : <HatGlasses aria-hidden="true" />}
-                            label="Anonymize"
+                            label="匿名化"
                             onClick={onAnonymize}
                             type="button"
                             variant="outline"
@@ -217,14 +217,14 @@ export function KnowledgeHeader({
                         <AppHeaderAction
                             disabled
                             icon={<Save />}
-                            label={isNew ? 'Create' : 'Save'}
+                            label={isNew ? '建立' : '儲存'}
                             type="button"
                         />
                     )}
                     <DropdownMenu>
                         <DropdownMenuTrigger asChild>
                             <Button
-                                aria-label="Knowledge actions"
+                                aria-label="知識庫操作"
                                 className="size-8 p-0"
                                 type="button"
                                 variant="ghost"
@@ -245,12 +245,12 @@ export function KnowledgeHeader({
                                     {isAnonymizing ? (
                                         <>
                                             <Spinner variant="circle" />
-                                            Anonymizing...
+                                            匿名化中…
                                         </>
                                     ) : (
                                         <>
                                             <HatGlasses />
-                                            Anonymize
+                                            匿名化
                                         </>
                                     )}
                                 </DropdownMenuItem>
@@ -263,11 +263,11 @@ export function KnowledgeHeader({
                                         onSelect={(event) => event.preventDefault()}
                                     >
                                         <LibraryBig />
-                                        Knowledges
+                                        知識庫
                                         <div className="-my-1.5 -mr-2 ml-auto flex items-center">
                                             <DetailNavigationButtons<Knowledge>
                                                 controller={knowledgeNav}
-                                                sheetTitle="Knowledges"
+                                                sheetTitle="知識庫"
                                                 size="sm"
                                             />
                                         </div>
@@ -282,7 +282,7 @@ export function KnowledgeHeader({
                                         onClick={handleRenameStart}
                                     >
                                         <Pencil className="size-3" />
-                                        Rename
+                                        重新命名
                                     </DropdownMenuItem>
                                     <DropdownMenuSeparator />
                                 </>
@@ -294,12 +294,12 @@ export function KnowledgeHeader({
                                         className="cursor-default gap-4 hover:bg-transparent focus:bg-transparent"
                                         onSelect={(event) => event.preventDefault()}
                                     >
-                                        View
+                                        檢視
                                         <EditorViewModeToggle
                                             className="-my-1.5 -mr-2 ml-auto"
                                             mode={viewMode}
                                             onModeChange={onModeChange}
-                                            rawTooltip="Edit the raw markdown"
+                                            rawTooltip="編輯原始 Markdown"
                                         />
                                     </DropdownMenuItem>
                                 </>
@@ -314,12 +314,12 @@ export function KnowledgeHeader({
                                         {isDeleting ? (
                                             <>
                                                 <Spinner variant="circle" />
-                                                Deleting...
+                                                刪除中…
                                             </>
                                         ) : (
                                             <>
                                                 <Trash />
-                                                Delete
+                                                刪除
                                             </>
                                         )}
                                     </DropdownMenuItem>
@@ -334,12 +334,12 @@ export function KnowledgeHeader({
                     controller={knowledgeNav}
                     renderItem={renderKnowledgeItem}
                     sheetIcon={<LibraryBig className="size-4" />}
-                    sheetTitle="Knowledges"
+                    sheetTitle="知識庫"
                 />
             )}
             <ConfirmationDialog
-                cancelText="Cancel"
-                confirmText="Delete"
+                cancelText="取消"
+                confirmText="刪除"
                 handleConfirm={handleDelete}
                 handleOpenChange={setIsDeleteDialogOpen}
                 isOpen={isDeleteDialogOpen}

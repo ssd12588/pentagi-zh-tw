@@ -50,11 +50,11 @@ describe('FlowCentralTabs', () => {
         const entriesBefore = window.history.length;
 
         await userEvent.tab();
-        expect(screen.getByRole('tab', { name: 'Automation' })).toHaveFocus();
+        expect(screen.getByRole('tab', { name: '自動化' })).toHaveFocus();
 
         await userEvent.keyboard('{ArrowRight}{ArrowRight}');
 
-        expect(screen.getByRole('tab', { name: 'Dashboard' })).toHaveFocus();
+        expect(screen.getByRole('tab', { name: '儀表板' })).toHaveFocus();
         expect(search()).toContain('tab=automation');
         expect(window.history.length).toBe(entriesBefore);
         expect(screen.queryByTestId('panel-dashboard')).not.toBeInTheDocument();

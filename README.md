@@ -1,5 +1,28 @@
 # PentAGI
 
+## 關於本漢化版（繁體中文 / zh-TW）
+
+本倉庫是 [vxcontrol/pentagi](https://github.com/vxcontrol/pentagi) 的**繁體中文漢化版**，依 MIT 授權散布，上游版權聲明與 `LICENSE`／`EULA.md` 均完整保留。
+
+- **已漢化**：Web 介面全部文案（導覽、儀表板、流程、知識庫、資源、範本、設定、登入與錯誤頁），`<html lang>` 已改為 `zh-TW`。
+- **AI 回覆語言**：不需修改提示詞。PentAGI 內建語言偵測（`language_chooser.tmpl`），以中文提問即得中文回報，技術欄位仍保持英文以維持精準。
+- **刻意不改**：`backend/pkg/templates/prompts/**` 提示詞、`LICENSE`／`EULA.md`、程式識別字、GraphQL 欄位與狀態值。
+- **尚未漢化**：互動式安裝程式（終端機介面）與大部分 `docs/**` 英文文件。
+
+中文文件請見 **[docs-zh/](docs-zh/README.md)**：
+[快速開始](docs-zh/QUICKSTART.md) ｜ [疑難排解](docs-zh/TROUBLESHOOTING.md) ｜ [術語對照](docs-zh/glossary.md) ｜ [漢化狀態](docs-zh/PROJECT-STATUS.md)
+
+漢化流程已腳本化於 `tools/i18n/`（AST 抽字串 → 套用字典 → 檢查語法／中英混雜 → 建置驗證），可重複執行以跟上上游更新。
+
+**與上游同步**：
+
+```bash
+git remote add upstream https://github.com/vxcontrol/pentagi.git
+git fetch upstream && git merge upstream/main   # 解衝突後重跑 tools/i18n 流程補翻譯
+```
+
+漢化相關問題請在本倉庫開 issue，無需打擾上游維護者。
+
 <div align="center" style="font-size: 1.5em; margin: 20px 0;">
     <strong>P</strong>enetration testing <strong>A</strong>rtificial <strong>G</strong>eneral <strong>I</strong>ntelligence
 </div>

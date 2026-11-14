@@ -67,7 +67,7 @@ export function OverwriteDialog({
 }: OverwriteDialogProps) {
     return (
         <ConfirmationDialog
-            cancelText="Cancel"
+            cancelText="取消"
             confirmIcon={<Replace />}
             confirmText={confirmText ?? buildDefaultConfirmText(conflicts.length)}
             confirmVariant="destructive"

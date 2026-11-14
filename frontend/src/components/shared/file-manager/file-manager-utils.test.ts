@@ -214,8 +214,8 @@ describe('buildFileManagerTree', () => {
 
     it('places files into matching root groups', () => {
         const groups: FileManagerRootGroup[] = [
-            { defaultOpen: true, id: 'uploads', label: 'Uploads', pathPrefix: 'uploads' },
-            { defaultOpen: true, id: 'container', label: 'Container', pathPrefix: 'container' },
+            { defaultOpen: true, id: 'uploads', label: '上傳項目', pathPrefix: 'uploads' },
+            { defaultOpen: true, id: 'container', label: '容器', pathPrefix: 'container' },
         ];
         const tree = buildFileManagerTree(
             [file('uploads/a.txt'), file('container/sub/b.txt'), file('orphan.txt')],
@@ -245,14 +245,14 @@ describe('buildFileManagerTree', () => {
     it('tolerates trailing slashes in group pathPrefix', () => {
         const tree = buildFileManagerTree(
             [file('uploads/a.txt')],
-            [{ id: 'u', label: 'Uploads', pathPrefix: 'uploads/' }],
+            [{ id: 'u', label: '上傳項目', pathPrefix: 'uploads/' }],
         );
 
         expect(tree[0]!.children[0]!.path).toBe('uploads/a.txt');
     });
 
     it('skips files outside any defined group', () => {
-        const tree = buildFileManagerTree([file('orphan.txt')], [{ id: 'u', label: 'Uploads', pathPrefix: 'uploads' }]);
+        const tree = buildFileManagerTree([file('orphan.txt')], [{ id: 'u', label: '上傳項目', pathPrefix: 'uploads' }]);
 
         expect(tree[0]!.children).toEqual([]);
     });
@@ -452,7 +452,7 @@ describe('collectSubtreePaths', () => {
     it('omits synthetic group roots but keeps their descendants', () => {
         const tree = buildFileManagerTree(
             [file('uploads/a.txt'), file('uploads/sub/b.txt')],
-            [{ id: 'u', label: 'Uploads', pathPrefix: 'uploads' }],
+            [{ id: 'u', label: '上傳項目', pathPrefix: 'uploads' }],
         );
         const groupRoot = tree[0]!;
 
@@ -1820,8 +1820,8 @@ describe('sortFileManagerTree', () => {
 
     it('preserves the order of synthetic group roots but sorts their children', () => {
         const groups: FileManagerRootGroup[] = [
-            { id: 'uploads', label: 'Uploads', pathPrefix: 'uploads' },
-            { id: 'container', label: 'Container', pathPrefix: 'container' },
+            { id: 'uploads', label: '上傳項目', pathPrefix: 'uploads' },
+            { id: 'container', label: '容器', pathPrefix: 'container' },
         ];
         const tree = buildFileManagerTree(
             [file('uploads/b.txt'), file('uploads/a.txt'), file('container/x.txt'), file('container/m.txt')],
@@ -1830,7 +1830,7 @@ describe('sortFileManagerTree', () => {
 
         const sorted = sortFileManagerTree(tree, { column: 'name', direction: 'asc' }, false);
 
-        expect(collectTopNames(sorted)).toEqual(['Uploads', 'Container']);
+        expect(collectTopNames(sorted)).toEqual(['上傳項目', '容器']);
         expect(collectNames(sorted[0]?.children ?? [])).toEqual(['a.txt', 'b.txt']);
         expect(collectNames(sorted[1]?.children ?? [])).toEqual(['m.txt', 'x.txt']);
     });

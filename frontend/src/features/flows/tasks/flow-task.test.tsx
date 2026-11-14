@@ -58,15 +58,15 @@ describe('FlowTask', () => {
     it('names the status icons of the task and its subtasks', () => {
         renderTask(task({ status: StatusType.Failed, subtasks: [subtask({ status: StatusType.Finished })] }));
 
-        expect(screen.getByRole('img', { name: 'Failed' })).toBeInTheDocument();
-        expect(screen.getByRole('img', { name: 'Finished' })).toBeInTheDocument();
+        expect(screen.getByRole('img', { name: '失敗' })).toBeInTheDocument();
+        expect(screen.getByRole('img', { name: '已完成' })).toBeInTheDocument();
     });
 
     it('shows why a failed task stopped', async () => {
         const user = userEvent.setup({ delay: null });
         renderTask(task({ result: 'failed to generate subtasks: status code 404', status: StatusType.Failed }));
 
-        await user.click(screen.getByText('Show details'));
+        await user.click(screen.getByText('顯示詳細資料'));
 
         expect(screen.getByText(/status code 404/)).toBeInTheDocument();
     });

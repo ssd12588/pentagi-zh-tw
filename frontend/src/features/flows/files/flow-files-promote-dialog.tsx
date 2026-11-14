@@ -201,7 +201,7 @@ function FlowFilesPromoteDialogForm({ files, flowId, onClose }: FlowFilesPromote
                             </>
                         ) : (
                             <>
-                                Promote <code>{files[0].path}</code> from this flow into your global resource library so
+                                升階 <code>{files[0].path}</code> from this flow into your global resource library so
                                 you can reuse it in other flows.
                             </>
                         )}
@@ -219,7 +219,7 @@ function FlowFilesPromoteDialogForm({ files, flowId, onClose }: FlowFilesPromote
                             name="destination"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>{isMulti ? 'Destination directory' : 'Destination path'}</FormLabel>
+                                    <FormLabel>{isMulti ? '目的地目錄' : '目的路徑'}</FormLabel>
                                     <FormControl>
                                         <Input
                                             {...field}
@@ -228,7 +228,7 @@ function FlowFilesPromoteDialogForm({ files, flowId, onClose }: FlowFilesPromote
                                             disabled={isPromoting}
                                             placeholder={
                                                 isMulti
-                                                    ? 'Leave empty to save into the library root'
+                                                    ? '留空則儲存到資源庫根目錄'
                                                     : 'results/scan.txt'
                                             }
                                         />
@@ -241,7 +241,7 @@ function FlowFilesPromoteDialogForm({ files, flowId, onClose }: FlowFilesPromote
                                             </>
                                         ) : (
                                             <>
-                                                Relative path inside your resource library. Use <code>/</code> to nest
+                                                資源庫內的相對路徑。請使用 <code>/</code> to nest
                                                 into subdirectories.
                                             </>
                                         )}
@@ -258,7 +258,7 @@ function FlowFilesPromoteDialogForm({ files, flowId, onClose }: FlowFilesPromote
                                 type="button"
                                 variant="outline"
                             >
-                                Cancel
+                                取消
                             </Button>
                             <OverwriteButtons
                                 isDisabled={isSubmitDisabled}

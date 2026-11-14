@@ -150,7 +150,7 @@ export function FavoritesProvider({ children }: FavoritesProviderProps) {
                     });
                 } catch (error) {
                     const errorMessage = error instanceof Error ? error.message : 'Failed to add favorite';
-                    toast.error('Failed to add to favorites', {
+                    toast.error('加入最愛失敗', {
                         description: errorMessage,
                     });
                     Log.error('Error adding favorite flow:', error);
@@ -174,7 +174,7 @@ export function FavoritesProvider({ children }: FavoritesProviderProps) {
                     });
                 } catch (error) {
                     const errorMessage = error instanceof Error ? error.message : 'Failed to remove favorite';
-                    toast.error('Failed to remove from favorites', {
+                    toast.error('從最愛移除失敗', {
                         description: errorMessage,
                     });
                     Log.error('Error removing favorite flow:', error);

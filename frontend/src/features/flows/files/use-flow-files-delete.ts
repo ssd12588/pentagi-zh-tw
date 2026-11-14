@@ -89,7 +89,7 @@ export function useFlowFilesDelete({ flowId, onAfterDelete }: UseFlowFilesDelete
             } catch (error) {
                 const description = getApiErrorMessage(error, 'Failed to delete file');
 
-                toast.error('Delete failed', { description });
+                toast.error('刪除失敗', { description });
             }
         },
         [flowId, onAfterDelete],

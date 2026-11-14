@@ -164,9 +164,9 @@ export const copyMessageToClipboard = async (messageData: CopyableMessage): Prom
     try {
         const content = await formatMessageForClipboard(messageData);
         await navigator.clipboard.writeText(content);
-        toast.success('Copied to clipboard');
+        toast.success('已複製到剪貼簿');
     } catch {
-        toast.error('Failed to copy to clipboard');
+        toast.error('複製到剪貼簿失敗');
     }
 };
 

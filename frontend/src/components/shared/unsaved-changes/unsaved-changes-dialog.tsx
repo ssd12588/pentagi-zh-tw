@@ -72,7 +72,7 @@ function UnsavedChangesDialog({
                         onClick={handleCancel}
                         variant="outline"
                     >
-                        Cancel
+                        取消
                     </Button>
                     <Button
                         disabled={isSavingFromDialog}

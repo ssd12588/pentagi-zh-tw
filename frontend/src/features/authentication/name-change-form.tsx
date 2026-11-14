@@ -14,8 +14,8 @@ const nameChangeFormSchema = z.object({
     name: z
         .string()
         .trim()
-        .min(1, { message: 'Name is required' })
-        .max(70, { message: 'Name must not exceed 70 characters' }),
+        .min(1, { message: '必須輸入名稱' })
+        .max(70, { message: '名稱不得超過 70 個字元' }),
 });
 
 const ERROR_BY_CODE: Record<string, string> = {
@@ -47,7 +47,7 @@ export function NameChangeForm({ onCancel, onSuccess }: NameChangeFormProps) {
         try {
             await api.put('/user/name', { name: values.name });
 
-            toast.success('Name successfully updated');
+            toast.success('名稱更新成功');
 
             patchUser({ name: values.name });
             await refreshAuthInfo();
@@ -70,11 +70,11 @@ export function NameChangeForm({ onCancel, onSuccess }: NameChangeFormProps) {
                     name="name"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Display name</FormLabel>
+                            <FormLabel>顯示名稱</FormLabel>
                             <FormControl>
                                 <Input
                                     {...field}
-                                    placeholder="Enter your display name"
+                                    placeholder="輸入顯示名稱"
                                 />
                             </FormControl>
                             <FormMessage />
@@ -92,11 +92,11 @@ export function NameChangeForm({ onCancel, onSuccess }: NameChangeFormProps) {
                             type="button"
                             variant="outline"
                         >
-                            Cancel
+                            取消
                         </Button>
                     )}
                     <FormSubmitButton size="sm">
-                        <span>Update Name</span>
+                        <span>更新名稱</span>
                     </FormSubmitButton>
                 </div>
             </form>

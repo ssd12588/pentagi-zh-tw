@@ -407,7 +407,7 @@ export function DetailNavigationSheet<T extends { id: string }>({
                             {hasClearButton ? (
                                 <InputGroupAddon align="inline-end">
                                     <InputGroupButton
-                                        aria-label="Clear search"
+                                        aria-label="清除搜尋"
                                         onClick={handleSearchClear}
                                         size="icon-sm"
                                         type="button"
@@ -472,7 +472,7 @@ export function DetailNavigationSheet<T extends { id: string }>({
                     <div className="text-muted-foreground flex flex-1 items-center justify-center px-4 text-center text-sm">
                         {trimmedQuery.length > 0
                             ? `No items match "${trimmedQuery}".`
-                            : 'No items match the current filter.'}
+                            : '沒有符合目前篩選條件的項目。'}
                     </div>
                 )}
             </SheetContent>

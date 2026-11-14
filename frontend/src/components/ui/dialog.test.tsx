@@ -22,14 +22,14 @@ const DialogFromButton = () => {
                 onClick={() => setIsOpen(true)}
                 type="button"
             >
-                Delete resource
+                刪除資源
             </button>
             <Dialog
                 onOpenChange={setIsOpen}
                 open={isOpen}
             >
                 <DialogContent>
-                    <DialogTitle>Delete resource</DialogTitle>
+                    <DialogTitle>刪除資源</DialogTitle>
                     <DialogDescription>This cannot be undone.</DialogDescription>
                 </DialogContent>
             </Dialog>
@@ -43,9 +43,9 @@ const DialogFromDropdown = () => {
     return (
         <>
             <DropdownMenu>
-                <DropdownMenuTrigger>Row actions</DropdownMenuTrigger>
+                <DropdownMenuTrigger>列操作</DropdownMenuTrigger>
                 <DropdownMenuContent>
-                    <DropdownMenuItem onSelect={() => setIsOpen(true)}>Delete</DropdownMenuItem>
+                    <DropdownMenuItem onSelect={() => setIsOpen(true)}>刪除</DropdownMenuItem>
                 </DropdownMenuContent>
             </DropdownMenu>
             <Dialog
@@ -53,7 +53,7 @@ const DialogFromDropdown = () => {
                 open={isOpen}
             >
                 <DialogContent>
-                    <DialogTitle>Delete resource</DialogTitle>
+                    <DialogTitle>刪除資源</DialogTitle>
                     <DialogDescription>This cannot be undone.</DialogDescription>
                 </DialogContent>
             </Dialog>
@@ -66,7 +66,7 @@ describe('Dialog focus return', () => {
         const user = userEvent.setup();
         render(<DialogFromButton />);
 
-        const opener = screen.getByRole('button', { name: 'Delete resource' });
+        const opener = screen.getByRole('button', { name: '刪除資源' });
         await user.click(opener);
         await screen.findByRole('dialog');
 
@@ -82,9 +82,9 @@ describe('Dialog focus return', () => {
         const user = userEvent.setup();
         render(<DialogFromDropdown />);
 
-        const trigger = screen.getByRole('button', { name: 'Row actions' });
+        const trigger = screen.getByRole('button', { name: '列操作' });
         await user.click(trigger);
-        await user.click(await screen.findByRole('menuitem', { name: 'Delete' }));
+        await user.click(await screen.findByRole('menuitem', { name: '刪除' }));
         await screen.findByRole('dialog');
 
         await user.keyboard('{Escape}');
@@ -104,7 +104,7 @@ const DialogFromContextMenu = () => {
             <ContextMenu>
                 <ContextMenuTrigger>Row</ContextMenuTrigger>
                 <ContextMenuContent>
-                    <ContextMenuItem onSelect={() => setIsOpen(true)}>Delete</ContextMenuItem>
+                    <ContextMenuItem onSelect={() => setIsOpen(true)}>刪除</ContextMenuItem>
                 </ContextMenuContent>
             </ContextMenu>
             <Dialog
@@ -112,7 +112,7 @@ const DialogFromContextMenu = () => {
                 open={isOpen}
             >
                 <DialogContent>
-                    <DialogTitle>Delete resource</DialogTitle>
+                    <DialogTitle>刪除資源</DialogTitle>
                     <DialogDescription>This cannot be undone.</DialogDescription>
                 </DialogContent>
             </Dialog>
@@ -129,7 +129,7 @@ describe('Dialog opened from a context menu', () => {
         const trigger = document.querySelector<HTMLElement>('[data-slot="context-menu-trigger"]')!;
 
         await user.pointer({ keys: '[MouseRight]', target: trigger });
-        await user.click(await screen.findByRole('menuitem', { name: 'Delete' }));
+        await user.click(await screen.findByRole('menuitem', { name: '刪除' }));
         await screen.findByRole('dialog');
 
         await user.keyboard('{Escape}');

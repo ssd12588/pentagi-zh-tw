@@ -68,7 +68,7 @@ const buildUploadSuccessMessage = (uploadedCount: number, dir?: string) => {
     const target = dir ? `to /${dir}` : 'to your library';
 
     if (uploadedCount === 1) {
-        return { description: `Uploaded ${target}`, title: 'File uploaded' };
+        return { description: `Uploaded ${target}`, title: '檔案已上傳' };
     }
 
     return {
@@ -128,7 +128,7 @@ export function useResourcesUpload({ defaultDir, onSuccess }: UseResourcesUpload
             });
 
             if (validationError) {
-                toast.error('Upload failed', { description: validationError });
+                toast.error('上傳失敗', { description: validationError });
 
                 return null;
             }
@@ -173,7 +173,7 @@ export function useResourcesUpload({ defaultDir, onSuccess }: UseResourcesUpload
                     409: UPLOAD_OVERWRITE_HINT,
                 });
 
-                toast.error('Upload failed', { description });
+                toast.error('上傳失敗', { description });
 
                 return null;
             } finally {

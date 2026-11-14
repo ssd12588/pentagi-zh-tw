@@ -210,13 +210,13 @@ function FlowAutomationMessages({ className }: FlowAutomationMessagesProps) {
                                         <InputGroupInput
                                             {...field}
                                             autoComplete="off"
-                                            placeholder="Search messages..."
+                                            placeholder="搜尋訊息…"
                                             type="text"
                                         />
                                         {field.value && (
                                             <InputGroupAddon align="inline-end">
                                                 <InputGroupButton
-                                                    aria-label="Clear message search"
+                                                    aria-label="清除訊息搜尋"
                                                     onClick={() => {
                                                         form.reset({ search: '' });
                                                         setDebouncedSearchValue('');
@@ -266,7 +266,7 @@ function FlowAutomationMessages({ className }: FlowAutomationMessagesProps) {
 
                     {!isScrolledToBottom && (
                         <Button
-                            aria-label="Scroll to latest message"
+                            aria-label="捲動到最新訊息"
                             className="absolute right-4 bottom-4 z-10 shadow-md hover:shadow-lg"
                             onClick={() => scrollToEnd()}
                             size="icon-sm"
@@ -286,8 +286,8 @@ function FlowAutomationMessages({ className }: FlowAutomationMessagesProps) {
                         <EmptyMedia variant="icon">
                             <ListFilter />
                         </EmptyMedia>
-                        <EmptyTitle>No messages found</EmptyTitle>
-                        <EmptyDescription>Try adjusting your search or filter parameters</EmptyDescription>
+                        <EmptyTitle>找不到訊息</EmptyTitle>
+                        <EmptyDescription>請調整搜尋關鍵字或篩選條件</EmptyDescription>
                     </EmptyHeader>
                     <EmptyContent>
                         <Button
@@ -295,7 +295,7 @@ function FlowAutomationMessages({ className }: FlowAutomationMessagesProps) {
                             variant="outline"
                         >
                             <X />
-                            Reset filters
+                            重設篩選條件
                         </Button>
                     </EmptyContent>
                 </Empty>
@@ -305,7 +305,7 @@ function FlowAutomationMessages({ className }: FlowAutomationMessagesProps) {
                         <EmptyMedia variant="icon">
                             <Inbox />
                         </EmptyMedia>
-                        <EmptyTitle>No active tasks</EmptyTitle>
+                        <EmptyTitle>沒有進行中的任務</EmptyTitle>
                         <EmptyDescription>
                             Starting a new task may take some time as the PentAGI agent downloads the required Docker
                             image

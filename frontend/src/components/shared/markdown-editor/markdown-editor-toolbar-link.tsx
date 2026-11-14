@@ -28,7 +28,7 @@ export function LinkPopover({ disabled, editor, isActive }: LinkPopoverProps) {
                 <TooltipTrigger asChild>
                     <PopoverTrigger asChild>
                         <Toggle
-                            aria-label="Link"
+                            aria-label="連結"
                             data-toolbar-item=""
                             disabled={disabled}
                             pressed={isActive}
@@ -38,7 +38,7 @@ export function LinkPopover({ disabled, editor, isActive }: LinkPopoverProps) {
                         </Toggle>
                     </PopoverTrigger>
                 </TooltipTrigger>
-                <TooltipContent>Link</TooltipContent>
+                <TooltipContent>連結</TooltipContent>
             </Tooltip>
             <PopoverContent
                 align="start"

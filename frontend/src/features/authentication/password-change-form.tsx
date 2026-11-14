@@ -12,14 +12,14 @@ import { cn } from '@/lib/utils';
 
 const passwordChangeFormSchema = z
     .object({
-        confirmPassword: z.string().min(1, { message: 'Confirm your password' }),
-        currentPassword: z.string().min(1, { message: 'Current password is required' }),
+        confirmPassword: z.string().min(1, { message: '確認密碼' }),
+        currentPassword: z.string().min(1, { message: '必須輸入目前密碼' }),
         newPassword: z
             .string()
-            .min(8, { message: 'Password must be at least 8 characters' })
+            .min(8, { message: '密碼長度至少 8 個字元' })
             // bcrypt, which hashes it server-side, refuses anything longer than 72 bytes.
             .refine((password) => new TextEncoder().encode(password).length <= 72, {
-                message: 'Password must not exceed 72 characters',
+                message: '密碼不得超過 72 個字元',
             })
             .refine(
                 (password) => {
@@ -39,16 +39,16 @@ const passwordChangeFormSchema = z
                 },
                 {
                     message:
-                        'Password must be either longer than 15 characters, or at least 8 characters with a number, lowercase, uppercase, and special character (!@#$&*)',
+                        '密碼長度須超過 15 個字元，或至少 8 個字元且包含數字、小寫、大寫與特殊字元（!@#$&*）',
                 },
             ),
     })
     .refine((data) => data.newPassword === data.confirmPassword, {
-        message: "Passwords don't match",
+        message: "兩次輸入的密碼不一致",
         path: ['confirmPassword'],
     })
     .refine((data) => data.currentPassword !== data.newPassword, {
-        message: 'New password must be different from current password',
+        message: '新密碼必須與目前密碼不同',
         path: ['newPassword'],
     });
 
@@ -98,7 +98,7 @@ export function PasswordChangeForm({
             });
 
             form.reset();
-            toast.success('Password successfully changed');
+            toast.success('密碼變更成功');
 
             onSuccess?.();
         } catch (err: unknown) {
@@ -116,7 +116,7 @@ export function PasswordChangeForm({
             type="button"
             variant="ghost"
         >
-            Skip for now
+            暫時略過
         </Button>
     );
     const cancelButton = onCancel && (
@@ -127,7 +127,7 @@ export function PasswordChangeForm({
             type="button"
             variant="outline"
         >
-            Cancel
+            取消
         </Button>
     );
     const submitButton = (
@@ -135,7 +135,7 @@ export function PasswordChangeForm({
             className={cn(isVertical && 'w-full')}
             size={buttonSize}
         >
-            <span>Update Password</span>
+            <span>更新密碼</span>
         </FormSubmitButton>
     );
 
@@ -151,11 +151,11 @@ export function PasswordChangeForm({
                     name="currentPassword"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Current Password</FormLabel>
+                            <FormLabel>目前密碼</FormLabel>
                             <FormControl>
                                 <InputPassword
                                     {...field}
-                                    placeholder="Enter your current password"
+                                    placeholder="輸入目前的密碼"
                                 />
                             </FormControl>
                             <FormMessage />
@@ -168,11 +168,11 @@ export function PasswordChangeForm({
                     name="newPassword"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>New Password</FormLabel>
+                            <FormLabel>新密碼</FormLabel>
                             <FormControl>
                                 <InputPassword
                                     {...field}
-                                    placeholder="Enter your new password"
+                                    placeholder="輸入新密碼"
                                 />
                             </FormControl>
                             <FormDescription className="text-xs">
@@ -189,11 +189,11 @@ export function PasswordChangeForm({
                     name="confirmPassword"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Confirm New Password</FormLabel>
+                            <FormLabel>確認新密碼</FormLabel>
                             <FormControl>
                                 <InputPassword
                                     {...field}
-                                    placeholder="Confirm your new password"
+                                    placeholder="再次輸入新密碼"
                                 />
                             </FormControl>
                             <FormMessage />

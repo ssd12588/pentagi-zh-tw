@@ -26,7 +26,7 @@ function FlowTaskStatusIcon({ className, status, tooltip }: FlowTaskStatusIconPr
     const { className: defaultClassName, icon: Icon } = status ? statusIcons[status] || defaultIcon : defaultIcon;
     const iconElement = (
         <Icon
-            aria-label={status ? formatName(status) : 'Unknown'}
+            aria-label={status ? formatName(status) : '未知'}
             className={cn('size-4 shrink-0', defaultClassName, tooltip && 'cursor-pointer', className)}
             role="img"
         />

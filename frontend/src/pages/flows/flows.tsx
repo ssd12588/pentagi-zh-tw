@@ -50,23 +50,23 @@ const statusConfig: Record<
     { label: string; variant: 'default' | 'destructive' | 'outline' | 'secondary' }
 > = {
     [StatusType.Created]: {
-        label: 'Created',
+        label: '已建立',
         variant: 'outline',
     },
     [StatusType.Failed]: {
-        label: 'Failed',
+        label: '失敗',
         variant: 'outline',
     },
     [StatusType.Finished]: {
-        label: 'Finished',
+        label: '已完成',
         variant: 'secondary',
     },
     [StatusType.Running]: {
-        label: 'Running',
+        label: '執行中',
         variant: 'outline',
     },
     [StatusType.Waiting]: {
-        label: 'Waiting',
+        label: '等待中',
         variant: 'outline',
     },
 };
@@ -143,7 +143,7 @@ function Flows() {
             });
 
             if (data?.renameFlow === ResultType.Success) {
-                toast.success('Flow renamed successfully');
+                toast.success('流程重新命名成功');
                 setEditingFlowId(null);
             }
         } catch (error) {
@@ -208,7 +208,7 @@ function Flows() {
                                     inputRef={editingInputRef}
                                     onCancel={handleFlowRenameCancel}
                                     onSave={handleFlowRenameSave}
-                                    placeholder="Flow title"
+                                    placeholder="流程標題"
                                 />
                             </div>
                         );
@@ -220,7 +220,7 @@ function Flows() {
                 header: ({ column }) => (
                     <DataTableColumnHeader
                         column={column}
-                        title="Title"
+                        title="標題"
                     />
                 ),
                 meta: { searchable: true },
@@ -246,7 +246,7 @@ function Flows() {
                 header: ({ column }) => (
                     <DataTableColumnHeader
                         column={column}
-                        title="Status"
+                        title="狀態"
                     />
                 ),
                 maxSize: 130,
@@ -271,7 +271,7 @@ function Flows() {
                 header: ({ column }) => (
                     <DataTableColumnHeader
                         column={column}
-                        title="Provider"
+                        title="供應商"
                     />
                 ),
                 id: 'provider',
@@ -297,7 +297,7 @@ function Flows() {
                     const terminals = flow.terminals || [];
 
                     if (terminals.length === 0) {
-                        return <span className="text-muted-foreground text-sm">No terminals</span>;
+                        return <span className="text-muted-foreground text-sm">沒有終端機</span>;
                     }
 
                     const isAnyConnected = terminals.some((t: TerminalFragmentFragment) => t.connected);
@@ -336,7 +336,7 @@ function Flows() {
                 header: ({ column }) => (
                     <DataTableColumnHeader
                         column={column}
-                        title="Terminals"
+                        title="終端機"
                     />
                 ),
                 id: 'terminals',
@@ -361,7 +361,7 @@ function Flows() {
                 header: ({ column }) => (
                     <DataTableColumnHeader
                         column={column}
-                        title="Created"
+                        title="已建立"
                     />
                 ),
                 maxSize: 170,
@@ -385,7 +385,7 @@ function Flows() {
                 header: ({ column }) => (
                     <DataTableColumnHeader
                         column={column}
-                        title="Updated"
+                        title="已更新"
                     />
                 ),
                 maxSize: 170,
@@ -408,7 +408,7 @@ function Flows() {
                         <div className="flex items-center justify-end gap-1 opacity-0 transition-opacity group-hover:opacity-100">
                             {canToggleFavorite(flow) && (
                                 <Toggle
-                                    aria-label="Toggle favorite"
+                                    aria-label="切換最愛"
                                     className="border-none data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-yellow-500 data-[state=on]:*:[svg]:stroke-yellow-500"
                                     onClick={async (event) => {
                                         event.stopPropagation();
@@ -424,7 +424,7 @@ function Flows() {
                             <DropdownMenu>
                                 <DropdownMenuTrigger asChild>
                                     <Button
-                                        aria-label="Open menu"
+                                        aria-label="開啟選單"
                                         className="size-8 p-0"
                                         onClick={(e) => e.stopPropagation()}
                                         variant="ghost"
@@ -439,11 +439,11 @@ function Flows() {
                                 >
                                     <DropdownMenuItem onClick={() => handleFlowOpen(flow.id)}>
                                         <Eye />
-                                        View
+                                        檢視
                                     </DropdownMenuItem>
                                     <DropdownMenuItem onClick={() => handleFlowRenameStart(flow)}>
                                         <PencilLine className="size-3" />
-                                        Rename
+                                        重新命名
                                     </DropdownMenuItem>
                                     {isRunning && (
                                         <DropdownMenuItem
@@ -453,12 +453,12 @@ function Flows() {
                                             {finishingFlowIds.has(flow.id) ? (
                                                 <>
                                                     <Spinner variant="circle" />
-                                                    Finishing...
+                                                    完成中…
                                                 </>
                                             ) : (
                                                 <>
                                                     <Pause />
-                                                    Finish
+                                                    完成
                                                 </>
                                             )}
                                         </DropdownMenuItem>
@@ -471,12 +471,12 @@ function Flows() {
                                         {deletingFlowIds.has(flow.id) ? (
                                             <>
                                                 <Spinner variant="circle" />
-                                                Deleting...
+                                                刪除中…
                                             </>
                                         ) : (
                                             <>
                                                 <Trash />
-                                                Delete
+                                                刪除
                                             </>
                                         )}
                                     </DropdownMenuItem>
@@ -523,18 +523,18 @@ function Flows() {
                         <>
                             <ContextMenuItem onClick={async () => toggleFavoriteFlow(flow.id)}>
                                 <Star />
-                                {isFavoriteFlow(flow.id) ? 'Remove from favorites' : 'Add to favorites'}
+                                {isFavoriteFlow(flow.id) ? '從最愛移除' : '加入最愛'}
                             </ContextMenuItem>
                             <ContextMenuSeparator />
                         </>
                     )}
                     <ContextMenuItem onClick={() => handleFlowOpen(flow.id)}>
                         <Eye />
-                        View
+                        檢視
                     </ContextMenuItem>
                     <ContextMenuItem onClick={() => handleFlowRenameStart(flow)}>
                         <Pencil />
-                        Rename
+                        重新命名
                     </ContextMenuItem>
 
                     {isRunning && (
@@ -543,7 +543,7 @@ function Flows() {
                             onClick={() => handleFlowFinish(flow)}
                         >
                             <Pause />
-                            {finishingFlowIds.has(flow.id) ? 'Finishing...' : 'Finish'}
+                            {finishingFlowIds.has(flow.id) ? '完成中…' : '完成'}
                         </ContextMenuItem>
                     )}
                     <ContextMenuSeparator />
@@ -552,7 +552,7 @@ function Flows() {
                         onClick={() => handleFlowDeleteDialogOpen(flow)}
                     >
                         <Trash />
-                        {deletingFlowIds.has(flow.id) ? 'Deleting...' : 'Delete'}
+                        {deletingFlowIds.has(flow.id) ? '刪除中…' : '刪除'}
                     </ContextMenuItem>
                 </>
             );
@@ -582,12 +582,12 @@ function Flows() {
     const pageHeader = (
         <AppHeader>
             <AppHeaderContent>
-                <AppHeaderTitle icon={<GitFork className="size-4 shrink-0" />}>Flows</AppHeaderTitle>
+                <AppHeaderTitle icon={<GitFork className="size-4 shrink-0" />}>流程</AppHeaderTitle>
             </AppHeaderContent>
             <AppHeaderActions>
                 <AppHeaderAction
                     icon={<Plus />}
-                    label="New Flow"
+                    label="新增流程"
                     onClick={() => navigate(routes.newFlow)}
                     variant="secondary"
                 />
@@ -601,8 +601,8 @@ function Flows() {
                 {pageHeader}
                 <div className="flex flex-1 flex-col gap-4 p-4">
                     <LoadingState
-                        description="Please wait while we fetch your conversation flows"
-                        title="Loading flows..."
+                        description="正在取得對話流程，請稍候"
+                        title="載入流程中…"
                     />
                 </div>
             </>
@@ -618,7 +618,7 @@ function Flows() {
                     <ErrorState
                         message={flowsError.message}
                         onRetry={refetch}
-                        title="Error loading flows"
+                        title="載入流程清單失敗"
                     />
                 </div>
             </>
@@ -635,8 +635,8 @@ function Flows() {
                             <EmptyMedia variant="icon">
                                 <GitFork />
                             </EmptyMedia>
-                            <EmptyTitle>No flows found</EmptyTitle>
-                            <EmptyDescription>Get started by creating your first conversation flow</EmptyDescription>
+                            <EmptyTitle>找不到流程</EmptyTitle>
+                            <EmptyDescription>建立第一個對話流程即可開始使用</EmptyDescription>
                         </EmptyHeader>
                         <EmptyContent>
                             <Button
@@ -644,7 +644,7 @@ function Flows() {
                                 variant="secondary"
                             >
                                 <Plus />
-                                New Flow
+                                新增流程
                             </Button>
                         </EmptyContent>
                     </Empty>
@@ -664,7 +664,7 @@ function Flows() {
                     filterPlaceholder="Filter flows..."
                     filterValue={filter}
                     isVirtualized
-                    label="Flows"
+                    label="流程"
                     onFilterChange={setFilter}
                     onPageChange={handlePageChange}
                     onRowClick={handleRowClick}
@@ -673,8 +673,8 @@ function Flows() {
                 />
 
                 <ConfirmationDialog
-                    cancelText="Cancel"
-                    confirmText="Delete"
+                    cancelText="取消"
+                    confirmText="刪除"
                     handleConfirm={handleFlowDelete}
                     handleOpenChange={setIsDeleteDialogOpen}
                     isOpen={isDeleteDialogOpen}

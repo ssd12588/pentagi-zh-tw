@@ -412,7 +412,7 @@ export function FileManager({
     // clicks outside any row, which is the entire point.
     const treeBody = (
         <div
-            aria-label="File tree"
+            aria-label="檔案樹"
             aria-multiselectable={isCheckboxVisible || undefined}
             className={cn(
                 'flex flex-1 flex-col overflow-y-auto py-1 transition-colors',
@@ -472,7 +472,7 @@ export function FileManager({
             >
                 {isCheckboxVisible ? (
                     <Checkbox
-                        aria-label={effectiveLabels.selectAllAriaLabel ?? 'Select all'}
+                        aria-label={effectiveLabels.selectAllAriaLabel ?? '全選'}
                         checked={getCheckboxState(isAllSelected, isSomeSelected)}
                         onCheckedChange={toggleSelectAll}
                     />
@@ -488,8 +488,8 @@ export function FileManager({
                             aria-expanded={isAllExpanded}
                             aria-label={
                                 isAllExpanded
-                                    ? (effectiveLabels.collapseAllAriaLabel ?? 'Collapse all')
-                                    : (effectiveLabels.expandAllAriaLabel ?? 'Expand all')
+                                    ? (effectiveLabels.collapseAllAriaLabel ?? '全部收合')
+                                    : (effectiveLabels.expandAllAriaLabel ?? '全部展開')
                             }
                             className="text-muted-foreground hover:bg-muted -mx-0.5 size-4 shrink-0 rounded hover:text-blue-400"
                             onClick={toggleExpandAll}

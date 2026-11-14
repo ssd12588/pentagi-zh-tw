@@ -58,7 +58,7 @@ function ConfirmationDialog({
 
     const defaultDescription = description || (
         <>
-            Are you sure you want to {verb.toLowerCase() || 'perform this action on'}{' '}
+            確定要 {verb.toLowerCase() || 'perform this action on'}{' '}
             <strong className="text-foreground font-semibold">{itemName}</strong> {itemType}?
         </>
     );

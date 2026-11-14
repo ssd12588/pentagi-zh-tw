@@ -72,7 +72,7 @@ describe('FlowForm attachments', () => {
         await attachResource();
 
         await user.type(screen.getByRole('textbox'), 'scan it');
-        await user.click(screen.getByRole('button', { name: 'Submit' }));
+        await user.click(screen.getByRole('button', { name: '送出' }));
 
         await waitFor(() => expect(onSubmit).toHaveBeenCalledOnce());
         expect(onSubmit.mock.calls[0]?.[0]).toMatchObject({ message: 'scan it', resourceIds: ['7'] });
@@ -95,11 +95,11 @@ describe('FlowForm attachments', () => {
         await attachResource();
 
         await user.type(screen.getByRole('textbox'), 'first');
-        await user.click(screen.getByRole('button', { name: 'Submit' }));
+        await user.click(screen.getByRole('button', { name: '送出' }));
         await waitFor(() => expect(onSubmit).toHaveBeenCalledOnce());
 
         await user.type(screen.getByRole('textbox'), 'second');
-        await user.click(screen.getByRole('button', { name: 'Submit' }));
+        await user.click(screen.getByRole('button', { name: '送出' }));
 
         await waitFor(() => expect(onSubmit).toHaveBeenCalledTimes(2));
         expect(onSubmit.mock.calls[1]?.[0]).toMatchObject({ message: 'second', resourceIds: [] });
@@ -120,7 +120,7 @@ describe('FlowForm attachments', () => {
         await attachResource();
 
         await user.type(screen.getByRole('textbox'), 'scan it');
-        await user.click(screen.getByRole('button', { name: 'Submit' }));
+        await user.click(screen.getByRole('button', { name: '送出' }));
 
         await waitFor(() => expect(onSubmit).toHaveBeenCalledOnce());
         expect(screen.getByRole('textbox')).toHaveValue('scan it');

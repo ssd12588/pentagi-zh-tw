@@ -53,7 +53,7 @@ const openRowMenu = async (user: ReturnType<typeof userEvent.setup>) => {
         </MemoryRouter>,
     );
 
-    const triggers = screen.getAllByRole('button', { name: /open menu/i });
+    const triggers = screen.getAllByRole('button', { name: /開啟選單/i });
 
     await user.click(triggers[0] as HTMLElement);
 };
@@ -68,9 +68,9 @@ describe('resetting a prompt to its default', () => {
 
         await openRowMenu(userEvent.setup());
 
-        expect(screen.getByRole('menuitem', { name: /edit/i })).toBeInTheDocument();
-        expect(screen.queryByRole('menuitem', { name: 'Reset System' })).not.toBeInTheDocument();
-        expect(screen.queryByRole('menuitem', { name: 'Reset All' })).not.toBeInTheDocument();
+        expect(screen.getByRole('menuitem', { name: /編輯/i })).toBeInTheDocument();
+        expect(screen.queryByRole('menuitem', { name: '重設系統提示詞' })).not.toBeInTheDocument();
+        expect(screen.queryByRole('menuitem', { name: '全部重設' })).not.toBeInTheDocument();
     });
 
     it('offers the reset once the row carries a custom prompt', async () => {
@@ -83,10 +83,10 @@ describe('resetting a prompt to its default', () => {
 
         await openRowMenu(userEvent.setup());
 
-        expect(screen.getByRole('menuitem', { name: 'Reset System' })).toBeInTheDocument();
-        expect(screen.getByRole('menuitem', { name: 'Reset All' })).toBeInTheDocument();
+        expect(screen.getByRole('menuitem', { name: '重設系統提示詞' })).toBeInTheDocument();
+        expect(screen.getByRole('menuitem', { name: '全部重設' })).toBeInTheDocument();
         expect(
-            screen.queryByRole('menuitem', { name: 'Reset Human' }),
+            screen.queryByRole('menuitem', { name: '重設使用者提示詞' }),
             'the human prompt is still the default',
         ).not.toBeInTheDocument();
     });
@@ -101,12 +101,12 @@ describe('resetting a prompt to its default', () => {
         const user = userEvent.setup();
 
         await openRowMenu(user);
-        await user.click(screen.getByRole('menuitem', { name: 'Reset System' }));
+        await user.click(screen.getByRole('menuitem', { name: '重設系統提示詞' }));
 
-        expect(screen.getByRole('dialog')).toHaveTextContent(/reset the system prompt/i);
+        expect(screen.getByRole('dialog')).toHaveTextContent(/重設 the 系統提示詞/i);
         expect(mutate, 'the dialog is a question, not the action').not.toHaveBeenCalled();
 
-        await user.click(screen.getByRole('button', { name: 'Reset' }));
+        await user.click(screen.getByRole('button', { name: '重設' }));
 
         expect(mutate).toHaveBeenCalledWith(expect.objectContaining({ variables: { promptId: CUSTOM_SYSTEM_ID } }));
     });
@@ -121,8 +121,8 @@ describe('resetting a prompt to its default', () => {
         const user = userEvent.setup();
 
         await openRowMenu(user);
-        await user.click(screen.getByRole('menuitem', { name: 'Reset All' }));
+        await user.click(screen.getByRole('menuitem', { name: '全部重設' }));
 
-        expect(screen.getByRole('dialog')).toHaveTextContent(/reset all prompts/i);
+        expect(screen.getByRole('dialog')).toHaveTextContent(/全部重設 提示詞/i);
     });
 });

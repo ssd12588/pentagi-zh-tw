@@ -93,13 +93,13 @@ function FlowScreenshots() {
                                         <InputGroupInput
                                             {...field}
                                             autoComplete="off"
-                                            placeholder="Search screenshots..."
+                                            placeholder="搜尋截圖…"
                                             type="text"
                                         />
                                         {field.value && (
                                             <InputGroupAddon align="inline-end">
                                                 <InputGroupButton
-                                                    aria-label="Clear screenshot search"
+                                                    aria-label="清除截圖搜尋"
                                                     onClick={() => {
                                                         form.reset({ search: '' });
                                                         setDebouncedSearchValue('');
@@ -136,7 +136,7 @@ function FlowScreenshots() {
 
                     {!isScrolledToBottom && (
                         <Button
-                            aria-label="Scroll to latest screenshot"
+                            aria-label="捲動到最新截圖"
                             className="absolute right-4 bottom-4 z-10 shadow-md hover:shadow-lg"
                             onClick={() => scrollToEnd()}
                             size="icon-sm"
@@ -156,8 +156,8 @@ function FlowScreenshots() {
                         <EmptyMedia variant="icon">
                             <Camera />
                         </EmptyMedia>
-                        <EmptyTitle>No screenshots available</EmptyTitle>
-                        <EmptyDescription>Screenshots will appear here once the agent captures them</EmptyDescription>
+                        <EmptyTitle>沒有可用的截圖</EmptyTitle>
+                        <EmptyDescription>代理擷取後，截圖會顯示在這裡</EmptyDescription>
                     </EmptyHeader>
                 </Empty>
             )}

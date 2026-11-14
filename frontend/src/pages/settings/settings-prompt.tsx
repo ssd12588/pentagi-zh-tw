@@ -671,14 +671,14 @@ function SettingsPromptEditor({ promptId }: { promptId?: string }) {
     const pageHeader = (
         <AppHeader>
             <AppHeaderContent>
-                <AppHeaderTitle icon={<FileText className="size-4 shrink-0" />}>Edit Prompt</AppHeaderTitle>
+                <AppHeaderTitle icon={<FileText className="size-4 shrink-0" />}>編輯提示詞</AppHeaderTitle>
             </AppHeaderContent>
             {promptInfo && (
                 <AppHeaderActions>
                     <AppHeaderAction
                         disabled={isLoading}
                         icon={isValidateLoading ? <Spinner variant="circle" /> : <CheckCircle />}
-                        label={isValidateLoading ? 'Validating...' : 'Validate'}
+                        label={isValidateLoading ? '驗證中…' : '驗證'}
                         onClick={handleValidate}
                         type="button"
                         variant="outline"
@@ -686,14 +686,14 @@ function SettingsPromptEditor({ promptId }: { promptId?: string }) {
                     <AppHeaderAction
                         form={activeFormId}
                         icon={<Save />}
-                        label="Save"
+                        label="儲存"
                         loading={isLoading}
                         type="submit"
                     />
                     <DropdownMenu>
                         <DropdownMenuTrigger asChild>
                             <Button
-                                aria-label="Prompt actions"
+                                aria-label="提示詞操作"
                                 className="size-8 p-0"
                                 type="button"
                                 variant="ghost"
@@ -709,14 +709,14 @@ function SettingsPromptEditor({ promptId }: { promptId?: string }) {
                                 <>
                                     <DropdownMenuItem onClick={() => setIsDiffDialogOpen(true)}>
                                         <FileDiff />
-                                        Diff
+                                        差異
                                     </DropdownMenuItem>
                                     <DropdownMenuItem
                                         disabled={isLoading}
                                         onClick={handleReset}
                                     >
                                         {isDeleteLoading ? <Spinner variant="circle" /> : <RotateCcw />}
-                                        {isDeleteLoading ? 'Resetting...' : 'Reset'}
+                                        {isDeleteLoading ? '重設中…' : '重設'}
                                     </DropdownMenuItem>
                                     <DropdownMenuSeparator />
                                 </>
@@ -725,12 +725,12 @@ function SettingsPromptEditor({ promptId }: { promptId?: string }) {
                                 className="cursor-default gap-4 hover:bg-transparent focus:bg-transparent"
                                 onSelect={(event) => event.preventDefault()}
                             >
-                                View
+                                檢視
                                 <EditorViewModeToggle
                                     className="-my-1.5 -mr-2 ml-auto"
                                     mode={viewMode}
                                     onModeChange={setViewMode}
-                                    rawTooltip="Edit the raw prompt template"
+                                    rawTooltip="編輯原始提示詞範本"
                                 />
                             </DropdownMenuItem>
                         </DropdownMenuContent>
@@ -746,8 +746,8 @@ function SettingsPromptEditor({ promptId }: { promptId?: string }) {
                 {pageHeader}
                 <div className="flex flex-1 items-center justify-center p-4">
                     <LoadingState
-                        description="Please wait while we fetch prompt information"
-                        title="Loading prompt data..."
+                        description="正在取得提示詞資訊，請稍候"
+                        title="載入提示詞資料中…"
                     />
                 </div>
             </>
@@ -762,7 +762,7 @@ function SettingsPromptEditor({ promptId }: { promptId?: string }) {
                     <ErrorState
                         message={error.message}
                         onRetry={refetch}
-                        title="Error loading prompt data"
+                        title="載入提示詞資料失敗"
                     />
                 </div>
             </>
@@ -779,7 +779,7 @@ function SettingsPromptEditor({ promptId }: { promptId?: string }) {
                             <EmptyMedia>
                                 <AlertCircle className="text-destructive size-12" />
                             </EmptyMedia>
-                            <EmptyTitle>Prompt not found</EmptyTitle>
+                            <EmptyTitle>找不到提示詞</EmptyTitle>
                             <EmptyDescription>{`The prompt "${promptId}" could not be found or is not supported for editing.`}</EmptyDescription>
                         </EmptyHeader>
                     </Empty>
@@ -794,11 +794,11 @@ function SettingsPromptEditor({ promptId }: { promptId?: string }) {
     const promptPanel = (
         <>
             <div className="flex flex-col gap-2 text-center">
-                <h2 className="text-2xl font-semibold">Edit prompt</h2>
+                <h2 className="text-2xl font-semibold">編輯提示詞</h2>
                 <p className="text-muted-foreground">
                     {promptInfo.type === 'agent'
-                        ? 'Customize the templates this agent uses'
-                        : 'Customize the template this tool uses'}
+                        ? '自訂此代理使用的範本'
+                        : '自訂此工具使用的範本'}
                 </p>
             </div>
 
@@ -813,8 +813,8 @@ function SettingsPromptEditor({ promptId }: { promptId?: string }) {
                 </h3>
                 <p className="text-muted-foreground text-sm">
                     {promptInfo.type === 'agent'
-                        ? 'Configure prompts for this AI agent'
-                        : 'Configure the prompt for this tool'}
+                        ? '設定此 AI 代理的提示詞'
+                        : '設定此工具的提示詞'}
                 </p>
             </div>
 
@@ -824,7 +824,7 @@ function SettingsPromptEditor({ promptId }: { promptId?: string }) {
                     value="system"
                 >
                     <Code className="size-4" />
-                    System Prompt
+                    系統提示詞
                 </TabsTrigger>
                 <TabsTrigger
                     className="xl:dark:data-[state=active]:bg-card flex-1"
@@ -832,7 +832,7 @@ function SettingsPromptEditor({ promptId }: { promptId?: string }) {
                     value="human"
                 >
                     <User className="size-4" />
-                    Human Prompt
+                    使用者提示詞
                 </TabsTrigger>
             </TabsList>
 
@@ -863,7 +863,7 @@ function SettingsPromptEditor({ promptId }: { promptId?: string }) {
                         onSubmit={systemForm.handleSubmit(handleSystemSubmit)}
                     >
                         <FormMarkdownItem
-                            aria-label="System prompt template"
+                            aria-label="系統提示詞範本"
                             control={systemForm.control}
                             disabled={isLoading}
                             editorRef={editorRef}
@@ -888,13 +888,13 @@ function SettingsPromptEditor({ promptId }: { promptId?: string }) {
                             onSubmit={humanForm.handleSubmit(handleHumanSubmit)}
                         >
                             <FormMarkdownItem
-                                aria-label="Human prompt template"
+                                aria-label="使用者提示詞範本"
                                 control={humanForm.control}
                                 disabled={isLoading}
                                 editorRef={editorRef}
                                 mode={viewMode}
                                 name="template"
-                                placeholder="Enter the human prompt template..."
+                                placeholder="輸入使用者提示詞範本…"
                             />
                         </form>
                     </Form>
@@ -925,18 +925,18 @@ function SettingsPromptEditor({ promptId }: { promptId?: string }) {
             </Tabs>
 
             <ConfirmationDialog
-                cancelText="Cancel"
+                cancelText="取消"
                 cancelVariant="outline"
                 confirmIcon={<RotateCcw />}
-                confirmText="Reset"
+                confirmText="重設"
                 confirmVariant="destructive"
-                description="Are you sure you want to reset this prompt to its default value? This action cannot be undone."
+                description="確定要將此提示詞重設為預設值嗎？此操作無法復原。"
                 handleConfirm={handleConfirmReset}
                 handleOpenChange={setResetDialogOpen}
                 isOpen={resetDialogOpen}
                 itemName={`${activeTab} prompt`}
                 itemType="template"
-                title="Reset Prompt"
+                title="重設提示詞"
             />
 
             <UnsavedChangesDialog
@@ -957,10 +957,10 @@ function SettingsPromptEditor({ promptId }: { promptId?: string }) {
                     <DialogHeader>
                         <DialogTitle className="flex items-center gap-2">
                             <AlertCircle className="size-5" />
-                            Validation Results
+                            驗證結果
                         </DialogTitle>
                         <DialogDescription>
-                            The validation result for the {activeTab} prompt template.
+                            驗證結果： {activeTab} 提示詞範本。
                         </DialogDescription>
                     </DialogHeader>
 
@@ -973,19 +973,19 @@ function SettingsPromptEditor({ promptId }: { promptId?: string }) {
                                     <XCircle className="size-4 text-red-500!" />
                                 )}
                                 <AlertTitle>
-                                    {validationResult.result === 'success' ? 'Valid Template' : 'Validation Error'}
+                                    {validationResult.result === 'success' ? '範本有效' : '驗證錯誤'}
                                 </AlertTitle>
                                 <AlertDescription>
                                     <div className="whitespace-pre-line">
                                         {validationResult.message}
                                         {validationResult.details && (
                                             <div className="mt-2">
-                                                <strong>Details:</strong> {validationResult.details}
+                                                <strong>詳細資料：</strong> {validationResult.details}
                                             </div>
                                         )}
                                         {validationResult.line && (
                                             <div className="mt-1">
-                                                <strong>Line:</strong> {validationResult.line}
+                                                <strong>行：</strong> {validationResult.line}
                                             </div>
                                         )}
                                     </div>
@@ -993,7 +993,7 @@ function SettingsPromptEditor({ promptId }: { promptId?: string }) {
                             </Alert>
 
                             <div className="flex justify-end">
-                                <Button onClick={() => setValidationDialogOpen(false)}>Close</Button>
+                                <Button onClick={() => setValidationDialogOpen(false)}>關閉</Button>
                             </div>
                         </div>
                     )}
@@ -1008,9 +1008,9 @@ function SettingsPromptEditor({ promptId }: { promptId?: string }) {
                     <DialogHeader>
                         <DialogTitle className="flex items-center gap-2">
                             <FileDiff className="size-5" />
-                            Diff
+                            差異
                         </DialogTitle>
-                        <DialogDescription>Changes between current value and default template.</DialogDescription>
+                        <DialogDescription>目前值與預設範本之間的差異。</DialogDescription>
                     </DialogHeader>
                     <div className="max-h-[70vh] overflow-auto">
                         <DiffContent
@@ -1054,7 +1054,7 @@ function Variables({ currentTemplate, onVariableClick, variables }: VariablesPro
                         </Badge>
                     </h4>
                     <p className="text-muted-foreground mt-1 text-xs">
-                        Click to insert at the cursor, or cycle through existing uses.
+                        點選以插入到游標位置，或循環切換既有的用法。
                     </p>
                 </div>
                 <div className="bg-background">{content}</div>

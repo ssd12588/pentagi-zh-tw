@@ -166,7 +166,7 @@ function FlowTerminal() {
                                         <InputGroupInput
                                             {...field}
                                             autoComplete="off"
-                                            placeholder="Search terminal logs..."
+                                            placeholder="搜尋終端機日誌…"
                                             type="text"
                                         />
                                         <InputGroupAddon align="inline-end">
@@ -175,7 +175,7 @@ function FlowTerminal() {
                                                     <InputGroupButton
                                                         onClick={handleFindPrevious}
                                                         size="icon-xs"
-                                                        title="Previous match"
+                                                        title="上一個符合項目"
                                                         type="button"
                                                     >
                                                         <ChevronUp />
@@ -183,7 +183,7 @@ function FlowTerminal() {
                                                     <InputGroupButton
                                                         onClick={handleFindNext}
                                                         size="icon-xs"
-                                                        title="Next match"
+                                                        title="下一個符合項目"
                                                         type="button"
                                                     >
                                                         <ChevronDown />
@@ -192,10 +192,10 @@ function FlowTerminal() {
                                             )}
                                             {field.value && (
                                                 <InputGroupButton
-                                                    aria-label="Clear terminal search"
+                                                    aria-label="清除終端機搜尋"
                                                     onClick={handleClearSearch}
                                                     size="icon-xs"
-                                                    title="Clear search"
+                                                    title="清除搜尋"
                                                     type="button"
                                                 >
                                                     <X />
@@ -233,8 +233,8 @@ function FlowTerminal() {
                         <EmptyMedia variant="icon">
                             <ListFilter />
                         </EmptyMedia>
-                        <EmptyTitle>No terminal logs found</EmptyTitle>
-                        <EmptyDescription>Try adjusting your search or filter parameters</EmptyDescription>
+                        <EmptyTitle>找不到終端機日誌</EmptyTitle>
+                        <EmptyDescription>請調整搜尋關鍵字或篩選條件</EmptyDescription>
                     </EmptyHeader>
                     <EmptyContent>
                         <Button
@@ -242,7 +242,7 @@ function FlowTerminal() {
                             variant="outline"
                         >
                             <X />
-                            Reset filters
+                            重設篩選條件
                         </Button>
                     </EmptyContent>
                 </Empty>

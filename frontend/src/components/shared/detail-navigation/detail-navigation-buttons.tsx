@@ -45,7 +45,7 @@ export function DetailNavigationButtons<T extends { id: string }>({
             <Tooltip>
                 <TooltipTrigger asChild>
                     <Button
-                        aria-label="Previous"
+                        aria-label="上一個"
                         className={cn(sideButtonSize, 'rounded-r-none border-r-0 p-0')}
                         disabled={!controller.prevId}
                         onClick={controller.goToPrev}
@@ -56,7 +56,7 @@ export function DetailNavigationButtons<T extends { id: string }>({
                         <ChevronLeft />
                     </Button>
                 </TooltipTrigger>
-                <TooltipContent>Previous</TooltipContent>
+                <TooltipContent>上一個</TooltipContent>
             </Tooltip>
             <Tooltip>
                 <TooltipTrigger asChild>
@@ -74,12 +74,12 @@ export function DetailNavigationButtons<T extends { id: string }>({
                         <span style={{ minWidth: `${labelWidth}ch` }}>{controller.positionLabel}</span>
                     </Button>
                 </TooltipTrigger>
-                <TooltipContent>Show all matching {lowerTitle}</TooltipContent>
+                <TooltipContent>顯示所有符合項目 {lowerTitle}</TooltipContent>
             </Tooltip>
             <Tooltip>
                 <TooltipTrigger asChild>
                     <Button
-                        aria-label="Next"
+                        aria-label="下一個"
                         className={cn(sideButtonSize, 'rounded-l-none border-l-0 p-0')}
                         disabled={!controller.nextId}
                         onClick={controller.goToNext}
@@ -90,7 +90,7 @@ export function DetailNavigationButtons<T extends { id: string }>({
                         <ChevronRight />
                     </Button>
                 </TooltipTrigger>
-                <TooltipContent>Next</TooltipContent>
+                <TooltipContent>下一個</TooltipContent>
             </Tooltip>
         </div>
     );

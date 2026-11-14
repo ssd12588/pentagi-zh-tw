@@ -49,8 +49,8 @@ import { useResources } from '@/providers/resources-provider';
 import { type Template, useTemplates } from '@/providers/templates-provider';
 
 const formSchema = z.object({
-    message: z.string().trim().min(1, { message: 'Message cannot be empty' }),
-    providerName: z.string().trim().min(1, { message: 'Provider must be selected' }),
+    message: z.string().trim().min(1, { message: '訊息不能為空' }),
+    providerName: z.string().trim().min(1, { message: '必須選擇供應商' }),
     resourceIds: z.array(z.string()),
     useAgents: z.boolean(),
 });
@@ -339,13 +339,13 @@ export function FlowForm({
                         onChange={(event) => setTemplateSearch(event.target.value)}
                         onClick={(event) => event.stopPropagation()}
                         onKeyDown={(event) => event.stopPropagation()}
-                        placeholder="Search..."
+                        placeholder="搜尋…"
                         value={templateSearch}
                     />
                     {templateSearch && (
                         <InputGroupAddon align="inline-end">
                             <InputGroupButton
-                                aria-label="Clear template search"
+                                aria-label="清除範本搜尋"
                                 onClick={(event) => {
                                     event.stopPropagation();
                                     setTemplateSearch('');
@@ -364,7 +364,7 @@ export function FlowForm({
                         className="min-h-16 justify-center"
                         disabled
                     >
-                        {templateSearch ? 'No results found' : 'No available templates'}
+                        {templateSearch ? '找不到結果' : '沒有可用的範本'}
                     </DropdownMenuItem>
                 ) : (
                     filteredTemplates.map((template) => (
@@ -394,13 +394,13 @@ export function FlowForm({
                         onChange={(event) => setResourceSearch(event.target.value)}
                         onClick={(event) => event.stopPropagation()}
                         onKeyDown={(event) => event.stopPropagation()}
-                        placeholder="Search..."
+                        placeholder="搜尋…"
                         value={resourceSearch}
                     />
                     {resourceSearch && (
                         <InputGroupAddon align="inline-end">
                             <InputGroupButton
-                                aria-label="Clear resource search"
+                                aria-label="清除資源搜尋"
                                 onClick={(event) => {
                                     event.stopPropagation();
                                     setResourceSearch('');
@@ -419,7 +419,7 @@ export function FlowForm({
                         className="min-h-16 justify-center"
                         disabled
                     >
-                        {resourceSearch ? 'No results found' : 'No available resources'}
+                        {resourceSearch ? '找不到結果' : '沒有可用的資源'}
                     </DropdownMenuItem>
                 ) : (
                     filteredResources.map((resource) => {
@@ -475,7 +475,7 @@ export function FlowForm({
                 }}
             >
                 {upload.isUploading ? <Spinner variant="circle" /> : <Plus />}
-                {upload.isUploading ? 'Uploading…' : 'Upload files'}
+                {upload.isUploading ? '上傳中…' : '上傳檔案'}
             </DropdownMenuItem>
         </>
     );
@@ -562,7 +562,7 @@ export function FlowForm({
                                                             <span className="max-w-40 truncate">
                                                                 {currentProvider
                                                                     ? getProviderDisplayName(currentProvider)
-                                                                    : 'Select Provider'}
+                                                                    : '選擇供應商'}
                                                             </span>
                                                             <ChevronDown />
                                                         </InputGroupButton>
@@ -579,13 +579,13 @@ export function FlowForm({
                                                                     }
                                                                     onClick={(event) => event.stopPropagation()}
                                                                     onKeyDown={(event) => event.stopPropagation()}
-                                                                    placeholder="Search..."
+                                                                    placeholder="搜尋…"
                                                                     value={providerSearch}
                                                                 />
                                                                 {providerSearch && (
                                                                     <InputGroupAddon align="inline-end">
                                                                         <InputGroupButton
-                                                                            aria-label="Clear provider search"
+                                                                            aria-label="清除供應商搜尋"
                                                                             onClick={(event) => {
                                                                                 event.stopPropagation();
                                                                                 setProviderSearch('');
@@ -605,8 +605,8 @@ export function FlowForm({
                                                                     disabled
                                                                 >
                                                                     {providerSearch
-                                                                        ? 'No results found'
-                                                                        : 'No available providers'}
+                                                                        ? '找不到結果'
+                                                                        : '沒有可用的供應商'}
                                                                 </DropdownMenuItem>
                                                             ) : (
                                                                 filteredProviders.map((provider) => (
@@ -667,13 +667,13 @@ export function FlowForm({
                                                                         useAgentsField.onChange(!useAgentsField.value)
                                                                     }
                                                                 >
-                                                                    Use Agents
+                                                                    使用代理
                                                                 </FormLabel>
                                                             </FormItem>
                                                         </TooltipTrigger>
                                                         <TooltipContent>
                                                             <p className="max-w-48">
-                                                                Enable multi-agent collaboration for complex tasks
+                                                                為複雜任務啟用多代理協作
                                                             </p>
                                                         </TooltipContent>
                                                     </Tooltip>
@@ -692,7 +692,7 @@ export function FlowForm({
                                     >
                                         <DropdownMenuTrigger asChild>
                                             <InputGroupButton
-                                                aria-label="Templates and resources"
+                                                aria-label="範本與資源"
                                                 className="ml-auto shrink-0"
                                                 disabled={isFormDisabled}
                                                 size="icon-xs"
@@ -742,14 +742,14 @@ export function FlowForm({
                                                         value="templates"
                                                     >
                                                         <FileText className="size-3.5" />
-                                                        Templates
+                                                        範本
                                                     </TabsTrigger>
                                                     <TabsTrigger
                                                         className="gap-1.5"
                                                         value="resources"
                                                     >
                                                         <Paperclip className="size-3.5" />
-                                                        Resources
+                                                        資源
                                                         {flowResources.length > 0 && (
                                                             <span className="bg-muted-foreground/20 text-foreground flex h-4 min-w-4 items-center justify-center rounded px-1 text-[10px] font-medium tabular-nums">
                                                                 {flowResources.length}
@@ -763,7 +763,7 @@ export function FlowForm({
 
                                     {!isLoading || isSubmitting ? (
                                         <InputGroupButton
-                                            aria-label={isSubmitting ? 'Submitting…' : 'Submit'}
+                                            aria-label={isSubmitting ? '送出中…' : '送出'}
                                             className="shrink-0"
                                             disabled={isSubmitting || !isValid || upload.isUploading}
                                             size="icon-xs"
@@ -774,7 +774,7 @@ export function FlowForm({
                                         </InputGroupButton>
                                     ) : (
                                         <InputGroupButton
-                                            aria-label={isCanceling ? 'Stopping…' : 'Stop'}
+                                            aria-label={isCanceling ? '停止中…' : '停止'}
                                             className="shrink-0"
                                             disabled={isCanceling || !onCancel}
                                             onClick={() => onCancel?.()}
@@ -803,9 +803,9 @@ export function FlowForm({
             />
             <ConfirmationDialog
                 confirmIcon={<FileSymlink />}
-                confirmText="Replace"
+                confirmText="取代"
                 confirmVariant="default"
-                description="Current message has content. Replace with the selected template?"
+                description="目前訊息已有內容，要用選取的範本取代嗎？"
                 handleConfirm={handleConfirmReplaceTemplate}
                 handleOpenChange={(open) => {
                     if (!open) {
@@ -815,7 +815,7 @@ export function FlowForm({
                     setIsReplaceConfirmOpen(open);
                 }}
                 isOpen={isReplaceConfirmOpen}
-                title="Replace content?"
+                title="要取代內容嗎？"
             />
         </Form>
     );

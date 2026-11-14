@@ -18,9 +18,9 @@ function FlowCentralTabs() {
             <div className="max-w-full">
                 <ScrollArea className="w-full pb-3">
                     <TabsList className="flex w-fit">
-                        <TabsTrigger value="automation">Automation</TabsTrigger>
-                        <TabsTrigger value="assistant">Assistant</TabsTrigger>
-                        <TabsTrigger value="dashboard">Dashboard</TabsTrigger>
+                        <TabsTrigger value="automation">自動化</TabsTrigger>
+                        <TabsTrigger value="assistant">助理</TabsTrigger>
+                        <TabsTrigger value="dashboard">儀表板</TabsTrigger>
                     </TabsList>
                     <ScrollBar orientation="horizontal" />
                 </ScrollArea>

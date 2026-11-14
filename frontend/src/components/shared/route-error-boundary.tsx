@@ -72,7 +72,7 @@ function RouteErrorBoundary() {
                     <EmptyMedia variant="icon">
                         <TriangleAlert />
                     </EmptyMedia>
-                    <EmptyTitle>Something went wrong</EmptyTitle>
+                    <EmptyTitle>發生錯誤</EmptyTitle>
                     <EmptyDescription>{describeFailure({ isChunk, isDesync, isOnline })}</EmptyDescription>
                 </EmptyHeader>
                 <EmptyContent>
@@ -81,7 +81,7 @@ function RouteErrorBoundary() {
                         onClick={() => window.location.reload()}
                         variant="secondary"
                     >
-                        Reload
+                        重新載入
                     </Button>
                 </EmptyContent>
             </Empty>

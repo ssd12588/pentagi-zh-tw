@@ -7,7 +7,7 @@ const TEXT_LIMIT = 65536;
 
 describe('the flow template form schema', () => {
     const parse = (values: Partial<{ text: string; title: string }>) =>
-        formSchema.safeParse({ text: 'Body', title: 'Title', ...values });
+        formSchema.safeParse({ text: 'Body', title: '標題', ...values });
 
     it('accepts a title at the 255-character boundary', () => {
         expect(parse({ title: 'a'.repeat(TITLE_LIMIT) }).success).toBe(true);
@@ -35,7 +35,7 @@ describe('the flow template form schema', () => {
         ['line breaks and tabs', '\n\t \n'],
     ])('refuses a text of nothing but %s', (_name, text) => {
         expect(parse({ text }).error?.issues.find((issue) => issue.path[0] === 'text')?.message).toBe(
-            'Text is required',
+            '必須輸入文字',
         );
     });
 

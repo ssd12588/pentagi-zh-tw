@@ -226,7 +226,7 @@ function Autocomplete({
             >
                 <Command
                     filter={filter ?? substringFilter}
-                    label="Suggestions"
+                    label="建議"
                     shouldFilter={shouldFilter}
                 >
                     {children}

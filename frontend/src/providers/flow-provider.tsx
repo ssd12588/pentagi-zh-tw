@@ -494,7 +494,7 @@ export function FlowProvider({ children }: FlowProviderProps) {
         }
 
         if (isNotFoundError(flowError)) {
-            toast.error('Flow not found', { id: 'flow-load-error' });
+            toast.error('找不到流程', { id: 'flow-load-error' });
         }
 
         Log.error('Error loading flow:', flowError);
@@ -522,7 +522,7 @@ export function FlowProvider({ children }: FlowProviderProps) {
             } catch (error) {
                 const description =
                     error instanceof Error ? error.message : 'An error occurred while submitting message';
-                toast.error('Failed to submit message', {
+                toast.error('送出訊息失敗', {
                     description,
                 });
                 Log.error('Error submitting message:', error);
@@ -546,7 +546,7 @@ export function FlowProvider({ children }: FlowProviderProps) {
             });
         } catch (error) {
             const description = error instanceof Error ? error.message : 'An error occurred while stopping flow';
-            toast.error('Failed to stop flow', {
+            toast.error('停止流程失敗', {
                 description,
             });
             Log.error('Error stopping flow:', error);
@@ -587,7 +587,7 @@ export function FlowProvider({ children }: FlowProviderProps) {
             } catch (error) {
                 const description =
                     error instanceof Error ? error.message : 'An error occurred while creating assistant';
-                toast.error('Failed to create assistant', {
+                toast.error('建立助理失敗', {
                     description,
                 });
                 Log.error('Error creating assistant:', error);
@@ -623,7 +623,7 @@ export function FlowProvider({ children }: FlowProviderProps) {
             } catch (error) {
                 const description =
                     error instanceof Error ? error.message : 'An error occurred while calling assistant';
-                toast.error('Failed to call assistant', {
+                toast.error('呼叫助理失敗', {
                     description,
                 });
                 Log.error('Error calling assistant:', error);
@@ -650,7 +650,7 @@ export function FlowProvider({ children }: FlowProviderProps) {
             } catch (error) {
                 const description =
                     error instanceof Error ? error.message : 'An error occurred while stopping assistant';
-                toast.error('Failed to stop assistant', {
+                toast.error('停止助理失敗', {
                     description,
                 });
                 Log.error('Error stopping assistant:', error);
@@ -684,7 +684,7 @@ export function FlowProvider({ children }: FlowProviderProps) {
             } catch (error) {
                 const description =
                     error instanceof Error ? error.message : 'An error occurred while deleting assistant';
-                toast.error('Failed to delete assistant', {
+                toast.error('刪除助理失敗', {
                     description,
                 });
                 Log.error('Error deleting assistant:', error);

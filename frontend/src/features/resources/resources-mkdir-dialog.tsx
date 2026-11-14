@@ -72,7 +72,7 @@ function ResourcesMkdirDialogForm({ defaultParentPath, onClose }: ResourcesMkdir
             <DialogHeader>
                 <DialogTitle className="flex items-center gap-2">
                     <FolderPlus className="size-4" />
-                    Create directory
+                    建立目錄
                 </DialogTitle>
                 <DialogDescription>
                     Create a virtual directory inside your resource library. Existing parent directories are reused
@@ -91,7 +91,7 @@ function ResourcesMkdirDialogForm({ defaultParentPath, onClose }: ResourcesMkdir
                         name="path"
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel>Path</FormLabel>
+                                <FormLabel>路徑</FormLabel>
                                 <FormControl>
                                     <Input
                                         {...field}
@@ -102,7 +102,7 @@ function ResourcesMkdirDialogForm({ defaultParentPath, onClose }: ResourcesMkdir
                                     />
                                 </FormControl>
                                 <FormDescription>
-                                    Relative path. Use <code>/</code> to nest into subdirectories.
+                                    相對路徑。請使用 <code>/</code> 以建立子目錄。
                                 </FormDescription>
                                 <FormMessage />
                             </FormItem>
@@ -116,9 +116,9 @@ function ResourcesMkdirDialogForm({ defaultParentPath, onClose }: ResourcesMkdir
                             type="button"
                             variant="outline"
                         >
-                            Cancel
+                            取消
                         </Button>
-                        <FormSubmitButton icon={<FolderPlus />}>Create</FormSubmitButton>
+                        <FormSubmitButton icon={<FolderPlus />}>建立</FormSubmitButton>
                     </div>
                 </form>
             </Form>

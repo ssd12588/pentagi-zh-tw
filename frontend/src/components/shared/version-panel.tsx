@@ -25,7 +25,7 @@ import { useVersionInfo } from '@/providers/version-info-provider';
 export const PENTAGI_RELEASES_URL = 'https://github.com/vxcontrol/pentagi/releases';
 
 export const UPDATE_INSTRUCTION =
-    'Run the installer tool on the host where PentAGI is deployed and choose Maintenance → Update PentAGI.';
+    '在部署 PentAGI 的主機上執行安裝程式，並選擇「維護 → 更新 PentAGI」。';
 
 export interface VersionFact {
     isAccented?: boolean;
@@ -65,12 +65,12 @@ export function describeTiming(info: VersionInfoFragmentFragment, now: Date = ne
     const facts: VersionFact[] = [];
 
     if (info.checkedAt) {
-        facts.push({ label: 'Checked', value: formatDistance(new Date(info.checkedAt), now, { addSuffix: true }) });
+        facts.push({ label: '已勾選', value: formatDistance(new Date(info.checkedAt), now, { addSuffix: true }) });
     }
 
     if (info.failedAt) {
         facts.push({
-            label: 'Last check failed',
+            label: '最近一次檢查失敗',
             value: formatDistance(new Date(info.failedAt), now, { addSuffix: true }),
         });
     }
@@ -88,36 +88,36 @@ export function describeVersion(info: VersionInfoFragmentFragment): VersionPrese
         case UpdateState.Disabled:
             return {
                 ...base,
-                detail: 'Automatic update checks are switched off in the server configuration.',
-                headline: 'Update checks are disabled',
+                detail: '伺服器設定已關閉自動更新檢查。',
+                headline: '已停用更新檢查',
                 indicator: 'question',
-                tooltip: 'Update checks are disabled in the server configuration.',
+                tooltip: '伺服器設定已停用更新檢查。',
             };
         case UpdateState.Pending:
             return {
                 ...base,
-                detail: 'The first update check has not completed yet. It runs shortly after the server starts.',
-                headline: 'Checking for updates',
+                detail: '第一次更新檢查尚未完成，會在伺服器啟動後不久執行。',
+                headline: '正在檢查更新',
                 indicator: 'question',
-                tooltip: 'Checking for updates…',
+                tooltip: '正在檢查更新…',
             };
         case UpdateState.Unreachable:
             return {
                 ...base,
-                detail: 'The update service could not be reached, so it is unknown whether a newer version exists.',
-                headline: 'Update status unknown',
+                detail: '無法連線到更新服務，因此無法確定是否有較新版本。',
+                headline: '更新狀態未知',
                 indicator: 'question',
-                tooltip: 'Update status unknown: the update service could not be reached.',
+                tooltip: '更新狀態未知：無法連線到更新服務。',
             };
         case UpdateState.UpdateAvailable:
             if (latest) {
                 return {
                     ...base,
                     action: UPDATE_INSTRUCTION,
-                    detail: 'Update to get the latest fixes and features.',
-                    headline: `New version ${latest} is available`,
+                    detail: '更新以取得最新的修正與功能。',
+                    headline: `有新版本 ${latest} 可用`,
                     indicator: 'update',
-                    tooltip: `New version ${latest} is available. Run the installer tool to update.`,
+                    tooltip: `有新版本 ${latest} 可用。請執行安裝程式進行更新。`,
                 };
             }
 
@@ -125,10 +125,10 @@ export function describeVersion(info: VersionInfoFragmentFragment): VersionPrese
         case UpdateState.UpToDate:
             return {
                 ...base,
-                detail: `${label} is the newest version on the ${info.strategy} channel.`,
-                headline: 'PentAGI is up to date',
+                detail: `${label} 是 ${info.strategy} 通道的最新版本。`,
+                headline: 'PentAGI 已是最新版本',
                 indicator: 'none',
-                tooltip: `PentAGI ${label} is up to date.`,
+                tooltip: `PentAGI ${label} 已是最新版本。`,
             };
         case UpdateState.Unknown:
         default:
@@ -165,14 +165,14 @@ export function splitVersion(current: string): { revision: null | string; versio
 }
 
 function describeUnknown(base: Pick<VersionPresentation, 'action' | 'label' | 'latest'>) {
-    const newest = base.latest ? ` The newest published version is ${base.latest}.` : '';
+    const newest = base.latest ? ` 最新發布的版本是 ${base.latest}。` : '';
 
     return {
         ...base,
-        detail: `The update service could not tell whether a newer version exists for this build.${newest}`,
-        headline: 'Update status unknown',
+        detail: `更新服務無法判斷此組建是否有較新版本。${newest}`,
+        headline: '更新狀態未知',
         indicator: 'question' as const,
-        tooltip: 'Update status unknown: the update service could not tell whether a newer version exists.',
+        tooltip: '更新狀態未知：更新服務無法判斷是否有較新版本。',
     };
 }
 
@@ -291,9 +291,9 @@ function VersionDetails({
 }) {
     const { className: statusClass, icon: StatusIcon } = indicatorIcons[presentation.indicator];
     const facts: VersionFact[] = [
-        { isMono: true, label: 'Installed', value: presentation.label },
+        { isMono: true, label: '已安裝', value: presentation.label },
         ...(presentation.indicator === 'update' && presentation.latest
-            ? [{ isAccented: true, isMono: true, label: 'Available', value: presentation.latest }]
+            ? [{ isAccented: true, isMono: true, label: '可用', value: presentation.latest }]
             : []),
         ...describeTiming(versionInfo),
     ];
@@ -314,7 +314,7 @@ function VersionDetails({
                         <Tooltip>
                             <TooltipTrigger asChild>
                                 <Badge
-                                    aria-label={`Update channel: ${versionInfo.strategy}`}
+                                    aria-label={`更新通道：${versionInfo.strategy}`}
                                     className="shrink-0 cursor-help capitalize"
                                     variant="secondary"
                                 >
@@ -322,8 +322,8 @@ function VersionDetails({
                                 </Badge>
                             </TooltipTrigger>
                             <TooltipContent className="max-w-64">
-                                Updates are offered from the {versionInfo.strategy} channel, and the installer pulls its
-                                images from the same one. UPDATE_STRATEGY on the host sets which channel that is.
+                                更新來源為 {versionInfo.strategy} 通道，安裝程式也會從同一個通道拉取映像；主機上的
+                                UPDATE_STRATEGY 環境變數決定使用哪個通道。
                             </TooltipContent>
                         </Tooltip>
                     )}
@@ -365,9 +365,9 @@ function VersionDetails({
             <DropdownMenuSeparator />
 
             {releaseNotes && (
-                <ExternalLinkRow href={releaseNotes}>Release notes for {presentation.latest}</ExternalLinkRow>
+                <ExternalLinkRow href={releaseNotes}>版本說明： {presentation.latest}</ExternalLinkRow>
             )}
-            <ExternalLinkRow href={PENTAGI_RELEASES_URL}>All releases</ExternalLinkRow>
+            <ExternalLinkRow href={PENTAGI_RELEASES_URL}>所有版本</ExternalLinkRow>
         </>
     );
 }

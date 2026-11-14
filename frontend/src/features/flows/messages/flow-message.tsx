@@ -157,7 +157,7 @@ function FlowMessage({ log, searchValue = '' }: FlowMessageProps) {
                             className="cursor-pointer"
                             onClick={toggleThinking}
                         >
-                            {isThinkingVisible ? 'Hide thinking' : 'Show thinking'}
+                            {isThinkingVisible ? '隱藏思考過程' : '顯示思考過程'}
                         </div>
                     </div>
                 )}
@@ -179,7 +179,7 @@ function FlowMessage({ log, searchValue = '' }: FlowMessageProps) {
                             className="cursor-pointer"
                             onClick={toggleDetails}
                         >
-                            {isDetailsVisible ? 'Hide details' : 'Show details'}
+                            {isDetailsVisible ? '隱藏詳細資料' : '顯示詳細資料'}
                         </div>
                         {renderDetailsContent()}
                     </div>
@@ -198,7 +198,7 @@ function FlowMessage({ log, searchValue = '' }: FlowMessageProps) {
                             onClick={handleCopy}
                         />
                     </TooltipTrigger>
-                    <TooltipContent>Copy</TooltipContent>
+                    <TooltipContent>複製</TooltipContent>
                 </Tooltip>
                 <span className="text-muted-foreground/50">{formatDate(new Date(createdAt))}</span>
                 <span

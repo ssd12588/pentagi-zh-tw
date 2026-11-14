@@ -26,7 +26,7 @@ export function ErrorState({ message, onRetry, title }: ErrorStateProps) {
                         variant="secondary"
                     >
                         <RefreshCw />
-                        Try again
+                        重試
                     </Button>
                 </EmptyContent>
             ) : null}

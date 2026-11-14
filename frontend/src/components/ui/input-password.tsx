@@ -16,7 +16,7 @@ function InputPassword(props: InputPasswordProps) {
             />
             <InputGroupAddon align="inline-end">
                 <InputGroupButton
-                    aria-label={visible ? 'Hide password' : 'Show password'}
+                    aria-label={visible ? '隱藏密碼' : '顯示密碼'}
                     onClick={() => setVisible((prev) => !prev)}
                     size="icon-sm"
                     tabIndex={-1}

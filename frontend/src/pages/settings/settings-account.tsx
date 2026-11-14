@@ -44,7 +44,7 @@ function SettingsAccount() {
         <>
             <AppHeader>
                 <AppHeaderContent>
-                    <AppHeaderTitle icon={<User className="size-4 shrink-0" />}>Account</AppHeaderTitle>
+                    <AppHeaderTitle icon={<User className="size-4 shrink-0" />}>帳號</AppHeaderTitle>
                 </AppHeaderContent>
             </AppHeader>
             <div className="mx-auto flex w-full max-w-2xl flex-col gap-4 p-4">
@@ -56,7 +56,7 @@ function SettingsAccount() {
                         <div className="flex min-w-0 flex-1 flex-col gap-0.5">
                             <CardTitle className="truncate">{displayName}</CardTitle>
                             {memberSince && (
-                                <CardDescription className="truncate">Member since {memberSince}</CardDescription>
+                                <CardDescription className="truncate">加入日期 {memberSince}</CardDescription>
                             )}
                         </div>
                         <Badge
@@ -71,8 +71,8 @@ function SettingsAccount() {
                 <Card>
                     <CardHeader className="flex-row items-start justify-between gap-4">
                         <div className="grid gap-1.5">
-                            <CardTitle>Display name</CardTitle>
-                            <CardDescription>The name shown across the app.</CardDescription>
+                            <CardTitle>顯示名稱</CardTitle>
+                            <CardDescription>應用程式中顯示的名稱。</CardDescription>
                         </div>
                         {!editingSections.has('name') && (
                             <Button
@@ -80,7 +80,7 @@ function SettingsAccount() {
                                 size="sm"
                                 variant="outline"
                             >
-                                Change
+                                變更
                             </Button>
                         )}
                     </CardHeader>
@@ -102,9 +102,9 @@ function SettingsAccount() {
                 <Card>
                     <CardHeader className="flex-row items-start justify-between gap-4">
                         <div className="grid gap-1.5">
-                            <CardTitle>Email address</CardTitle>
+                            <CardTitle>電子郵件地址</CardTitle>
                             <CardDescription>
-                                {isLocal ? 'The email you use to sign in.' : `Linked from your ${accountLabel}.`}
+                                {isLocal ? '用於登入的電子郵件。' : `Linked from your ${accountLabel}.`}
                             </CardDescription>
                         </div>
                         {isLocal && !editingSections.has('email') && (
@@ -113,7 +113,7 @@ function SettingsAccount() {
                                 size="sm"
                                 variant="outline"
                             >
-                                Change
+                                變更
                             </Button>
                         )}
                     </CardHeader>
@@ -136,8 +136,8 @@ function SettingsAccount() {
                     <Card>
                         <CardHeader className="flex-row items-start justify-between gap-4">
                             <div className="grid gap-1.5">
-                                <CardTitle>Password</CardTitle>
-                                <CardDescription>Change your account password.</CardDescription>
+                                <CardTitle>密碼</CardTitle>
+                                <CardDescription>變更帳號密碼。</CardDescription>
                             </div>
                             {!editingSections.has('password') && (
                                 <Button
@@ -145,7 +145,7 @@ function SettingsAccount() {
                                     size="sm"
                                     variant="outline"
                                 >
-                                    Change
+                                    變更
                                 </Button>
                             )}
                         </CardHeader>

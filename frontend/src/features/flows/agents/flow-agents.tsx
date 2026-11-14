@@ -151,13 +151,13 @@ function FlowAgents() {
                                         <InputGroupInput
                                             {...field}
                                             autoComplete="off"
-                                            placeholder="Search agent logs..."
+                                            placeholder="搜尋代理日誌…"
                                             type="text"
                                         />
                                         {field.value && (
                                             <InputGroupAddon align="inline-end">
                                                 <InputGroupButton
-                                                    aria-label="Clear agent search"
+                                                    aria-label="清除代理搜尋"
                                                     onClick={() => {
                                                         form.reset({ search: '' });
                                                         setDebouncedSearchValue('');
@@ -207,7 +207,7 @@ function FlowAgents() {
 
                     {!isScrolledToBottom && (
                         <Button
-                            aria-label="Scroll to latest agent log"
+                            aria-label="捲動到最新代理日誌"
                             className="absolute right-4 bottom-4 z-10 shadow-md hover:shadow-lg"
                             onClick={() => scrollToEnd()}
                             size="icon-sm"
@@ -227,8 +227,8 @@ function FlowAgents() {
                         <EmptyMedia variant="icon">
                             <ListFilter />
                         </EmptyMedia>
-                        <EmptyTitle>No agent logs found</EmptyTitle>
-                        <EmptyDescription>Try adjusting your search or filter parameters</EmptyDescription>
+                        <EmptyTitle>找不到代理日誌</EmptyTitle>
+                        <EmptyDescription>請調整搜尋關鍵字或篩選條件</EmptyDescription>
                     </EmptyHeader>
                     <EmptyContent>
                         <Button
@@ -236,7 +236,7 @@ function FlowAgents() {
                             variant="outline"
                         >
                             <X />
-                            Reset filters
+                            重設篩選條件
                         </Button>
                     </EmptyContent>
                 </Empty>
@@ -246,8 +246,8 @@ function FlowAgents() {
                         <EmptyMedia variant="icon">
                             <Bot />
                         </EmptyMedia>
-                        <EmptyTitle>No agent logs available</EmptyTitle>
-                        <EmptyDescription>Agent logs will appear here when agents are working</EmptyDescription>
+                        <EmptyTitle>沒有可用的代理日誌</EmptyTitle>
+                        <EmptyDescription>代理運作時，日誌會顯示在這裡</EmptyDescription>
                     </EmptyHeader>
                 </Empty>
             )}

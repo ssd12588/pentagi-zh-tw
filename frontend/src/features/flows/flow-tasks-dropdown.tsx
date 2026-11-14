@@ -114,7 +114,7 @@ function FlowTasksDropdown({ disabled, onChange, value }: FlowTasksDropdownProps
         >
             <PopoverTrigger asChild>
                 <Button
-                    aria-label="Filter tasks"
+                    aria-label="篩選任務"
                     aria-pressed={hasActiveFilters}
                     disabled={disabled}
                     size="icon"
@@ -128,9 +128,9 @@ function FlowTasksDropdown({ disabled, onChange, value }: FlowTasksDropdownProps
                 className="w-[360px] p-0"
             >
                 <Command>
-                    <CommandInput placeholder="Search tasks..." />
+                    <CommandInput placeholder="搜尋任務…" />
                     <CommandList>
-                        <CommandEmpty>Tasks not found</CommandEmpty>
+                        <CommandEmpty>找不到任務</CommandEmpty>
                         {tasks?.length ? (
                             tasks.map((task) => (
                                 <CommandGroup key={task.id}>
@@ -198,7 +198,7 @@ function FlowTasksDropdown({ disabled, onChange, value }: FlowTasksDropdownProps
                                 className="text-muted-foreground justify-center py-6 text-center"
                                 disabled
                             >
-                                No available tasks
+                                沒有可用的任務
                             </CommandItem>
                         )}
                     </CommandList>
@@ -213,7 +213,7 @@ function FlowTasksDropdown({ disabled, onChange, value }: FlowTasksDropdownProps
                                     }}
                                 >
                                     <X />
-                                    Clear filter
+                                    清除篩選
                                 </CommandItem>
                             </CommandGroup>
                         </>

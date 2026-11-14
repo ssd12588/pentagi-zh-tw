@@ -85,12 +85,12 @@ function KnowledgeIntroBlock({ isNew, knowledge }: KnowledgeIntroBlockProps) {
         <div className="flex flex-col gap-4">
             <div className="flex flex-col gap-2 text-center">
                 <h2 className="text-2xl font-semibold">
-                    {isNew ? 'Create a new knowledge document' : 'Edit knowledge document'}
+                    {isNew ? '建立新的知識文件' : '編輯知識文件'}
                 </h2>
                 <p className="text-muted-foreground">
                     {isNew
-                        ? 'Add an entry to the vector knowledge base'
-                        : 'Edits to content or metadata will trigger re-embedding'}
+                        ? '新增項目到向量知識庫'
+                        : '修改內容或中繼資料會重新產生嵌入向量'}
                 </p>
             </div>
 
@@ -99,9 +99,9 @@ function KnowledgeIntroBlock({ isNew, knowledge }: KnowledgeIntroBlockProps) {
                     <Badge variant={knowledge.manual ? 'secondary' : 'outline'}>
                         {knowledge.manual ? 'manual' : 'agent'}
                     </Badge>
-                    {knowledge.flowId ? <Badge variant="outline">flow #{knowledge.flowId}</Badge> : null}
-                    {knowledge.taskId ? <Badge variant="outline">task #{knowledge.taskId}</Badge> : null}
-                    {knowledge.subtaskId ? <Badge variant="outline">subtask #{knowledge.subtaskId}</Badge> : null}
+                    {knowledge.flowId ? <Badge variant="outline">流程 #{knowledge.flowId}</Badge> : null}
+                    {knowledge.taskId ? <Badge variant="outline">任務 #{knowledge.taskId}</Badge> : null}
+                    {knowledge.subtaskId ? <Badge variant="outline">子任務 #{knowledge.subtaskId}</Badge> : null}
                     <span>·</span>
                     <span>
                         chunk {knowledge.partSize} of {knowledge.totalSize}

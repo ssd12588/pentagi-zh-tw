@@ -577,8 +577,8 @@ describe('streaming assistant-log link (createStreamingLink)', () => {
 
         // its cache entry was deleted -> a fresh append for the same id starts empty
         now = 2000;
-        pushLog({ appendPart: true, id: 'a', message: 'Next', result: null, thinking: null });
-        expect(emitted.at(-1)?.assistantLogUpdated?.message).toBe('Next');
+        pushLog({ appendPart: true, id: 'a', message: '下一個', result: null, thinking: null });
+        expect(emitted.at(-1)?.assistantLogUpdated?.message).toBe('下一個');
     });
 
     it('passes a non-assistant-log result straight through', () => {

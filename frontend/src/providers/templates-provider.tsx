@@ -101,7 +101,7 @@ export function TemplatesProvider({ children }: TemplatesProviderProps) {
                 });
             } catch (error) {
                 const errorMessage = error instanceof Error ? error.message : 'Failed to create template';
-                toast.error('Failed to create template', {
+                toast.error('建立範本失敗', {
                     description: errorMessage,
                 });
                 Log.error('Error creating template:', error);
@@ -125,7 +125,7 @@ export function TemplatesProvider({ children }: TemplatesProviderProps) {
                 });
             } catch (error) {
                 const errorMessage = error instanceof Error ? error.message : 'Failed to update template';
-                toast.error('Failed to update template', {
+                toast.error('更新範本失敗', {
                     description: errorMessage,
                 });
                 Log.error('Error updating template:', error);
@@ -145,7 +145,7 @@ export function TemplatesProvider({ children }: TemplatesProviderProps) {
                 });
             } catch (error) {
                 const errorMessage = error instanceof Error ? error.message : 'Failed to delete template';
-                toast.error('Failed to delete template', {
+                toast.error('刪除範本失敗', {
                     description: errorMessage,
                 });
                 Log.error('Error deleting template:', error);

@@ -73,19 +73,19 @@ export function SettingsProvidersHeader() {
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
                 <Button
-                    aria-label="Create provider — choose type"
+                    aria-label="建立供應商——選擇類型"
                     className="w-8 shrink-0 px-0 md:w-auto md:px-3"
                     size="sm"
                     variant="secondary"
                 >
                     <Plus />
-                    <span className="hidden md:inline">Create Provider</span>
+                    <span className="hidden md:inline">建立供應商</span>
                     <ChevronDown className="hidden size-4 md:inline-flex" />
                 </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
                 {availableTypes.length === 0 ? (
-                    <DropdownMenuItem disabled>No available provider types</DropdownMenuItem>
+                    <DropdownMenuItem disabled>沒有可用的供應商類型</DropdownMenuItem>
                 ) : (
                     availableTypes.map(({ label, type }) => {
                         const Icon = providerIcons[type]?.icon;
@@ -129,7 +129,7 @@ function SettingsProviders() {
 
                 setDeletingProvider(null);
             } catch (error) {
-                toast.error('Failed to delete provider', {
+                toast.error('刪除供應商失敗', {
                     description: error instanceof Error ? error.message : undefined,
                 });
             }
@@ -165,7 +165,7 @@ function SettingsProviders() {
                 header: ({ column }) => (
                     <DataTableColumnHeader
                         column={column}
-                        title="Name"
+                        title="名稱"
                     />
                 ),
                 // Name flexes to fill remaining width — fixed `size` would push
@@ -192,7 +192,7 @@ function SettingsProviders() {
                 header: ({ column }) => (
                     <DataTableColumnHeader
                         column={column}
-                        title="Type"
+                        title="類型"
                     />
                 ),
                 meta: { searchable: true },
@@ -209,7 +209,7 @@ function SettingsProviders() {
                 header: ({ column }) => (
                     <DataTableColumnHeader
                         column={column}
-                        title="Created"
+                        title="已建立"
                     />
                 ),
                 meta: { columnMenuLabel: 'Created' },
@@ -231,7 +231,7 @@ function SettingsProviders() {
                 header: ({ column }) => (
                     <DataTableColumnHeader
                         column={column}
-                        title="Updated"
+                        title="已更新"
                     />
                 ),
                 size: 120,
@@ -251,7 +251,7 @@ function SettingsProviders() {
                             <DropdownMenu>
                                 <DropdownMenuTrigger asChild>
                                     <Button
-                                        aria-label="Open menu"
+                                        aria-label="開啟選單"
                                         className="size-8 p-0"
                                         variant="ghost"
                                     >
@@ -264,11 +264,11 @@ function SettingsProviders() {
                                 >
                                     <DropdownMenuItem onClick={() => handleProviderEdit(provider.id)}>
                                         <Pencil className="size-3" />
-                                        Edit
+                                        編輯
                                     </DropdownMenuItem>
                                     <DropdownMenuItem onClick={() => handleProviderClone(provider.id)}>
                                         <Copy />
-                                        Clone
+                                        複製一份
                                     </DropdownMenuItem>
                                     <DropdownMenuSeparator />
                                     <DropdownMenuItem
@@ -278,12 +278,12 @@ function SettingsProviders() {
                                         {isDeleteLoading && deletingProvider?.id === provider.id ? (
                                             <>
                                                 <Spinner variant="circle" />
-                                                Deleting...
+                                                刪除中…
                                             </>
                                         ) : (
                                             <>
                                                 <Trash />
-                                                Delete
+                                                刪除
                                             </>
                                         )}
                                     </DropdownMenuItem>
@@ -307,7 +307,7 @@ function SettingsProviders() {
         const { agents } = provider;
 
         if (!agents) {
-            return <div className="text-muted-foreground p-4 text-sm">No agent configuration available</div>;
+            return <div className="text-muted-foreground p-4 text-sm">沒有可用的代理設定</div>;
         }
 
         const getName = (key: string): string =>
@@ -346,7 +346,7 @@ function SettingsProviders() {
 
         return (
             <div className="bg-muted/20 border-t p-4">
-                <h4 className="font-medium">Agent Configurations</h4>
+                <h4 className="font-medium">代理設定</h4>
                 <hr className="border-muted-foreground/20 my-4" />
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5">
                     {agentTypes.map(({ data, key, name }) => {
@@ -367,7 +367,7 @@ function SettingsProviders() {
                                         ))}
                                     </div>
                                 ) : (
-                                    <div className="text-muted-foreground text-sm">No configuration available</div>
+                                    <div className="text-muted-foreground text-sm">沒有可用的設定</div>
                                 )}
                             </div>
                         );
@@ -382,11 +382,11 @@ function SettingsProviders() {
             <>
                 <ContextMenuItem onClick={() => handleProviderEdit(provider.id)}>
                     <Pencil />
-                    Edit
+                    編輯
                 </ContextMenuItem>
                 <ContextMenuItem onClick={() => handleProviderClone(provider.id)}>
                     <Copy />
-                    Clone
+                    複製一份
                 </ContextMenuItem>
                 <ContextMenuSeparator />
                 <ContextMenuItem
@@ -394,7 +394,7 @@ function SettingsProviders() {
                     onClick={() => handleProviderDeleteDialogOpen(provider)}
                 >
                     <Trash />
-                    {isDeleteLoading && deletingProvider?.id === provider.id ? 'Deleting...' : 'Delete'}
+                    {isDeleteLoading && deletingProvider?.id === provider.id ? '刪除中…' : '刪除'}
                 </ContextMenuItem>
             </>
         ),
@@ -404,7 +404,7 @@ function SettingsProviders() {
     const pageHeader = (
         <AppHeader>
             <AppHeaderContent>
-                <AppHeaderTitle icon={<Plug className="size-4 shrink-0" />}>Providers</AppHeaderTitle>
+                <AppHeaderTitle icon={<Plug className="size-4 shrink-0" />}>供應商</AppHeaderTitle>
             </AppHeaderContent>
             <AppHeaderActions>
                 <SettingsProvidersHeader />
@@ -418,8 +418,8 @@ function SettingsProviders() {
                 {pageHeader}
                 <div className="flex flex-1 flex-col gap-4 p-4">
                     <LoadingState
-                        description="Please wait while we fetch your provider configurations"
-                        title="Loading providers..."
+                        description="正在取得供應商設定，請稍候"
+                        title="載入供應商…"
                     />
                 </div>
             </>
@@ -435,7 +435,7 @@ function SettingsProviders() {
                     <ErrorState
                         message={error.message}
                         onRetry={refetch}
-                        title="Error loading providers"
+                        title="載入供應商失敗"
                     />
                 </div>
             </>
@@ -454,9 +454,9 @@ function SettingsProviders() {
                             <EmptyMedia variant="icon">
                                 <Settings />
                             </EmptyMedia>
-                            <EmptyTitle>No providers configured</EmptyTitle>
+                            <EmptyTitle>尚未設定供應商</EmptyTitle>
                             <EmptyDescription>
-                                Get started by adding your first language model provider
+                                新增第一個語言模型供應商即可開始使用
                             </EmptyDescription>
                         </EmptyHeader>
                         <EmptyContent>
@@ -465,7 +465,7 @@ function SettingsProviders() {
                                 variant="secondary"
                             >
                                 <Plus />
-                                Add Provider
+                                新增供應商
                             </Button>
                         </EmptyContent>
                     </Empty>
@@ -484,7 +484,7 @@ function SettingsProviders() {
                     empty={{ entityName: 'providers' }}
                     filterPlaceholder="Filter providers..."
                     filterValue={filter}
-                    label="Providers"
+                    label="供應商"
                     onFilterChange={setFilter}
                     onPageChange={handlePageChange}
                     pageIndex={currentPage}
@@ -493,8 +493,8 @@ function SettingsProviders() {
                 />
 
                 <ConfirmationDialog
-                    cancelText="Cancel"
-                    confirmText="Delete"
+                    cancelText="取消"
+                    confirmText="刪除"
                     handleConfirm={() => handleProviderDelete(deletingProvider?.id)}
                     handleOpenChange={setIsDeleteDialogOpen}
                     isOpen={isDeleteDialogOpen}

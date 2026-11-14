@@ -53,7 +53,7 @@ export function useFlowFilesAttachResources({
                 // mistake. Surface a developer-friendly toast and bail out loudly.
                 const description = error instanceof Error ? error.message : 'Invalid resource IDs.';
 
-                toast.error('Attach failed', { description });
+                toast.error('附加失敗', { description });
 
                 return { kind: 'error' };
             }
@@ -70,7 +70,7 @@ export function useFlowFilesAttachResources({
                     { timeout: 0 },
                 );
 
-                toast.success('Resources attached', {
+                toast.success('資源已附加', {
                     description: `Copied ${numericIds.length} ${numericIds.length === 1 ? 'item' : 'items'} to ${RESOURCES_TARGET_DIRECTORY}`,
                 });
                 onSuccess?.();
@@ -83,7 +83,7 @@ export function useFlowFilesAttachResources({
 
                 const description = getApiErrorMessage(error, 'Failed to attach resources');
 
-                toast.error('Attach failed', { description });
+                toast.error('附加失敗', { description });
 
                 return { kind: 'error' };
             } finally {

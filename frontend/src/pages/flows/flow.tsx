@@ -141,7 +141,7 @@ function Flow() {
                 });
 
                 if (data?.renameFlow === ResultType.Success) {
-                    toast.success('Flow renamed successfully');
+                    toast.success('流程重新命名成功');
                     handleFlowRenameCancel();
                 }
             } catch (error) {
@@ -197,7 +197,7 @@ function Flow() {
                         <Breadcrumb className="min-w-0 flex-1">
                             <BreadcrumbList className="min-w-0 flex-nowrap">
                                 <BreadcrumbItem className="min-w-0">
-                                    <BreadcrumbPage>Flow</BreadcrumbPage>
+                                    <BreadcrumbPage>流程</BreadcrumbPage>
                                 </BreadcrumbItem>
                             </BreadcrumbList>
                         </Breadcrumb>
@@ -207,7 +207,7 @@ function Flow() {
                     <ErrorState
                         message={flowLoadError.message}
                         onRetry={refetchFlow}
-                        title="Error loading flow"
+                        title="載入流程失敗"
                     />
                 </div>
             </>
@@ -258,7 +258,7 @@ function Flow() {
                                         inputRef={editingInputRef}
                                         onCancel={handleFlowRenameCancel}
                                         onSave={handleFlowRenameSave}
-                                        placeholder="Flow title"
+                                        placeholder="流程標題"
                                     />
                                 ) : flow ? (
                                     <Tooltip>
@@ -267,14 +267,14 @@ function Flow() {
                                                 className="max-w-64 min-w-0 cursor-text truncate select-none"
                                                 onDoubleClick={handleFlowRenameStart}
                                             >
-                                                {flowTitle || 'Select a flow'}
+                                                {flowTitle || '選擇流程'}
                                             </BreadcrumbPage>
                                         </TooltipTrigger>
-                                        <TooltipContent>Double-click to rename</TooltipContent>
+                                        <TooltipContent>連按兩下可重新命名</TooltipContent>
                                     </Tooltip>
                                 ) : (
                                     <BreadcrumbPage className="min-w-0 truncate">
-                                        {flowTitle || 'Select a flow'}
+                                        {flowTitle || '選擇流程'}
                                     </BreadcrumbPage>
                                 )}
                             </BreadcrumbItem>
@@ -288,12 +288,12 @@ function Flow() {
                             controller={flowNav}
                             renderItem={renderFlowItem}
                             sheetIcon={<GitFork className="size-4" />}
-                            sheetTitle="Flows"
+                            sheetTitle="流程"
                         />
                     )}
                     {flowId && !isMobile && isFavoriteSlotShown && (
                         <Button
-                            aria-label="Toggle favorite"
+                            aria-label="切換最愛"
                             aria-pressed={isFavoriteFlow(flowId)}
                             className="shrink-0"
                             disabled={!isFavoriteToggleable}
@@ -307,7 +307,7 @@ function Flow() {
                     <DropdownMenu>
                         <DropdownMenuTrigger asChild>
                             <Button
-                                aria-label="Flow actions"
+                                aria-label="流程操作"
                                 className="size-8 p-0"
                                 variant="ghost"
                             >
@@ -328,11 +328,11 @@ function Flow() {
                                         onSelect={(event) => event.preventDefault()}
                                     >
                                         <GitFork />
-                                        Flows
+                                        流程
                                         <div className="-my-1.5 -mr-2 ml-auto flex items-center">
                                             <DetailNavigationButtons<FlowItem>
                                                 controller={flowNav}
-                                                sheetTitle="Flows"
+                                                sheetTitle="流程"
                                                 size="sm"
                                             />
                                         </div>
@@ -349,7 +349,7 @@ function Flow() {
                                                         : 'size-4'
                                                 }
                                             />
-                                            {isFavoriteFlow(flowId) ? 'Remove from favorites' : 'Add to favorites'}
+                                            {isFavoriteFlow(flowId) ? '從最愛移除' : '加入最愛'}
                                         </DropdownMenuItem>
                                     )}
                                     <DropdownMenuSeparator />
@@ -360,7 +360,7 @@ function Flow() {
                                 onClick={handleFlowRenameStart}
                             >
                                 <PencilLine className="size-3" />
-                                Rename
+                                重新命名
                             </DropdownMenuItem>
                             {isFlowRunning && (
                                 <DropdownMenuItem
@@ -370,12 +370,12 @@ function Flow() {
                                     {isFinishing ? (
                                         <>
                                             <Spinner variant="circle" />
-                                            Finishing...
+                                            完成中…
                                         </>
                                     ) : (
                                         <>
                                             <Pause />
-                                            Finish
+                                            完成
                                         </>
                                     )}
                                 </DropdownMenuItem>
@@ -388,12 +388,12 @@ function Flow() {
                                 {isDeleting ? (
                                     <>
                                         <Spinner variant="circle" />
-                                        Deleting...
+                                        刪除中…
                                     </>
                                 ) : (
                                     <>
                                         <Trash />
-                                        Delete
+                                        刪除
                                     </>
                                 )}
                             </DropdownMenuItem>
@@ -406,7 +406,7 @@ function Flow() {
                     controller={flowNav}
                     renderItem={renderFlowItem}
                     sheetIcon={<GitFork className="size-4" />}
-                    sheetTitle="Flows"
+                    sheetTitle="流程"
                 />
             )}
             <div className="relative flex h-[calc(100dvh-3rem)] w-full max-w-full flex-1">
@@ -448,8 +448,8 @@ function Flow() {
                 )}
             </div>
             <ConfirmationDialog
-                cancelText="Cancel"
-                confirmText="Delete"
+                cancelText="取消"
+                confirmText="刪除"
                 handleConfirm={handleFlowDelete}
                 handleOpenChange={setIsDeleteDialogOpen}
                 isOpen={isDeleteDialogOpen}
@@ -476,10 +476,10 @@ function FlowReportDropdown() {
         const success = await copyToClipboard(reportContent);
 
         if (success) {
-            toast.success('Report copied to clipboard');
+            toast.success('報告已複製到剪貼簿');
         } else {
             Log.error('Failed to copy report to clipboard');
-            toast.error('Failed to copy report to clipboard');
+            toast.error('複製報告到剪貼簿失敗');
         }
     };
 
@@ -526,7 +526,7 @@ function FlowReportDropdown() {
                     disabled={isReportDisabled}
                     endIcon={<ChevronDown className="opacity-50" />}
                     icon={<NotepadText />}
-                    label="Report"
+                    label="報告"
                     variant="ghost"
                 />
             </DropdownMenuTrigger>
@@ -537,7 +537,7 @@ function FlowReportDropdown() {
                     onClick={handleOpenWebView}
                 >
                     <ExternalLink />
-                    Open web view
+                    開啟網頁檢視
                 </DropdownMenuItem>
                 <DropdownMenuItem
                     className="flex items-center gap-2"
@@ -545,7 +545,7 @@ function FlowReportDropdown() {
                     onClick={handleCopyToClipboard}
                 >
                     <Copy />
-                    Copy to clipboard
+                    複製到剪貼簿
                 </DropdownMenuItem>
                 <DropdownMenuItem
                     className="flex items-center gap-2"
@@ -553,7 +553,7 @@ function FlowReportDropdown() {
                     onClick={handleDownloadMD}
                 >
                     <Download />
-                    Download MD
+                    下載 MD
                 </DropdownMenuItem>
                 <DropdownMenuItem
                     className="flex items-center gap-2"
@@ -561,7 +561,7 @@ function FlowReportDropdown() {
                     onClick={handleDownloadPDF}
                 >
                     <Download />
-                    Download PDF
+                    下載 PDF
                 </DropdownMenuItem>
             </DropdownMenuContent>
         </DropdownMenu>

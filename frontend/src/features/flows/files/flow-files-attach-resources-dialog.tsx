@@ -184,8 +184,8 @@ function FlowFilesAttachResourcesDialogBody({
                 <EmptyMedia variant="icon">
                     <FolderInput />
                 </EmptyMedia>
-                <EmptyTitle>Resource library is empty</EmptyTitle>
-                <EmptyDescription>Upload resources first to attach them to a flow.</EmptyDescription>
+                <EmptyTitle>資源庫是空的</EmptyTitle>
+                <EmptyDescription>請先上傳資源，才能附加到流程。</EmptyDescription>
             </EmptyHeader>
         </Empty>
     );
@@ -196,9 +196,9 @@ function FlowFilesAttachResourcesDialogBody({
                 <EmptyMedia variant="icon">
                     <Search />
                 </EmptyMedia>
-                <EmptyTitle>No matches</EmptyTitle>
+                <EmptyTitle>無符合結果</EmptyTitle>
                 <EmptyDescription>
-                    No resources match <code>{searchQuery.trim()}</code>.
+                    沒有符合的資源 <code>{searchQuery.trim()}</code>.
                 </EmptyDescription>
             </EmptyHeader>
         </Empty>
@@ -210,11 +210,11 @@ function FlowFilesAttachResourcesDialogBody({
                 <DialogHeader className="text-left">
                     <DialogTitle className="flex items-center gap-2">
                         <FolderInput className="size-4" />
-                        Attach resources
+                        附加資源
                     </DialogTitle>
                     <DialogDescription>
-                        Pick files and/or folders from your global library — they will be copied into{' '}
-                        <code>resources/</code> of this flow and made available at <code>/work/resources</code> inside
+                        從全域資源庫選擇檔案或資料夾——將複製到{' '}
+                        <code>資源/</code> （本流程）並提供於 <code>/work/resources</code> inside
                         the container.
                     </DialogDescription>
                 </DialogHeader>
@@ -228,14 +228,14 @@ function FlowFilesAttachResourcesDialogBody({
                             autoComplete="off"
                             disabled={isAttaching || isResourcesLoading}
                             onChange={(event) => setSearchQuery(event.target.value)}
-                            placeholder="Search resources..."
+                            placeholder="搜尋資源…"
                             type="text"
                             value={searchQuery}
                         />
                         {searchQuery && (
                             <InputGroupAddon align="inline-end">
                                 <InputGroupButton
-                                    aria-label="Clear resource search"
+                                    aria-label="清除資源搜尋"
                                     onClick={() => setSearchQuery('')}
                                     type="button"
                                 >
@@ -267,7 +267,7 @@ function FlowFilesAttachResourcesDialogBody({
                         {selectedCount > 0
                             ? `${selectedCount} selected`
                             : hasResources
-                              ? 'Select one or more items'
+                              ? '選擇一或多個項目'
                               : ''}
                     </span>
                     <div className="flex flex-col-reverse gap-2 sm:ml-auto sm:flex-row sm:justify-end">
@@ -277,7 +277,7 @@ function FlowFilesAttachResourcesDialogBody({
                             type="button"
                             variant="outline"
                         >
-                            Cancel
+                            取消
                         </Button>
                         <OverwriteButtons
                             isDisabled={isAttachDisabled}

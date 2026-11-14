@@ -39,8 +39,8 @@ describe('SettingsAccount gating', () => {
         renderAccount();
 
         expect(screen.getByText('Local account')).toBeInTheDocument();
-        expect(screen.getByText('Password')).toBeInTheDocument();
-        expect(screen.getAllByRole('button', { name: 'Change' })).toHaveLength(3);
+        expect(screen.getByText('密碼')).toBeInTheDocument();
+        expect(screen.getAllByRole('button', { name: '變更' })).toHaveLength(3);
     });
 
     it.each([
@@ -61,8 +61,8 @@ describe('SettingsAccount gating', () => {
 
         expect(screen.getByText('GitHub')).toBeInTheDocument();
         expect(screen.getByText('Linked from your GitHub.')).toBeInTheDocument();
-        expect(screen.queryByText('Password')).not.toBeInTheDocument();
-        expect(screen.getAllByRole('button', { name: 'Change' })).toHaveLength(1);
+        expect(screen.queryByText('密碼')).not.toBeInTheDocument();
+        expect(screen.getAllByRole('button', { name: '變更' })).toHaveLength(1);
     });
 
     it('labels an unknown provider by its raw name, then a generic fallback', () => {
@@ -81,9 +81,9 @@ describe('SettingsAccount gating', () => {
         authState.value = { user: githubUser };
         renderAccount();
 
-        await user.click(screen.getByRole('button', { name: 'Change' }));
+        await user.click(screen.getByRole('button', { name: '變更' }));
 
-        expect(screen.getByRole('button', { name: 'Update Name' })).toBeInTheDocument();
+        expect(screen.getByRole('button', { name: '更新名稱' })).toBeInTheDocument();
     });
 
     it('keeps an open section and its draft when another section is opened', async () => {
@@ -91,18 +91,18 @@ describe('SettingsAccount gating', () => {
         authState.value = { user: localUser };
         renderAccount();
 
-        const [firstChangeButton] = screen.getAllByRole('button', { name: 'Change' });
+        const [firstChangeButton] = screen.getAllByRole('button', { name: '變更' });
 
         if (!firstChangeButton) {
             throw new Error('expected a Change button');
         }
 
         await user.click(firstChangeButton);
-        const nameInput = screen.getByPlaceholderText('Enter your display name');
+        const nameInput = screen.getByPlaceholderText('輸入顯示名稱');
         await user.clear(nameInput);
         await user.type(nameInput, 'Draft Name');
 
-        const [reopenChangeButton] = screen.getAllByRole('button', { name: 'Change' });
+        const [reopenChangeButton] = screen.getAllByRole('button', { name: '變更' });
 
         if (!reopenChangeButton) {
             throw new Error('expected a Change button');
@@ -110,7 +110,7 @@ describe('SettingsAccount gating', () => {
 
         await user.click(reopenChangeButton);
 
-        expect(screen.getByRole('button', { name: 'Update Email' })).toBeInTheDocument();
-        expect(screen.getByPlaceholderText('Enter your display name')).toHaveValue('Draft Name');
+        expect(screen.getByRole('button', { name: '更新電子郵件' })).toBeInTheDocument();
+        expect(screen.getByPlaceholderText('輸入顯示名稱')).toHaveValue('Draft Name');
     });
 });

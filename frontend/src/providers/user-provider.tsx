@@ -163,9 +163,9 @@ export function UserProvider({ children }: { children: ReactNode }) {
 
             try {
                 await api.post('/auth/logout');
-                toast.success('Successfully logged out');
+                toast.success('已成功登出');
             } catch {
-                toast.error('Logout failed, but clearing local session');
+                toast.error('登出失敗，但仍會清除本機工作階段');
             } finally {
                 clearAuth();
                 window.location.href = `${routes.login()}${finalReturnUrl}`;
@@ -199,7 +199,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
                 setAuth(infoResponse.data);
 
                 if (infoResponse.data.user?.type === 'local' && infoResponse.data.user.password_change_required) {
-                    toast.warning('Password change required');
+                    toast.warning('需要變更密碼');
 
                     return { passwordChangeRequired: true, success: true };
                 }
@@ -355,7 +355,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
                     setAuth(info.data);
                 } else {
                     clearAuth();
-                    toast.error('Session expired. Please login again.');
+                    toast.error('工作階段已過期，請重新登入。');
                     navigate(routes.login(location.pathname));
                 }
             } catch {

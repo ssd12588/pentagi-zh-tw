@@ -21,14 +21,14 @@ export function EditorViewModeToggle({ className, mode, onModeChange, rawTooltip
         >
             <TabsList className="dark:bg-background h-7 p-0.5">
                 <TabsTrigger
-                    aria-label="Rich editor"
+                    aria-label="富文字編輯器"
                     className="dark:data-[state=active]:bg-card h-6 px-2"
                     value="rich"
                 >
                     <SquareMenu className="size-4" />
                 </TabsTrigger>
                 <TabsTrigger
-                    aria-label="Raw source"
+                    aria-label="原始內容"
                     className="dark:data-[state=active]:bg-card h-6 px-2"
                     title={rawTooltip}
                     value="raw"

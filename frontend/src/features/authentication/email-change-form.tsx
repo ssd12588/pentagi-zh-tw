@@ -12,14 +12,14 @@ import { api, resolveApiErrorMessage } from '@/lib/axios';
 import { useUser } from '@/providers/user-provider';
 
 const emailChangeFormSchema = z.object({
-    currentPassword: z.string().min(1, { message: 'Current password is required' }),
+    currentPassword: z.string().min(1, { message: '必須輸入目前密碼' }),
     newEmail: z
         .string()
         .trim()
         .toLowerCase()
-        .min(1, { message: 'Email is required' })
-        .email({ message: 'Invalid email address' })
-        .max(50, { message: 'Email must not exceed 50 characters' }),
+        .min(1, { message: '必須輸入電子郵件' })
+        .email({ message: '電子郵件格式不正確' })
+        .max(50, { message: '電子郵件不得超過 50 個字元' }),
 });
 
 const ERROR_BY_CODE: Record<string, string> = {
@@ -58,7 +58,7 @@ export function EmailChangeForm({ onCancel, onSuccess }: EmailChangeFormProps) {
             });
 
             form.reset();
-            toast.success('Email successfully updated');
+            toast.success('電子郵件更新成功');
 
             patchUser({ mail: values.newEmail });
             await refreshAuthInfo();
@@ -83,11 +83,11 @@ export function EmailChangeForm({ onCancel, onSuccess }: EmailChangeFormProps) {
                     name="currentPassword"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Current Password</FormLabel>
+                            <FormLabel>目前密碼</FormLabel>
                             <FormControl>
                                 <InputPassword
                                     {...field}
-                                    placeholder="Enter your current password"
+                                    placeholder="輸入目前的密碼"
                                 />
                             </FormControl>
                             <FormMessage />
@@ -100,11 +100,11 @@ export function EmailChangeForm({ onCancel, onSuccess }: EmailChangeFormProps) {
                     name="newEmail"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>New Email</FormLabel>
+                            <FormLabel>新電子郵件</FormLabel>
                             <FormControl>
                                 <Input
                                     {...field}
-                                    placeholder="Enter your new email address"
+                                    placeholder="輸入新的電子郵件地址"
                                     type="email"
                                 />
                             </FormControl>
@@ -123,11 +123,11 @@ export function EmailChangeForm({ onCancel, onSuccess }: EmailChangeFormProps) {
                             type="button"
                             variant="outline"
                         >
-                            Cancel
+                            取消
                         </Button>
                     )}
                     <FormSubmitButton size="sm">
-                        <span>Update Email</span>
+                        <span>更新電子郵件</span>
                     </FormSubmitButton>
                 </div>
             </form>

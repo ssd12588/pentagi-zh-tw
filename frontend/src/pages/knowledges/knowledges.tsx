@@ -149,7 +149,7 @@ function Knowledges() {
 
         try {
             await renameKnowledge(editingKnowledgeId, newQuestion);
-            toast.success('Knowledge renamed successfully');
+            toast.success('知識庫重新命名成功');
             setEditingKnowledgeId(null);
         } catch {
             // Error already handled in provider with toast
@@ -209,7 +209,7 @@ function Knowledges() {
             header: ({ column }) => (
                 <DataTableColumnHeader
                     column={column}
-                    title="Type"
+                    title="類型"
                 />
             ),
             maxSize: 180,
@@ -234,7 +234,7 @@ function Knowledges() {
                                 inputRef={editingInputRef}
                                 onCancel={handleKnowledgeRenameCancel}
                                 onSave={handleKnowledgeRenameSave}
-                                placeholder="Knowledge question"
+                                placeholder="知識提問"
                             />
                         </div>
                     );
@@ -252,7 +252,7 @@ function Knowledges() {
             header: ({ column }) => (
                 <DataTableColumnHeader
                     column={column}
-                    title="Question"
+                    title="問題"
                 />
             ),
             meta: { columnMenuLabel: 'Question', searchable: true },
@@ -270,7 +270,7 @@ function Knowledges() {
                                 className="shrink-0 whitespace-nowrap"
                                 variant="outline"
                             >
-                                flow #{k.flowId}
+                                流程 #{k.flowId}
                             </Badge>
                         ) : null}
                         <Badge
@@ -285,7 +285,7 @@ function Knowledges() {
             enableSorting: false,
             header: () => (
                 <span className="text-muted-foreground inline-flex w-full items-center justify-end text-sm font-medium">
-                    Flags
+                    旗標
                 </span>
             ),
             id: 'flags',
@@ -303,7 +303,7 @@ function Knowledges() {
                         <DropdownMenu>
                             <DropdownMenuTrigger asChild>
                                 <Button
-                                    aria-label="Open menu"
+                                    aria-label="開啟選單"
                                     className="size-8 p-0"
                                     onClick={(event) => event.stopPropagation()}
                                     variant="ghost"
@@ -318,11 +318,11 @@ function Knowledges() {
                             >
                                 <DropdownMenuItem onClick={() => handleOpen(k.id)}>
                                     <Pencil />
-                                    Edit
+                                    編輯
                                 </DropdownMenuItem>
                                 <DropdownMenuItem onClick={() => handleKnowledgeRenameStart(k)}>
                                     <PencilLine />
-                                    Rename
+                                    重新命名
                                 </DropdownMenuItem>
                                 <DropdownMenuSeparator />
                                 <DropdownMenuItem
@@ -332,12 +332,12 @@ function Knowledges() {
                                     {deletingIds.has(k.id) ? (
                                         <>
                                             <Spinner variant="circle" />
-                                            Deleting...
+                                            刪除中…
                                         </>
                                     ) : (
                                         <>
                                             <Trash />
-                                            Delete
+                                            刪除
                                         </>
                                     )}
                                 </DropdownMenuItem>
@@ -360,11 +360,11 @@ function Knowledges() {
         <>
             <ContextMenuItem onClick={() => handleOpen(k.id)}>
                 <Pencil />
-                Edit
+                編輯
             </ContextMenuItem>
             <ContextMenuItem onClick={() => handleKnowledgeRenameStart(k)}>
                 <PencilLine />
-                Rename
+                重新命名
             </ContextMenuItem>
             <ContextMenuSeparator />
             <ContextMenuItem
@@ -372,7 +372,7 @@ function Knowledges() {
                 onClick={() => handleDeleteDialogOpen(k)}
             >
                 <Trash />
-                {deletingIds.has(k.id) ? 'Deleting...' : 'Delete'}
+                {deletingIds.has(k.id) ? '刪除中…' : '刪除'}
             </ContextMenuItem>
         </>
     );
@@ -380,7 +380,7 @@ function Knowledges() {
     const pageHeader = (
         <AppHeader>
             <AppHeaderContent>
-                <AppHeaderTitle icon={<LibraryBig className="size-4 shrink-0" />}>Knowledges</AppHeaderTitle>
+                <AppHeaderTitle icon={<LibraryBig className="size-4 shrink-0" />}>知識庫</AppHeaderTitle>
             </AppHeaderContent>
             <AppHeaderActions>
                 <InputSearch
@@ -389,12 +389,12 @@ function Knowledges() {
                     hotkey="k"
                     maxWidth={220}
                     onSearchChange={handleSemanticQueryChange}
-                    placeholder="Semantic search..."
+                    placeholder="語意搜尋…"
                     searchQuery={semanticQuery}
                 />
                 <AppHeaderAction
                     icon={<Plus />}
-                    label="New Knowledge"
+                    label="新增知識庫"
                     onClick={() => navigate(routes.newKnowledge)}
                     variant="secondary"
                 />
@@ -408,8 +408,8 @@ function Knowledges() {
                 {pageHeader}
                 <div className="flex flex-1 flex-col gap-4 p-4">
                     <LoadingState
-                        description="Please wait while we fetch your knowledge documents"
-                        title="Loading knowledges..."
+                        description="正在取得知識文件，請稍候"
+                        title="載入知識庫中…"
                     />
                 </div>
             </>
@@ -425,7 +425,7 @@ function Knowledges() {
                     <ErrorState
                         message={error.message}
                         onRetry={refetch}
-                        title="Error loading knowledge documents"
+                        title="載入知識文件失敗"
                     />
                 </div>
             </>
@@ -442,9 +442,9 @@ function Knowledges() {
                             <EmptyMedia variant="icon">
                                 <LibraryBig />
                             </EmptyMedia>
-                            <EmptyTitle>No knowledge documents yet</EmptyTitle>
+                            <EmptyTitle>尚無知識文件</EmptyTitle>
                             <EmptyDescription>
-                                Create your first knowledge document to enrich the vector store
+                                建立第一份知識文件，以充實向量儲存
                             </EmptyDescription>
                         </EmptyHeader>
                         <EmptyContent>
@@ -453,7 +453,7 @@ function Knowledges() {
                                 variant="secondary"
                             >
                                 <Plus />
-                                New Knowledge
+                                新增知識庫
                             </Button>
                         </EmptyContent>
                     </Empty>
@@ -472,7 +472,7 @@ function Knowledges() {
                     empty={{ entityName: 'knowledge documents' }}
                     filterPlaceholder="Filter knowledge documents..."
                     filterValue={filter}
-                    label="Knowledge Documents"
+                    label="知識文件"
                     onFilterChange={setFilter}
                     onRowClick={(k) => {
                         if (editingKnowledgeId !== k.id) {
@@ -483,8 +483,8 @@ function Knowledges() {
                 />
 
                 <ConfirmationDialog
-                    cancelText="Cancel"
-                    confirmText="Delete"
+                    cancelText="取消"
+                    confirmText="刪除"
                     handleConfirm={handleDelete}
                     handleOpenChange={setIsDeleteDialogOpen}
                     isOpen={isDeleteDialogOpen}

@@ -28,7 +28,7 @@ export function ConnectionStatus() {
             role="status"
         >
             <WifiOff className="size-3.5" />
-            Not receiving updates — reconnecting
+            未收到更新——正在重新連線
         </div>
     );
 }

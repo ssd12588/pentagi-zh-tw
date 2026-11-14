@@ -102,13 +102,13 @@ function FlowTasks() {
                                         <InputGroupInput
                                             {...field}
                                             autoComplete="off"
-                                            placeholder="Search tasks and subtasks..."
+                                            placeholder="搜尋任務與子任務…"
                                             type="text"
                                         />
                                         {field.value && (
                                             <InputGroupAddon align="inline-end">
                                                 <InputGroupButton
-                                                    aria-label="Clear task search"
+                                                    aria-label="清除任務搜尋"
                                                     onClick={() => {
                                                         form.reset({ search: '' });
                                                         setDebouncedSearchValue('');
@@ -146,7 +146,7 @@ function FlowTasks() {
 
                     {!isScrolledToBottom && (
                         <Button
-                            aria-label="Scroll to latest task"
+                            aria-label="捲動到最新任務"
                             className="absolute right-4 bottom-4 z-10 shadow-md hover:shadow-lg"
                             onClick={() => scrollToEnd()}
                             size="icon-sm"
@@ -166,8 +166,8 @@ function FlowTasks() {
                         <EmptyMedia variant="icon">
                             <ListTodo />
                         </EmptyMedia>
-                        <EmptyTitle>No tasks found for this flow</EmptyTitle>
-                        <EmptyDescription>Tasks will appear here once the agent starts working</EmptyDescription>
+                        <EmptyTitle>此流程沒有任務</EmptyTitle>
+                        <EmptyDescription>代理開始運作後，任務會顯示在這裡</EmptyDescription>
                     </EmptyHeader>
                 </Empty>
             )}

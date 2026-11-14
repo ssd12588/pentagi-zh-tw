@@ -189,7 +189,7 @@ function SettingsPrompts() {
 
             setResetOperation(null);
         } catch (error) {
-            toast.error('Failed to reset prompt', {
+            toast.error('重設提示詞失敗', {
                 description: error instanceof Error ? error.message : undefined,
             });
         }
@@ -325,7 +325,7 @@ function SettingsPrompts() {
                         onClick={() => handleColumnSort(column)}
                         variant="link"
                     >
-                        Agent Name
+                        代理名稱
                         {sorted === 'asc' ? <ArrowDown /> : sorted === 'desc' ? <ArrowUp /> : null}
                     </Button>
                 );
@@ -338,7 +338,7 @@ function SettingsPrompts() {
                 const status = row.getValue('systemStatus') as string;
 
                 return (
-                    <Badge variant={status === 'Custom' ? 'default' : status === 'Default' ? 'secondary' : 'outline'}>
+                    <Badge variant={status === '自訂' ? 'default' : status === '預設' ? 'secondary' : 'outline'}>
                         {status}
                     </Badge>
                 );
@@ -353,7 +353,7 @@ function SettingsPrompts() {
                 const status = row.getValue('humanStatus') as string;
 
                 return (
-                    <Badge variant={status === 'Custom' ? 'default' : status === 'Default' ? 'secondary' : 'outline'}>
+                    <Badge variant={status === '自訂' ? 'default' : status === '預設' ? 'secondary' : 'outline'}>
                         {status}
                     </Badge>
                 );
@@ -371,7 +371,7 @@ function SettingsPrompts() {
                         <DropdownMenu>
                             <DropdownMenuTrigger asChild>
                                 <Button
-                                    aria-label="Open menu"
+                                    aria-label="開啟選單"
                                     className="size-8 p-0"
                                     variant="ghost"
                                 >
@@ -384,7 +384,7 @@ function SettingsPrompts() {
                             >
                                 <DropdownMenuItem onClick={() => handlePromptEdit(agent.name)}>
                                     <Pencil className="size-3" />
-                                    Edit
+                                    編輯
                                 </DropdownMenuItem>
                                 {(canResetPrompt(agent.name, 'system') ||
                                     canResetPrompt(agent.name, 'human') ||
@@ -406,12 +406,12 @@ function SettingsPrompts() {
                                                     className="size-3"
                                                     variant="circle"
                                                 />
-                                                Resetting...
+                                                重設中…
                                             </>
                                         ) : (
                                             <>
                                                 <RotateCcw className="size-3" />
-                                                Reset System
+                                                重設系統提示詞
                                             </>
                                         )}
                                     </DropdownMenuItem>
@@ -433,12 +433,12 @@ function SettingsPrompts() {
                                                     className="size-3"
                                                     variant="circle"
                                                 />
-                                                Resetting...
+                                                重設中…
                                             </>
                                         ) : (
                                             <>
                                                 <RotateCcw className="size-3" />
-                                                Reset Human
+                                                重設使用者提示詞
                                             </>
                                         )}
                                     </DropdownMenuItem>
@@ -460,12 +460,12 @@ function SettingsPrompts() {
                                                     className="size-3"
                                                     variant="circle"
                                                 />
-                                                Resetting...
+                                                重設中…
                                             </>
                                         ) : (
                                             <>
                                                 <Trash2 className="size-3" />
-                                                Reset All
+                                                全部重設
                                             </>
                                         )}
                                     </DropdownMenuItem>
@@ -501,7 +501,7 @@ function SettingsPrompts() {
                         onClick={() => handleColumnSort(column)}
                         variant="link"
                     >
-                        Tool Name
+                        工具名稱
                         {sorted === 'asc' ? <ArrowDown /> : sorted === 'desc' ? <ArrowUp /> : null}
                     </Button>
                 );
@@ -514,7 +514,7 @@ function SettingsPrompts() {
                 const status = row.getValue('status') as string;
 
                 return (
-                    <Badge variant={status === 'Custom' ? 'default' : status === 'Default' ? 'secondary' : 'outline'}>
+                    <Badge variant={status === '自訂' ? 'default' : status === '預設' ? 'secondary' : 'outline'}>
                         {status}
                     </Badge>
                 );
@@ -532,7 +532,7 @@ function SettingsPrompts() {
                         <DropdownMenu>
                             <DropdownMenuTrigger asChild>
                                 <Button
-                                    aria-label="Open menu"
+                                    aria-label="開啟選單"
                                     className="size-8 p-0"
                                     variant="ghost"
                                 >
@@ -545,7 +545,7 @@ function SettingsPrompts() {
                             >
                                 <DropdownMenuItem onClick={() => handlePromptEdit(tool.name)}>
                                     <Pencil className="size-3" />
-                                    Edit
+                                    編輯
                                 </DropdownMenuItem>
                                 {canResetPrompt(tool.name, 'tool') && (
                                     <>
@@ -566,12 +566,12 @@ function SettingsPrompts() {
                                                         className="size-3"
                                                         variant="circle"
                                                     />
-                                                    Resetting...
+                                                    重設中…
                                                 </>
                                             ) : (
                                                 <>
                                                     <RotateCcw className="size-3" />
-                                                    Reset
+                                                    重設
                                                 </>
                                             )}
                                         </DropdownMenuItem>
@@ -601,7 +601,7 @@ function SettingsPrompts() {
 
         return (
             <div className="bg-muted/20 flex flex-col gap-4 border-t p-4">
-                <h4 className="font-medium">Prompt Templates</h4>
+                <h4 className="font-medium">提示詞範本</h4>
                 <hr className="border-muted-foreground/20" />
 
                 <div className="flex flex-col gap-4">
@@ -609,13 +609,13 @@ function SettingsPrompts() {
                         <div>
                             <h5 className="mb-2 flex items-center gap-2 text-sm font-medium">
                                 <Code className="size-3" />
-                                System Prompt
+                                系統提示詞
                                 {userSystemPrompt && (
                                     <Badge
                                         className="text-xs"
                                         variant="secondary"
                                     >
-                                        Custom
+                                        自訂
                                     </Badge>
                                 )}
                             </h5>
@@ -629,13 +629,13 @@ function SettingsPrompts() {
                         <div>
                             <h5 className="mb-2 flex items-center gap-2 text-sm font-medium">
                                 <User className="size-3" />
-                                Human Prompt
+                                使用者提示詞
                                 {userHumanPrompt && (
                                     <Badge
                                         className="text-xs"
                                         variant="secondary"
                                     >
-                                        Custom
+                                        自訂
                                     </Badge>
                                 )}
                             </h5>
@@ -659,13 +659,13 @@ function SettingsPrompts() {
         return (
             <div className="bg-muted/20 border-t p-4">
                 <div className="mb-2 flex items-center gap-2">
-                    <h5 className="text-sm font-medium">Template</h5>
+                    <h5 className="text-sm font-medium">範本</h5>
                     {userToolPrompt && (
                         <Badge
                             className="text-xs"
                             variant="secondary"
                         >
-                            Custom
+                            自訂
                         </Badge>
                     )}
                 </div>
@@ -686,7 +686,7 @@ function SettingsPrompts() {
             <>
                 <ContextMenuItem onClick={() => handlePromptEdit(agent.name)}>
                     <Pencil className="size-3" />
-                    Edit
+                    編輯
                 </ContextMenuItem>
                 {hasResetOptions && <ContextMenuSeparator />}
                 {canResetPrompt(agent.name, 'system') && (
@@ -702,8 +702,8 @@ function SettingsPrompts() {
                         {isDeleteLoading &&
                         resetOperation?.promptName === agent.name &&
                         resetOperation?.type === 'system'
-                            ? 'Resetting...'
-                            : 'Reset System'}
+                            ? '重設中…'
+                            : '重設系統提示詞'}
                     </ContextMenuItem>
                 )}
                 {agent.hasHuman && canResetPrompt(agent.name, 'human') && (
@@ -719,8 +719,8 @@ function SettingsPrompts() {
                         {isDeleteLoading &&
                         resetOperation?.promptName === agent.name &&
                         resetOperation?.type === 'human'
-                            ? 'Resetting...'
-                            : 'Reset Human'}
+                            ? '重設中…'
+                            : '重設使用者提示詞'}
                     </ContextMenuItem>
                 )}
                 {canResetPrompt(agent.name, 'all') && (
@@ -734,8 +734,8 @@ function SettingsPrompts() {
                     >
                         <Trash2 className="size-3" />
                         {isDeleteLoading && resetOperation?.promptName === agent.name && resetOperation?.type === 'all'
-                            ? 'Resetting...'
-                            : 'Reset All'}
+                            ? '重設中…'
+                            : '全部重設'}
                     </ContextMenuItem>
                 )}
             </>
@@ -746,7 +746,7 @@ function SettingsPrompts() {
         <>
             <ContextMenuItem onClick={() => handlePromptEdit(tool.name)}>
                 <Pencil />
-                Edit
+                編輯
             </ContextMenuItem>
             {canResetPrompt(tool.name, 'tool') && (
                 <>
@@ -761,8 +761,8 @@ function SettingsPrompts() {
                     >
                         <RotateCcw />
                         {isDeleteLoading && resetOperation?.promptName === tool.name && resetOperation?.type === 'tool'
-                            ? 'Resetting...'
-                            : 'Reset'}
+                            ? '重設中…'
+                            : '重設'}
                     </ContextMenuItem>
                 </>
             )}
@@ -772,7 +772,7 @@ function SettingsPrompts() {
     const pageHeader = (
         <AppHeader>
             <AppHeaderContent>
-                <AppHeaderTitle icon={<FileText className="size-4 shrink-0" />}>Prompts</AppHeaderTitle>
+                <AppHeaderTitle icon={<FileText className="size-4 shrink-0" />}>提示詞</AppHeaderTitle>
             </AppHeaderContent>
         </AppHeader>
     );
@@ -784,8 +784,8 @@ function SettingsPrompts() {
                 <div className="flex flex-1 flex-col gap-6 p-4">
                     <SettingsPromptsHeader />
                     <LoadingState
-                        description="Please wait while we fetch your prompt templates"
-                        title="Loading prompts..."
+                        description="正在取得提示詞範本，請稍候"
+                        title="載入提示詞中…"
                     />
                 </div>
             </>
@@ -802,7 +802,7 @@ function SettingsPrompts() {
                     <ErrorState
                         message={error.message}
                         onRetry={refetch}
-                        title="Error loading prompts"
+                        title="載入提示詞失敗"
                     />
                 </div>
             </>
@@ -823,8 +823,8 @@ function SettingsPrompts() {
                             <EmptyMedia variant="icon">
                                 <Settings />
                             </EmptyMedia>
-                            <EmptyTitle>No prompts available</EmptyTitle>
-                            <EmptyDescription>Prompt templates could not be loaded</EmptyDescription>
+                            <EmptyTitle>沒有可用的提示詞</EmptyTitle>
+                            <EmptyDescription>無法載入提示詞範本</EmptyDescription>
                         </EmptyHeader>
                     </Empty>
                 </div>
@@ -842,17 +842,17 @@ function SettingsPrompts() {
                     <div className="flex flex-col gap-2">
                         <div className="flex items-center gap-2">
                             <Bot className="text-muted-foreground size-5" />
-                            <h2 className="text-lg font-semibold">Agent Prompts</h2>
+                            <h2 className="text-lg font-semibold">代理提示詞</h2>
                             <Badge variant="secondary">{agentPrompts.length}</Badge>
                         </div>
-                        <p className="text-muted-foreground text-sm">System and human prompts for AI agents</p>
+                        <p className="text-muted-foreground text-sm">AI 代理的系統與使用者提示詞</p>
                         <DataTable<AgentPromptTableData>
                             columns={agentColumns}
                             data={agentPrompts}
                             empty={{ entityName: 'agent prompts' }}
-                            filterPlaceholder="Filter agents..."
+                            filterPlaceholder="篩選代理…"
                             initialPageSize={1000}
-                            label="Agent Prompts"
+                            label="代理提示詞"
                             renderRowContextMenu={renderAgentRowContextMenu}
                             renderSubComponent={renderAgentSubComponent}
                             storageKey={`${tableStorageBase}:agents`}
@@ -864,17 +864,17 @@ function SettingsPrompts() {
                     <div className="flex flex-col gap-2">
                         <div className="flex items-center gap-2">
                             <Wrench className="text-muted-foreground size-5" />
-                            <h2 className="text-lg font-semibold">Tool Prompts</h2>
+                            <h2 className="text-lg font-semibold">工具提示詞</h2>
                             <Badge variant="secondary">{toolPrompts.length}</Badge>
                         </div>
-                        <p className="text-muted-foreground text-sm">Prompt templates for system tools and utilities</p>
+                        <p className="text-muted-foreground text-sm">系統工具與公用程式的提示詞範本</p>
                         <DataTable<ToolPromptTableData>
                             columns={toolColumns}
                             data={toolPrompts}
                             empty={{ entityName: 'tool prompts' }}
-                            filterPlaceholder="Filter tools..."
+                            filterPlaceholder="篩選工具…"
                             initialPageSize={1000}
-                            label="Tool Prompts"
+                            label="工具提示詞"
                             renderRowContextMenu={renderToolRowContextMenu}
                             renderSubComponent={renderToolSubComponent}
                             storageKey={`${tableStorageBase}:tools`}
@@ -884,10 +884,10 @@ function SettingsPrompts() {
             </div>
 
             <ConfirmationDialog
-                cancelText="Cancel"
+                cancelText="取消"
                 cancelVariant="outline"
                 confirmIcon={<RotateCcw />}
-                confirmText="Reset"
+                confirmText="重設"
                 confirmVariant="destructive"
                 description={
                     resetOperation?.type === 'system'
@@ -910,7 +910,7 @@ function SettingsPrompts() {
 function SettingsPromptsHeader() {
     return (
         <div className="flex items-center justify-between">
-            <p className="text-muted-foreground">Manage system and custom prompt templates</p>
+            <p className="text-muted-foreground">管理系統與自訂提示詞範本</p>
         </div>
     );
 }

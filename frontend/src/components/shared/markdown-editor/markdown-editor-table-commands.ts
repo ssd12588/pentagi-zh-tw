@@ -6,9 +6,9 @@ import { AlignCenter, AlignLeft, AlignRight } from 'lucide-react';
 export type ColumnAlign = 'center' | 'left' | 'right';
 
 export const ALIGN_OPTIONS: { icon: LucideIcon; label: string; value: ColumnAlign }[] = [
-    { icon: AlignLeft, label: 'Left', value: 'left' },
-    { icon: AlignCenter, label: 'Center', value: 'center' },
-    { icon: AlignRight, label: 'Right', value: 'right' },
+    { icon: AlignLeft, label: '靠左', value: 'left' },
+    { icon: AlignCenter, label: '置中', value: 'center' },
+    { icon: AlignRight, label: '靠右', value: 'right' },
 ];
 
 export function clearLineContents(editor: Editor, axis: 'column' | 'row'): void {

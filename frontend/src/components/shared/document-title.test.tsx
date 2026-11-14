@@ -35,7 +35,7 @@ describe('DocumentTitle', () => {
     it('renders a static title from handle', async () => {
         renderAt('/dashboard', [
             {
-                children: [{ element: <span>page</span>, handle: { title: 'Dashboard' }, path: 'dashboard' }],
+                children: [{ element: <span>page</span>, handle: { title: '儀表板' }, path: 'dashboard' }],
                 element: (
                     <>
                         <DocumentTitle />
@@ -86,7 +86,7 @@ describe('DocumentTitle', () => {
                             { element: <span>tokens</span>, handle: { title: 'API tokens' }, path: 'api-tokens' },
                         ],
                         element: <Outlet />,
-                        handle: { title: 'Settings' },
+                        handle: { title: '設定' },
                         path: 'settings',
                     },
                 ],

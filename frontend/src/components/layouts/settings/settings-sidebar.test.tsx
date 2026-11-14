@@ -42,15 +42,15 @@ function renderSidebar(entry: { pathname: string; state?: unknown }) {
     );
 }
 
-const backToApp = () => screen.getByRole('link', { name: /Back to App/ });
+const backToApp = () => screen.getByRole('link', { name: /返回應用程式/ });
 
 describe('SettingsSidebar version', () => {
     it('names the section and the running version in the header', () => {
         renderSidebar({ pathname: '/settings/account' });
 
-        const header = screen.getByRole('button', { name: /Settings v2\.1\.0/ });
+        const header = screen.getByRole('button', { name: /設定 v2\.1\.0/ });
 
-        expect(header).toHaveTextContent('Settings');
+        expect(header).toHaveTextContent('設定');
         expect(header).toHaveTextContent('v2.1.0');
     });
 });
@@ -72,7 +72,7 @@ describe('SettingsSidebar "Back to App"', () => {
         const user = userEvent.setup();
         renderSidebar({ pathname: '/settings/account', state: { from: '/dashboard' } });
 
-        await user.click(screen.getByRole('link', { name: 'Providers' }));
+        await user.click(screen.getByRole('link', { name: '供應商' }));
 
         expect(backToApp()).toHaveAttribute('href', '/dashboard');
     });
