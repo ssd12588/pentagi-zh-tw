@@ -11,6 +11,10 @@
 
 ## Windows 一鍵啟動
 
+**最簡單：直接雙擊 `start-pentagi.bat`**（會開啟中文選單：啟動／建置／日誌／停止／開網頁／編輯 .env／環境檢查）。
+
+或使用命令列：
+
 ```powershell
 pwsh -File .\start-pentagi.ps1 -Build    # 建置本地中文映像並啟動（第一次必用）
 pwsh -File .\start-pentagi.ps1           # 之後啟動（沿用本地映像）

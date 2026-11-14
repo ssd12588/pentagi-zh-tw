@@ -70,9 +70,13 @@ TAVILY_API_KEY=tvly-...
 
 ---
 
-## 步驟 3：啟動（第一次要用 `-Build`）
+## 步驟 3：啟動（第一次要用「建置」）
 
 ⚠️ **關鍵**：`docker-compose.yml` 預設抓的是**上游英文映像**，一定要用本專案原始碼建置，中文介面才會出現。
+
+**最簡單：直接雙擊 `start-pentagi.bat`** → 選單按 `2`（建置並啟動）。
+
+或用命令列：
 
 ```powershell
 pwsh -File .\start-pentagi.ps1 -Build
