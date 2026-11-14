@@ -1,0 +1,15 @@
+# PentAGI 繁體中文漢化版 —— 本地建置覆寫檔
+#
+# 用途：docker-compose.yml 預設抓上游英文映像（vxcontrol/pentagi:latest）。
+# 這個覆寫檔改成「用本倉庫的原始碼建置」，才會包含中文介面。
+#
+# 用法：
+#   docker compose -f docker-compose.yml -f docker-compose.build.yml up -d --build
+# 或以啟動腳本：
+#   pwsh -File .\start-pentagi.ps1 -Build
+services:
+  pentagi:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ${PENTAGI_IMAGE:-pentagi-zh-tw:latest}

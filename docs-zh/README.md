@@ -12,10 +12,15 @@
 ## Windows 一鍵啟動
 
 ```powershell
-pwsh -File .\start-pentagi.ps1          # 檢查環境 → 啟動 → 開啟瀏覽器
-pwsh -File .\start-pentagi.ps1 -Logs    # 追蹤日誌
-pwsh -File .\start-pentagi.ps1 -Down    # 停止服務
+pwsh -File .\start-pentagi.ps1 -Build    # 建置本地中文映像並啟動（第一次必用）
+pwsh -File .\start-pentagi.ps1           # 之後啟動（沿用本地映像）
+pwsh -File .\start-pentagi.ps1 -Logs     # 追蹤日誌
+pwsh -File .\start-pentagi.ps1 -Down     # 停止服務
 ```
+
+> **為什麼一定要 `-Build`？** `docker-compose.yml` 預設使用上游英文映像 `vxcontrol/pentagi:latest`；
+> 只有用本倉庫的原始碼建置，才會包含繁體中文介面。等價指令：
+> `docker compose -f docker-compose.yml -f docker-compose.build.yml up -d --build`
 
 ## 這個版本做了什麼
 

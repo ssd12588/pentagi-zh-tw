@@ -16,7 +16,8 @@
 param(
     [switch]$Down,
     [switch]$Logs,
-    [switch]$SkipChecks
+    [switch]$SkipChecks,
+    [switch]$Build
 )
 
 $ErrorActionPreference = 'Stop'
@@ -63,7 +64,8 @@ if (-not $SkipChecks) {
 # 2) 停止 / 日誌模式
 if ($Down) {
     Write-Step '停止服務'
-    docker compose down
+    docker compose -f docker-compose.yml -f docker-compose.build.yml down 2>$null
+    if ($LASTEXITCODE -ne 0) { docker compose down }
     Write-Ok '已停止'
     exit 0
 }
@@ -94,9 +96,36 @@ if (-not (Test-Path '.env')) {
 }
 Write-Ok '.env 存在'
 
-# 4) 啟動
+# 4) 選擇映像：本地中文版 or 上游英文版
+$localImage = 'pentagi-zh-tw:latest'
+$composeArgs = @()
+docker image inspect $localImage *> $null
+$hasLocal = ($LASTEXITCODE -eq 0)
+
+if ($Build) {
+    Write-Step "建置本地中文映像（$localImage）—— 首次需要數分鐘"
+    $composeArgs = @('-f', 'docker-compose.yml', '-f', 'docker-compose.build.yml')
+    docker compose @composeArgs build pentagi
+    if ($LASTEXITCODE -ne 0) {
+        Write-Err '建置失敗，請檢查 Dockerfile 與網路。'
+        exit 1
+    }
+    Write-Ok '本地映像建置完成（含中文介面）'
+} elseif ($hasLocal) {
+    $env:PENTAGI_IMAGE = $localImage
+    Write-Ok "使用本地中文映像：$localImage"
+} else {
+    Write-Warn "找不到本地中文映像（$localImage），將使用上游英文映像 vxcontrol/pentagi:latest。"
+    Write-Host '        要看到中文介面，請改用：pwsh -File .\start-pentagi.ps1 -Build' -ForegroundColor Yellow
+}
+
+# 5) 啟動
 Write-Step '啟動容器（第一次會下載映像，可能需要數分鐘）'
-docker compose up -d
+if ($composeArgs.Count -gt 0) {
+    docker compose @composeArgs up -d
+} else {
+    docker compose up -d
+}
 if ($LASTEXITCODE -ne 0) {
     Write-Err '啟動失敗，請執行：docker compose logs --tail 50'
     exit 1

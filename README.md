@@ -14,6 +14,15 @@
 
 漢化流程已腳本化於 `tools/i18n/`（AST 抽字串 → 套用字典 → 檢查語法／中英混雜 → 建置驗證），可重複執行以跟上上游更新。
 
+> ⚠️ **重點：`docker-compose.yml` 預設拉的是上游英文映像 `vxcontrol/pentagi:latest`。**
+> 要看到中文介面，必須用本倉庫原始碼建置映像：
+>
+> ```bash
+> docker compose -f docker-compose.yml -f docker-compose.build.yml up -d --build
+> ```
+>
+> 或 Windows 一鍵：`pwsh -File .\start-pentagi.ps1 -Build`
+
 **與上游同步**：
 
 ```bash
